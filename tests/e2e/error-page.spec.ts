@@ -11,8 +11,6 @@ for (const prefix of ['', '/en']) {
     const link = page.locator('.error-state a[data-slot="button"]');
     await expect(link).toHaveAttribute('href', `${prefix}/`);
     await expect(link).toHaveRole('link');
-    await expect(link).toHaveCSS('background-color', 'rgb(215, 181, 109)');
-    await expect(link).toHaveCSS('color', 'rgb(11, 13, 18)');
 
     // Tab through the real page order instead of relying on programmatic focus.
     for (let attempt = 0; attempt < 40; attempt++) {

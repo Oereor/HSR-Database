@@ -1,3 +1,5 @@
+import type { CharacterDetailIconKey } from '../character-detail-icons.js';
+
 export type ItemId = string;
 export type Cost = Record<ItemId, number>;
 export type ProgressionKey = string;
@@ -11,6 +13,7 @@ export interface PromotionCostStage {
 export interface TrainingStep {
   level: number;
   requiredPromotion: number;
+  requiredCharacterLevel: number;
   cost: Cost;
 }
 
@@ -25,6 +28,8 @@ export interface TrainingNode {
   key: ProgressionKey;
   pointId: string;
   pointType: number;
+  anchorType?: string;
+  iconKey?: CharacterDetailIconKey;
   kind: 'skill' | 'trace' | 'default' | 'fixed';
   defaultUnlock: boolean;
   maxLevel: number;
@@ -40,8 +45,10 @@ export interface CharacterTrainingProfile {
   nodes: TrainingNode[];
 }
 
+export const CHARACTER_TRAINING_SCHEMA_VERSION = 3 as const;
+
 export interface CharacterTrainingData {
-  schemaVersion: 1;
+  schemaVersion: typeof CHARACTER_TRAINING_SCHEMA_VERSION;
   avatarId: string;
   expGroup: string;
   promotions: PromotionCostStage[];
@@ -160,10 +167,22 @@ export interface LightConeTrainingResult extends TrainingCosts {
   target: LightConeTrainingTarget & { promotion: number };
 }
 
+export interface TraceCharacterProgress {
+  level: number;
+  promotion: number;
+}
+
 export type TraceTransition =
   | { ok: true; activeTraceIds: string[] }
   | {
       ok: false;
       activeTraceIds: string[];
-      error: { code: 'promotion-required' | 'non-activatable-prerequisite'; pointIds: string[] };
+      error:
+        | {
+            code: 'requirements-unmet';
+            pointIds: string[];
+            requiredPromotion: number;
+            requiredCharacterLevel: number;
+          }
+        | { code: 'non-activatable-prerequisite'; pointIds: string[] };
     };

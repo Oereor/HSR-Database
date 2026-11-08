@@ -50,7 +50,11 @@ for (const prefix of ['', '/en']) {
       .click();
     await expect(panel.locator('#global-search')).toBeFocused();
     await panel.locator('#global-search').fill('March');
-    await panel.locator('.search-bar button[type="submit"]').click();
+    const submit = panel.locator('.search-bar button[type="submit"]');
+    await submit.hover();
+    await expect(page.getByRole('tooltip')).toBeVisible();
+    await expect(submit).not.toHaveAttribute('title');
+    await submit.click();
     await expect(page).toHaveURL(new RegExp(`${prefix}/search/\\?q=March$`));
     await expect(sidebar).toHaveAttribute('data-state', 'expanded');
     expect(await page.context().cookies()).toEqual([]);

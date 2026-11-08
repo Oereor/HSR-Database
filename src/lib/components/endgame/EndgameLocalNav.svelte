@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as Sheet from '$lib/components/ui/sheet';
+  import * as Tooltip from '$lib/components/ui/tooltip';
   import { Button, buttonVariants } from '$lib/components/ui/button';
   import { cn } from '$lib/utils.js';
   import { Separator } from '$lib/components/ui/separator';
@@ -37,14 +38,21 @@
         </h2>
         <div class="grid min-w-0 gap-1">
           {#each section.items as item (item.id)}
-            <a
-              class={linkClass}
-              href={item.href}
-              aria-current={item.current ? 'page' : undefined}
-              title={item.title}
-            >
-              <GameText text={item.label} />
-            </a>
+            <Tooltip.Root disabled={!item.title}>
+              <Tooltip.Trigger>
+                {#snippet child({ props })}
+                  <a
+                    {...{ ...props, type: undefined, disabled: undefined }}
+                    class={linkClass}
+                    href={item.href}
+                    aria-current={item.current ? 'page' : undefined}
+                  >
+                    <GameText text={item.label} />
+                  </a>
+                {/snippet}
+              </Tooltip.Trigger>
+              <Tooltip.Content side="right"><GameText text={item.title} /></Tooltip.Content>
+            </Tooltip.Root>
           {/each}
         </div>
       </section>

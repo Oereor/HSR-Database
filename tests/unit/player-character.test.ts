@@ -80,7 +80,7 @@ describe('Player Character resolvers', () => {
     ).toBeNull();
   });
 
-  it('treats omitted Enka Trace nodes as inactive and preserves malformed levels as unresolved', () => {
+  it('only activates Enka Trace nodes with positive integer levels', () => {
     const index = createPlayerSkillTreeIndex([
       ...profile.characters[0].skillTree,
       { id: 'malformed-negative', level: -1 },
@@ -89,8 +89,8 @@ describe('Player Character resolvers', () => {
     expect(resolvePlayerTraceState('1304101', index)).toBe('active');
     expect(resolvePlayerTraceState('1304102', index)).toBe('inactive');
     expect(resolvePlayerTraceState('1304103', index)).toBe('inactive');
-    expect(resolvePlayerTraceState('malformed-negative', index)).toBe('unresolved');
-    expect(resolvePlayerTraceState('malformed-fraction', index)).toBe('unresolved');
+    expect(resolvePlayerTraceState('malformed-negative', index)).toBe('inactive');
+    expect(resolvePlayerTraceState('malformed-fraction', index)).toBe('inactive');
   });
 
   it.each([

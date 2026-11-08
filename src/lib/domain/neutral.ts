@@ -79,6 +79,7 @@ export interface NeutralSkillCombatLevel {
 }
 
 export interface NeutralTrace {
+  statBonuses?: Array<{ propertyType: string; value: DecimalString }>;
   id: string;
   type: 'stat' | 'ability';
   propertyType?: string;
@@ -89,6 +90,7 @@ export interface NeutralTrace {
   params: readonly DecimalString[];
   iconPath?: string;
   promotionLimit?: number;
+  characterLevelLimit?: number;
   anchorOrder?: number;
   statDescriptionSource?: NeutralTextSource;
   statValues?: readonly DecimalString[];

@@ -5,14 +5,15 @@
   import { goto } from '$app/navigation';
   import { onDestroy, onMount } from 'svelte';
   import { page } from '$app/stores';
+  import { toast } from 'svelte-sonner';
   import BaseStatsPanel from '$lib/components/shared/BaseStatsPanel.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
-  import { toast } from 'svelte-sonner';
   import { Switch } from '$lib/components/ui/switch';
   import SkillCardPanel from '$lib/components/character/SkillCardPanel.svelte';
   import SpecialEffectDialog from '$lib/components/character/SpecialEffectDialog.svelte';
   import SuperimpositionPanel from '$lib/components/light-cone/SuperimpositionPanel.svelte';
   import TraceCardPanel from '$lib/components/character/TraceCardPanel.svelte';
+  import PlayerTracePanel from '$lib/components/character/PlayerTracePanel.svelte';
   import DetailArtwork from '$lib/components/shared/DetailArtwork.svelte';
   import RarityStars from '$lib/components/shared/RarityStars.svelte';
   import SemanticIconLabel from '$lib/components/shared/SemanticIconLabel.svelte';
@@ -38,6 +39,7 @@
   import { formatDocumentTitle } from '$lib/site';
   import { trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
+  import { traceRequirementText } from '$lib/components/character/trace-requirements';
   import { fetchPlayerProfile } from '$lib/player/client';
   import type { PlayerCharacter } from '$lib/player/contract';
   import { findPlayerCharacter, resolvePlayerEidolonState } from '$lib/player/character';
@@ -51,38 +53,36 @@
   import TrainingSection from '$lib/components/training/TrainingSection.svelte';
   import ItemDetailModal from '$lib/components/training/ItemDetailModal.svelte';
   import { createTrainingLoader } from '$lib/data/training';
-  import { getPromotionAtLevel } from '$lib/domain/stats';
   import { getLocale } from '$lib/paraglide/runtime.js';
   import {
+    activateTrace,
     calculateCharacterTrainingTarget,
     calculateLightConeTrainingTarget,
     createDefaultCharacterTrainingTarget,
     createDefaultLightConeTrainingTarget,
-    reconcileCharacterLevel,
-    activateTrace,
     deactivateTrace,
     derivePromotion,
+    reconcileCharacterLevel,
     resolveSkillTraining,
     TrainingError
   } from '$lib/domain/training/index';
+  import { createTrainingSkillTargets } from '$lib/domain/training/detail-view';
+  import { isToggleableTrainingNode } from '$lib/domain/training/skill-tree';
   import type {
     CharacterTrainingData,
-    CharacterTrainingProfile,
+    CharacterTrainingResult,
     CharacterTrainingTarget,
     LightConeTrainingData,
     TrainingSharedData,
     MaterialCatalog,
     MaterialView,
     MaterialDetail,
-    CharacterTrainingResult,
     LightConeTrainingResult
   } from '$lib/domain/training/types';
   import {
-    createSkillPreviewControls,
-    initializeSkillPreviewLevels,
-    createTrainingSkillTargets,
-    createTrainingTraceSummary
-  } from '$lib/domain/training/detail-view';
+    createCharacterPreviewControls,
+    updateCharacterPreviewLevel
+  } from '$lib/domain/character-preview';
 
   export let detail: any;
   export let category: string;
@@ -91,6 +91,7 @@
   export let equipmentRecommendation: EquipmentRecommendationView | undefined = undefined;
   export let relicProperties: RelicProperty[] = [];
   const trainingLoader = createTrainingLoader();
+  const traceNoticeId = 'training-trace-notice';
   let clientReady = false;
   let handledTrainingKey = '';
   let trainingEntityKey = '';
@@ -98,6 +99,8 @@
   let trainingLoadError: string | undefined;
   let trainingLoadState: 'loading' | 'ready' | 'error' = 'loading';
   let characterTrainingData: CharacterTrainingData | undefined;
+  let characterTarget: Required<CharacterTrainingTarget> | undefined;
+  let retainedCharacterLevel: number | undefined;
   let lightConeTrainingData: LightConeTrainingData | undefined;
   let trainingShared: TrainingSharedData | undefined;
   let materialCatalog: MaterialCatalog | undefined;
@@ -107,12 +110,11 @@
   let materialDetailRequestVersion = 0;
   let materialDetailTrigger: HTMLButtonElement | undefined;
   let materialDetailContext = '';
-  let characterTarget: Required<CharacterTrainingTarget> | undefined;
-  let trainingLevel = detail.baseStats?.defaultLevel ?? 1;
+  let lightConeLevel = detail.baseStats?.defaultLevel ?? 1;
   let previewLevels: Record<string, number> = {};
-  let pendingPreviewLevels: Record<string, number> = {};
+  let characterPreviewLevel = detail.baseStats?.defaultLevel ?? 1;
+  let previewScope = '';
   let trainingScopeKey = '';
-  const traceNoticeId = 'training-trace-notice';
   let specialEffectsOpen = false;
   let specialEffectTrigger: HTMLButtonElement | undefined;
   let specialEffectLevel = 1;
@@ -128,7 +130,8 @@
     clientReady = true;
   });
   onDestroy(() => {
-    toast.dismiss(traceNoticeId);
+    trainingRequestVersion += 1;
+    if (browser && category === 'characters') toast.dismiss(traceNoticeId);
     materialDetailRequestVersion += 1;
     materialDetailTrigger = undefined;
   });
@@ -224,81 +227,63 @@
   $: staticTrainingEnabled =
     category === 'light-cones' ||
     (category === 'characters' && (!browser || !$page.url.searchParams.has('uid')));
-  $: trainingKey = `${category}:${detail.id}:${profileMode}:${getLocale()}:${staticTrainingEnabled}:${category === 'light-cones' ? lightConeInitialStateKey : ''}`;
+  $: synchronizePreviews(
+    `${category}:${detail.id}:${profileMode}`,
+    detail.baseStats?.defaultLevel ?? 1
+  );
+  $: trainingKey = `${$page.url.pathname}:${category}:${detail.id}:${profileMode}:${getLocale()}:${staticTrainingEnabled}:${category === 'light-cones' ? lightConeInitialStateKey : ''}`;
   $: if (clientReady) synchronizeTraining(trainingKey);
   $: synchronizeMaterialContext(
     `${$page.url.pathname}:${category}:${detail.id}:${profileMode}:${getLocale()}:${staticTrainingEnabled}`
   );
-  $: trainingProfile = characterTrainingData?.profiles.find((profile) =>
-    profileMode === 'base' ? profile.enhancedId === 0 : profile.enhancedId !== 0
-  );
-  $: staticPromotion = detail.baseStats?.stages.length
-    ? getPromotionAtLevel(detail.baseStats, trainingLevel)
-    : 0;
-  $: skillPreviewControls =
-    staticTrainingEnabled && activeProfile
-      ? createSkillPreviewControls(
-          activeProfile.skillCards,
-          trainingProfile,
-          previewLevels,
-          pendingPreviewLevels,
-          staticPromotion
-        )
-      : undefined;
+  $: skillPreviewControls = activeProfile
+    ? createCharacterPreviewControls(activeProfile.skillCards, previewLevels)
+    : undefined;
   $: trainingCalculation = calculateCurrentTraining(
     characterTrainingData,
+    characterTarget,
     lightConeTrainingData,
     trainingShared,
     materialCatalog,
-    characterTarget,
-    trainingLevel,
+    lightConeLevel,
     staticTrainingEnabled
   );
   $: trainingSectionState =
     trainingLoadState === 'ready' && trainingCalculation.error ? 'error' : trainingLoadState;
-  $: trainingLevelControl = detail.baseStats
-    ? {
-        id: `training-${category === 'characters' ? 'character' : 'light-cone'}-level-${detail.id}`,
-        label:
-          category === 'characters' ? m.base_stats_character_level() : m.detail_light_cone_level(),
-        value: trainingLevel,
-        min: detail.baseStats.minLevel as number,
-        max: detail.baseStats.maxLevel as number,
-        promotion: staticPromotion
-      }
-    : undefined;
   $: characterTrainingResult =
     trainingCalculation.result && 'skills' in trainingCalculation.result
       ? trainingCalculation.result
       : undefined;
-  $: trainingSkillTargets = characterTrainingResult
-    ? createTrainingSkillTargets(
-        activeProfile.skillCards,
-        trainingProfile,
-        characterTrainingResult.skills,
-        characterTrainingResult.target.promotion
-      )
-    : [];
-  $: trainingActiveTraces = characterTrainingResult
-    ? createTrainingTraceSummary(
-        activeProfile.traces,
-        trainingProfile,
-        characterTrainingResult.target.activeTraceIds
-      )
-    : [];
+  $: trainingProfile = characterTrainingData?.profiles.find(
+    (profile) =>
+      profile.enhancedId === characterTarget?.enhancedId &&
+      (profile.enhancedId !== 0) === enhancedEnabled
+  );
+  $: skillTargets =
+    characterTrainingResult && activeProfile && trainingProfile
+      ? createTrainingSkillTargets(
+          activeProfile.skillCards,
+          trainingProfile,
+          characterTrainingResult.skills,
+          characterTrainingResult.target.promotion
+        )
+      : [];
+  $: trainingLevelControl =
+    category === 'characters' && detail.baseStats
+      ? {
+          id: `training-character-level-${detail.id}`,
+          label: m.base_stats_character_level(),
+          value: characterTarget?.level ?? detail.baseStats.defaultLevel,
+          min: detail.baseStats.minLevel as number,
+          max: detail.baseStats.maxLevel as number,
+          promotion: characterTrainingResult?.target.promotion ?? 0
+        }
+      : undefined;
   const lightConeSectionNavItems = [
     { id: 'stats', label: m.detail_stats() },
     { id: 'training', label: m.training_title() },
     { id: 'story', label: m.detail_story() }
   ];
-
-  function initializeCharacterTarget(
-    data: CharacterTrainingData,
-    profile: CharacterTrainingProfile
-  ): Required<CharacterTrainingTarget> {
-    const target = createDefaultCharacterTrainingTarget(data, profile.enhancedId);
-    return reconcileCharacterLevel(data, target, trainingLevel);
-  }
 
   function synchronizeMaterialContext(context: string): void {
     if (materialDetailContext === context) return;
@@ -360,6 +345,13 @@
       trigger.focus({ preventScroll: true });
   }
 
+  function synchronizePreviews(scope: string, defaultLevel: number): void {
+    if (previewScope === scope) return;
+    previewScope = scope;
+    previewLevels = {};
+    characterPreviewLevel = defaultLevel;
+  }
+
   function synchronizeTraining(key: string): void {
     if (handledTrainingKey === key) return;
     const entityKey = `${category}:${detail.id}`;
@@ -371,15 +363,17 @@
     handledTrainingKey = key;
     trainingRequestVersion += 1;
     if (scopeChanged) {
+      retainedCharacterLevel =
+        !entityChanged && category === 'characters' && staticTrainingEnabled
+          ? (characterTarget?.level ?? retainedCharacterLevel)
+          : undefined;
       characterTarget = undefined;
       characterTrainingData = undefined;
       lightConeTrainingData = undefined;
-      previewLevels = {};
-      pendingPreviewLevels = {};
+      if (category === 'characters') toast.dismiss(traceNoticeId);
     }
-    toast.dismiss(traceNoticeId);
-    if (entityChanged || category === 'light-cones')
-      trainingLevel = lightConeInitialLevel ?? detail.baseStats?.defaultLevel ?? 1;
+    if (category === 'light-cones')
+      lightConeLevel = lightConeInitialLevel ?? detail.baseStats?.defaultLevel ?? 1;
     trainingLoadState = 'loading';
     trainingLoadError = undefined;
     if (staticTrainingEnabled) void loadTraining(key, trainingRequestVersion);
@@ -398,28 +392,22 @@
       ]);
       if (version !== trainingRequestVersion || key !== handledTrainingKey) return;
       if ('avatarId' in data) {
-        const character = data;
-        const profile = character.profiles.find((profile) =>
-          mode === 'base' ? profile.enhancedId === 0 : profile.enhancedId !== 0
+        const profile = data.profiles.find(({ enhancedId }) =>
+          mode === 'base' ? enhancedId === 0 : enhancedId !== 0
         );
         if (!profile) throw new TrainingError('unknown-profile', `${id}:${mode}`);
         if (!characterTarget) {
-          const initialTarget = initializeCharacterTarget(character, profile);
-          const initialPreview = initializeSkillPreviewLevels(
-            activeProfile.skillCards,
-            profile,
-            pendingPreviewLevels
-          );
-          characterTarget = initialTarget;
-          previewLevels = initialPreview;
-          pendingPreviewLevels = {};
+          const initial = createDefaultCharacterTrainingTarget(data, profile.enhancedId);
+          characterTarget =
+            retainedCharacterLevel === undefined
+              ? initial
+              : reconcileCharacterLevel(data, initial, retainedCharacterLevel);
+          retainedCharacterLevel = undefined;
         }
-        characterTrainingData = character;
+        characterTrainingData = data;
       } else {
-        const cone = data;
-        // Validate the default factory; query/user edits retain their current level.
-        createDefaultLightConeTrainingTarget(cone);
-        lightConeTrainingData = cone;
+        createDefaultLightConeTrainingTarget(data);
+        lightConeTrainingData = data;
       }
       trainingShared = shared;
       materialCatalog = catalog;
@@ -439,34 +427,16 @@
     void loadTraining(handledTrainingKey, trainingRequestVersion);
   }
 
-  function handleTrainingLevel(level: number): void {
-    if (characterTarget && characterTrainingData)
-      characterTarget = reconcileCharacterLevel(characterTrainingData, characterTarget, level);
-    trainingLevel = level;
+  function handleCharacterTrainingLevel(level: number): void {
+    if (!characterTrainingData || !characterTarget) return;
+    characterTarget = reconcileCharacterLevel(characterTrainingData, characterTarget, level);
     toast.dismiss(traceNoticeId);
   }
 
-  function handleSkillPreviewLevel(progressionId: string, level: number): void {
-    const control = skillPreviewControls?.[progressionId];
-    const nextPending = { ...pendingPreviewLevels, [progressionId]: level };
-    const nextPreview = control?.key ? { ...previewLevels, [control.key]: level } : previewLevels;
-    createSkillPreviewControls(
-      activeProfile.skillCards,
-      trainingProfile,
-      nextPreview,
-      nextPending,
-      staticPromotion
-    );
-    if (control?.key) previewLevels = nextPreview;
-    else pendingPreviewLevels = nextPending;
-  }
-
   function handleSkillTrainingLevel(key: string, level: number): void {
-    if (!characterTarget || !trainingProfile || !characterTrainingData) return;
-    const node = trainingProfile.nodes.find(
-      (candidate) => candidate.key === key && candidate.kind === 'skill'
-    );
-    if (!node) throw new TrainingError('unknown-skill-target', key);
+    if (!characterTrainingData || !characterTarget || !trainingProfile) return;
+    const node = trainingProfile.nodes.find((node) => node.key === key && node.kind === 'skill');
+    if (!node) return;
     resolveSkillTraining(
       node,
       level,
@@ -479,54 +449,58 @@
   }
 
   function handleTraceToggle(pointId: string): void {
-    if (!characterTarget || !characterTrainingData || !trainingProfile) return;
+    if (!characterTrainingData || !characterTarget || !trainingProfile) return;
+    const node = trainingProfile.nodes.find((node) => node.pointId === pointId);
+    if (!node || !isToggleableTrainingNode(node)) return;
     toast.dismiss(traceNoticeId);
-    if (characterTarget.activeTraceIds.includes(pointId)) {
+    const { activeTraceIds } = characterTarget;
+    if (activeTraceIds.includes(pointId)) {
       characterTarget = {
         ...characterTarget,
-        activeTraceIds: deactivateTrace(trainingProfile, characterTarget.activeTraceIds, pointId)
+        activeTraceIds: deactivateTrace(trainingProfile, activeTraceIds, pointId)
       };
       return;
     }
-    const transition = activateTrace(
-      trainingProfile,
-      characterTarget.activeTraceIds,
-      pointId,
-      derivePromotion(characterTrainingData.promotions, characterTarget.level)
-    );
-    if (transition.ok)
+    const transition = activateTrace(trainingProfile, activeTraceIds, pointId, {
+      level: characterTarget.level,
+      promotion: derivePromotion(characterTrainingData.promotions, characterTarget.level)
+    });
+    if (transition.ok) {
       characterTarget = { ...characterTarget, activeTraceIds: transition.activeTraceIds };
-    else {
-      const message =
-        transition.error.code === 'promotion-required'
-          ? m.training_trace_promotion_required({
-              promotion: Math.max(
-                ...transition.error.pointIds.map(
-                  (id) =>
-                    trainingProfile!.nodes.find((node) => node.pointId === id)!.steps[0]
-                      .requiredPromotion
-                )
-              )
-            })
-          : m.training_trace_unavailable();
-      toast.info(m.training_trace_notice_title(), {
-        id: traceNoticeId,
-        description: message,
-        duration: 4000
-      });
+      return;
     }
+    const error = transition.error;
+    const description =
+      error.code === 'requirements-unmet'
+        ? m.training_trace_requirements_unmet({
+            requirements: traceRequirementText(
+              error.requiredPromotion,
+              error.requiredCharacterLevel
+            )
+          })
+        : m.training_trace_unavailable();
+    toast.info(m.training_trace_notice_title(), { id: traceNoticeId, description, duration: 4000 });
+  }
+
+  function handleSkillPreviewLevel(progressionId: string, level: number): void {
+    previewLevels = updateCharacterPreviewLevel(
+      activeProfile.skillCards,
+      previewLevels,
+      progressionId,
+      level
+    );
   }
 
   function calculateCurrentTraining(
     character: CharacterTrainingData | undefined,
+    target: CharacterTrainingTarget | undefined,
     cone: LightConeTrainingData | undefined,
     shared: TrainingSharedData | undefined,
     catalog: MaterialCatalog | undefined,
-    target: Required<CharacterTrainingTarget> | undefined,
     level: number,
     enabled: boolean
   ): { result?: CharacterTrainingResult | LightConeTrainingResult; error?: string } {
-    if (!enabled || !shared || !catalog || (!character && !cone)) return {};
+    if (!enabled || !shared || !catalog) return {};
     try {
       const result =
         character && target
@@ -723,9 +697,9 @@
           <BaseStatsPanel
             progression={detail.baseStats}
             energy={activeProfile.energy}
-            level={trainingLevel}
-            onLevelChange={handleTrainingLevel}
-            showPromotion={staticTrainingEnabled}
+            level={characterPreviewLevel}
+            onLevelChange={(level) => (characterPreviewLevel = level)}
+            showPromotion={true}
             controlId={`character-level-${detail.id}`}
           />
         {/if}
@@ -769,8 +743,8 @@
             controlId={`light-cone-level-${detail.id}`}
             controlLabel={m.detail_light_cone_level()}
             showPromotion
-            level={trainingLevel}
-            onLevelChange={handleTrainingLevel}
+            level={lightConeLevel}
+            onLevelChange={(level) => (lightConeLevel = level)}
           />
           <Separator class="my-4" />
           {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
@@ -791,35 +765,44 @@
   {#key `${detail.id}:${profileMode}:${playerContextState}:${playerUid ?? ''}:${playerCharacter?.buildId ?? ''}`}
     <section id="skills" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
-      {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
+      {#if activeProfile.skillCards.length}<div class="skill-card-grid">
           {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel
               {card}
+              characterAccent={getElementColor(detail.element)}
               {specialEffectsAvailable}
               {specialEffectIconUrl}
               onOpenSpecialEffects={openSpecialEffects}
               playerSkillTree={activePlayerCharacter?.skillTree}
               previewControls={skillPreviewControls}
-              onPreviewLevelChange={staticTrainingEnabled ? handleSkillPreviewLevel : undefined}
+              onPreviewLevelChange={handleSkillPreviewLevel}
             />{/each}
         </div>{:else}<p class="data-placeholder">{m.detail_skills_unavailable()}</p>{/if}
     </section>
     <section id="traces" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_traces()}</SectionHeading>
-      {#if activeProfile.traces.length}<TraceCardPanel
+      {#if activePlayerCharacter}
+        <PlayerTracePanel
+          character={activePlayerCharacter}
+          path={detail.path}
+          presentation={detail.profiles[
+            activePlayerCharacter.progression.enhanced ? 'enhanced' : 'base'
+          ]}
+          accent={getElementColor(detail.element)}
+          loadCharacter={trainingLoader.loadCharacter}
+        />
+      {:else if activeProfile.traces.length}<TraceCardPanel
           traces={activeProfile.traces}
-          trainingProfile={staticTrainingEnabled ? trainingProfile : undefined}
-          activeTraceIds={staticTrainingEnabled ? characterTarget?.activeTraceIds : undefined}
-          onToggleTrace={staticTrainingEnabled && trainingProfile ? handleTraceToggle : undefined}
-          playerSkillTree={activePlayerCharacter?.skillTree}
+          characterAccent={getElementColor(detail.element)}
         />{:else}<p class="data-placeholder">
           {m.detail_traces_unavailable()}
         </p>{/if}
     </section>
     <section id="eidolons" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_eidolons()}</SectionHeading>
-      {#if activeProfile.eidolons.length}<div class="stack-list">
+      {#if activeProfile.eidolons.length}<div class="grid grid-cols-1 gap-4">
           {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard
               eidolon={rank}
+              characterAccent={getElementColor(detail.element)}
               playerState={activePlayerCharacter
                 ? resolvePlayerEidolonState(rank, activePlayerCharacter.progression.rank)
                 : undefined}
@@ -836,23 +819,34 @@
   {:else if equipmentRecommendation}
     <EquipmentRecommendationSection recommendation={equipmentRecommendation} />
   {/if}
-  {#if staticTrainingEnabled}<TrainingSection
+  {#if staticTrainingEnabled}
+    <TrainingSection
       state={trainingSectionState}
       errorCode={trainingCalculation.error ?? trainingLoadError}
       result={trainingCalculation.result}
       catalog={materialCatalog}
       levelControl={trainingLevelControl}
-      skillTargets={trainingSkillTargets}
-      activeTraces={trainingActiveTraces}
-      onLevelChange={handleTrainingLevel}
+      {skillTargets}
+      skillTree={trainingProfile && activeProfile
+        ? {
+            path: detail.path,
+            profile: trainingProfile,
+            presentation: activeProfile,
+            accent: getElementColor(detail.element),
+            onToggle: handleTraceToggle
+          }
+        : undefined}
+      onLevelChange={handleCharacterTrainingLevel}
       onSkillTrainingLevelChange={handleSkillTrainingLevel}
       onRetry={retryTraining}
       onSelectMaterial={openMaterialDetails}
-    />{/if}
+    />
+  {/if}
   {#if specialEffectsAvailable}<SpecialEffectDialog
       open={specialEffectsOpen}
       entries={specialEffects}
       targets={specialEffectTargets}
+      characterAccent={getElementColor(detail.element)}
       ownerCharacterId={detail.id}
       selectedLevel={specialEffectLevel}
       onRequestClose={requestSpecialEffectsClose}
@@ -865,8 +859,6 @@
     errorCode={trainingCalculation.error ?? trainingLoadError}
     result={trainingCalculation.result}
     catalog={materialCatalog}
-    levelControl={trainingLevelControl}
-    onLevelChange={handleTrainingLevel}
     onRetry={retryTraining}
     onSelectMaterial={openMaterialDetails}
   />

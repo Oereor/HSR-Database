@@ -8,7 +8,7 @@ source table field recordId textHash policy baseAvatarId required variantIds pre
 simplifiedLinkedAvatarIds linkedAvatarId avatarId characterId lightConeId relicId setId pieceId monsterId
 monsterTemplateId skillId traceId eidolonId groupId encounterId stageId eventId waveId waveGroupId
 monsterGroupId entryId targetId occurrenceId configId gachaId equipmentId propertyType element path rarity rank slot battleSlot level minLevel
-maxLevel defaultLevel fromLevel toLevel promotionLimit anchorOrder sourcePointType pointType attackType effectCode
+maxLevel defaultLevel fromLevel toLevel promotionLimit characterLevelLimit anchorOrder sourcePointType pointType attackType effectCode
 bpNeed bpAdd spBase stanceDamageDisplay showStanceList order availableLevels scalingParamIndexes params
 extraEffectIds skillIds phases arrayIndex ordinal begin end infiniteWaveId card encounter battle stage wave`;
 const statFields = `base perLevel fixed stages hp attack defence speed toughness effectHit effectResistance

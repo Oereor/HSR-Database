@@ -1,0 +1,358 @@
+{
+  "destruction": {
+    "paths": [
+      {
+        "type": "line",
+        "through": ["Point16", "Point08", "Point04", "Point03", "Point05", "Point09"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point17", [-0.2087, -0.805], "Point16", [0.2088, -0.8051], "Point18"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point01", [-0.2019, 0.0008], "Point03", [0.2021, 0.0008], "Point02"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point06", "Point05", "Point07"]
+      },
+      {
+        "type": "line",
+        "through": ["Point06", "Point10", "Point11", "Point12"]
+      },
+      {
+        "type": "line",
+        "through": ["Point07", "Point13", "Point14", "Point15"]
+      }
+    ]
+  },
+  "hunt": {
+    "paths": [
+      {
+        "type": "line",
+        "through": ["Point16", "Point08", "Point04", "Point03", "Point05", "Point09"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point17", "Point16", "Point18"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point01", [-0.1971, -0.0139], "Point03", [0.1971, -0.0139], "Point02"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point06", "Point05", "Point07"]
+      },
+      {
+        "type": "line",
+        "through": ["Point12", "Point01"]
+      },
+      {
+        "type": "line",
+        "through": ["Point15", "Point02"]
+      },
+      {
+        "type": "line",
+        "through": ["Point06", "Point10", "Point11"]
+      },
+      {
+        "type": "line",
+        "through": ["Point07", "Point13", "Point14"]
+      }
+    ]
+  },
+  "erudition": {
+    "paths": [
+      {
+        "type": "line",
+        "through": ["Point08", "Point04", "Point03", "Point05"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point16", "Point08", "Point17"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point12", "Point10", "Point11"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point15", "Point13", "Point14"]
+      },
+      {
+        "type": "line",
+        "through": ["Point10", "Point06", "Point01", "Point03", "Point02", "Point07", "Point13"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point09", [-0.1656, 0.5574], "Point05", [0.1659, 0.5574], "Point18"]
+      }
+    ]
+  },
+  "harmony": {
+    "paths": [
+      {
+        "type": "line",
+        "through": ["Point16", "Point08", "Point04", "Point03", "Point05", "Point09"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point17", "Point16", "Point18"]
+      },
+      {
+        "type": "curve",
+        "through": [
+          "Point06",
+          [-0.5529, -0.0162],
+          "Point01",
+          "Point04",
+          "Point02",
+          [0.5529, -0.0162],
+          "Point07"
+        ]
+      },
+      {
+        "type": "line",
+        "through": ["Point06", "Point10", "Point11"]
+      },
+      {
+        "type": "line",
+        "through": ["Point07", "Point13", "Point14"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point12", "Point09", "Point15"]
+      }
+    ]
+  },
+  "nihility": {
+    "paths": [
+      {
+        "type": "line",
+        "through": ["Point08", "Point04", "Point03", "Point05", "Point09", "Point18"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point16", [-0.2102, -0.8051], "Point08", [0.2105, -0.8069], "Point17"]
+      },
+      {
+        "type": "line",
+        "through": ["Point06", "Point01"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point01", "Point03", "Point02"]
+      },
+      {
+        "type": "line",
+        "through": ["Point02", "Point07"]
+      },
+      {
+        "type": "line",
+        "through": ["Point06", "Point10", "Point11", "Point12"]
+      },
+      {
+        "type": "line",
+        "through": ["Point07", "Point13", "Point14", "Point15"]
+      }
+    ]
+  },
+  "preservation": {
+    "paths": [
+      {
+        "type": "line",
+        "through": ["Point16", "Point08", "Point04", "Point03", "Point05", "Point09"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point17", [-0.2101, -0.8064], "Point16", [0.21, -0.8064], "Point18"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point01", "Point03", "Point02"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point12", [-0.501, -0.0978], "Point01"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point15", [0.501, -0.0979], "Point02"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point06", "Point09", "Point07"]
+      },
+      {
+        "type": "line",
+        "through": ["Point06", "Point10", "Point11"]
+      },
+      {
+        "type": "line",
+        "through": ["Point07", "Point13", "Point14"]
+      }
+    ]
+  },
+  "abundance": {
+    "paths": [
+      {
+        "type": "line",
+        "through": ["Point08", "Point04", "Point03", "Point05"]
+      },
+      {
+        "type": "line",
+        "through": ["Point05", "fork"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point17", "Point08", "Point16"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point01", [-0.1711, -0.0004], "Point03", [0.1714, 0.0013], "Point02"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point07", "Point05", "Point06"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point07", [-0.6271, 0.3332], "Point13"]
+      },
+      {
+        "type": "line",
+        "through": ["Point13", "Point14"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point14", [-0.7423, -0.1719], "Point15"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point06", [0.6271, 0.3332], "Point10"]
+      },
+      {
+        "type": "line",
+        "through": ["Point10", "Point11"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point11", [0.7423, -0.1718], "Point12"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point18", "fork", "Point09"]
+      }
+    ],
+    "junctions": {
+      "fork": [0, 0.642]
+    }
+  },
+  "remembrance": {
+    "paths": [
+      {
+        "type": "curve",
+        "through": ["Point16", [-0.3097, -0.7843], "Point17", [0.0373, -0.8501], "Point18"]
+      },
+      {
+        "type": "line",
+        "through": ["Point16", "Point08"]
+      },
+      {
+        "type": "curve",
+        "through": [
+          "Point08",
+          [-0.4451, -0.244],
+          "Point05",
+          "Point01",
+          "Point03",
+          "Point02",
+          [0.5067, 0.1417],
+          "Point04"
+        ]
+      },
+      {
+        "type": "curve",
+        "through": ["Point10", "Point09", [-0.834, 0.1244], "Point11"]
+      },
+      {
+        "type": "line",
+        "through": ["Point09", "Point05"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point12", "Point06", "Point13"]
+      },
+      {
+        "type": "line",
+        "through": ["Point06", "Point04"]
+      },
+      {
+        "type": "line",
+        "through": ["Point03", "Point07"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point14", [-0.121, 0.6995], "Point07", [0.2074, 0.7013], "Point15"]
+      },
+      {
+        "type": "line",
+        "through": ["Point20", "Point19"]
+      }
+    ]
+  },
+  "elation": {
+    "paths": [
+      {
+        "type": "curve",
+        "through": [
+          "Point01",
+          [-0.5402, -0.5558],
+          "Point07",
+          [-0.7894, -0.2553],
+          "Point13",
+          [-0.8143, 0.0906],
+          "Point14"
+        ]
+      },
+      {
+        "type": "curve",
+        "through": [
+          "Point02",
+          [0.5402, -0.5558],
+          "Point08",
+          [0.7877, -0.2545],
+          "Point16",
+          [0.8143, 0.0906],
+          "Point17"
+        ]
+      },
+      {
+        "type": "line",
+        "through": ["Point15", "Point14"]
+      },
+      {
+        "type": "line",
+        "through": ["Point18", "Point17"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point01", [-0.1591, -0.4962], "Point03", [0.1602, -0.4948], "Point02"]
+      },
+      {
+        "type": "line",
+        "through": ["Point03", "Point04", "Point05", "Point06"]
+      },
+      {
+        "type": "curve",
+        "through": ["Point09", "Point05", "Point10"]
+      },
+      {
+        "type": "line",
+        "through": ["Point11", "Point06", "Point12"]
+      }
+    ]
+  }
+}

@@ -1,8 +1,8 @@
 import type { Eidolon, RelicProperty, SkillProgression } from '$lib/domain/types';
 import type { PlayerCharacter, PlayerProfile, PlayerStat } from './contract.js';
 
-export type PlayerProgressionState = 'active' | 'inactive' | 'unresolved';
-export type PlayerEidolonState = Exclude<PlayerProgressionState, 'unresolved'>;
+export type PlayerProgressionState = 'active' | 'inactive';
+export type PlayerEidolonState = PlayerProgressionState;
 
 export interface ResolvedPlayerStat {
   stat: PlayerStat;
@@ -100,9 +100,7 @@ export function resolvePlayerTraceState(
   skillTree: ReadonlyMap<string, number>
 ): PlayerProgressionState {
   const level = skillTree.get(traceId);
-  if (level === undefined) return 'inactive';
-  if (!Number.isSafeInteger(level) || level < 0) return 'unresolved';
-  return level > 0 ? 'active' : 'inactive';
+  return level !== undefined && Number.isSafeInteger(level) && level > 0 ? 'active' : 'inactive';
 }
 
 export function resolvePlayerEidolonState(

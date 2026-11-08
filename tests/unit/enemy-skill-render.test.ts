@@ -182,12 +182,13 @@ describe('enemy skill selector and header', () => {
     expect(buttons[1][1]).not.toContain('data-icon-kind');
   });
 
-  it('puts the plain element metadata inside the header before the existing type tag', () => {
+  it('places the type and element metadata after the skill name', () => {
     const body = renderSkill({ ...skill, damageType });
     const header = body.match(/<header[^>]*>([\s\S]*?)<\/header>/)![1];
     expect(header).toContain(damageType.name);
-    expect(header.indexOf('data-icon-kind="element"')).toBeLessThan(
-      header.indexOf('data-skill-effect=')
+    expect(header.indexOf('</h3>')).toBeLessThan(header.indexOf('data-skill-effect='));
+    expect(header.indexOf('data-skill-effect=')).toBeLessThan(
+      header.indexOf('data-icon-kind="element"')
     );
     expect(body.match(/data-icon-kind="element"/g)).toHaveLength(1);
   });

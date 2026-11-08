@@ -160,6 +160,7 @@ export function buildSkillVariant(input: SkillVariantInput): SkillVariant {
   }
   return {
     id: input.id,
+    ...(input.iconKey ? { iconKey: input.iconKey } : {}),
     name: input.name,
     type: input.type,
     order: input.order,

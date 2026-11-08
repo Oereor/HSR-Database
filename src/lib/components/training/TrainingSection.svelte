@@ -2,7 +2,7 @@
   import * as Card from '$lib/components/ui/card';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import TrainingTargetSummary from './TrainingTargetSummary.svelte';
-  import TrainingTraceSummary from './TrainingTraceSummary.svelte';
+  import TrainingSkillTree from './TrainingSkillTree.svelte';
   import TrainingExpenseGroup from './TrainingExpenseGroup.svelte';
   import {
     createTrainingExpenseCosts,
@@ -11,10 +11,11 @@
   } from '$lib/domain/training/detail-view';
   import type {
     CharacterTrainingResult,
+    CharacterTrainingProfile,
     LightConeTrainingResult,
     MaterialCatalog
   } from '$lib/domain/training/types';
-  import type { Trace } from '$lib/domain/types';
+  import type { CharacterProfile } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
 
   export let result: CharacterTrainingResult | LightConeTrainingResult | undefined = undefined;
@@ -26,7 +27,15 @@
     undefined;
   export let levelControl: TrainingLevelControl | undefined = undefined;
   export let skillTargets: TrainingSkillTarget[] = [];
-  export let activeTraces: Trace[] = [];
+  export let skillTree:
+    | {
+        path: string;
+        profile: CharacterTrainingProfile;
+        presentation: CharacterProfile;
+        accent: string;
+        onToggle: (pointId: string) => void;
+      }
+    | undefined = undefined;
   export let onLevelChange: ((level: number) => void) | undefined = undefined;
   export let onSkillTrainingLevelChange: ((key: string, level: number) => void) | undefined =
     undefined;
@@ -54,18 +63,33 @@
     </div>
   {:else if result && catalog && expenses}
     <Card.Root
-      class="training-result grid gap-6 rounded-[var(--radius-card)] bg-[rgb(14_20_34_/_80%)] p-4 shadow-none"
+      class="training-result bg-card grid gap-6 p-4 shadow-none"
       data-training-promotion={result.target.promotion}
       data-training-level={result.target.level}
     >
-      <TrainingTargetSummary
-        {levelControl}
-        skills={skillTargets}
-        {onLevelChange}
-        {onSkillTrainingLevelChange}
-      >
-        {#if character}<TrainingTraceSummary traces={activeTraces} />{/if}
-      </TrainingTargetSummary>
+      {#if character}
+        <TrainingTargetSummary
+          {levelControl}
+          skills={skillTargets}
+          showTree={!!skillTree}
+          {onLevelChange}
+          {onSkillTrainingLevelChange}
+        >
+          {#each skillTree ? [skillTree] : [] as tree (`${tree.profile.avatarId}:${tree.profile.enhancedId}`)}
+            <TrainingSkillTree
+              path={tree.path}
+              profile={tree.profile}
+              presentation={tree.presentation}
+              accent={tree.accent}
+              state={{
+                mode: 'interactive',
+                activeTraceIds: character?.target.activeTraceIds ?? [],
+                onToggle: tree.onToggle
+              }}
+            />
+          {/each}
+        </TrainingTargetSummary>
+      {/if}
       <TrainingExpenseGroup
         kind="upgrade"
         title={m.training_upgrade_cost()}
@@ -118,6 +142,6 @@
   .training-error button {
     padding: var(--space-2) var(--space-4);
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: var(--radius-small);
   }
 </style>

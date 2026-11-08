@@ -1,6 +1,5 @@
 <script lang="ts">
-  import * as InputGroup from '$lib/components/ui/input-group';
-  import SearchIcon from '@lucide/svelte/icons/search';
+  import SearchInputGroup from '$lib/components/shared/SearchInputGroup.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref } from '$lib/i18n/routing';
   export let id: string;
@@ -21,18 +20,14 @@
 
 <form class="search-bar w-full min-w-0" {action} role="search" on:submit={handleSubmit}>
   <label class="sr-only" for={id}>{label}</label>
-  <InputGroup.Root class="search-bar__control">
-    <InputGroup.Input {id} {name} bind:value {placeholder} />
-    <InputGroup.Addon align="inline-end">
-      <InputGroup.Button
-        type="submit"
-        size={variant === 'sidebar' ? 'icon-sm' : 'sm'}
-        aria-label={variant === 'sidebar' ? m.search_submit_aria() : undefined}
-        title={variant === 'sidebar' ? m.common_search() : undefined}
-      >
-        <SearchIcon aria-hidden="true" />
-        {#if variant !== 'sidebar'}{m.common_search()}{/if}
-      </InputGroup.Button>
-    </InputGroup.Addon>
-  </InputGroup.Root>
+  <SearchInputGroup
+    {id}
+    bind:value
+    {placeholder}
+    inputProps={{ name }}
+    className="search-bar__control"
+    iconOnly={variant === 'sidebar'}
+    submitLabel={m.common_search()}
+    submitAriaLabel={m.search_submit_aria()}
+  />
 </form>

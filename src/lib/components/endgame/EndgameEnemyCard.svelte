@@ -22,7 +22,7 @@
   class:endgame-enemy--compact={variant === 'compact'}
   class:endgame-enemy--link={!!occurrence.enemyHref}
   class:endgame-enemy--with-art={!imageMissing}
-  class={`endgame-enemy ${occurrence.enemyHref ? 'group cursor-pointer' : ''} has-[:focus-visible]:ring-ring/50 relative isolate block h-full w-full max-w-[260px] min-w-0 justify-self-start rounded-xl has-[:focus-visible]:ring-3`}
+  class={`endgame-enemy ${occurrence.enemyHref ? 'group cursor-pointer' : ''} has-[:focus-visible]:ring-ring/50 relative isolate block h-full w-full max-w-[260px] min-w-0 justify-self-start rounded-lg has-[:focus-visible]:ring-3`}
   data-endgame-enemy-card
   data-enemy-card-variant={variant}
   data-monster-id={occurrence.monsterId}
@@ -35,7 +35,7 @@
   >
     <div
       class={`endgame-enemy__artwork border-border pointer-events-none relative grid w-full shrink-0 items-end justify-items-center overflow-hidden border-b ${variant === 'compact' ? 'h-[170px]' : 'h-[190px]'}`}
-      style="background: radial-gradient(circle at 50% 78%, rgb(215 181 109 / 12%), transparent 52%), linear-gradient(180deg, rgb(255 255 255 / 3%), transparent);"
+      style="background: var(--secondary);"
       aria-hidden="true"
     >
       <AssetImage
@@ -60,24 +60,24 @@
             >
               <Badge
                 variant="outline"
-                class="endgame-enemy__voracity border-red-400/30 bg-red-950/75 text-red-300 backdrop-blur-sm"
+                class="endgame-enemy__voracity border-red-400/30 bg-red-950/75 text-red-300"
                 data-voracity-level={occurrence.voracityLevel}
                 >{m.endgame_enemy_voracity({ level: occurrence.voracityLevel })}</Badge
               >
               {#if level !== undefined}<Badge
                   variant="outline"
-                  class="endgame-enemy__level bg-background/80 text-muted-foreground tabular-nums backdrop-blur-sm"
+                  class="endgame-enemy__level bg-background/80 text-muted-foreground tabular-nums"
                   >Lv.{level}</Badge
                 >{/if}
             </span>
           {:else if level !== undefined}<Badge
               variant="outline"
-              class="endgame-enemy__level bg-background/80 text-muted-foreground tabular-nums backdrop-blur-sm"
+              class="endgame-enemy__level bg-background/80 text-muted-foreground tabular-nums"
               >Lv.{level}</Badge
             >{/if}
           {#if occurrence.count}<Badge
               variant="outline"
-              class="endgame-enemy__count bg-background/80 text-primary backdrop-blur-sm"
+              class="endgame-enemy__count bg-background/80 text-primary"
               aria-label={m.endgame_enemy_count_aria({ count: occurrence.count })}
               >×{occurrence.count}</Badge
             >{/if}
@@ -95,7 +95,7 @@
           {#if occurrence.enemyHref}
             <a
               href={localizedHref(occurrence.enemyHref)}
-              class="outline-none after:absolute after:inset-0 after:z-10 after:rounded-xl"
+              class="outline-none after:absolute after:inset-0 after:z-10 after:rounded-lg"
               data-endgame-enemy-link><GameText text={occurrence.name} /></a
             >
           {:else}

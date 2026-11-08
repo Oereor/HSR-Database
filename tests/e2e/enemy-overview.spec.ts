@@ -82,10 +82,13 @@ test('Enemy Overview 弱点使用可访问的 icon-only 单行 Group', async ({ 
   await expect(narrowGroup).toHaveAttribute('aria-label', /\S/);
   await expect(narrowGroup.locator('img')).toHaveCount(4);
   await expect(narrowGroup.locator('img').first()).toHaveCSS('width', '20px');
-  await expect(narrowGroup.locator('.enemy-weakness-group__item').first()).toHaveAttribute(
-    'title',
-    /\S/
-  );
+  const trigger = narrowGroup.locator('.enemy-weakness-group__item').first();
+  await expect(trigger).not.toHaveAttribute('title');
+  await trigger.hover();
+  const tooltip = page.getByRole('tooltip');
+  await expect(tooltip).toContainText((await trigger.getByRole('img').getAttribute('aria-label'))!);
+  await page.keyboard.press('Escape');
+  await expect(tooltip).toBeHidden();
   const narrowItems = await narrowGroup.locator('.semantic-icon-label').all();
   const narrowBoxes = await Promise.all(narrowItems.map((item) => item.boundingBox()));
   expect(narrowBoxes.every((box) => box !== null && Math.abs(box.y - narrowBoxes[0]!.y) < 1)).toBe(

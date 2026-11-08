@@ -1,79 +1,113 @@
 <script lang="ts">
   import * as Card from '$lib/components/ui/card';
   import { Separator } from '$lib/components/ui/separator';
-  import AssetImage from '$lib/components/shared/AssetImage.svelte';
-  import SkillProgressionPanel from '$lib/components/character/SkillProgressionPanel.svelte';
-  import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
-  import type { SkillCard, SkillVariant } from '$lib/domain/types';
-  import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
+  import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
+  import SkillVariantView from './SkillVariantView.svelte';
+  import type { SkillCard, SkillProgression, SkillVariant } from '$lib/domain/types';
+  import type { SkillPreviewControl } from '$lib/domain/character-preview';
   import type { PlayerCharacter } from '$lib/player/contract';
   import { createPlayerSkillTreeIndex, resolvePlayerSkillLevel } from '$lib/player/character';
+  import { gameTextToPlain } from '$lib/domain/game-text';
+  import { m } from '$lib/paraglide/messages.js';
 
-  import type { SkillPreviewControl } from '$lib/domain/training/detail-view';
-
+  export let card: SkillCard;
+  export let characterAccent: string | undefined = undefined;
   export let previewControls: Record<string, SkillPreviewControl> | undefined = undefined;
   export let onPreviewLevelChange: ((progressionId: string, level: number) => void) | undefined =
     undefined;
-  export let card: SkillCard;
+  export let playerSkillTree: PlayerCharacter['skillTree'] | undefined = undefined;
   export let specialEffectsAvailable = false;
   export let specialEffectIconUrl: string | undefined = undefined;
   export let onOpenSpecialEffects:
     ((trigger: HTMLButtonElement, level: number) => void) | undefined = undefined;
-  export let playerSkillTree: PlayerCharacter['skillTree'] | undefined = undefined;
 
-  $: fixedVariants = card.variants.filter((variant) => !variant.progressionId);
-  $: fixedVariantsNeedDivider = card.progressions.length > 0;
-  const fixedLevel = (variant: SkillVariant) => variant.levels[0];
-  $: iconUrl = getCharacterDetailIconUrl(card.iconKey);
-  $: playerSkillTreeIndex = playerSkillTree
-    ? createPlayerSkillTreeIndex(playerSkillTree)
-    : undefined;
+  let localLevels: Record<string, number> = {};
+  $: playerIndex = playerSkillTree ? createPlayerSkillTreeIndex(playerSkillTree) : undefined;
+  $: levels = Object.fromEntries(
+    card.progressions.map((progression) => [
+      progression.id,
+      playerIndex
+        ? resolvePlayerSkillLevel(progression, playerIndex)
+        : (previewControls?.[progression.id]?.previewLevel ??
+          localLevels[progression.id] ??
+          progression.defaultLevel)
+    ])
+  );
+  function changeLevel(progression: SkillProgression, index: number) {
+    if (playerSkillTree) return;
+    const level = progression.availableLevels[index];
+    localLevels = { ...localLevels, [progression.id]: level };
+    onPreviewLevelChange?.(progression.id, level);
+  }
+  const selectedLevel = (variant: SkillVariant, selected: Record<string, number | null>) =>
+    (variant.progressionId ? selected[variant.progressionId] : undefined) ??
+    card.progressions.find((p) => p.id === variant.progressionId)?.defaultLevel ??
+    variant.levels[0]?.level ??
+    1;
 </script>
 
-<Card.Root role="article" class="skill-card h-full gap-0" data-skill-category={card.category}>
-  <Card.Header class="skill-card__heading pb-3">
-    <Card.Title class="skill-card__title--icon flex items-center gap-2 text-xl">
-      <AssetImage
-        src={iconUrl}
-        alt=""
-        class="size-7 shrink-0 object-contain"
-        fallbackClass="skill-card__icon-fallback size-7 shrink-0"
-      /><span>{card.displayLabel}</span>
-    </Card.Title>
+<Card.Root
+  role="article"
+  class="skill-card character-detail-card"
+  data-skill-category={card.category}
+>
+  <Card.Header class="flex flex-row items-center justify-between gap-3">
+    <Card.Title class="min-w-0 text-lg">{card.displayLabel}</Card.Title>
+    <div class="skill-card__controls flex min-w-0 shrink-0 flex-col gap-2">
+      {#each card.progressions as progression (progression.id)}
+        {@const level = levels[progression.id]}
+        <div data-preview-key={!playerSkillTree ? progression.id : undefined}>
+          {#if card.progressions.length > 1}<span
+              class="text-muted-foreground block text-xs wrap-anywhere"
+              >{card.variants
+                .filter((v) => progression.variantIds.includes(v.id))
+                .map((v) => gameTextToPlain(v.name))
+                .join(' / ')}</span
+            >{/if}
+          {#if level === null || progression.availableLevels.length < 2}
+            <output
+              class="text-foreground whitespace-nowrap tabular-nums"
+              data-player-skill-state={level === null ? 'unresolved' : undefined}
+              >Lv.{level ?? '—'}</output
+            >
+          {:else}
+            <LevelSlider
+              compact
+              id={`skill-progression-${card.category}-${progression.id}`}
+              label={m.skill_level({ category: card.displayLabel })}
+              value={Math.max(0, progression.availableLevels.indexOf(level))}
+              min={0}
+              max={progression.availableLevels.length - 1}
+              displayValue={level}
+              ariaValueMin={progression.availableLevels[0]}
+              ariaValueMax={progression.availableLevels.at(-1)}
+              interactive={!playerSkillTree}
+              onValueChange={playerSkillTree
+                ? undefined
+                : (index) => changeLevel(progression, index)}
+            />
+          {/if}
+        </div>
+      {/each}
+    </div>
   </Card.Header>
-  <Separator class="mx-6 w-auto data-horizontal:w-auto" />
-  <Card.Content class="text-secondary-foreground pt-4 [&_p]:text-base [&_p]:leading-relaxed">
-    {#each card.progressions as progression, index (progression.id)}
-      {#if index > 0}<Separator class="my-4" />{/if}
-      <SkillProgressionPanel
-        {progression}
-        controlId={`skill-progression-${card.category}-${progression.id}`}
-        previewControl={previewControls?.[progression.id]}
-        onPreviewLevelChange={(level) => onPreviewLevelChange?.(progression.id, level)}
-        variants={card.variants.filter((variant) => progression.variantIds.includes(variant.id))}
-        categoryLabel={card.displayLabel}
-        showGroupLabel={card.progressions.length > 1}
+  <Separator />
+  <Card.Content
+    class="text-secondary-foreground @container/skill-content space-y-4 [&_p]:text-base [&_p]:leading-relaxed"
+  >
+    {#if Object.values(levels).includes(null)}<p class="text-muted-foreground text-sm">
+        {m.player_character_skill_level_unknown()}
+      </p>{/if}
+    {#each card.variants as variant, index (variant.id)}
+      {#if index}<Separator />{/if}
+      <SkillVariantView
+        {variant}
+        selectedLevel={selectedLevel(variant, levels)}
+        {characterAccent}
         {specialEffectsAvailable}
         {specialEffectIconUrl}
         {onOpenSpecialEffects}
-        playerLevel={playerSkillTreeIndex
-          ? resolvePlayerSkillLevel(progression, playerSkillTreeIndex)
-          : undefined}
       />
     {/each}
-    {#if fixedVariants.length}
-      {#if fixedVariantsNeedDivider}<Separator class="my-4" />{/if}
-      <div class="skill-variant-list fixed-variant-list mt-4 pt-4">
-        {#each fixedVariants as variant (variant.id)}
-          <SkillVariantView
-            {variant}
-            selectedLevel={fixedLevel(variant)?.level ?? 1}
-            showLevel={card.category !== 'technique'}
-            {specialEffectsAvailable}
-            {specialEffectIconUrl}
-            {onOpenSpecialEffects}
-          />
-        {/each}
-      </div>{/if}
   </Card.Content>
 </Card.Root>

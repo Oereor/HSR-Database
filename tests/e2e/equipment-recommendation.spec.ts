@@ -85,7 +85,7 @@ test('推荐数量边界和具体 AvatarID ownership 保持独立', async ({ pag
   await expect(page.locator('[data-relic-slot="OBJECT"] .relic-property-token')).toHaveCount(2);
 
   await page.goto('/characters/1501/');
-  const cavernGroup = page.locator('.equipment-recommendation__subgroup').nth(0);
+  const cavernGroup = page.locator('.equipment-recommendation__group').nth(1);
   await expect(cavernGroup.locator('a[href^="/relics/"]')).toHaveCount(2);
 
   for (const id of ['1224', '8001', '8002', '1508']) {

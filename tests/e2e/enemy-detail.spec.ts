@@ -143,6 +143,9 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   await page.keyboard.press('ArrowRight');
   await expect(options.nth(1)).toBeFocused();
   await expect(options.nth(1)).toHaveAttribute('aria-checked', 'true');
+  await page.keyboard.press('End');
+  await expect(options.last()).toBeFocused();
+  await expect(options.last()).toHaveAttribute('aria-checked', 'true');
 });
 
 test('单 Monster 页面保留紧凑单项 selector、默认标记与共享实际属性', async ({ page }) => {
@@ -221,6 +224,9 @@ test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', asy
   const phase1 = tabs.getByRole('tab').nth(0);
   const phase2 = tabs.getByRole('tab').nth(1);
   await expect(phase1).toHaveAttribute('aria-selected', 'true');
+  const phase1Panel = page.getByRole('tabpanel');
+  await expect(phase1).toHaveAttribute('aria-controls', 'enemy-phase-panel-8034010-1');
+  await expect(phase1Panel).toHaveAttribute('aria-labelledby', 'enemy-phase-tab-8034010-1');
   const selector = page.locator('[data-enemy-skill-selector]');
   await expect(selector.locator('button').first()).toHaveAttribute(
     'data-enemy-skill-option',
@@ -252,6 +258,7 @@ test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', asy
   await phase1.focus();
   await page.keyboard.press('ArrowRight');
   await expect(phase2).toBeFocused();
+  await expect(phase2).toHaveAttribute('aria-selected', 'true');
   await expect(selector.locator('[data-enemy-skill-option="803401001"]')).toHaveAttribute(
     'aria-checked',
     'true'
@@ -378,16 +385,25 @@ test('Skill Browser 紧凑数值列、图标槽和长文本在双语不同宽度
 
       await selector.locator('[data-enemy-skill-option="200401002"]').click();
       const detail = page.locator('[data-enemy-skill-detail="200401002"]');
-      const metadata = detail.locator('header .enemy-skill-detail__metadata');
+      const metadata = detail.locator('header');
       await expect(metadata.locator('[data-icon-kind="element"]')).toHaveCount(1);
       await expect(metadata.locator('[data-skill-effect]')).toHaveCount(1);
       expect(
         await metadata.evaluate((element) => {
           const icon = element.querySelector('[data-icon-kind="element"]')!;
           const tag = element.querySelector('[data-skill-effect]')!;
-          return !!(icon.compareDocumentPosition(tag) & Node.DOCUMENT_POSITION_FOLLOWING);
+          return !!(tag.compareDocumentPosition(icon) & Node.DOCUMENT_POSITION_FOLLOWING);
         })
       ).toBe(true);
+      if (width === 1440) {
+        const centers = await metadata.locator(':scope > *').evaluateAll((elements) =>
+          elements.map((element) => {
+            const { top, height } = element.getBoundingClientRect();
+            return top + height / 2;
+          })
+        );
+        expect(Math.max(...centers) - Math.min(...centers)).toBeLessThanOrEqual(1);
+      }
       const damage = detail.locator('[data-enemy-skill-damage]');
       await expect(damage.locator('h5')).toHaveCount(1);
       const grid = damage.locator('.enemy-skill-fact-grid');

@@ -1,6 +1,5 @@
-import type { SkillCard, Trace } from '../types.js';
+import type { SkillCard } from '../types.js';
 import { gameTextToPlain } from '../game-text.js';
-import { groupTracesForDisplay } from '../trace-groups.js';
 import type {
   CharacterTrainingProfile,
   CharacterTrainingResult,
@@ -93,24 +92,6 @@ export function createTrainingSkillTargets(
     }
   }
   return [...targets.values()];
-}
-
-/** Display ordering is reused only for presentation; DAG transitions remain in the cost domain. */
-export function createTrainingTraceSummary(
-  traces: Trace[],
-  profile: CharacterTrainingProfile | undefined,
-  activeTraceIds: readonly string[]
-): Trace[] {
-  const paidIds = new Set(
-    profile?.nodes.filter((node) => node.kind === 'trace').map((node) => node.pointId)
-  );
-  const activeIds = new Set(activeTraceIds);
-  const groups = groupTracesForDisplay(traces);
-  return [
-    ...groups.abilityGroups.flatMap((group) => [group.ability, ...group.stats]),
-    ...groups.specialAbilities,
-    ...groups.standaloneStats
-  ].filter((trace) => paidIds.has(trace.id) && activeIds.has(trace.id));
 }
 
 /** Expense groups are presentation projections; the domain's total remains authoritative. */

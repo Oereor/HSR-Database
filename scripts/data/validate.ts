@@ -898,6 +898,13 @@ const validateCharacterProfile = (
     }
     if (trace.sourcePointType === 3 && ![2, 4, 6].includes(trace.promotionLimit ?? -1))
       throw new Error(`角色 ${character.id} ${mode} profile 的额外能力 ${trace.id} 晋阶限制异常`);
+    if (
+      trace.characterLevelLimit !== undefined &&
+      (!Number.isSafeInteger(trace.characterLevelLimit) ||
+        trace.characterLevelLimit < 0 ||
+        trace.characterLevelLimit > (character.baseStats?.maxLevel ?? 0))
+    )
+      throw new Error(`角色 ${character.id} ${mode} profile 的行迹 ${trace.id} 等级限制异常`);
     if (!Number.isInteger(trace.anchorOrder) || trace.anchorOrder <= 0)
       throw new Error(`角色 ${character.id} ${mode} profile 的行迹 ${trace.id} 锚点顺序异常`);
     for (const effect of trace.extraEffects ?? []) {

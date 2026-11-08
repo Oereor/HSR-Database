@@ -65,15 +65,15 @@ for (const locale of ['zh-CN', 'en']) {
         }
       }
       await page.goto(prefix || '/');
-      for (const [kind, type, entries] of [
-        ['avatar', 'characters', characters],
-        ['weapon', 'light-cones', lightCones]
+      for (const [type, entries] of [
+        ['characters', characters],
+        ['light-cones', lightCones]
       ] as const) {
-        const card = page.locator(`[data-homepage-recent="${kind}"] a`).first();
+        const card = page.locator(`[data-homepage-category="new-${type}"] a`).first();
         const href = await card.getAttribute('href');
         const entry = entries.find((item) => href === `${prefix}/${type}/${item.id}/`)!;
         await checkCard(card, entry);
-        await card.screenshot({ path: test.info().outputPath(`home-${kind}.png`) });
+        await card.screenshot({ path: test.info().outputPath(`home-${type}.png`) });
       }
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)

@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { groupTracesForDisplay } from '../../src/lib/domain/trace-groups';
+import { summarizeTraceStats, formatTraceBonus } from '../../src/lib/domain/trace-summary';
 import type { Character, Trace } from '../../src/lib/domain/types';
 
 const generatedRoot = path.join(process.cwd(), 'src', 'lib', 'generated');
@@ -23,7 +24,60 @@ const trace = (
   ...(type === 'ability' && sourcePointType !== 5 ? { promotionLimit: 2 } : {})
 });
 
+describe('trace bonus display precision', () => {
+  it.each([
+    [0.186999998, '18.7%'],
+    [0.026999999, '2.7%'],
+    [0.04, '4.0%'],
+    [0, '0.0%'],
+    [0.01249, '1.2%'],
+    [0.0125, '1.3%'],
+    [0.01251, '1.3%']
+  ])('formats %s as %s in both supported locales', (value, expected) => {
+    for (const locale of ['zh-CN', 'en']) {
+      expect(formatTraceBonus(value, true, locale)).toBe(expected);
+    }
+  });
+
+  it('preserves non-percentage precision', () => {
+    expect(formatTraceBonus(2.6999999, false, 'en')).toBe('2.6999999');
+    expect(formatTraceBonus(4, false, 'zh-CN')).toBe('4');
+  });
+});
+
 describe('行迹卡片展示分组', () => {
+  it('sums structured bonuses, retains ownership and never merges property units or conditional nodes', () => {
+    const ability = trace('ability', 0, [], 'ability');
+    const bonus = (
+      id: string,
+      value: number,
+      propertyType = 'HPAddedRatio',
+      percent = true
+    ): Trace => ({
+      ...trace(id, 1, ['ability']),
+      propertyType,
+      statBonus: { propertyType, value, percent }
+    });
+    const conditional = {
+      ...bonus('conditional', 9),
+      extraEffects: [{ id: 'effect', name: 'effect', description: 'effect' }]
+    };
+    const summary = summarizeTraceStats([
+      ability,
+      bonus('a', 0.1),
+      bonus('b', 0.2),
+      bonus('flat', 5, 'HPDelta', false),
+      conditional,
+      trace('unknown', 2)
+    ]);
+    expect(summary.summaries.map((group) => group.value)).toEqual([0.3, 5]);
+    expect(summary.summaries[0].nodes.map((node) => node.owner?.id)).toEqual([
+      'ability',
+      'ability'
+    ]);
+    expect(summary.independent.map((node) => node.id)).toEqual(['conditional', 'unknown']);
+    expect(formatTraceBonus(summary.summaries[0].value, true, 'en')).toBe('30.0%');
+  });
   it('按属性节点自己的前置链进行直接和间接归组', () => {
     const groups = groupTracesForDisplay([
       trace('ability-a', 6, [], 'ability'),

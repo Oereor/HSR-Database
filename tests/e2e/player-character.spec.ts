@@ -448,6 +448,70 @@ test('Player Hero stats keep pane padding stable while loading and falling back'
   }
 });
 
+test('player traces use the selected build while the training shard loads', async ({ page }) => {
+  const profile = playerProfile('100000001');
+  const original = profile.characters[0];
+  const baseBuild = 'area:showcase:position:1:order:0';
+  const enhancedBuild = 'area:showcase:position:2:order:1';
+  profile.characters = [
+    { ...original, characterId: '1004', buildId: baseBuild, skillTree: [] },
+    {
+      ...original,
+      characterId: '1004',
+      buildId: enhancedBuild,
+      display: { ...original.display, position: 2, sourceOrder: 1 },
+      progression: { ...original.progression, enhanced: true },
+      skillTree: [{ id: '11004101', level: 1 }]
+    }
+  ];
+  await page.route('**/api/player/**', (route) => route.fulfill({ json: profile }));
+  const shard = '**/generated/training/characters/1004.json';
+  const release = Promise.withResolvers<void>();
+  let requests = 0;
+  await page.route(shard, async (route) => {
+    requests += 1;
+    await release.promise;
+    await route.continue();
+  });
+
+  const buildUrl = (id: string) =>
+    `/characters/1004/?uid=100000001&build=${encodeURIComponent(id)}`;
+  const navigate = (id: string) =>
+    page.evaluate((href) => {
+      const link = document.createElement('a');
+      link.href = href;
+      document.body.append(link);
+      link.click();
+      link.remove();
+    }, buildUrl(id));
+
+  try {
+    await page.goto(buildUrl(baseBuild));
+    await expect.poll(() => requests).toBe(1);
+    await navigate(enhancedBuild);
+    await expect(page).toHaveURL(new RegExp(encodeURIComponent(enhancedBuild)));
+  } finally {
+    release.resolve();
+  }
+
+  const tree = page.locator('#traces [data-skill-tree-mode="readonly"]');
+  await expect(tree).toHaveAttribute('data-training-profile', /^[1-9]\d*$/);
+  await expect(tree.locator('[data-point-id="11004101"]')).toHaveAttribute(
+    'data-trace-state',
+    'active'
+  );
+  await navigate(baseBuild);
+  await expect(tree).toHaveAttribute('data-training-profile', '0');
+  await expect(tree.locator('[data-trace-state="active"]')).toHaveCount(0);
+
+  await page.unroute(shard);
+  await page.route(shard, (route) => route.fulfill({ status: 404 }));
+  await page.goto(buildUrl(baseBuild));
+  await expect(page.locator('#traces [data-training-tree-error]')).toBeVisible();
+  await expect(page.locator('#traces [data-trace-abilities]')).toBeVisible();
+  await expect(tree).toHaveCount(0);
+});
+
 test('reuses the Player cache and renders real progression without changing static mode', async ({
   page,
   isMobile
@@ -456,7 +520,11 @@ test('reuses the Player cache and renders real progression without changing stat
   await page.route('**/api/player/**', async (route) => {
     requestCount += 1;
     const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';
-    await route.fulfill({ json: playerProfile(uid) });
+    const profile = playerProfile(uid);
+    profile.characters[0].skillTree = profile.characters[0].skillTree.map((entry) =>
+      entry.id === '1304002' ? { ...entry, level: 12 } : entry
+    );
+    await route.fulfill({ json: profile });
   });
 
   await page.goto('/player/?uid=100000001');
@@ -478,7 +546,7 @@ test('reuses the Player cache and renders real progression without changing stat
   const promotionTag = levelValue.locator('.skill-effect-tag');
   await expect(page.locator('#training')).toHaveCount(0);
   await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(0);
-  await expect(page.locator('.trace-toggle')).toHaveCount(0);
+  await expect(page.locator('#traces [aria-pressed]')).toHaveCount(0);
   await expect(level).toBeDisabled();
   await expect(level).toHaveAttribute('data-value', '80');
   await expect(promotionTag).toHaveText(/\S/);
@@ -491,37 +559,58 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   ).toBe(true);
 
-  const basicLevel = page.locator('[data-skill-category="basic"] [role="slider"]');
-  await expect(basicLevel).toBeDisabled();
-  await expect(basicLevel).toHaveAttribute('aria-valuenow', '6');
+  const basicCard = page.locator('[data-skill-category="basic"]');
+  await expect(basicCard.getByRole('slider')).toBeDisabled();
+  await expect(basicCard.locator('output')).toHaveText('Lv.6');
+  const skill = page.locator('[data-skill-category="skill"]');
+  const skillSlider = skill.getByRole('slider');
+  await expect(skillSlider).toBeDisabled();
+  await expect(skillSlider).toHaveAttribute('aria-valuenow', '12');
+  await expect(skill.locator('output')).toHaveText('Lv.12');
+  const track = skill.locator('[data-slot="slider-track"]');
+  await track.scrollIntoViewIfNeeded();
+  const bounds = (await track.boundingBox())!;
+  await page.mouse.click(bounds.x + 1, bounds.y + bounds.height / 2);
+  await page.mouse.move(bounds.x + bounds.width * 0.8, bounds.y + bounds.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(bounds.x + 1, bounds.y + bounds.height / 2, { steps: 4 });
+  await page.mouse.up();
+  await skillSlider.focus();
+  await page.keyboard.press('Home');
+  await expect(skillSlider).toHaveAttribute('aria-valuenow', '12');
+  const technique = page.locator('[data-skill-category="technique"]');
+  await expect(technique.getByRole('slider')).toHaveCount(0);
+  await expect(technique.locator('output')).toHaveText('Lv.1');
 
-  await expect(page.locator('[data-trace-id="1304101"]')).toHaveAttribute(
-    'data-player-state',
+  const tree = page.locator('#traces [data-skill-tree-mode="readonly"]');
+  await expect(tree.getByRole('button')).toHaveCount(0);
+  const activeTrace = tree.locator('[data-point-id="1304101"]');
+  await activeTrace.focus();
+  const traceTooltip = page.getByRole('tooltip');
+  await expect(traceTooltip).toContainText((await activeTrace.getAttribute('aria-label'))!);
+  await page.keyboard.press('Escape');
+  await expect(traceTooltip).toBeHidden();
+  await expect(tree.locator('[data-point-id="1304101"]')).toHaveAttribute(
+    'data-trace-state',
     'active'
   );
-  await expect(page.locator('[data-trace-id="1304102"]')).toHaveAttribute(
-    'data-player-state',
+  await expect(tree.locator('[data-point-id="1304102"]')).toHaveAttribute(
+    'data-trace-state',
     'inactive'
   );
-  await expect(page.locator('[data-trace-id="1304103"]')).toHaveAttribute(
-    'data-player-state',
+  await expect(tree.locator('[data-point-id="1304103"]')).toHaveAttribute(
+    'data-trace-state',
     'inactive'
   );
+  await expect(tree.locator('[data-point-id="1304001"]')).not.toHaveAttribute('data-trace-state');
+  await tree.locator('[data-point-id="1304102"]').click();
+  await expect(tree.locator('[data-point-id="1304102"]')).toHaveAttribute(
+    'data-trace-state',
+    'inactive'
+  );
+  await expect(page.locator('#traces [data-trace-id][data-player-state]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state="active"]')).toHaveCount(3);
   await expect(page.locator('#eidolons [data-player-state="inactive"]')).toHaveCount(3);
-  const eidolonTagInsets = await page.locator('#eidolons .rank-card').evaluateAll((cards) =>
-    cards.map((card) => {
-      const tag = card.querySelector<HTMLElement>('[data-player-state-label]')!;
-      return {
-        expected: Number.parseFloat(getComputedStyle(card).paddingRight),
-        actual: card.getBoundingClientRect().right - tag.getBoundingClientRect().right
-      };
-    })
-  );
-  expect(eidolonTagInsets.every(({ expected, actual }) => Math.abs(expected - actual) <= 1)).toBe(
-    true
-  );
-
   await expect(page.locator('[data-player-stat="hp"]')).toContainText('9,677');
   await expect(page.locator('.player-stats-panel button')).toHaveCount(0);
   await expect(page.locator('[data-player-stat="effect_hit"]')).toContainText('20%');

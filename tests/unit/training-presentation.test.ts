@@ -1,10 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
+import type { Component } from 'svelte';
 import { render } from 'svelte/server';
+import TooltipHost from '../fixtures/TooltipHost.svelte';
 import {
   createSkillPreviewControls,
-  createTrainingSkillTargets,
-  createTrainingTraceSummary
+  createTrainingSkillTargets
 } from '../../src/lib/domain/training/detail-view';
 import {
   createDefaultCharacterTrainingTarget,
@@ -19,17 +20,21 @@ import type {
   MaterialCatalog
 } from '../../src/lib/domain/training/types';
 import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.svelte';
-import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
 import DetailPage from '../../src/lib/components/shared/DetailPage.svelte';
-import TrainingTraceSummary from '../../src/lib/components/training/TrainingTraceSummary.svelte';
+import TrainingSkillTree from '../../src/lib/components/training/TrainingSkillTree.svelte';
 import TrainingTargetSummary from '../../src/lib/components/training/TrainingTargetSummary.svelte';
 
 vi.mock('$app/stores', async () => {
   const { readable } = await import('svelte/store');
   return { page: readable({ url: new URL('http://localhost/characters/1001/') }) };
 });
+
+const renderWithTooltip = <Props extends Record<string, unknown>>(
+  component: Component<Props>,
+  { props }: { props: Props }
+) => render(TooltipHost<Props>, { props: { component, props } });
 
 const json = <T>(path: string): T => JSON.parse(readFileSync(path, 'utf8'));
 const data = (id: string) =>
@@ -38,12 +43,14 @@ const view = (id: string, locale = 'zh-CN') =>
   json<Character>(`src/lib/generated/views/${locale}/details/characters/${id}.json`);
 
 describe('training presentation contracts', () => {
-  it('places character training and its anchor last when equipment recommendations are absent', () => {
+  it('prerenders the character training navigation and loading state', () => {
     const html = render(DetailPage, {
       props: { detail: view('1001'), category: 'characters', singular: 'character' }
     }).body;
     const sections = [...html.matchAll(/<section\b[^>]*\sid="([^"]+)"/g)].map((match) => match[1]);
-    expect(sections).toEqual(['skills', 'traces', 'eidolons', 'training']);
+    expect(sections).toContain('training');
+    expect(html).toContain('data-training-state="loading"');
+    expect(html).not.toContain('data-training-tree=');
     const nav = html.match(/<nav\b[^>]*class="[^"]*\bsection-nav\b[^"]*"[\s\S]*?<\/nav>/)![0];
     expect([...nav.matchAll(/href="#([^"]+)"/g)].map((match) => match[1])).toEqual([
       'stats',
@@ -81,7 +88,7 @@ describe('training presentation contracts', () => {
       }
     }
   });
-  it('renders two synchronized full-range skill controls with a shared label and promotion tag', () => {
+  it('renders full-range skill previews without training promotion controls', () => {
     const cost = data('1510');
     const profile = cost.profiles[0];
     const character = view('1510');
@@ -105,46 +112,11 @@ describe('training presentation contracts', () => {
       expect(html).toContain('aria-valuenow="12"');
       expect(html).toContain('aria-valuemax="15"');
       expect(html).toContain(`id="skill-progression-${category}-1510004"`);
-      expect(html).toContain('data-preview-key="1510:0:1510004"');
+      expect(html).toContain('data-preview-key="1510004"');
       expect(html).toContain('skill-effect-tag');
       labels.push(html.match(/<label[^>]*>([\s\S]*?)<\/label>/)![1]);
     }
-    expect(labels[0]).toEqual(labels[1]);
-  });
-  it('keeps paid traces native, stable and separate from read-only player and fixed nodes', () => {
-    const cost = data('1001');
-    const profile = cost.profiles[0];
-    const traces = view('1001').profiles.base.traces;
-    const target = createDefaultCharacterTrainingTarget(cost, 0);
-    const props = {
-      traces,
-      trainingProfile: profile,
-      activeTraceIds: target.activeTraceIds,
-      onToggleTrace: () => {}
-    };
-    const html = render(TraceCardPanel, { props }).body;
-    expect(html.match(/class="[^"]*\btrace-toggle\b/g)).toHaveLength(13);
-    expect(html.match(/aria-pressed="true"/g)).toHaveLength(13);
-    const inactive = render(TraceCardPanel, { props: { ...props, activeTraceIds: [] } }).body;
-    expect(inactive.match(/aria-pressed="false"/g)).toHaveLength(13);
-    expect([...html.matchAll(/aria-label="([^"]*)"/g)].map((match) => match[1])).toEqual(
-      [...inactive.matchAll(/aria-label="([^"]*)"/g)].map((match) => match[1])
-    );
-    const player = render(TraceCardPanel, {
-      props: { ...props, playerSkillTree: [{ id: '1001101', level: 1 }] }
-    }).body;
-    expect(player).not.toContain('trace-toggle');
-    const memory = data('8007');
-    const memoryHtml = render(TraceCardPanel, {
-      props: {
-        traces: view('8007').profiles.base.traces,
-        trainingProfile: memory.profiles[0],
-        activeTraceIds: createDefaultCharacterTrainingTarget(memory, 0).activeTraceIds,
-        onToggleTrace: () => {}
-      }
-    }).body;
-    const fixed = memoryHtml.match(/<div[^>]*data-trace-id="8007501"[\s\S]*?<\/div>/)![0];
-    expect(fixed).not.toContain('trace-toggle');
+    expect(labels.every((label) => label.trim().length > 0)).toBe(true);
   });
   it('distinguishes loading and retry from cost output, with no duplicate controls', () => {
     const loading = render(TrainingSection, {
@@ -197,7 +169,7 @@ describe('training presentation contracts', () => {
       result.skills,
       result.target.promotion
     );
-    const html = render(TrainingSection, {
+    const html = renderWithTooltip(TrainingSection, {
       props: {
         state: 'ready',
         result,
@@ -211,11 +183,13 @@ describe('training presentation contracts', () => {
           promotion: 6
         },
         skillTargets,
-        activeTraces: createTrainingTraceSummary(
-          character.profiles.base.traces,
-          cost.profiles[0],
-          target.activeTraceIds
-        ),
+        skillTree: {
+          path: character.path!,
+          profile: cost.profiles[0],
+          presentation: character.profiles.base,
+          accent: '#fcf',
+          onToggle: () => {}
+        },
         onLevelChange: () => {},
         onSkillTrainingLevelChange: () => {},
         onRetry: () => {}
@@ -247,25 +221,27 @@ describe('training presentation contracts', () => {
     expect(missingSkill).toContain('training-target__icon-fallback');
     expect(missingSkill).toContain('data-image-fallback');
     expect(missingSkill).not.toContain('skill-effect-tag');
-    expect(html).toContain('data-training-trace-group="ability"');
-    expect(html).toContain('data-training-trace-group="stat"');
+    expect(html).toContain('data-training-tree="erudition"');
+    expect(html.match(/aria-pressed="true"/g)).toHaveLength(target.activeTraceIds.length);
   });
-  it('keeps trace summaries strictly read-only, including empty and missing-icon states', () => {
-    const traces = view('1001').profiles.base.traces;
-    const html = render(TrainingTraceSummary, {
-      props: { traces: [{ ...traces[0], iconKey: undefined }] }
+  it('renders only paid traces as toggle buttons and handles missing icons', () => {
+    const character = view('1001');
+    const profile = data('1001').profiles[0];
+    const skill = profile.nodes.find((node) => node.kind === 'skill')!;
+    skill.iconKey = undefined;
+    const html = renderWithTooltip(TrainingSkillTree, {
+      props: {
+        path: character.path!,
+        profile,
+        presentation: character.profiles.base,
+        accent: '#fcf',
+        state: { mode: 'interactive', activeTraceIds: ['1001201'], onToggle: () => {} }
+      }
     }).body;
-    expect(html).toContain(`data-training-trace-id="${traces[0].id}"`);
-    expect(html).not.toMatch(/<(?:button|input|a)\b/);
-    expect(html).not.toContain('aria-pressed');
-    expect(html).not.toContain('data-trace-id=');
+    expect(html.match(/<button\b/g)).toHaveLength(13);
+    expect(html.match(/aria-pressed="true"/g)).toHaveLength(1);
+    expect(html).toMatch(new RegExp(`<span[^>]*data-point-id="${skill.pointId}"`));
     expect(html).toContain('data-image-fallback');
-    expect(html).toContain('data-training-trace-group="ability"');
-    expect(html).toContain('data-training-trace-group="stat"');
-    expect(html).toContain(`data-training-trace-type="${traces[0].type}"`);
-    const empty = render(TrainingTraceSummary, { props: { traces: [] } }).body;
-    expect(empty).toContain('data-training-trace-count="0"');
-    expect(empty).not.toContain('data-training-trace-id=');
   });
   it('reuses the cone receipt without skills, traces or a second total calculation', () => {
     const cost = json<LightConeTrainingData>('static/generated/training/light-cones/20000.json');
@@ -279,23 +255,15 @@ describe('training presentation contracts', () => {
         state: 'ready',
         result,
         catalog: json<MaterialCatalog>('static/generated/en/materials.json'),
-        levelControl: {
-          id: 'training-light-cone-level-20000',
-          label: 'Synthetic Level',
-          value: 80,
-          min: 1,
-          max: 80,
-          promotion: 6
-        },
-        onLevelChange: () => {},
         onRetry: () => {}
       }
     }).body;
     expect([...html.matchAll(/data-training-expense="([^"]+)"/g)].map((match) => match[1])).toEqual(
       ['upgrade', 'promotion', 'total']
     );
-    expect(html.match(/role="slider"/g)).toHaveLength(1);
+    expect(html).not.toContain('role="slider"');
+    expect(html).not.toContain('data-training-target');
     expect(html).not.toContain('data-training-skill');
-    expect(html).not.toContain('data-training-trace-count');
+    expect(html).not.toContain('data-training-tree');
   });
 });

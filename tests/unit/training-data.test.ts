@@ -240,7 +240,7 @@ describe('pinned training data', () => {
     expect(remaining).not.toContain('1001101');
     expect(remaining).not.toContain('1001102');
     expect(remaining).toContain('1001103');
-    const activated = activateTrace(profile, [], '1001102', 6);
+    const activated = activateTrace(profile, [], '1001102', { level: 80, promotion: 6 });
     expect(activated).toMatchObject({ ok: true, activeTraceIds: ['1001102', '1001201'] });
   });
 

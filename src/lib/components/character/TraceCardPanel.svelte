@@ -1,218 +1,154 @@
 <script lang="ts">
   import * as Card from '$lib/components/ui/card';
-  import { Badge } from '$lib/components/ui/badge';
+  import { Separator } from '$lib/components/ui/separator';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
-  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
-  import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
-  import TraceAbilityHeading from '$lib/components/character/TraceAbilityHeading.svelte';
+  import * as Collapsible from '$lib/components/ui/collapsible';
+  import ChevronDown from '@lucide/svelte/icons/chevron-down';
+  import TraceEntryContent from './TraceEntryContent.svelte';
+  import { traceRequirementText } from './trace-requirements';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
-  import { groupTracesForDisplay } from '$lib/domain/trace-groups';
+  import { summarizeTraceStats, formatTraceBonus } from '$lib/domain/trace-summary';
   import type { Trace } from '$lib/domain/types';
-  import * as m from '$lib/paraglide/messages.js';
-  import type { PlayerCharacter } from '$lib/player/contract';
-  import {
-    createPlayerSkillTreeIndex,
-    resolvePlayerTraceState,
-    type PlayerProgressionState
-  } from '$lib/player/character';
-
-  import TraceToggle from './TraceToggle.svelte';
-  import type { CharacterTrainingProfile } from '$lib/domain/training/types';
-  export let trainingProfile: CharacterTrainingProfile | undefined = undefined;
-  export let activeTraceIds: string[] | undefined = undefined;
-  export let onToggleTrace: ((id: string) => void) | undefined = undefined;
+  import { getLocale } from '$lib/paraglide/runtime.js';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let traces: Trace[];
-  export let playerSkillTree: PlayerCharacter['skillTree'] | undefined = undefined;
-
-  // Legacy templates must read these dependencies directly after async profile/state updates.
-  $: toggleableTraceIds = new Set(
-    !playerSkillTree && onToggleTrace
-      ? trainingProfile?.nodes.filter((node) => node.kind === 'trace').map((node) => node.pointId)
-      : []
-  );
-  $: activeTraceIdSet = new Set(activeTraceIds ?? []);
-  $: groups = groupTracesForDisplay(traces);
-  $: playerSkillTreeIndex = playerSkillTree
-    ? createPlayerSkillTreeIndex(playerSkillTree)
-    : undefined;
-
-  const playerStateOf = (trace: Trace): PlayerProgressionState | undefined =>
-    playerSkillTreeIndex ? resolvePlayerTraceState(trace.id, playerSkillTreeIndex) : undefined;
+  export let characterAccent: string | undefined = undefined;
+  $: summary = summarizeTraceStats(traces);
 </script>
 
-<div class="trace-card-panel">
-  <div class="trace-ability-groups" data-trace-ability-groups>
-    {#each groups.abilityGroups as group (group.ability.id)}
-      {@const abilityState = playerStateOf(group.ability)}
-      <section class="trace-ability-group" data-trace-group={group.ability.id}>
+<div class="trace-card-panel @container/traces" style:--character-accent={characterAccent}>
+  {#if summary.abilities.length}
+    <section class="space-y-4" data-trace-abilities>
+      {#each summary.abilities as trace (trace.id)}
         <Card.Root
-          size="sm"
           role="article"
-          class="trace-card trace-card--ability relative min-h-44 gap-3 p-6"
-          data-trace-id={group.ability.id}
+          class="trace-card trace-card--ability gap-0"
+          data-trace-id={trace.id}
+          data-trace-group={trace.id}
           data-trace-type="ability"
-          data-player-state={abilityState}
-          data-training-state={toggleableTraceIds.has(group.ability.id)
-            ? activeTraceIdSet.has(group.ability.id)
-              ? 'active'
-              : 'inactive'
-            : undefined}
+          data-trace-special={trace.sourcePointType === 5 ? '' : undefined}
         >
-          {#if toggleableTraceIds.has(group.ability.id)}<TraceToggle
-              name={group.ability.name}
-              active={activeTraceIdSet.has(group.ability.id)}
-              onToggle={() => onToggleTrace?.(group.ability.id)}
-            />{/if}
-          <TraceAbilityHeading trace={group.ability} playerState={abilityState} />
-          <p class="trace-card__description">
-            <GameText
-              text={group.ability.description || m.common_localized_description_unavailable()}
-            />
-          </p>
-          <SkillExtraEffects effects={group.ability.extraEffects ?? []} />
-        </Card.Root>
-
-        {#each group.stats as stat (stat.id)}
-          {@const statIconUrl = getCharacterDetailIconUrl(stat.iconKey)}
-          {@const statState = playerStateOf(stat)}
-          <Card.Root
-            size="sm"
-            role="article"
-            class="trace-card trace-card--stat relative min-h-17 gap-1 p-4"
-            data-trace-id={stat.id}
-            data-trace-type="stat"
-            data-trace-owner={group.ability.id}
-            data-player-state={statState}
-            data-training-state={toggleableTraceIds.has(stat.id)
-              ? activeTraceIdSet.has(stat.id)
-                ? 'active'
-                : 'inactive'
-              : undefined}
-          >
-            {#if toggleableTraceIds.has(stat.id)}<TraceToggle
-                name={stat.name}
-                active={activeTraceIdSet.has(stat.id)}
-                onToggle={() => onToggleTrace?.(stat.id)}
-              />{/if}
-            <div class="trace-card__heading">
-              <h3 class:trace-card__title--icon={!!statIconUrl}>
-                {#if statIconUrl}<AssetImage
-                    class="size-6 shrink-0 object-contain"
-                    decorative
-                    src={statIconUrl}
-                    alt=""
-                    aria-hidden="true"
-                  />{/if}<span><GameText text={stat.name} /></span>
-              </h3>
-              <div class="trace-card__tags">
-                <Badge variant="outline" class="skill-effect-tag text-primary"
-                  >{m.trace_stat_bonus()}</Badge
-                >
-                {#if statState === 'unresolved'}<Badge
-                    variant="outline"
-                    class="player-progression-state text-primary"
-                    data-player-state-label={statState}>{m.player_character_status_unknown()}</Badge
-                  >{/if}
-              </div>
-            </div>
-            <p class="trace-card__description">
-              <GameText text={stat.description || m.common_localized_description_unavailable()} />
-            </p>
-            <SkillExtraEffects effects={stat.extraEffects ?? []} />
-          </Card.Root>
-        {/each}
-      </section>
-    {/each}
-  </div>
-
-  {#if groups.specialAbilities.length || groups.standaloneStats.length}
-    <section class="trace-independent-section" data-trace-independent-section>
-      <SectionHeading level={3} headingLevel={3}
-        >{groups.specialAbilities.length
-          ? m.trace_independent()
-          : m.trace_independent_stats()}</SectionHeading
-      >
-      {#each groups.specialAbilities as ability (ability.id)}
-        {@const abilityState = playerStateOf(ability)}
-        <Card.Root
-          size="sm"
-          role="article"
-          class="trace-card trace-card--ability trace-card--special relative min-h-44 gap-3 p-6"
-          data-trace-id={ability.id}
-          data-trace-type="ability"
-          data-trace-special
-          data-training-state={toggleableTraceIds.has(ability.id)
-            ? activeTraceIdSet.has(ability.id)
-              ? 'active'
-              : 'inactive'
-            : undefined}
-          data-player-state={abilityState}
-        >
-          {#if toggleableTraceIds.has(ability.id)}<TraceToggle
-              name={ability.name}
-              active={activeTraceIdSet.has(ability.id)}
-              onToggle={() => onToggleTrace?.(ability.id)}
-            />{/if}
-          <TraceAbilityHeading trace={ability} playerState={abilityState} />
-          <p class="trace-card__description">
-            <GameText text={ability.description || m.common_localized_description_unavailable()} />
-          </p>
-          <SkillExtraEffects effects={ability.extraEffects ?? []} />
+          <Card.Content>
+            <TraceEntryContent {trace} {characterAccent} />
+          </Card.Content>
         </Card.Root>
       {/each}
-      <div class="trace-independent-grid">
-        {#each groups.standaloneStats as stat (stat.id)}
-          {@const statIconUrl = getCharacterDetailIconUrl(stat.iconKey)}
-          {@const statState = playerStateOf(stat)}
-          <Card.Root
-            size="sm"
-            role="article"
-            class="trace-card trace-card--stat relative min-h-17 gap-1 p-4"
-            data-trace-id={stat.id}
-            data-trace-type="stat"
-            data-trace-standalone
-            data-player-state={statState}
-            data-training-state={toggleableTraceIds.has(stat.id)
-              ? activeTraceIdSet.has(stat.id)
-                ? 'active'
-                : 'inactive'
-              : undefined}
-          >
-            {#if toggleableTraceIds.has(stat.id)}<TraceToggle
-                name={stat.name}
-                active={activeTraceIdSet.has(stat.id)}
-                onToggle={() => onToggleTrace?.(stat.id)}
-              />{/if}
-            <div class="trace-card__heading">
-              <h3 class:trace-card__title--icon={!!statIconUrl}>
-                {#if statIconUrl}<AssetImage
-                    class="size-6 shrink-0 object-contain"
-                    decorative
-                    src={statIconUrl}
-                    alt=""
-                    aria-hidden="true"
-                  />{/if}<span><GameText text={stat.name} /></span>
-              </h3>
-              <div class="trace-card__tags">
-                <Badge variant="outline" class="skill-effect-tag text-primary"
-                  >{m.trace_stat_bonus()}</Badge
-                >
-                {#if statState === 'unresolved'}<Badge
-                    variant="outline"
-                    class="player-progression-state text-primary"
-                    data-player-state-label={statState}>{m.player_character_status_unknown()}</Badge
-                  >{/if}
-              </div>
-            </div>
-            <p class="trace-card__description">
-              <GameText text={stat.description || m.common_localized_description_unavailable()} />
-            </p>
-            <SkillExtraEffects effects={stat.extraEffects ?? []} />
-          </Card.Root>
-        {/each}
-      </div>
+    </section>
+  {/if}
+  {#if summary.summaries.length || summary.independent.length}
+    <section
+      class="trace-stat-grid grid grid-cols-1 items-start gap-4"
+      data-trace-stat-summaries
+      data-card-count={summary.summaries.length + summary.independent.length}
+    >
+      {#each summary.summaries as stat (`${stat.propertyType}:${stat.percent}`)}
+        <Card.Root
+          role="article"
+          class="trace-stat-summary character-detail-card"
+          data-trace-property={stat.propertyType}
+          data-trace-total={stat.value}
+        >
+          <Card.Header class="flex flex-row flex-wrap items-center gap-x-4 gap-y-2">
+            <Card.Title class="flex max-w-full min-w-0 items-center gap-3 text-lg">
+              <AssetImage
+                src={getCharacterDetailIconUrl(stat.nodes[0].trace.iconKey)}
+                alt=""
+                class="size-8 shrink-0 object-contain"
+                fallbackClass="size-8 shrink-0"
+              />
+              <span class="min-w-0 wrap-anywhere"><GameText text={stat.nodes[0].trace.name} /></span
+              >
+            </Card.Title>
+            <output
+              class="ms-auto shrink-0 font-semibold tabular-nums"
+              style:color={characterAccent}
+              >{stat.value > 0 ? '+' : ''}{formatTraceBonus(
+                stat.value,
+                stat.percent,
+                getLocale()
+              )}</output
+            >
+          </Card.Header>
+          <Separator />
+          <Card.Content>
+            <Collapsible.Root>
+              <Collapsible.Trigger
+                class="text-muted-foreground group focus-visible:ring-ring flex w-full cursor-pointer items-center gap-2 rounded-sm text-left text-sm focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <ChevronDown class="size-4 shrink-0 group-data-[state=open]:rotate-180" />
+                {m.trace_breakdown()}
+              </Collapsible.Trigger>
+              <Collapsible.Content>
+                <div class="divide-border divide-y pt-2">
+                  {#each stat.nodes as node (node.trace.id)}
+                    <div
+                      class="flex items-baseline justify-between gap-2 py-2 text-sm"
+                      data-trace-id={node.trace.id}
+                      data-trace-type="stat"
+                      data-trace-owner={node.owner?.id}
+                      data-trace-standalone={node.owner ? undefined : ''}
+                    >
+                      <span
+                        class="shrink-0 font-semibold tabular-nums"
+                        style:color={characterAccent}
+                      >
+                        {node.trace.statBonus!.value > 0 ? '+' : ''}{formatTraceBonus(
+                          node.trace.statBonus!.value,
+                          stat.percent,
+                          getLocale()
+                        )}
+                      </span>
+                      {#if node.trace.promotionLimit || node.trace.characterLevelLimit}
+                        <span class="text-right">
+                          <span class="text-muted-foreground">{m.trace_unlock_condition()}</span>
+                          <span class="text-[var(--gold-soft)]"
+                            >{traceRequirementText(
+                              node.trace.promotionLimit,
+                              node.trace.characterLevelLimit
+                            )}</span
+                          >
+                        </span>
+                      {/if}
+                    </div>
+                  {/each}
+                </div>
+              </Collapsible.Content>
+            </Collapsible.Root>
+          </Card.Content>
+        </Card.Root>
+      {/each}
+      {#each summary.independent as trace (trace.id)}
+        <Card.Root
+          role="article"
+          class="trace-card trace-card--stat"
+          data-trace-id={trace.id}
+          data-trace-type="stat"
+        >
+          <Card.Content><TraceEntryContent {trace} {characterAccent} /></Card.Content>
+        </Card.Root>
+      {/each}
     </section>
   {/if}
 </div>
+
+<style>
+  @container traces (min-width: 29rem) {
+    .trace-stat-grid[data-card-count='2'] {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @container traces (min-width: 44rem) {
+    .trace-stat-grid[data-card-count='3'] {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @container traces (min-width: 59rem) {
+    .trace-stat-grid[data-card-count='4'] {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -19,7 +19,7 @@
 </script>
 
 <a
-  class="endgame-season-card group focus-visible:ring-ring/50 block min-w-0 rounded-xl outline-none focus-visible:ring-3"
+  class="endgame-season-card group focus-visible:ring-ring/50 block min-w-0 rounded-lg outline-none focus-visible:ring-3"
   href={localizedHref(`/endgame/${mode}/${period.groupId}`)}
   aria-label={m.endgame_period_detail_aria({ period: period.name })}
   style={`--endgame-accent: ${metadata.accent};`}

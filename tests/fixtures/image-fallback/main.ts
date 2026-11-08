@@ -18,6 +18,10 @@ if (location.pathname === '/phase-hp') {
   void import('./SliderFixture.svelte').then(({ default: SliderFixture }) =>
     mount(SliderFixture, { target })
   );
+} else if (location.pathname === '/trace-grid') {
+  void import('./TraceGridFixture.svelte').then(({ default: TraceGridFixture }) =>
+    mount(TraceGridFixture, { target })
+  );
 } else if (hydrateButton) {
   hydrateButton.addEventListener(
     'click',

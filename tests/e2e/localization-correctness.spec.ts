@@ -153,7 +153,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await page.goto(
       `${prefix}/search?q=${encodeURIComponent(locale === 'en' ? 'Silvermane' : '银鬃')}`
     );
-    const enemy = page.locator('a[data-endgame-enemy-card]').first();
+    const enemy = page.locator('[data-endgame-enemy-card] [data-endgame-enemy-link]').first();
     await expect(enemy).toBeVisible();
     await expect(enemy).toHaveAttribute('href', new RegExp(`^${prefix}/enemies/`));
     const href = await enemy.getAttribute('href');

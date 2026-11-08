@@ -270,7 +270,7 @@
 {:else if appliedQuery && !endgamePending}
   <Empty.Root
     tag="section"
-    class="search-empty border-border mx-auto my-12 block flex-none rounded-[var(--radius-panel)] border px-8 py-16 text-wrap md:px-8 md:py-16 [&_p]:mx-auto [&_p]:mt-0 [&_p]:mb-6"
+    class="search-empty border-border mx-auto my-12 block flex-none rounded-xl border px-8 py-16 text-wrap md:px-8 md:py-16 [&_p]:mx-auto [&_p]:mt-0 [&_p]:mb-6"
     aria-live="polite"
   >
     <h2>{m.search_empty_title({ query: appliedQuery })}</h2>

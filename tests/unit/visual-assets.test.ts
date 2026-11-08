@@ -330,6 +330,10 @@ describe('视觉资源管线', () => {
       '/generated-assets/elements/Lightning.png'
     );
     expect(resolvePathIconAsset('Memory', source)).toBe('/generated-assets/paths/Memory.png');
+    expect(resolvePathIconAsset('Memory', source, 'large')).toBe(
+      '/generated-assets/paths/large/Memory.png'
+    );
+    expect(resolvePathIconAsset('unknown', source, 'large')).toBeUndefined();
     expect(resolveNavigationIconAsset('overview', source)).toBe(
       '/generated-assets/navigation/overview.png'
     );
@@ -884,7 +888,8 @@ describe('视觉资源管线', () => {
       writeFile(
         path.join(indexDirectory, 'character_skill_trees.json'),
         JSON.stringify({
-          1407002: { id: '1407002', icon: 'icon/skill/1407_skill.png' }
+          1407002: { id: '1407002', icon: 'icon/skill/1407_skill.png' },
+          1407201: { id: '1407201', icon: 'icon/property/IconMaxHP.png' }
         })
       ),
       writeFile(
@@ -917,18 +922,20 @@ describe('视觉资源管线', () => {
     const iconKeys: CharacterDetailIconKey[] = [
       'skill--140702',
       'skill-tree--1407002',
+      'skill-tree--1407201',
       'rank--140703',
       'property--MaxHP',
       'skill--999999'
     ];
     const sources = await readCharacterDetailIconSources(root, iconKeys);
-    expect(sources.size).toBe(4);
+    expect(sources.size).toBe(5);
     const generated = await generateCharacterDetailIcons(root, iconKeys, output, sources);
     expect(generated.missing).toEqual(['skill--999999']);
     expect(generated.resolved['skill--140702']).toBe(
       '/generated-assets/character-details/icons/skill/1407_skill.png'
     );
     expect(generated.resolved['skill-tree--1407002']).toBe(generated.resolved['skill--140702']);
+    expect(generated.resolved['skill-tree--1407201']).toBe(generated.resolved['property--MaxHP']);
     expect(generated.resolved['rank--140703']).toBe(generated.resolved['skill--140702']);
     expect(await readdir(output.characterDetailSkillIcons)).toEqual(['1407_skill.png']);
     expect(await readdir(output.characterDetailPropertyIcons)).toEqual(['IconMaxHP.png']);

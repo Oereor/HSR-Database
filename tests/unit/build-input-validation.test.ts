@@ -300,7 +300,7 @@ async function createFixture(): Promise<Fixture> {
     characterExpCreditDivisor: 10
   });
   await writeArtifact('static/generated/training/characters/1.json', {
-    schemaVersion: 1,
+    schemaVersion: 3,
     avatarId: '1',
     expGroup: '1',
     promotions,
@@ -319,7 +319,7 @@ async function createFixture(): Promise<Fixture> {
             prerequisiteIds: [],
             linkedSkillIds: [],
             bindings: [],
-            steps: [{ level: 1, requiredPromotion: 0, cost: {} }]
+            steps: [{ level: 1, requiredPromotion: 0, requiredCharacterLevel: 0, cost: {} }]
           }
         ]
       }

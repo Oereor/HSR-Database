@@ -75,8 +75,8 @@
   li {
     min-width: 0;
     border: 1px solid var(--border);
-    border-radius: 8px;
-    background: rgb(14 20 34 / 45%);
+    border-radius: var(--radius-small);
+    background: var(--card);
     transition:
       border-color var(--motion),
       background var(--motion);
@@ -88,7 +88,7 @@
     min-width: 0;
     padding: var(--space-3);
     border: 0;
-    border-radius: 7px;
+    border-radius: max(0px, calc(var(--radius-small) - 1px));
     background: transparent;
     width: 100%;
     height: 100%;
@@ -115,7 +115,7 @@
     flex: 0 0 48px;
     border-bottom: 2px solid var(--material-rarity);
     background: color-mix(in srgb, var(--material-rarity) 12%, transparent);
-    border-radius: 4px;
+    border-radius: var(--radius-badge);
     overflow: hidden;
   }
   button > div:last-child {

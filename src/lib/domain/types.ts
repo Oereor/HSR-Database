@@ -24,7 +24,7 @@ export interface InlineGameTextIcon {
 
 export interface DescriptionToken {
   semanticReference?: `character-special-effects:${string}`;
-  type: 'text' | 'scaling-value' | 'icon';
+  type: 'text' | 'scaling-value' | 'fixed-param' | 'icon';
   value: string;
   icon?: InlineGameTextIcon;
   color?: string;
@@ -74,6 +74,7 @@ export interface ExtraEffect {
   id: string;
   name: string;
   description: string;
+  descriptionTokens?: DescriptionToken[];
 }
 
 export type SkillExtraEffect = ExtraEffect;
@@ -95,6 +96,7 @@ export interface SemanticTag {
 }
 
 export interface SkillVariant {
+  iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
   id: string;
   name: string;
   type?: string;
@@ -156,15 +158,18 @@ export interface LightConePassiveSkill {
 export type TraceType = 'stat' | 'ability';
 
 export interface Trace {
+  statBonus?: { propertyType: string; value: number; percent: boolean };
   id: string;
   name: string;
   description: string;
+  descriptionTokens?: DescriptionToken[];
   type: TraceType;
   iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
   propertyType?: string;
   sourcePointType: number;
   prerequisiteIds: string[];
   promotionLimit?: number;
+  characterLevelLimit?: number;
   anchorOrder: number;
   extraEffects?: SkillExtraEffect[];
 }
@@ -210,6 +215,7 @@ export interface Eidolon {
   rank: number;
   name: string;
   description: string;
+  descriptionTokens?: DescriptionToken[];
   iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
   extraEffects?: SkillExtraEffect[];
 }

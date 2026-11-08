@@ -1,8 +1,7 @@
 import { render } from 'svelte/server';
 import { afterEach, describe, expect, it } from 'vitest';
 import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
-import SkillProgressionPanel from '../../src/lib/components/character/SkillProgressionPanel.svelte';
-import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
+import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.svelte';
 import PlayerStatsPanel from '../../src/lib/components/player/PlayerStatsPanel.svelte';
 import PlayerEquipmentSection from '../../src/lib/components/player/PlayerEquipmentSection.svelte';
 import BaseStatsPanel from '../../src/lib/components/shared/BaseStatsPanel.svelte';
@@ -13,8 +12,7 @@ import type {
   BaseStatProgression,
   Eidolon,
   RelicProperty,
-  SkillProgression,
-  Trace
+  SkillCard
 } from '../../src/lib/domain/types';
 import type { PlayerCharacter, PlayerStat } from '../../src/lib/player/contract';
 import type { PlayerEquipmentCatalog } from '../../src/lib/player/equipment';
@@ -66,35 +64,44 @@ describe('Player Character controls', () => {
     expect(playerBody).not.toMatch(/<input[^>]*\sreadonly(?:=|\s|>)/);
   });
 
-  it('uses the Player skill level read-only and marks missing progression as unresolved', () => {
-    const skillProgression: SkillProgression = {
-      id: '1304001',
-      availableLevels: [1, 2, 3, 4, 5, 6],
-      defaultLevel: 6,
-      variantIds: []
+  it('maps a shared player progression to its effective level and preserves the unknown fallback', () => {
+    const card: SkillCard = {
+      category: 'skill',
+      displayLabel: 'Synthetic skill',
+      order: 0,
+      progressions: [
+        { id: 'shared', availableLevels: [1, 10, 12], defaultLevel: 10, variantIds: ['variant'] }
+      ],
+      variants: [
+        {
+          id: 'variant',
+          name: 'Synthetic variant',
+          order: 0,
+          source: 'avatar',
+          progressionId: 'shared',
+          scalingParamIndexes: [],
+          combatMeta: {},
+          levels: [10, 12].map((level) => ({
+            level,
+            description: `Synthetic description at ${level}`,
+            descriptionTokens: [{ type: 'text', value: `Synthetic description at ${level}` }]
+          }))
+        }
+      ]
     };
-    const resolved = render(SkillProgressionPanel, {
-      props: {
-        progression: skillProgression,
-        variants: [],
-        categoryLabel: '普攻',
-        playerLevel: 4
-      }
-    }).body;
-    const unresolved = render(SkillProgressionPanel, {
-      props: {
-        progression: skillProgression,
-        variants: [],
-        categoryLabel: '普攻',
-        playerLevel: null
-      }
-    }).body;
-
-    expect(resolved).toContain('Lv.4');
-    expect(resolved).toMatch(/<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")/);
+    for (const category of ['skill', 'talent'] as const) {
+      const resolved = render(SkillCardPanel, {
+        props: { card: { ...card, category }, playerSkillTree: [{ id: 'shared', level: 12 }] }
+      }).body;
+      expect(resolved).toMatch(
+        /<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")(?=[^>]*aria-valuenow="12")(?=[^>]*data-value="2")/
+      );
+      expect(resolved).toContain('Synthetic description at 12');
+    }
+    const unresolved = render(SkillCardPanel, { props: { card, playerSkillTree: [] } }).body;
     expect(unresolved).toContain('data-player-skill-state="unresolved"');
-    expect(unresolved).toMatch(/data-player-skill-state="unresolved"[\s\S]*<p>[^<]+<\/p>/);
-    expect(unresolved).not.toContain('<input');
+    expect(unresolved).toContain('Synthetic description at 10');
+    expect(unresolved).not.toContain('role="slider"');
   });
 });
 
@@ -212,10 +219,7 @@ describe('Player Character presentation', () => {
 
     expect(body).toContain('href="/en/light-cones/23023/?level=70&amp;rank=2"');
     expect(body).toContain('href="/en/relics/103/"');
-    expect(body).toContain('compact-entity-card__aside');
-    expect(body).toContain('data-relic-icon-presentation="header"');
-    expect(body).toMatch(/data-player-relic-level[^>]*style="color: #c77dff[^"]*"[^>]*>\+15/);
-    expect(body).toContain('data-affix-presentation="main"');
+    expect(body).toMatch(/data-player-relic-level[^>]*>\+15/);
   });
 
   it('renders explicit empty equipment states without collapsing relic slots', () => {
@@ -303,74 +307,26 @@ describe('Player Character presentation', () => {
     expect(englishBody).not.toContain('elation_dmg</span>');
   });
 
-  it('keeps Trace state metadata while showing text only for unresolved cards', () => {
-    const traces: Trace[] = [
-      {
-        id: '1304101',
-        name: '能力一',
-        description: '说明',
-        type: 'ability',
-        sourcePointType: 3,
-        prerequisiteIds: [],
-        anchorOrder: 1
-      },
-      {
-        id: '1304201',
-        name: '属性一',
-        description: '说明',
-        type: 'stat',
-        sourcePointType: 1,
-        prerequisiteIds: ['1304101'],
-        anchorOrder: 2
-      },
-      {
-        id: '1304202',
-        name: '属性二',
-        description: '说明',
-        type: 'stat',
-        sourcePointType: 1,
-        prerequisiteIds: ['1304101'],
-        anchorOrder: 3
-      }
-    ];
-    const playerBody = render(TraceCardPanel, {
-      props: {
-        traces,
-        playerSkillTree: [
-          { id: '1304101', level: 1 },
-          { id: '1304201', level: 0 },
-          { id: '1304202', level: -1 }
-        ]
-      }
-    }).body;
-    const staticBody = render(TraceCardPanel, { props: { traces } }).body;
+  it.each(['active', 'inactive'] as const)(
+    'shows %s Eidolon state only in Player mode',
+    (state) => {
+      const eidolon: Eidolon = {
+        id: '130401',
+        rank: 1,
+        name: '星魂一',
+        description: '说明'
+      };
+      const staticBody = render(EidolonCard, { props: { eidolon } }).body;
+      const playerBody = render(EidolonCard, {
+        props: { eidolon, playerState: state }
+      }).body;
 
-    expect(playerBody).toContain('data-player-state="active"');
-    expect(playerBody).toContain('data-player-state="inactive"');
-    expect(playerBody).toContain('data-player-state="unresolved"');
-    expect(playerBody).not.toContain('data-player-state-label="active"');
-    expect(playerBody).not.toContain('data-player-state-label="inactive"');
-    expect(playerBody).toContain('data-player-state-label="unresolved"');
-    expect(staticBody).not.toContain('data-player-state=');
-  });
-
-  it('shows Eidolon state only in Player mode', () => {
-    const eidolon: Eidolon = {
-      id: '130401',
-      rank: 1,
-      name: '星魂一',
-      description: '说明'
-    };
-    const staticBody = render(EidolonCard, { props: { eidolon } }).body;
-    const playerBody = render(EidolonCard, {
-      props: { eidolon, playerState: 'inactive' }
-    }).body;
-
-    expect(staticBody).not.toContain('data-player-state=');
-    expect(playerBody).toContain('data-player-state="inactive"');
-    expect(playerBody).toContain('data-player-state-label="inactive"');
-    expect(playerBody).toContain('rank-card__content');
-  });
+      expect(staticBody).not.toContain('data-player-state=');
+      expect(playerBody).toContain(`data-player-state="${state}"`);
+      expect(playerBody).toContain(`data-player-state-label="${state}"`);
+      expect(playerBody).toContain('rank-card__content');
+    }
+  );
 });
 
 describe('Player Hero stat composition', () => {

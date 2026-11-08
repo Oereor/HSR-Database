@@ -12,7 +12,7 @@
 <Sonner
   theme="dark"
   class="toaster group"
-  style="--normal-bg: var(--popover); --normal-text: var(--popover-foreground); --normal-border: var(--border);"
+  style="font-family: var(--font-family-sans); --normal-bg: var(--popover); --normal-text: var(--popover-foreground); --normal-border: var(--border);"
   toastOptions={{
     classes: {
       toast: 'cn-toast'

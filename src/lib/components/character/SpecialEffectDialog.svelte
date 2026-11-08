@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let characterAccent: string | undefined = undefined;
   import * as Dialog from '$lib/components/ui/dialog';
   import { Badge } from '$lib/components/ui/badge';
   import { Button } from '$lib/components/ui/button';
@@ -64,7 +65,12 @@
       {#if open}
         <div class="skill-variant-list special-effect-entry-list">
           {#each entries as entry (entry.skill.id)}
-            <SkillVariantView variant={entry.skill} {selectedLevel}>
+            <SkillVariantView
+              variant={entry.skill}
+              {selectedLevel}
+              {characterAccent}
+              compactHeading
+            >
               <svelte:fragment slot="prefix"
                 ><SpecialEffectRelation {entry} {targets} {ownerCharacterId} /></svelte:fragment
               >

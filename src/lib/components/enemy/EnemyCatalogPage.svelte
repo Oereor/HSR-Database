@@ -208,7 +208,7 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section
-    class="border-border bg-card text-card-foreground grid justify-items-center gap-3 rounded-xl border px-4 py-10 text-center"
+    class="border-border bg-card text-card-foreground grid justify-items-center gap-3 rounded-lg border px-4 py-10 text-center"
   >
     <h2 class="m-0 text-xl font-semibold">{m.overview_empty_title()}</h2>
     <p class="text-muted-foreground m-0 text-sm">{m.overview_empty_description()}</p>

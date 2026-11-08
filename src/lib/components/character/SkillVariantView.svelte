@@ -1,4 +1,7 @@
 <script lang="ts">
+  export let characterAccent: string | undefined = undefined;
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { Badge } from '$lib/components/ui/badge';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
@@ -11,6 +14,7 @@
   export let variant: SkillVariant;
   export let selectedLevel: number;
   export let showLevel = false;
+  export let compactHeading = false;
   export let specialEffectsAvailable = false;
   export let specialEffectIconUrl: string | undefined = undefined;
   export let onOpenSpecialEffects:
@@ -26,18 +30,36 @@
 <section class="skill-variant" data-skill-id={variant.id}>
   <slot name="prefix" />
   <div class="skill-variant__heading">
-    <h4><GameText text={variant.name} /></h4>
-    <div class="skill-variant__heading-meta">
-      <SkillEffectTag effect={variant.combatMeta.effect} />
-      {#if variant.source === 'avatar-global-buff'}
-        <Badge variant="outline" class="skill-effect-tag text-primary">{m.skill_exclusive()}</Badge>
-      {:else if showLevel}<span>Lv.{selected?.level ?? selectedLevel}</span>{/if}
+    {#if !compactHeading}
+      <AssetImage
+        src={getCharacterDetailIconUrl(variant.iconKey)}
+        alt=""
+        class="size-10 shrink-0 object-contain"
+        fallbackClass="size-10 shrink-0"
+      />
+    {/if}
+    <div
+      class={compactHeading
+        ? 'flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-1 wrap-anywhere'
+        : 'flex min-w-0 flex-1 flex-col gap-1'}
+    >
+      <h4><GameText text={variant.name} /></h4>
+
+      <div class="skill-variant__heading-meta flex-wrap">
+        <SkillEffectTag effect={variant.combatMeta.effect} />
+        {#if variant.source === 'avatar-global-buff'}
+          <Badge variant="outline" class="skill-effect-tag text-primary"
+            >{m.skill_exclusive()}</Badge
+          >
+        {:else if showLevel}<span>Lv.{selected?.level ?? selectedLevel}</span>{/if}
+      </div>
     </div>
   </div>
-  <SkillCombatMeta meta={variant.combatMeta} />
+  <SkillCombatMeta meta={variant.combatMeta} {characterAccent} />
   {#if selected?.descriptionTokens.length}<p class="levelled-description">
       <DescriptionText
         tokens={selected.descriptionTokens}
+        {characterAccent}
         {specialEffectsAvailable}
         {specialEffectIconUrl}
         onOpenSpecialEffects={openSpecialEffectsFromDescription}

@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as Card from '$lib/components/ui/card';
+  import * as RadioGroup from '$lib/components/ui/radio-group';
   import EnemySkillBrowser from './EnemySkillBrowser.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
   import EnemyTemplateBaseStatsPanel from './EnemyTemplateBaseStatsPanel.svelte';
@@ -45,28 +46,6 @@
   $: selectedMonster =
     detail.monsters.find((monster) => monster.monsterId === selectedMonsterId) ?? initialMonster;
   $: selectedProgression = getEnemyMonsterStatProgression(detail, selectedMonster);
-
-  function selectMonster(monsterId: string, target?: HTMLElement): void {
-    selectedMonsterId = monsterId;
-    target?.focus();
-  }
-
-  function handleMonsterKeydown(event: KeyboardEvent, currentId: string): void {
-    const currentPosition = detail.monsters.findIndex((monster) => monster.monsterId === currentId);
-    let nextPosition: number;
-    if (event.key === 'ArrowRight') nextPosition = (currentPosition + 1) % detail.monsters.length;
-    else if (event.key === 'ArrowLeft')
-      nextPosition = (currentPosition - 1 + detail.monsters.length) % detail.monsters.length;
-    else if (event.key === 'Home') nextPosition = 0;
-    else if (event.key === 'End') nextPosition = detail.monsters.length - 1;
-    else return;
-    event.preventDefault();
-    const nextMonster = detail.monsters[nextPosition];
-    selectMonster(
-      nextMonster.monsterId,
-      document.getElementById(`enemy-monster-option-${nextMonster.monsterId}`) ?? undefined
-    );
-  }
 
   const monsterWeaknessLabel = (monster: EnemyMonsterPageData): string =>
     monster.weaknesses.length
@@ -126,19 +105,17 @@
 <section id="monsters" class="detail-section enemy-detail-section section-nav-target">
   <SectionHeading level={1}>{m.enemy_variants_section()}</SectionHeading>
 
-  <div class="enemy-monster-selector" role="radiogroup" aria-label={m.enemy_specific_units()}>
+  <RadioGroup.Root
+    class="enemy-monster-selector"
+    aria-label={m.enemy_specific_units()}
+    orientation="horizontal"
+    bind:value={selectedMonsterId}
+  >
     {#each detail.monsters as monster (monster.monsterId)}
-      <button
-        id={`enemy-monster-option-${monster.monsterId}`}
-        class:enemy-monster-option--selected={monster.monsterId === selectedMonsterId}
-        class="enemy-monster-option"
-        type="button"
-        role="radio"
-        aria-checked={monster.monsterId === selectedMonsterId}
-        tabindex={monster.monsterId === selectedMonsterId ? 0 : -1}
+      <RadioGroup.Item
+        value={monster.monsterId}
+        class="grid min-h-16 min-w-40 shrink-0 snap-start content-center gap-2 px-3 py-2 text-left leading-tight"
         data-monster-option={monster.monsterId}
-        on:click={(event) => selectMonster(monster.monsterId, event.currentTarget)}
-        on:keydown={(event) => handleMonsterKeydown(event, monster.monsterId)}
       >
         <span class="enemy-monster-option__identity">
           <strong>#{monster.monsterId}</strong>
@@ -155,9 +132,9 @@
               /></span
             >{/each}
         </span>
-      </button>
+      </RadioGroup.Item>
     {/each}
-  </div>
+  </RadioGroup.Root>
   <div
     class:enemy-battle-panel--two-column={!selectedMonster.specialResistances.length}
     class="enemy-battle-panel"

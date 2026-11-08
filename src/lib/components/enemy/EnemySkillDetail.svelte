@@ -50,18 +50,14 @@
 <article class="enemy-skill-detail" data-enemy-skill-detail={skill.id}>
   <header class="enemy-skill-detail__heading">
     <h3><GameText text={skill.name} /></h3>
-    {#if skill.damageType || skill.tag}
-      <div class="enemy-skill-detail__metadata">
-        {#if skill.damageType}
-          <SemanticIconLabel
-            kind="element"
-            code={skill.damageType.element}
-            label={skill.damageType.name}
-            color={getElementColor(skill.damageType.element)}
-          />
-        {/if}
-        <SkillEffectTag effect={skill.tag} />
-      </div>
+    <SkillEffectTag effect={skill.tag} />
+    {#if skill.damageType}
+      <SemanticIconLabel
+        kind="element"
+        code={skill.damageType.element}
+        label={skill.damageType.name}
+        color={getElementColor(skill.damageType.element)}
+      />
     {/if}
   </header>
   <p class:muted={!skill.description} class="enemy-skill-detail__description">
@@ -135,38 +131,28 @@
     align-self: start;
     border: 1px solid var(--border);
     border-radius: var(--radius-card);
-    background: rgb(14 20 34 / 68%);
+    background: var(--card);
     padding: clamp(1rem, 2vw, 1.5rem);
   }
   .enemy-skill-detail__heading {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--space-3) var(--space-4);
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
   }
   .enemy-skill-detail h3 {
     min-width: 0;
-    flex: 1 1 12rem;
+    max-width: 100%;
     margin: 0;
     font-size: var(--font-major-title);
     font-weight: 700;
     line-height: 1.35;
     overflow-wrap: anywhere;
   }
-  .enemy-skill-detail__metadata {
-    display: flex;
+  .enemy-skill-detail__heading > :global(.semantic-icon-label) {
     min-width: 0;
     max-width: 100%;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--space-2) var(--space-3);
-    margin-left: auto;
     overflow-wrap: anywhere;
-  }
-  .enemy-skill-detail__metadata :global(.semantic-icon-label) {
-    min-width: 0;
   }
   .enemy-skill-detail__description {
     margin: 1rem 0 0;

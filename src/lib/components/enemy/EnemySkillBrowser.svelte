@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as Tabs from '$lib/components/ui/tabs';
   import EnemySkillDetail from './EnemySkillDetail.svelte';
   import EnemySkillSelector from './EnemySkillSelector.svelte';
   import { enemySkillsInPhase, resolveEnemySkillSelection } from '$lib/domain/enemy-skill-browser';
@@ -47,70 +48,60 @@
     if (!nextSkills.some((skill) => skill.id === selectedSkillId))
       selectedSkillId = nextSkills[0]?.id;
   }
-
-  function handlePhaseKeydown(event: KeyboardEvent, currentIndex: number): void {
-    const phaseIndexes = selectedMonster?.skillPhases.map((phase) => phase.index) ?? [];
-    const currentPosition = phaseIndexes.indexOf(currentIndex);
-    let nextPosition: number;
-    if (event.key === 'ArrowRight') nextPosition = (currentPosition + 1) % phaseIndexes.length;
-    else if (event.key === 'ArrowLeft')
-      nextPosition = (currentPosition - 1 + phaseIndexes.length) % phaseIndexes.length;
-    else if (event.key === 'Home') nextPosition = 0;
-    else if (event.key === 'End') nextPosition = phaseIndexes.length - 1;
-    else return;
-    event.preventDefault();
-    const nextIndex = phaseIndexes[nextPosition];
-    selectPhase(nextIndex);
-    document.getElementById(`enemy-phase-tab-${monsterId}-${nextIndex}`)?.focus();
-  }
 </script>
+
+{#snippet skillPanel()}
+  {#if visibleSkills.length}
+    <div class="enemy-skill-browser__grid">
+      <EnemySkillSelector
+        skills={visibleSkills}
+        {selectedSkillId}
+        onSelect={(skillId) => (selectedSkillId = skillId)}
+      />
+      {#if selectedSkill}
+        <div class="enemy-skill-browser__detail">
+          <EnemySkillDetail skill={selectedSkill} />
+        </div>
+      {/if}
+    </div>
+  {:else}
+    <p class="data-placeholder">
+      {allSkills.length ? m.enemy_phase_empty() : m.enemy_skills_empty()}
+    </p>
+  {/if}
+{/snippet}
 
 <div class="enemy-skill-browser" data-enemy-skill-browser data-monster-id={monsterId}>
   {#if selectedMonster && selectedMonster.skillPhases.length > 1}
-    <div class="enemy-phase-tabs" role="tablist" aria-label={m.enemy_skill_phases_aria()}>
-      {#each selectedMonster.skillPhases as phase (phase.index)}
-        <button
-          id={`enemy-phase-tab-${monsterId}-${phase.index}`}
-          class="enemy-phase-tab"
-          class:enemy-phase-tab--active={phase.index === activePhaseIndex}
-          type="button"
-          role="tab"
-          aria-selected={phase.index === activePhaseIndex}
-          aria-controls={`enemy-phase-panel-${monsterId}-${phase.index}`}
-          tabindex={phase.index === activePhaseIndex ? 0 : -1}
-          on:click={() => selectPhase(phase.index)}
-          on:keydown={(event) => handlePhaseKeydown(event, phase.index)}
-          >{m.enemy_phase({ phase: phase.index })}</button
-        >
-      {/each}
-    </div>
-  {/if}
-
-  {#if selectedMonster}
-    <div
-      id={activePhaseIndex === undefined
-        ? undefined
-        : `enemy-phase-panel-${monsterId}-${activePhaseIndex}`}
-      role={selectedMonster.skillPhases.length > 1 ? 'tabpanel' : undefined}
-      aria-labelledby={selectedMonster.skillPhases.length > 1
-        ? `enemy-phase-tab-${monsterId}-${activePhaseIndex}`
-        : undefined}
+    <Tabs.Root
+      value={String(activePhaseIndex)}
+      onValueChange={(value) => selectPhase(Number(value))}
+      activationMode="automatic"
+      loop
     >
-      {#if visibleSkills.length}
-        <div class="enemy-skill-browser__grid">
-          <EnemySkillSelector
-            skills={visibleSkills}
-            {selectedSkillId}
-            onSelect={(skillId) => (selectedSkillId = skillId)}
-          />
-          {#if selectedSkill}<div class="enemy-skill-browser__detail">
-              <EnemySkillDetail skill={selectedSkill} />
-            </div>{/if}
-        </div>
-      {:else}<p class="data-placeholder">
-          {allSkills.length ? m.enemy_phase_empty() : m.enemy_skills_empty()}
-        </p>{/if}
-    </div>
+      <Tabs.List
+        class="enemy-phase-tabs mb-4 flex flex-wrap gap-2"
+        aria-label={m.enemy_skill_phases_aria()}
+      >
+        {#each selectedMonster.skillPhases as phase (phase.index)}
+          <Tabs.Trigger
+            value={String(phase.index)}
+            id={`enemy-phase-tab-${monsterId}-${phase.index}`}
+            class="px-4 py-2">{m.enemy_phase({ phase: phase.index })}</Tabs.Trigger
+          >
+        {/each}
+      </Tabs.List>
+      {#each selectedMonster.skillPhases as phase (phase.index)}
+        <Tabs.Content
+          value={String(phase.index)}
+          id={`enemy-phase-panel-${monsterId}-${phase.index}`}
+        >
+          {#if phase.index === activePhaseIndex}{@render skillPanel()}{/if}
+        </Tabs.Content>
+      {/each}
+    </Tabs.Root>
+  {:else if selectedMonster}
+    {@render skillPanel()}
   {/if}
 </div>
 

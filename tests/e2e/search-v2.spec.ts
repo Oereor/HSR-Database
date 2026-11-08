@@ -284,7 +284,7 @@ test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', asy
   await expect(cards.locator('[data-endgame-speed]')).toHaveCount(endgameCount);
   await expect(cards.locator('[data-endgame-toughness]')).toHaveCount(endgameCount);
   await expect(cards.locator('.endgame-weaknesses')).toHaveCount(endgameCount);
-  await expect(endgame.locator('[data-endgame-enemy-card][href="/enemies/4064012/"]')).toHaveCount(
+  await expect(cards.locator('[data-endgame-enemy-link][href="/enemies/4064012/"]')).toHaveCount(
     endgameCount
   );
   await expect(page.locator('a.entity-overview-card[href="/enemies/4064012/"]')).toBeVisible();
@@ -336,8 +336,12 @@ test('全局搜索 Endgame grid 与展开导航在各断点不横向溢出', asy
     expect(
       await navigator.evaluate((dialog) => dialog.scrollWidth - dialog.clientWidth)
     ).toBeLessThanOrEqual(1);
-    if (viewport.width < 768) await navigator.locator('.navigator-close').click();
-    else await page.locator('[data-slot="sidebar-trigger"]').click();
+    if (viewport.width < 768) {
+      await navigator.locator('.navigator-close').click();
+      await expect(navigator).toBeHidden();
+    } else {
+      await page.locator('[data-slot="sidebar-trigger"]').click();
+    }
   }
 });
 
@@ -355,7 +359,7 @@ test('全局搜索丢弃迟到分片，并在 Back/Forward 中复用分片缓存
   await expect(page).toHaveURL(/q=/);
   await input.fill('完全不存在的词');
   await input.press('Enter');
-  await expect(page.locator('.empty-state')).toBeVisible();
+  await expect(page.locator('.search-empty')).toBeVisible();
   await page.waitForTimeout(350);
   await expect(page.locator('section[aria-labelledby="search-results-endgame"]')).toHaveCount(0);
 
@@ -363,7 +367,7 @@ test('全局搜索丢弃迟到分片，并在 Back/Forward 中复用分片缓存
   await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(endgameCount);
   expect(shardRequests).toBe(1);
   await page.goForward();
-  await expect(page.locator('.empty-state')).toHaveCount(1);
+  await expect(page.locator('.search-empty')).toHaveCount(1);
 });
 
 test('Endgame 搜索单卡、多卡与不足一行均固定卡宽并从左排列', async ({ page }) => {

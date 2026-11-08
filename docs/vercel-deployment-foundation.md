@@ -87,7 +87,7 @@ V2 审批按经过审核的八份来源内容校验，无关 commit 变化不会
 权限为 `contents: write`、`pull-requests: write`。其 PR 获得 Development 检查，完整 correctness 在后续 main PR 承担。
 
 Enemy 图片目录 [static/generated-enemy-assets/](../static/generated-enemy-assets/README.md)在维护时更新并提交，Production、Preview、CI 只离线验证与消费，不请求 Nanoka。
-`pnpm assets:sync:enemies` 是 update alias，`pnpm assets:ensure:enemies` 是离线 validate alias；旧回归报告中的联网 ensure 不再适用。
+使用 `pnpm update:enemy-assets` 更新快照，使用 `pnpm validate:enemy-assets` 离线校验。
 更新阶段允许明确的单资源缺图并记录 unavailable，网络/解析/内容类型/图片校验等失败会中止更新；无效或过期快照会阻断构建，须显式更新并审阅。
 不手改 manifest 或图片，不因为仓库 MIT License 就宣称 Nanoka 再分发许可已确认。
 

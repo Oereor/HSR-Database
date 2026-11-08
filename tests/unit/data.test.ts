@@ -607,7 +607,9 @@ describe('真实数据管线', () => {
     expect(normalized.levels[0].descriptionTokens).toEqual([
       { type: 'text', value: '战斗开始时，使装备者的暴击率提高' },
       { type: 'scaling-value', value: '12%' },
-      { type: 'text', value: '，持续3回合。' }
+      { type: 'text', value: '，持续' },
+      { type: 'fixed-param', value: '3' },
+      { type: 'text', value: '回合。' }
     ]);
   });
 
@@ -791,6 +793,7 @@ describe('真实数据管线', () => {
     expect(baseProfile(character).traces.find((trace) => trace.id === '1001201')).toMatchObject({
       type: 'stat',
       propertyType: 'IceAddedRatio',
+      statBonus: { propertyType: 'IceAddedRatio', value: 0.032, percent: true },
       iconKey: 'property--IceAddedRatio',
       sourcePointType: 1,
       prerequisiteIds: [],
@@ -833,7 +836,7 @@ describe('真实数据管线', () => {
     }
   });
 
-  it('为合并技能卡选择 owner-aware canonical icon 且不向 variant 重复下发', async () => {
+  it('保留类别兼容图标并为具体变体下发其原始技能引用', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
         await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
@@ -850,9 +853,14 @@ describe('真实数据管线', () => {
         expect.objectContaining({ id: '140709' })
       ]
     });
-    expect(card(castorice, 'skill').variants.every((variant) => !('iconKey' in variant))).toBe(
-      true
-    );
+    expect(card(castorice, 'skill').variants.map((variant) => variant.iconKey)).toEqual([
+      'skill--140702',
+      'skill--140709'
+    ]);
+    for (const character of [evernight, cyrene, maleTrailblazer, femaleTrailblazer]) {
+      for (const variant of card(character, 'memosprite-skill').variants)
+        expect(variant.iconKey).toBe(`skill--${variant.id}`);
+    }
     expect(card(evernight, 'memosprite-skill').iconKey).toBe('skill-tree--1413301');
     expect(card(cyrene, 'memosprite-skill').iconKey).toBe('skill-tree--1415301');
     expect(card(departingHimeko, 'talent').iconKey).toBe('skill-tree--1510004');

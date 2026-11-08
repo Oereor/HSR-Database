@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 const localDate = () => {
   const date = new Date();
@@ -6,6 +6,11 @@ const localDate = () => {
     date.getDate()
   ).padStart(2, '0')}`;
 };
+
+async function openChangelog(page: Page, isMobile: boolean): Promise<void> {
+  if (isMobile) await page.locator('[data-slot="sidebar-trigger"]').click();
+  await page.locator('.changelog-trigger:visible').first().click();
+}
 
 test('更新日志首次自动打开、今日关闭与手动打开', async ({ page, isMobile }) => {
   await page.goto('/');
@@ -43,19 +48,19 @@ test('更新日志首次自动打开、今日关闭与手动打开', async ({ pa
   await page.reload();
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(dialog).not.toBeVisible();
-  await page.locator('.changelog-trigger:visible').first().click();
+  await openChangelog(page, isMobile);
   await expect(dialog).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
 });
 
-test('中文与英文页面加载同一组本地化更新日志', async ({ page }) => {
+test('中文与英文页面加载同一组本地化更新日志', async ({ page, isMobile }) => {
   const localeDates: string[][] = [];
 
   for (const path of ['/', '/en']) {
     await page.goto(path);
     await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-    await page.locator('.changelog-trigger:visible').first().click();
+    await openChangelog(page, isMobile);
     const dialog = page
       .getByRole('dialog')
       .filter({ has: page.locator('#changelog-dialog-title') });

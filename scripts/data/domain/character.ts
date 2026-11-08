@@ -255,8 +255,33 @@ function buildProfile(
         iconPath: typeof row.IconPath === 'string' ? row.IconPath : undefined,
         promotionLimit:
           row.AvatarPromotionLimit === undefined ? undefined : Number(row.AvatarPromotionLimit),
+        characterLevelLimit:
+          row.AvatarLevelLimit === undefined ? undefined : Number(row.AvatarLevelLimit),
         anchorOrder: anchor ? Number(anchor[1]) : undefined,
         statDescriptionSource: textSource(property?.PropertyNameSkillTree),
+        statBonuses: Array.isArray(row.StatusAddList)
+          ? row.StatusAddList.flatMap((status: Raw) => {
+              const raw =
+                status.Value && typeof status.Value === 'object'
+                  ? (status.Value as Raw).Value
+                  : status.Value;
+              if (
+                (typeof raw !== 'string' && typeof raw !== 'number') ||
+                !/^-?\d+(?:\.\d+)?$/.test(String(raw)) ||
+                !Number.isFinite(Number(raw)) ||
+                typeof status.PropertyType !== 'string'
+              )
+                return [];
+              return [
+                {
+                  propertyType: status.PropertyType,
+                  value: decimalString(
+                    raw
+                  ) as import('../../../src/lib/domain/endgame.js').DecimalString
+                }
+              ];
+            })
+          : undefined,
         statValues: Array.isArray(row.StatusAddList)
           ? params(row.StatusAddList.map((status: Raw) => status.Value))
           : undefined,

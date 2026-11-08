@@ -38,11 +38,11 @@
           aria-label={m.relic_identity_aria()}
         >
           <Badge
-            class="shrink border-[var(--border-strong)] bg-[rgb(7_10_18/72%)] wrap-anywhere whitespace-normal text-[var(--gold-soft)]"
+            class="bg-background/72 shrink border-[var(--border-strong)] wrap-anywhere whitespace-normal text-[var(--gold-soft)]"
             >{detail.typeName}</Badge
           >
           {#if detail.version}<Badge
-              class="shrink border-[var(--border-strong)] bg-[rgb(7_10_18/72%)] wrap-anywhere whitespace-normal text-[var(--gold-soft)]"
+              class="bg-background/72 shrink border-[var(--border-strong)] wrap-anywhere whitespace-normal text-[var(--gold-soft)]"
               >{m.relic_version({ version: detail.version })}</Badge
             >{/if}
         </div>

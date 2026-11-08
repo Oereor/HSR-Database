@@ -1,6 +1,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { ELEMENT_COLORS, getElementColor } from '../../src/lib/domain/elements';
 import { parseTextHash, type TextHash } from '../../src/lib/domain/types';
 
 const root = process.cwd();
@@ -14,6 +15,23 @@ async function sourceFiles(directory: string): Promise<string[]> {
     })
   );
   return files.flat().filter((file) => /\.(?:ts|svelte|css)$/.test(file));
+}
+
+async function siteStyles(): Promise<string> {
+  const layoutPath = path.join(root, 'src', 'routes', '+layout.svelte');
+  const layout = await readFile(layoutPath, 'utf8');
+  const pending = [...layout.matchAll(/\bimport\s+['"](\.[^'"]+\.css)['"]/g)].map((match) =>
+    path.resolve(path.dirname(layoutPath), match[1])
+  );
+  const sources = new Map<string, string>();
+  for (const file of pending) {
+    if (sources.has(file)) continue;
+    const css = await readFile(file, 'utf8');
+    sources.set(file, css);
+    for (const [, local] of css.matchAll(/@import\s+['"](\.[^'"]+\.css)['"]/g))
+      pending.push(path.resolve(path.dirname(file), local));
+  }
+  return [...sources.values()].join('\n');
 }
 
 describe('重构 invariants', () => {
@@ -37,21 +55,15 @@ describe('重构 invariants', () => {
     expect(combined).not.toMatch(/TextMapMain|TextMap(?:JP|KR|CHT)|locale state/i);
   });
 
-  it('属性色与技能橙色各自只有一个运行时定义位置', async () => {
-    const files = await sourceFiles(path.join(root, 'src'));
-    const colorPattern = /#(?:b6b6b6|f25740|6dc4ea|d46aeb|7ad8a5|8a86de|fee554)/gi;
-    const orangePattern = /#f2a45f/gi;
-    const elementFiles: string[] = [];
-    const orangeFiles: string[] = [];
-    for (const file of files) {
-      const source = await readFile(file, 'utf8');
-      if (colorPattern.test(source)) elementFiles.push(path.relative(root, file));
-      colorPattern.lastIndex = 0;
-      if (orangePattern.test(source)) orangeFiles.push(path.relative(root, file));
-      orangePattern.lastIndex = 0;
-    }
-    expect(elementFiles).toEqual([path.join('src', 'lib', 'domain', 'elements.ts')]);
-    expect(orangeFiles).toEqual([path.join('src', 'styles', 'app.css')]);
+  it('站点样式为技能数值色提供唯一的语义 token', async () => {
+    const css = await siteStyles();
+    expect(css.match(/--skill-scaling-value-color\s*:/g)).toHaveLength(1);
+    expect(css).toContain('var(--skill-scaling-value-color)');
+  });
+
+  it('属性色解析兼容上游雷属性和未知属性', () => {
+    expect(getElementColor('Thunder')).toBe(ELEMENT_COLORS.Lightning);
+    expect(getElementColor('Unknown')).toBe('inherit');
   });
 
   it('浏览器源码不读取原始 Config 或完整 TextMap', async () => {
@@ -69,35 +81,6 @@ describe('重构 invariants', () => {
     expect(combined).not.toMatch(/\.\.\/StarRailRes|icon\/avatar/);
     expect(combined).toContain("'characters/preview'");
     expect(combined).toContain("'characters/portrait'");
-  });
-
-  it('共享 Overview card 不包含 Character 或 Enemy 领域语义', async () => {
-    const source = await readFile(
-      path.join(root, 'src', 'lib', 'components', 'shared', 'EntityOverviewCard.svelte'),
-      'utf8'
-    );
-    expect(source).not.toMatch(
-      /CatalogEntry|Character|Enemy|rarity|pathName|elementName|weakness|rank/i
-    );
-    expect(source).toContain('<slot name="overlay" />');
-    expect(source).toContain('<slot name="title" />');
-    expect(source).toContain('<slot name="metadata" />');
-    expect(source).toMatch(/export let size: 'large' \| 'compact' = 'large'/);
-    expect(source).toMatch(/export let mediaPresentation: 'artwork' \| 'icon' = 'artwork'/);
-    expect(source).toContain('{#if $$slots.metadata}');
-    expect(source).not.toMatch(/subtitle|__fade|slot name="tags"/);
-  });
-
-  it('Compact Entity Card 仅提供展示 slots 与语义化链接', async () => {
-    const source = await readFile(
-      path.join(root, 'src', 'lib', 'components', 'shared', 'CompactEntityCard.svelte'),
-      'utf8'
-    );
-    expect(source).not.toMatch(/LightCone|RelicSet|Enemy|weakness|rarity|rank/i);
-    expect(source).toContain("this={href ? 'a' : 'article'}");
-    expect(source).toContain('<slot name="title" />');
-    expect(source).toContain('<slot name="secondary" />');
-    expect(source).toContain('<slot name="tertiary" />');
   });
 
   it('游戏文本始终通过安全 token 渲染而不使用 raw HTML', async () => {

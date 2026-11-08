@@ -21,6 +21,7 @@ import {
 } from '../../src/lib/domain/visual-assets.js';
 import {
   parseCharacterDetailIconKey,
+  type CharacterDetailIconKind,
   type CharacterDetailIconKey
 } from '../../src/lib/domain/character-detail-icons.js';
 import {
@@ -38,7 +39,10 @@ import {
   generatedLightConePortraitRoot
 } from './paths.js';
 import { staticGeneratedRoot } from '../data/paths.js';
-import { assertTrainingSharedData } from '../../src/lib/domain/training/validation.js';
+import {
+  assertCharacterTrainingData,
+  assertTrainingSharedData
+} from '../../src/lib/domain/training/validation.js';
 import { trainingId } from '../../src/lib/domain/training/index.js';
 import { AssetFilesystemObservation, observeAssetFilesystem } from './observation.js';
 import { createBoundedPoolState, runBoundedPool, throwBoundedPoolFailures } from './pool.js';
@@ -47,7 +51,7 @@ import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-dia
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 18 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 19 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -133,6 +137,7 @@ export interface AssetOutputPaths {
   relicPropertyIcons: string;
   elements: string;
   paths: string;
+  largePaths: string;
   navigation: string;
   branding: string;
   utility: string;
@@ -282,25 +287,44 @@ export async function readAssetRequirements(
     await readFile(path.join(staticGeneratedRoot, 'training', 'shared.json'), 'utf8')
   );
   assertTrainingSharedData(trainingShared);
+  const characterTrainingIconKeys = (
+    await Promise.all(
+      characterCatalog.map(async ({ id }) => {
+        const shard: unknown = JSON.parse(
+          await readFile(
+            path.join(staticGeneratedRoot, 'training', 'characters', `${trainingId(id)}.json`),
+            'utf8'
+          )
+        );
+        assertCharacterTrainingData(shard);
+        return shard.profiles.flatMap(({ nodes }) => nodes.map(({ iconKey }) => iconKey));
+      })
+    )
+  ).flat();
   return {
     materialIds: trainingShared.materials.map((material) => material.id),
     characterIds: uniqueSorted(characterCatalog.map((entry) => entry.id)),
     playerAvatars: await readPlayerAvatarRequirements(dataRoot),
-    characterDetailIconKeys: uniqueSorted(
-      characterDetails.flatMap((character) => [
+    characterDetailIconKeys: uniqueSorted([
+      ...characterTrainingIconKeys,
+      ...characterDetails.flatMap((character) => [
         ...Object.values(character.baseStats.iconKeys ?? {}),
         ...Object.values(character.profiles).flatMap((profile) =>
           profile
             ? [
                 profile.energy.iconKey,
-                ...profile.skillCards.map((card) => card.iconKey),
+                ...profile.skillCards.flatMap((card) => [
+                  card.iconKey,
+                  ...card.variants.map((variant) => variant.iconKey)
+                ]),
+                ...profile.specialEffects.map((entry) => entry.skill.iconKey),
                 ...profile.traces.map((trace) => trace.iconKey),
                 ...profile.eidolons.map((eidolon) => eidolon.iconKey)
               ]
             : []
         )
       ])
-    ) as CharacterDetailIconKey[],
+    ]) as CharacterDetailIconKey[],
     lightConeIds: uniqueSorted(lightConeCatalog.map((entry) => entry.id)),
     relicSetIds: uniqueSorted(relicCatalog.map((entry) => entry.id)),
     relicPieces: relicDetails
@@ -467,6 +491,7 @@ export function assetOutputPaths(root = generatedAssetRoot): AssetOutputPaths {
     relicPropertyIcons: path.join(root, 'relic-properties'),
     elements: path.join(root, 'elements'),
     paths: path.join(root, 'paths'),
+    largePaths: path.join(root, 'paths', 'large'),
     navigation: path.join(root, 'navigation'),
     branding: path.join(root, 'branding'),
     utility: path.join(root, 'utility'),
@@ -492,6 +517,7 @@ async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void>
       output.relicPropertyIcons,
       output.elements,
       output.paths,
+      output.largePaths,
       output.navigation,
       output.branding,
       output.utility,
@@ -812,6 +838,10 @@ export async function readRelicPropertyIconSources(
   return sources;
 }
 
+function isCharacterDetailIconDirectory(kind: CharacterDetailIconKind, directory: string) {
+  return kind === 'skill-tree' || directory === (kind === 'property' ? 'property' : 'skill');
+}
+
 export async function readCharacterDetailIconSources(
   sourceRoot: string,
   iconKeys: CharacterDetailIconKey[]
@@ -842,11 +872,9 @@ export async function readCharacterDetailIconSources(
     const source = resolveOptionalIndexedAssetPath(sourceRoot, entry.icon);
     if (!source) continue;
     const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
-    const expectedDirectory = parsed.kind === 'property' ? 'property' : 'skill';
-    if (!new RegExp(`^icon/${expectedDirectory}/[A-Za-z0-9_-]+\\.png$`, 'i').test(relative))
-      throw new Error(
-        `角色详情 icon ${iconKey} 的路径不属于 icon/${expectedDirectory}：${relative}`
-      );
+    const match = /^icon\/(skill|property)\/[A-Za-z0-9_-]+\.png$/i.exec(relative);
+    if (!match || !isCharacterDetailIconDirectory(parsed.kind, match[1].toLowerCase()))
+      throw new Error(`角色详情 icon ${iconKey} 的来源目录异常：${relative}`);
     sources.set(iconKey, source);
   }
   return sources;
@@ -1128,7 +1156,10 @@ export async function generateVisualAssetsWithStats(
     (code) => path.join(sourceRoot, 'icon', 'path', `${PATH_SOURCE_NAMES[code]}.png`),
     (code) => path.join(output.paths, `${code}.png`),
     'sharp',
-    writeSemanticIconAsset
+    async (source, outputPath) => {
+      await writeSemanticIconAsset(source, outputPath);
+      await copyFile(source, path.join(output.largePaths, path.basename(outputPath)));
+    }
   );
   const navigationIcons = planRequested(
     requirements.navigationIcons,
@@ -1317,6 +1348,7 @@ const expectedFiles = (
   ],
   [output.elements, manifest.elements.available.map((code) => `${code}.png`)],
   [output.paths, manifest.paths.available.map((code) => `${code}.png`)],
+  [output.largePaths, manifest.paths.available.map((code) => `${code}.png`)],
   [output.navigation, manifest.navigation.icons.available.map((iconKey) => `${iconKey}.png`)],
   [output.branding, manifest.branding.icons.available.map((iconKey) => `${iconKey}.png`)],
   [output.utility, manifest.utility.icons.available.map((iconKey) => `${iconKey}.png`)],
@@ -1338,6 +1370,7 @@ const assetOutputDirectories = (output: AssetOutputPaths): string[] => [
   output.relicPropertyIcons,
   output.elements,
   output.paths,
+  output.largePaths,
   output.navigation,
   output.branding,
   output.utility,
@@ -1431,11 +1464,10 @@ export async function validateGeneratedAssetFiles(
       );
     if (!parsedKey || !match)
       throw new Error(`角色详情 icon manifest 映射异常：${iconKey} -> ${url}`);
-    const expectedKind = parsedKey.kind === 'property' ? 'property' : 'skill';
-    if (match[1] !== expectedKind)
+    if (!isCharacterDetailIconDirectory(parsedKey.kind, match[1]))
       throw new Error(`角色详情 icon manifest 目录不一致：${iconKey} -> ${url}`);
     const iconPath = path.join(
-      expectedKind === 'property'
+      match[1] === 'property'
         ? output.characterDetailPropertyIcons
         : output.characterDetailSkillIcons,
       match[2]
@@ -1489,6 +1521,9 @@ export async function validateGeneratedAssetFiles(
     const metadata = await actual.metadata(path.join(output.paths, `${code}.png`));
     if (metadata.width !== 64 || metadata.height !== 64)
       throw new Error(`命途图标尺寸异常：${code}`);
+    const large = await actual.metadata(path.join(output.largePaths, `${code}.png`));
+    if (large.format !== 'png' || large.width !== 512 || large.height !== 512)
+      throw new Error(`高清命途图标格式或尺寸异常：${code}`);
   }
   for (const iconKey of manifest.navigation.icons.available) {
     const metadata = await actual.metadata(path.join(output.navigation, `${iconKey}.png`));

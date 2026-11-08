@@ -1,446 +1,63 @@
 import { setSliderValue } from '../helpers/slider';
-import { expect, test } from '@playwright/test';
-
-const ready = (page: import('@playwright/test').Page) =>
+import { expect, test, type Page } from '@playwright/test';
+const ready = (page: Page) =>
   expect(page.locator('#training')).toHaveAttribute('data-training-state', 'ready');
-const skillResult = (page: import('@playwright/test').Page, key: string) =>
-  page.locator(`[data-training-skill="${key}"]`);
-
-for (const prefix of ['', '/en']) {
-  test(`training level target uses the Hero state and slider keyboard (${prefix || 'zh-CN'})`, async ({
-    page
-  }) => {
-    await page.goto(`${prefix}/characters/1001/`);
-    await ready(page);
-    const hero = page.locator('#character-level-1001');
-    const target = page.locator('#training-character-level-1001');
-    const control = page.locator('[data-training-target] > .skill-level-control');
-    await expect(control.locator('label')).toHaveAttribute('for', 'training-character-level-1001');
-    await setSliderValue(hero, '20');
-    await expect(target).toHaveAttribute('data-value', '20');
-    await expect(page.locator('.training-result')).toHaveAttribute('data-training-promotion', '0');
-    await expect(
-      page.locator('[data-training-expense="promotion"] [data-material-id]')
-    ).toHaveCount(0);
-    const tagAt20 = await control.locator('.skill-effect-tag').textContent();
-    await target.focus();
-    await page.keyboard.press('ArrowRight');
-    await expect(hero).toHaveAttribute('data-value', '21');
-    await expect(target).toHaveAttribute('data-value', '21');
-    await expect(page.locator('.training-result')).toHaveAttribute('data-training-promotion', '1');
-    await expect(control.locator('.skill-effect-tag')).not.toHaveText(tagAt20!);
-    await expect(
-      page.locator('[data-training-expense="promotion"] [data-material-id="2"]')
-    ).toHaveCount(1);
-    await page.keyboard.press('Home');
-    await expect(hero).toHaveAttribute('data-value', '1');
-    await expect(page.locator('[data-training-expense="upgrade"] [data-material-id]')).toHaveCount(
-      0
+const materials = (page: Page) =>
+  page
+    .locator('#training [data-training-expense="total"] [data-material-id]')
+    .evaluateAll((items) =>
+      items.map((item) => [
+        item.getAttribute('data-material-id'),
+        item.getAttribute('data-material-count')
+      ])
     );
-    await expect(
-      page.locator('[data-training-expense="promotion"] [data-material-id]')
-    ).toHaveCount(0);
-    const remaining = await page.locator('[data-training-trace-id]').count();
-    await page.keyboard.press('End');
-    await expect(hero).toHaveAttribute('data-value', '80');
-    await expect(page.locator('[data-training-trace-id]')).toHaveCount(remaining);
-    await expect(target).toBeFocused();
-  });
-}
-
-for (const prefix of ['', '/en']) {
-  test(`independent shared preview and training goals with default materials (${prefix || 'zh-CN'})`, async ({
-    page
-  }, testInfo) => {
-    const errors: string[] = [];
-    const requests: string[] = [];
-    page.on('pageerror', (error) => errors.push(error.message));
-    page.on('request', (request) => {
-      if (/\/generated\/(training\/|(?:zh-CN|en)\/materials)/.test(request.url()))
-        requests.push(request.url());
-    });
-    await page.goto(`${prefix}/characters/1510/`);
-    await ready(page);
-    expect(
-      await page
-        .locator('.section-nav a')
-        .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
-    ).toEqual([
-      '#stats',
-      '#skills',
-      '#traces',
-      '#eidolons',
-      '#equipment-recommendation',
-      '#training'
-    ]);
-    expect(
-      await page
-        .locator('section[id].section-nav-target')
-        .evaluateAll((sections) => sections.map((section) => section.id))
-    ).toEqual(['skills', 'traces', 'eidolons', 'equipment-recommendation', 'training']);
-    const groups = page.locator('#skills [data-preview-key="1510:0:1510004"]');
-    await expect(groups).toHaveCount(2);
-    const target = skillResult(page, '1510:0:1510004');
-    await expect(target).toHaveCount(1);
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '10');
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuemax', '10');
-    await expect(target.locator('img')).toBeVisible();
-    const talent = page.locator(
-      '[data-skill-category="talent"] [data-preview-key="1510:0:1510004"]'
-    );
-    const assist = page.locator(
-      '[data-skill-category="assist"] [data-preview-key="1510:0:1510004"]'
-    );
-    expect(await talent.locator('label').textContent()).toEqual(
-      await assist.locator('label').textContent()
-    );
-    expect(await target.locator('label').textContent()).toEqual(
-      await talent.locator('label').textContent()
-    );
-    await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuenow', '10');
-    await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuemax', '15');
-    const talentDescription = await talent.locator('.levelled-description').textContent();
-    const assistDescription = await assist.locator('.levelled-description').textContent();
-    const beforePreviewCosts = await page
-      .locator('#training [data-training-expense="total"]')
-      .textContent();
-    await setSliderValue(talent.getByRole('slider'), '11');
-    await expect(assist.getByRole('slider')).toHaveAttribute('aria-valuenow', '12');
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '10');
-    await expect(page.locator('#training [data-training-expense="total"]')).toHaveText(
-      beforePreviewCosts!
-    );
-    await expect(talent.locator('.levelled-description')).not.toHaveText(talentDescription!);
-    await expect(assist.locator('.levelled-description')).not.toHaveText(assistDescription!);
-    await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-training-level', '10');
-    await setSliderValue(page.locator('#character-level-1510'), '60');
-    await expect(page.locator('#training-character-level-1510')).toHaveAttribute(
-      'data-value',
-      '60'
-    );
-    await expect(target.locator('.skill-effect-tag')).toHaveCount(0);
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuemax', '6');
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '6');
-    await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-training-level', '6');
-    await expect(groups.getByRole('slider').first()).toHaveAttribute('aria-valuenow', '12');
-    await expect(
-      groups.first().locator('.skill-level-control__value .skill-effect-tag')
-    ).toBeVisible();
-    const reducedTraces = await page
-      .locator('[data-training-trace-count]')
-      .getAttribute('data-training-trace-count');
-    const loweredSkillTraceCost = await page
-      .locator('[data-training-expense="skill-trace"]')
-      .textContent();
-    await setSliderValue(page.locator('#training-character-level-1510'), '80');
-    await expect(page.locator('#character-level-1510')).toHaveAttribute('data-value', '80');
-    await expect(target).toHaveAttribute('data-training-level', '6');
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuemax', '10');
-    await expect(page.locator('[data-training-expense="skill-trace"]')).toHaveText(
-      loweredSkillTraceCost!
-    );
-    await expect(
-      groups.first().locator('.skill-level-control__value .skill-effect-tag')
-    ).toHaveCount(0);
-    await expect(page.locator('[data-training-trace-count]')).toHaveAttribute(
-      'data-training-trace-count',
-      reducedTraces!
-    );
-    await setSliderValue(assist.getByRole('slider'), '7');
-    await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '6');
-    await expect(page.locator('[data-training-expense="skill-trace"]')).toHaveText(
-      loweredSkillTraceCost!
-    );
-    const previousTalent = await talent.locator('.levelled-description').textContent();
-    const previousAssist = await assist.locator('.levelled-description').textContent();
-    await setSliderValue(target.getByRole('slider'), '6');
-    await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
-    await expect(assist.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
-    await expect(talent.locator('.levelled-description')).toHaveText(previousTalent!);
-    await expect(assist.locator('.levelled-description')).toHaveText(previousAssist!);
-    await expect(target).toHaveAttribute('data-training-level', '7');
-    await expect(page.locator('[data-training-expense="skill-trace"]')).not.toHaveText(
-      loweredSkillTraceCost!
-    );
-    await target.getByRole('slider').focus();
-    await page.keyboard.press('End');
-    await expect(target).toHaveAttribute('data-training-level', '10');
-    await expect(target.getByRole('slider')).toBeFocused();
-    await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
-    await expect(page.locator('[data-skill-id="151025"], [data-skill-id="151026"]')).toHaveCount(0);
-    await expect(
-      page.locator(
-        '#training [data-required-exp], #training [data-supplied-exp], #training [data-overflow-exp], #training .training-strategy'
-      )
-    ).toHaveCount(0);
-    await expect(
-      page.locator('#training [data-training-expense="upgrade"] [data-material-id="213"]')
-    ).toHaveAttribute('data-material-count', '289');
-    await expect(
-      page.locator('#training [data-training-expense="upgrade"] [data-material-id="212"]')
-    ).toHaveAttribute('data-material-count', '3');
-    await expect(
-      page.locator('#training [data-training-expense="upgrade"] [data-material-id="211"]')
-    ).toHaveAttribute('data-material-count', '3');
-    await expect(
-      page.locator('#training .training-materials input, #training .training-materials a')
-    ).toHaveCount(0);
-    expect(
-      await page.locator('#training .training-materials button[aria-haspopup="dialog"]').count()
-    ).toBe(await page.locator('#training [data-material-id]').count());
-    await expect(
-      page.locator('#training [data-training-expense="upgrade"] [data-material-id="2"]')
-    ).toHaveAttribute('data-material-count', '579800');
-    await expect(
-      page.locator('#training [data-training-expense="total"] [data-material-id="2"]')
-    ).toHaveCount(1);
-    expect(
-      await page
-        .locator('#training [data-training-expense]')
-        .evaluateAll((groups) => groups.map((group) => group.getAttribute('data-training-expense')))
-    ).toEqual(['upgrade', 'promotion', 'skill-trace', 'total']);
-    const ids = await page
-      .locator('[id]')
-      .evaluateAll((elements) => elements.map((element) => element.id));
-    expect(new Set(ids).size).toBe(ids.length);
-    await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(1);
-    expect(requests).toHaveLength(3);
-    expect(new Set(requests).size).toBe(3);
-    await expect(page.locator('#training .training-material__icon img').first()).toBeVisible();
-    await page.locator('.section-nav a[href="#training"]').click();
-    await expect(page).toHaveURL(/#training$/);
-    await expect(page.locator('.section-nav a[href="#training"]')).toHaveAttribute(
-      'aria-current',
-      'location'
-    );
-    await expect(page.locator('#training > .section-heading-shared')).toBeInViewport();
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-      )
-    ).toBeLessThanOrEqual(1);
-    await page
-      .locator('#training')
-      .screenshot({ path: testInfo.outputPath(`training-${prefix ? 'en' : 'zh'}.png`) });
-    expect(errors).toEqual([]);
-  });
-}
-
-for (const prefix of ['', '/en']) {
-  test(`delayed trace toggles follow the DAG, costs and keyboard state (${prefix || 'zh-CN'})`, async ({
-    page
-  }) => {
-    let release!: () => void;
-    const gate = new Promise<void>((resolve) => {
-      release = resolve;
-    });
-    await page.route('**/generated/training/characters/1001.json', async (route) => {
-      await gate;
-      await route.continue();
-    });
-    const errors: string[] = [];
-    page.on('pageerror', (error) => errors.push(error.message));
-    try {
-      await page.goto(`${prefix}/characters/1001/`);
-      await expect(page.locator('#training')).toHaveAttribute('data-training-state', 'loading');
-      await expect(page.locator('.trace-toggle')).toHaveCount(0);
-      release();
-      await ready(page);
-      const card = (id: string) => page.locator(`[data-trace-id="${id}"]`);
-      const toggle = (id: string) => page.locator(`[data-trace-id="${id}"] .trace-toggle`);
-      const count = page.locator('[data-training-trace-count]');
-      const credits = page.locator(
-        '#training [data-training-expense="total"] [data-material-id="2"]'
-      );
-      const weeklyMaterial = page.locator(
-        '#training [data-training-expense="total"] [data-material-id="110501"]'
-      );
-      await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(13);
-      await expect(count).toHaveAttribute('data-training-trace-count', '13');
-      await expect(
-        page.locator('[data-training-trace-group="ability"] [data-training-trace-id]')
-      ).toHaveCount(3);
-      await expect(
-        page.locator('[data-training-trace-group="stat"] [data-training-trace-id]')
-      ).toHaveCount(10);
-      await expect(
-        page.locator('[data-training-trace-group="stat"] [data-training-trace-id="1001201"]')
-      ).toHaveCount(1);
-      const positions = await page.locator('[data-training-trace-group]').evaluateAll((groups) =>
-        groups.map((group) => ({
-          x: group.getBoundingClientRect().x,
-          y: group.getBoundingClientRect().y
-        }))
-      );
-      if (page.viewportSize()!.width < 768) {
-        expect(positions[1].y).toBeGreaterThan(positions[0].y);
-        expect(positions[1].x).toBe(positions[0].x);
-      } else expect(positions[1].x).toBeGreaterThan(positions[0].x);
-
-      const initialCredits = Number(await credits.getAttribute('data-material-count'));
-      const initialWeeklyMaterial = Number(
-        await weeklyMaterial.getAttribute('data-material-count')
-      );
-      await toggle('1001201').hover();
-      await expect(toggle('1001201')).toHaveCSS('cursor', 'pointer');
-      await toggle('1001201').click();
-      for (const id of [
-        '1001201',
-        '1001101',
-        '1001202',
-        '1001203',
-        '1001102',
-        '1001205',
-        '1001206'
-      ]) {
-        await expect(toggle(id)).toHaveAttribute('aria-pressed', 'false');
-        await expect(card(id)).toHaveAttribute('data-training-state', 'inactive');
-        await expect(card(id)).toHaveCSS('filter', 'grayscale(1)');
-      }
-      await expect(toggle('1001103')).toHaveAttribute('aria-pressed', 'true');
-      await expect(card('1001103')).toHaveAttribute('data-training-state', 'active');
-      await expect(count).toHaveAttribute('data-training-trace-count', '6');
-      await expect(
-        page.locator(
-          '[data-training-trace-id="1001201"], [data-training-trace-id="1001101"], [data-training-trace-id="1001102"]'
-        )
-      ).toHaveCount(0);
-      await expect(page.locator('[data-training-trace-id]')).toHaveCount(6);
-      await expect(
-        page.locator('.training-traces button, .training-traces a, .training-traces input')
-      ).toHaveCount(0);
-      await expect(page.locator('[data-training-trace-id="1001103"]')).not.toHaveCSS(
-        'cursor',
-        'pointer'
-      );
-      // Sum of the seven removed nodes' real source costs, including both shared branches.
-      await expect(credits).toHaveAttribute('data-material-count', String(initialCredits - 86000));
-      await expect(weeklyMaterial).toHaveAttribute(
-        'data-material-count',
-        String(initialWeeklyMaterial - 2)
-      );
-      const explanation = card('1001101').locator('[data-skill-extra-effects]');
-      await explanation.locator('summary').click();
-      await expect(explanation).toHaveAttribute('open', '');
-      await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
-      await expect(count).toHaveAttribute('data-training-trace-count', '6');
-      await explanation.locator('summary').focus();
-      await page.keyboard.press('Enter');
-      await expect(explanation).not.toHaveAttribute('open', '');
-      await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
-      await toggle('1001102').focus();
-      await expect(toggle('1001102')).toBeFocused();
-      await expect(toggle('1001102')).not.toHaveCSS('box-shadow', 'none');
-      await page.keyboard.press('Enter');
-      await expect(toggle('1001201')).toHaveAttribute('aria-pressed', 'true');
-      await expect(toggle('1001102')).toHaveAttribute('aria-pressed', 'true');
-      await expect(card('1001102')).toHaveAttribute('data-training-state', 'active');
-      await expect(card('1001102')).toHaveCSS('filter', 'none');
-      await expect(toggle('1001102')).toBeFocused();
-      await expect(count).toHaveAttribute('data-training-trace-count', '8');
-      await expect(page.locator('[data-training-trace-id="1001201"]')).toHaveCount(1);
-      await expect(page.locator('[data-training-trace-id="1001102"]')).toHaveCount(1);
-      await expect(credits).toHaveAttribute('data-material-count', String(initialCredits - 68000));
-      await page.keyboard.press('Space');
-      await expect(toggle('1001102')).toHaveAttribute('aria-pressed', 'false');
-      await expect(card('1001102')).toHaveAttribute('data-training-state', 'inactive');
-      await expect(count).toHaveAttribute('data-training-trace-count', '7');
-      await setSliderValue(page.locator('#character-level-1001'), '1');
-      await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(1);
-      const traces = await page.locator('.trace-toggle[aria-pressed="true"]').count();
-      await toggle('1001101').click();
-      await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
-      await expect(page.locator('[data-sonner-toaster] [data-sonner-toast]')).toBeVisible();
-      await expect(page.locator('#traces [role="status"]')).toHaveCount(0);
-      await setSliderValue(page.locator('#character-level-1001'), '80');
-      await expect(page.locator('[data-sonner-toast]')).toHaveCount(0);
-      await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(traces);
-      await expect(count).toHaveAttribute('data-training-trace-count', String(traces));
-      await expect(page.locator('[data-training-trace-id]')).toHaveCount(traces);
-      await expect(card('1001101')).toHaveAttribute('data-training-state', 'inactive');
-      await page.goto(`${prefix}/characters/8007/`);
-      await ready(page);
-      await expect(page.locator('[data-trace-id="8007501"] .trace-toggle')).toHaveCount(0);
-      await expect(page.locator('[data-training-trace-id="8007501"]')).toHaveCount(0);
-      await expect(page.locator('#training [data-training-skill]')).toHaveCount(6);
-      await expect(page.locator('[data-trace-id="8007501"]')).toHaveCount(1);
-      await expect(page.locator('[data-trace-id="8007501"]')).not.toHaveAttribute(
-        'data-training-state'
-      );
-      await expect(page.locator('[data-trace-id="8007501"]')).not.toHaveCSS('cursor', 'pointer');
-      expect(errors).toEqual([]);
-    } finally {
-      release();
-    }
-  });
-}
 
 for (const prefix of ['', '/en']) {
   test(`static stats and costs agree at promotion boundaries; cone rank remains independent (${prefix || 'zh-CN'})`, async ({
     page
   }) => {
-    for (const [category, id] of [
-      ['characters', '1001'],
-      ['light-cones', '20000']
+    await page.goto(`${prefix}/light-cones/20000/`);
+    await ready(page);
+    const slider = page.locator('#light-cone-level-20000');
+    const receipt = page.locator('#training [data-training-level]');
+    const heroTag = page.locator('.base-stats-panel .skill-level-control__value .skill-effect-tag');
+    await expect(page.locator('#training [data-training-target]')).toHaveCount(0);
+    await expect(page.locator('#training').getByRole('slider')).toHaveCount(0);
+    await expect(slider).toHaveAttribute('data-value', '80');
+    await expect(heroTag).toBeVisible();
+    for (const [boundary, promotion] of [
+      [20, 0],
+      [30, 1],
+      [40, 2],
+      [50, 3],
+      [60, 4],
+      [70, 5]
     ]) {
-      await page.goto(`${prefix}/${category}/${id}/`);
-      await ready(page);
-      const slider = page.locator(
-        category === 'characters' ? '#character-level-1001' : '#light-cone-level-20000'
+      await setSliderValue(slider, String(boundary));
+      await expect(page.locator('[data-training-promotion]')).toHaveAttribute(
+        'data-training-promotion',
+        String(promotion)
       );
-      const target = page.locator(
-        category === 'characters'
-          ? '#training-character-level-1001'
-          : '#training-light-cone-level-20000'
+      await expect(receipt).toHaveAttribute('data-training-level', String(boundary));
+      const tagAtBoundary = await heroTag.innerText();
+      const hp = await page.locator('[data-base-stat="hp"] dd').textContent();
+      await slider.focus();
+      await page.keyboard.press('ArrowRight');
+      await expect(slider).toHaveAttribute('data-value', String(boundary + 1));
+      await expect(receipt).toHaveAttribute('data-training-level', String(boundary + 1));
+      await expect(page.locator('[data-training-promotion]')).toHaveAttribute(
+        'data-training-promotion',
+        String(promotion + 1)
       );
-      const heroTag = page.locator(
-        '.base-stats-panel .skill-level-control__value .skill-effect-tag'
-      );
-      const targetTag = page.locator(
-        '[data-training-target] > .skill-level-control .skill-effect-tag'
-      );
-      await expect(slider).toHaveAttribute('data-value', '80');
-      await expect(heroTag).toBeVisible();
-      await expect(heroTag).toHaveText(await targetTag.innerText());
-      for (const [boundary, promotion] of [
-        [20, 0],
-        [30, 1],
-        [40, 2],
-        [50, 3],
-        [60, 4],
-        [70, 5]
-      ]) {
-        await setSliderValue(slider, String(boundary));
-        await expect(page.locator('[data-training-promotion]')).toHaveAttribute(
-          'data-training-promotion',
-          String(promotion)
-        );
-        await expect(target).toHaveAttribute('data-value', String(boundary));
-        await expect(heroTag).toHaveText(await targetTag.innerText());
-        const tagAtBoundary = await heroTag.innerText();
-        const hp = await page.locator('[data-base-stat="hp"] dd').textContent();
-        await slider.focus();
-        await page.keyboard.press('ArrowRight');
-        await expect(slider).toHaveAttribute('data-value', String(boundary + 1));
-        await expect(target).toHaveAttribute('data-value', String(boundary + 1));
-        await expect(page.locator('[data-training-promotion]')).toHaveAttribute(
-          'data-training-promotion',
-          String(promotion + 1)
-        );
-        await expect(heroTag).not.toHaveText(tagAtBoundary);
-        await expect(heroTag).toHaveText(await targetTag.innerText());
-        await expect(slider).toBeFocused();
-        await expect(page.locator('[data-base-stat="hp"] dd')).not.toHaveText(hp!);
-      }
-      await target.focus();
-      await page.keyboard.press('Home');
-      await expect(slider).toHaveAttribute('data-value', '1');
-      await expect(heroTag).toHaveText(await targetTag.innerText());
-      await page.keyboard.press('End');
-      await expect(slider).toHaveAttribute('data-value', '80');
-      await expect(heroTag).toHaveText(await targetTag.innerText());
+      await expect(heroTag).not.toHaveText(tagAtBoundary);
+      await expect(slider).toBeFocused();
+      await expect(page.locator('[data-base-stat="hp"] dd')).not.toHaveText(hp!);
     }
+    await slider.focus();
+    await page.keyboard.press('Home');
+    await expect(receipt).toHaveAttribute('data-training-level', '1');
+    await page.keyboard.press('End');
+    await expect(receipt).toHaveAttribute('data-training-level', '80');
     await page.goto(`${prefix}/light-cones/20000/?level=37&rank=3`);
     await ready(page);
     expect(
@@ -452,12 +69,9 @@ for (const prefix of ['', '/en']) {
       'data-training-level',
       '37'
     );
-    await expect(page.locator('#training-light-cone-level-20000')).toHaveAttribute(
-      'data-value',
-      '37'
-    );
+    await expect(slider).toHaveAttribute('data-value', '37');
     await expect(
-      page.locator('#training [data-training-skill], #training .training-traces')
+      page.locator('#training [data-training-skill], #training [data-training-tree]')
     ).toHaveCount(0);
     expect(
       await page
@@ -467,293 +81,241 @@ for (const prefix of ['', '/en']) {
     const total = await page.locator('#training [data-training-expense="total"]').textContent();
     await setSliderValue(page.locator('#superimposition-level-20000'), '4');
     await expect(page.locator('#training [data-training-expense="total"]')).toHaveText(total!);
-    await setSliderValue(page.locator('#training-light-cone-level-20000'), '80');
+    await setSliderValue(slider, '80');
     await expect(page.locator('#light-cone-level-20000')).toHaveAttribute('data-value', '80');
     await expect(
       page.locator('#training [data-training-expense="total"] [data-material-id="2"]')
     ).toHaveAttribute('data-material-count', '529750');
     await setSliderValue(page.locator('#light-cone-level-20000'), '1');
-    await expect(page.locator('#training-light-cone-level-20000')).toHaveAttribute(
-      'data-value',
-      '1'
-    );
+    await expect(receipt).toHaveAttribute('data-training-level', '1');
     await expect(page.locator('#training [data-material-id]')).toHaveCount(0);
   });
 }
 
-test('delayed cost loading preserves edited level and shared skill previews', async ({ page }) => {
-  let release!: () => void;
-  const gate = new Promise<void>((resolve) => {
-    release = resolve;
-  });
-  await page.route('**/generated/training/characters/1510.json', async (route) => {
-    await gate;
-    await route.continue();
-  });
-  await page.goto('/characters/1510/');
-  await expect(page.locator('#training')).toHaveAttribute('data-training-state', 'loading');
-  await expect(page.locator('#training input')).toHaveCount(0);
-  await setSliderValue(page.locator('#character-level-1510'), '60');
-  const talent = page.locator('[data-skill-category="talent"] [role="slider"]');
-  await setSliderValue(talent, '11');
-  await expect(page.locator('[data-skill-category="assist"] [role="slider"]')).toHaveAttribute(
-    'aria-valuenow',
-    '12'
-  );
-  release();
-  await ready(page);
-  await expect(talent).toHaveAttribute('aria-valuenow', '12');
-  await expect(page.locator('[data-skill-category="assist"] [role="slider"]')).toHaveAttribute(
-    'aria-valuenow',
-    '12'
-  );
-  await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-training-level', '6');
-  await expect(page.locator('#character-level-1510')).toHaveAttribute('data-value', '60');
-  await expect(page.locator('#training-character-level-1510')).toHaveAttribute('data-value', '60');
-  await expect(skillResult(page, '1510:0:1510004').getByRole('slider')).toHaveAttribute(
-    'aria-valuenow',
-    '6'
-  );
-});
-
-test('load failure exposes retry and retains edits instead of showing zero costs', async ({
-  page
-}) => {
-  let attempts = 0;
-  await page.route('**/generated/training/characters/1001.json', async (route) => {
-    if (++attempts === 1) await route.fulfill({ status: 503, body: '{}' });
-    else await route.continue();
-  });
-  await page.goto('/characters/1001/');
-  await expect(page.locator('#training')).toHaveAttribute('data-training-state', 'error');
-  await expect(page.locator('#training [data-material-id]')).toHaveCount(0);
-  await expect(page.locator('#training input')).toHaveCount(0);
-  await setSliderValue(page.locator('#character-level-1001'), '50');
-  await setSliderValue(page.locator('[data-skill-category="skill"] [role="slider"]'), '11');
-  await page.locator('#training button').click();
-  await ready(page);
-  await expect(page.locator('[data-skill-category="skill"] [role="slider"]')).toHaveAttribute(
-    'aria-valuenow',
-    '12'
-  );
-  await expect(skillResult(page, '1001:0:1001002').getByRole('slider')).toHaveAttribute(
-    'aria-valuenow',
-    '4'
-  );
-  await expect(page.locator('#character-level-1001')).toHaveAttribute('data-value', '50');
-  await expect(page.locator('#training-character-level-1001')).toHaveAttribute('data-value', '50');
-  expect(attempts).toBe(2);
-});
-
-test('Profile switches reset skills and traces while keeping the level and rejecting stale loads', async ({
-  page
-}) => {
-  let release!: () => void;
-  const gate = new Promise<void>((resolve) => {
-    release = resolve;
-  });
-  await page.route('**/generated/training/characters/1102.json', async (route) => {
-    await gate;
-    await route.continue();
-  });
-  await page.goto('/characters/1102/?enhanced=0');
-  await setSliderValue(page.locator('#character-level-1102'), '60');
-  await setSliderValue(page.locator('[data-skill-category="skill"] [role="slider"]'), '11');
-  await page.locator('.enhancement-switch').click();
-  release();
-  await ready(page);
-  await expect(
-    page.locator('[data-training-key^="1102:0:"], [data-preview-key^="1102:0:"]')
-  ).toHaveCount(0);
-  await expect(skillResult(page, '1102:1:11102002')).toHaveCount(1);
-  await expect(skillResult(page, '1102:1:11102002').getByRole('slider')).toHaveAttribute(
-    'aria-valuenow',
-    '6'
-  );
-  await expect(page.locator('[data-skill-category="skill"] [role="slider"]')).toHaveAttribute(
-    'aria-valuenow',
-    '10'
-  );
-  await expect(page.locator('#character-level-1102')).toHaveAttribute('data-value', '60');
-  const enhancedTrace = page.locator('[data-trace-id="11102201"] .trace-toggle');
-  await expect(enhancedTrace).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('[data-trace-id="1102201"]')).toHaveCount(0);
-  await enhancedTrace.click();
-  await expect(enhancedTrace).toHaveAttribute('aria-pressed', 'false');
-  await setSliderValue(page.locator('[data-skill-category="skill"] [role="slider"]'), '11');
-  await page.locator('.enhancement-switch').click();
-  await ready(page);
-  await expect(
-    page.locator('[data-training-key^="1102:1:"], [data-preview-key^="1102:1:"]')
-  ).toHaveCount(0);
-  await expect(page.locator('[data-skill-category="skill"] [role="slider"]')).toHaveAttribute(
-    'aria-valuenow',
-    '10'
-  );
-  await expect(page.locator('#character-level-1102')).toHaveAttribute('data-value', '60');
-  await expect(page.locator('[data-trace-id="11102201"]')).toHaveCount(0);
-  await expect(page.locator('[data-training-trace-id="11102201"]')).toHaveCount(0);
-  const baseTrace = page.locator('[data-trace-id="1102201"] .trace-toggle');
-  await expect(baseTrace).toHaveAttribute('aria-pressed', 'true');
-  await baseTrace.click();
-  await expect(baseTrace).toHaveAttribute('aria-pressed', 'false');
-  await page.locator('.enhancement-switch').click();
-  await ready(page);
-  await expect(enhancedTrace).toHaveAttribute('aria-pressed', 'true');
-  await setSliderValue(page.locator('#character-level-1102'), '1');
-  await page.locator('#traces [data-trace-type="ability"] .trace-toggle').first().click();
-  await expect(page.locator('[data-sonner-toast]')).toHaveCount(1);
-  await page.locator('.enhancement-switch').click();
-  await ready(page);
-  await expect(page.locator('section[aria-live="polite"][aria-label]')).toHaveCount(1);
-  await expect(page.locator('[data-sonner-toast]')).toHaveCount(0);
-});
-
 for (const prefix of ['', '/en']) {
-  test(`regular preview and training remain independent across keyboard, downgrade and route change (${prefix || 'zh-CN'})`, async ({
-    page
-  }) => {
-    await page.goto(`${prefix}/characters/1001/`);
-    await ready(page);
-    const preview = page.locator('#skills [data-skill-category="skill"] [role="slider"]');
-    const training = skillResult(page, '1001:0:1001002').getByRole('slider');
-    const costs = page.locator('[data-training-expense="skill-trace"]');
-    const initialCost = await costs.textContent();
-    await setSliderValue(preview, '11');
-    await expect(training).toHaveAttribute('aria-valuenow', '10');
-    await expect(costs).toHaveText(initialCost!);
-    const description = page.locator('#skills [data-skill-category="skill"] .levelled-description');
-    const previewDescription = await description.textContent();
-    await training.focus();
-    await page.keyboard.press('ArrowLeft');
-    await expect(training).toHaveAttribute('aria-valuenow', '9');
-    await expect(preview).toHaveAttribute('aria-valuenow', '12');
-    await expect(description).toHaveText(previewDescription!);
-    await expect(costs).not.toHaveText(initialCost!);
-    await setSliderValue(page.locator('#character-level-1001'), '60');
-    await expect(training).toHaveAttribute('aria-valuenow', '6');
-    await expect(training).toHaveAttribute('aria-valuemax', '6');
-    await training.focus();
-    await page.keyboard.press('End');
-    await expect(training).toHaveAttribute('aria-valuenow', '6');
-    await setSliderValue(page.locator('#training-character-level-1001'), '80');
-    await expect(training).toHaveAttribute('aria-valuenow', '6');
-    await expect(training).toHaveAttribute('aria-valuemax', '10');
-    await expect(preview).toHaveAttribute('aria-valuenow', '12');
-    await expect(description).toHaveText(previewDescription!);
-    await training.scrollIntoViewIfNeeded();
-    const box = await training.boundingBox();
-    const track = await training.locator('..').locator('[data-slot="slider-track"]').boundingBox();
-    expect(box).not.toBeNull();
-    expect(track).not.toBeNull();
-    await page.mouse.move(box!.x + box!.width / 2, box!.y + box!.height / 2);
-    await page.mouse.down();
-    await page.mouse.move(track!.x, box!.y + box!.height / 2, { steps: 5 });
-    await page.mouse.up();
-    await expect(training).toHaveAttribute('aria-valuenow', '1');
-    await expect(preview).toHaveAttribute('aria-valuenow', '12');
-    await expect(description).toHaveText(previewDescription!);
-    const skillIcon = skillResult(page, '1001:0:1001002').locator('img');
-    await skillIcon.evaluate((image) => image.dispatchEvent(new Event('error')));
-    await expect(
-      skillResult(page, '1001:0:1001002').locator('[data-image-fallback]')
-    ).toBeVisible();
-    await page.goto(`${prefix}/characters/1213/`);
-    await ready(page);
-    await expect(
-      page.locator('[data-training-key^="1001:"], [data-preview-key^="1001:"]')
-    ).toHaveCount(0);
-    const basic = page.locator('#skills [data-skill-category="basic"]');
-    const sharedKey = await basic.locator('[data-preview-key]').getAttribute('data-preview-key');
-    const basicTarget = skillResult(page, sharedKey!);
-    await expect(basicTarget).toHaveCount(1);
-    const basicCost = await costs.textContent();
-    await setSliderValue(basic.getByRole('slider'), '4');
-    await expect(basicTarget.getByRole('slider')).toHaveAttribute('aria-valuenow', '6');
-    await expect(costs).toHaveText(basicCost!);
-  });
-}
-
-for (const prefix of ['', '/en']) {
-  test(`trace info toast replaces notices without layout or focus changes (${prefix || 'zh-CN'})`, async ({
-    page
-  }) => {
-    await page.goto(`${prefix}/characters/1001/`);
-    await ready(page);
-    const host = page.locator('section[aria-live="polite"][aria-label]');
-    const toast = page.locator('[data-sonner-toast]');
-    await expect(host).toHaveCount(1);
-    await expect(toast).toHaveCount(0);
-    await setSliderValue(page.locator('#character-level-1001'), '1');
-    const blocked = page.locator('[data-trace-id="1001101"] .trace-toggle');
-    await blocked.focus();
-    const height = await page.evaluate(() => document.documentElement.scrollHeight);
-    await blocked.press('Enter');
-    await expect(toast).toHaveCount(1);
-    await expect(toast.locator('[data-title]')).not.toBeEmpty();
-    await expect(toast.locator('[data-description]')).not.toBeEmpty();
-    await expect(blocked).toBeFocused();
-    expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBe(height);
-    await blocked.press('Enter');
-    await expect(toast).toHaveCount(1);
-    await setSliderValue(page.locator('#character-level-1001'), '80');
-    await expect(toast).toHaveCount(0);
-    await setSliderValue(page.locator('#character-level-1001'), '1');
-    await blocked.press('Enter');
-    await expect(toast).toHaveCount(1);
-    await expect(toast).toHaveCount(0, { timeout: 6500 });
-    await blocked.press('Enter');
-    await expect(toast).toHaveCount(1);
-    const home = page.locator('.global-breadcrumb a:first-child').first();
-    await home.click();
-    await expect(page.locator('.home-hero')).toBeVisible();
-    await expect(toast).toHaveCount(0);
-    await expect(host).toHaveCount(1);
-  });
-  test(`training divider cleanup preserves structural borders (${prefix || 'zh-CN'})`, async ({
-    page
-  }) => {
-    for (const [category, id] of [
-      ['characters', '1001'],
-      ['light-cones', '20000']
-    ]) {
-      await page.goto(`${prefix}/${category}/${id}/`);
+  test(
+    'character previews and the shared training target remain independent ' + prefix,
+    async ({ page }) => {
+      await page.goto(prefix + '/characters/1510/');
       await ready(page);
-      const styles = await page
-        .locator('#training [data-training-expense], #training .skill-level-control')
-        .evaluateAll((nodes) =>
-          nodes.map((node) => {
-            const style = getComputedStyle(node);
-            return [style.borderTopWidth, style.paddingTop, style.marginTop];
-          })
-        );
-      expect(styles.length).toBeGreaterThan(0);
-      for (const style of styles) expect(style).toEqual(['0px', '0px', '0px']);
-      await expect(page.locator('#training .section-heading-shared').first()).toBeVisible();
-      await expect(page.locator('#training .section-heading-shared__divider')).toHaveCount(0);
-      await expect(page.locator('#training [data-material-id]').first()).toHaveCSS(
-        'border-top-width',
-        '1px'
-      );
-      await expect(page.locator('.training-result')).toHaveCSS('row-gap', '24px');
-      if (category === 'characters') {
-        await expect(page.locator('#skills .skill-level-control').first()).toHaveCSS(
-          'border-top-width',
-          '0px'
-        );
-        await expect(page.locator('.training-target__skills')).toHaveCSS('row-gap', '16px');
-        await expect(page.locator('.training-target__skills')).toHaveCSS('margin-top', '16px');
-        await expect(page.locator('[data-training-trace-group="stat"]')).toHaveCSS(
-          'border-left-width',
-          page.viewportSize()!.width >= 768 ? '1px' : '0px'
-        );
-      }
+      await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(1);
+      await expect(page.locator('#traces [aria-pressed]')).toHaveCount(0);
+      const groups = page.locator('#skills [data-preview-key="1510004"]');
+      await expect(groups).toHaveCount(2);
+      const sliders = groups.getByRole('slider');
+      const target = page.locator('[data-training-skill="1510:0:1510004"]');
+      await expect(target).toHaveCount(1);
+      const fullCost = await materials(page);
+      const initialTargetLevel = (await target.getAttribute('data-training-level'))!;
+      const before = await page
+        .locator('[data-skill-category="talent"] .levelled-description')
+        .allTextContents();
+      await setSliderValue(sliders.first(), '0');
+      await expect(sliders.last()).toHaveAttribute('aria-valuenow', '1');
       expect(
-        await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)
-      ).toBe(true);
-      const ids = await page.locator('[id]').evaluateAll((nodes) => nodes.map((node) => node.id));
-      expect(new Set(ids).size).toBe(ids.length);
-      await expect(page.locator('[data-sonner-toast]')).toHaveCount(0);
+        await page.locator('[data-skill-category="talent"] .levelled-description').allTextContents()
+      ).not.toEqual(before);
+      await setSliderValue(page.locator('#character-level-1510'), '1');
+      await expect(sliders.first()).toHaveAttribute('aria-valuenow', '1');
+      await expect(target).toHaveAttribute('data-training-level', initialTargetLevel);
+      expect(await materials(page)).toEqual(fullCost);
+
+      await target.getByRole('slider').press('Home');
+      await expect(target).toHaveAttribute('data-training-level', '1');
+      await expect.poll(() => materials(page)).not.toEqual(fullCost);
+      await expect(sliders.last()).toHaveAttribute('aria-valuenow', '1');
+      await expect(page.locator('#training-character-level-1510')).toHaveAttribute(
+        'data-value',
+        '80'
+      );
     }
-  });
+  );
 }
+
+test('trace buttons preserve branch dependencies and update the character receipt', async ({
+  page
+}) => {
+  await page.goto('/characters/1001/');
+  await ready(page);
+  const tree = page.locator('[data-training-tree="preservation"]');
+  const node = (id: string) => tree.locator(`[data-point-id="${id}"]`);
+  const lines = tree.locator('svg.tree-connections');
+  await expect(lines).toBeVisible();
+  await expect(lines.locator('circle')).toHaveCount(0);
+  await expect(lines).toHaveCSS('pointer-events', 'none');
+  const paths = () =>
+    lines.locator('path').evaluateAll((elements) => elements.map((path) => path.getAttribute('d')));
+  const initialPaths = await paths();
+  expect(initialPaths.length).toBeGreaterThan(0);
+  const fullCost = await materials(page);
+  const skill = node('1001001');
+  await expect(skill).toHaveRole('img');
+  await expect(skill).not.toHaveAttribute('aria-pressed');
+  await expect(skill.locator('img')).toHaveAttribute('src', /character-details\/icons\/skill\//);
+
+  const firstTrace = node('1001201');
+  const tooltip = page.getByRole('tooltip');
+  await firstTrace.hover();
+  await expect(tooltip).toContainText((await firstTrace.getAttribute('aria-label'))!);
+  await firstTrace.focus();
+  await page.keyboard.press('Escape');
+  await expect(tooltip).toBeHidden();
+  await expect(firstTrace).toBeFocused();
+
+  await firstTrace.press('Space');
+  for (const id of ['1001201', '1001101', '1001203', '1001102', '1001206'])
+    await expect(node(id)).toHaveAttribute('aria-pressed', 'false');
+  await expect(node('1001209')).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(() => materials(page)).not.toEqual(fullCost);
+  expect(await paths()).toEqual(initialPaths);
+
+  await node('1001203').click();
+  for (const id of ['1001201', '1001101', '1001202', '1001203'])
+    await expect(node(id)).toHaveAttribute('aria-pressed', 'true');
+  await expect(node('1001102')).toHaveAttribute('aria-pressed', 'false');
+  await node('1001206').click();
+  await expect.poll(() => materials(page)).toEqual(fullCost);
+
+  const level = page.locator('#training-character-level-1001');
+  await level.press('Home');
+  await expect(level).toHaveAttribute('data-value', '1');
+  await expect(page.locator('#character-level-1001')).toHaveAttribute('data-value', '80');
+  await expect(page.locator('[data-training-skill="1001:0:1001001"]')).toHaveAttribute(
+    'data-training-level',
+    '1'
+  );
+  await expect(node('1001203')).toHaveAttribute('aria-pressed', 'false');
+  await node('1001201').click();
+  const emptyCost = await materials(page);
+  await node('1001203').click();
+  await expect(node('1001201')).toHaveAttribute('aria-pressed', 'false');
+  await expect(node('1001203')).toHaveAttribute('aria-pressed', 'false');
+  expect(await materials(page)).toEqual(emptyCost);
+
+  await level.press('End');
+  const credit = page.locator(
+    '#training [data-training-expense="total"] [data-material-id="2"] button'
+  );
+  await credit.click();
+  await expect(page.locator('.item-detail-modal')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(credit).toBeFocused();
+
+  const background = tree.locator('img.tree-path');
+  await expect(background).toHaveAttribute('src', '/generated-assets/paths/large/Knight.png');
+  await expect
+    .poll(() => background.evaluate((img) => (img as HTMLImageElement).naturalWidth))
+    .toBe(512);
+  await expect(tree).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+
+  for (const [anchor, iconRatio] of [
+    ['Point01', 0.66],
+    ['Point06', 0.84],
+    ['Point09', 0.84]
+  ] as const) {
+    const slot = tree.locator(`[data-anchor="${anchor}"]`);
+    const circle = (await slot.boundingBox())!;
+    const icon = (await slot.locator('img').boundingBox())!;
+    expect(Math.abs(icon.width - iconRatio * circle.width)).toBeLessThan(1);
+  }
+
+  const bounds = async () => {
+    const { canvas, settings, sliders, pathIcon } = await tree.evaluate((element) => {
+      const rect = (target: Element) => {
+        const { x, y, width, height } = target.getBoundingClientRect();
+        return { x, y, width, height };
+      };
+      const settings = element.closest('.training-target__settings.with-tree')!;
+      return {
+        canvas: rect(element),
+        settings: rect(settings),
+        sliders: rect(settings.querySelector('.training-target__skills')!),
+        pathIcon: rect(element.querySelector('img.tree-path')!)
+      };
+    });
+    expect(Math.abs(canvas.width - canvas.height)).toBeLessThan(1);
+    expect(Math.abs(pathIcon.x + pathIcon.width / 2 - canvas.x - canvas.width / 2)).toBeLessThan(1);
+    expect(Math.abs(pathIcon.y + pathIcon.height / 2 - canvas.y - canvas.height / 2)).toBeLessThan(
+      1
+    );
+    return { canvas, settings, sliders, pathIcon };
+  };
+
+  const checkStacked = async () => {
+    const { canvas, settings, sliders, pathIcon } = await bounds();
+    expect(canvas.y).toBeGreaterThanOrEqual(sliders.y + sliders.height);
+    expect(Math.abs(canvas.x + canvas.width / 2 - settings.x - settings.width / 2)).toBeLessThan(1);
+    const oldWidth = Math.min(settings.width, 39 * 16);
+    expect(canvas.width).toBeLessThan(oldWidth);
+    expect(Math.abs(pathIcon.width - 0.64 * oldWidth)).toBeLessThan(1);
+  };
+
+  if (page.viewportSize()!.width < 768) {
+    await checkStacked();
+  } else {
+    const { canvas, settings, sliders, pathIcon } = await bounds();
+    expect(Math.abs(canvas.x + canvas.width - settings.x - settings.width)).toBeLessThan(1);
+    expect(Math.abs(sliders.x - settings.x)).toBeLessThan(1);
+    const gap = await page
+      .locator('.training-target__settings.with-tree')
+      .evaluate((element) => Number.parseFloat(getComputedStyle(element).columnGap));
+    expect(Math.abs(canvas.x - sliders.x - sliders.width - gap)).toBeLessThan(1);
+    const oldWidth = Math.min(39 * 16, (settings.width + 20 * 16 - gap) / 2);
+    expect(Math.abs(pathIcon.width - 0.64 * oldWidth)).toBeLessThan(1);
+    await page.setViewportSize({ width: 900, height: page.viewportSize()!.height });
+    await checkStacked();
+  }
+});
+
+test('trace level gates apply within the same ascension and leave blocked costs unchanged', async ({
+  page
+}) => {
+  await page.goto('/characters/1001/');
+  await ready(page);
+  const level = page.locator('#training-character-level-1001');
+  const training = page.locator('[data-training-promotion]');
+  const lv75 = page.locator('[data-training-tree] [data-point-id="1001209"]');
+  const lv80 = page.locator('[data-training-tree] [data-point-id="1001210"]');
+
+  await setSliderValue(level, '70');
+  await expect(training).toHaveAttribute('data-training-promotion', '5');
+  await setSliderValue(level, '75');
+  await expect(training).toHaveAttribute('data-training-promotion', '6');
+  await expect(lv75).toHaveAttribute('aria-pressed', 'false');
+  await expect(lv75).toHaveAccessibleDescription(/75/);
+  await lv75.press('Space');
+  await expect(lv75).toHaveAttribute('aria-pressed', 'true');
+  const before = await materials(page);
+  await lv80.click();
+  await expect(lv80).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('[data-sonner-toast] [data-description]')).toContainText(/80/);
+  expect(await materials(page)).toEqual(before);
+
+  await setSliderValue(level, '74');
+  await expect(training).toHaveAttribute('data-training-promotion', '6');
+  await expect(lv75).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('changing enhanced form keeps the character level and replaces the trace profile', async ({
+  page
+}) => {
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  await page.goto('/characters/1102/');
+  await ready(page);
+  const tree = page.locator('[data-training-tree]');
+  const level = page.locator('#training-character-level-1102');
+  await expect(tree).toHaveAttribute('data-training-profile', '1');
+  await setSliderValue(level, '70');
+  await tree.locator('[data-point-id="11102101"]').click();
+  await page.locator('.enhancement-switch').click();
+  await expect(tree).toHaveAttribute('data-training-profile', '0');
+  await expect(level).toHaveAttribute('data-value', '70');
+  await expect(tree.locator('[data-point-id="1102101"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(tree.locator('[data-point-id="11102101"]')).toHaveCount(0);
+  await page.locator('.enhancement-switch').click();
+  await expect(tree).toHaveAttribute('data-training-profile', '1');
+  await expect(level).toHaveAttribute('data-value', '70');
+  await expect(tree.locator('[data-point-id="11102101"]')).toBeVisible();
+  expect(errors).toEqual([]);
+});

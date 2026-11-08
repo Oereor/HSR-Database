@@ -8,6 +8,7 @@ export interface GameTextToken {
   underline?: boolean;
   unbreak?: boolean;
   scaling?: boolean;
+  fixed?: boolean;
 }
 
 interface GameTextStyle {
@@ -16,9 +17,10 @@ interface GameTextStyle {
   underline: boolean;
   unbreak: boolean;
   scaling: boolean;
+  fixed: boolean;
 }
 
-type SupportedTag = 'color' | 'i' | 'u' | 'unbreak' | 'scaling-value';
+type SupportedTag = 'color' | 'i' | 'u' | 'unbreak' | 'scaling-value' | 'fixed-param';
 
 const markupPattern = /<[^>]*>/g;
 const colorPattern = /^<color=(#[0-9a-f]{6}(?:[0-9a-f]{2})?)>$/i;
@@ -37,6 +39,7 @@ function parseStyledGameText(value = '', allowScaling = false): GameTextToken[] 
     italic: false,
     underline: false,
     unbreak: false,
+    fixed: false,
     scaling: false
   };
   let cursor = 0;
@@ -60,14 +63,17 @@ function parseStyledGameText(value = '', allowScaling = false): GameTextToken[] 
     } else if (allowScaling && /^<scaling-value\s*>$/i.test(markup)) {
       stack.push({ tag: 'scaling-value', previous: style });
       style = { ...style, scaling: true };
+    } else if (allowScaling && /^<fixed-param\s*>$/i.test(markup)) {
+      stack.push({ tag: 'fixed-param', previous: style });
+      style = { ...style, fixed: true };
     } else {
       const icon = parseInlineIcon(markup);
       if (icon) appendIconToken(tokens, icon, style);
       else {
         const closingTag = markup
-          .match(/^<\/(color|i|u|unbreak|scaling-value)\s*>$/i)?.[1]
+          .match(/^<\/(color|i|u|unbreak|scaling-value|fixed-param)\s*>$/i)?.[1]
           ?.toLowerCase() as SupportedTag | undefined;
-        if (closingTag && (allowScaling || closingTag !== 'scaling-value'))
+        if (closingTag && (allowScaling || !['scaling-value', 'fixed-param'].includes(closingTag)))
           style = closeTag(stack, closingTag, style);
       }
     }
@@ -117,6 +123,7 @@ function appendIconToken(
     ...(style.italic ? { italic: true } : {}),
     ...(style.underline ? { underline: true } : {}),
     ...(style.unbreak ? { unbreak: true } : {}),
+    ...(style.fixed ? { fixed: true } : {}),
     ...(style.scaling ? { scaling: true } : {})
   });
 }
@@ -143,6 +150,7 @@ function appendToken(tokens: GameTextToken[], value: string, style: GameTextStyl
     ...(style.italic ? { italic: true } : {}),
     ...(style.underline ? { underline: true } : {}),
     ...(style.unbreak ? { unbreak: true } : {}),
+    ...(style.fixed ? { fixed: true } : {}),
     ...(style.scaling ? { scaling: true } : {})
   };
   const previous = tokens.at(-1);
@@ -153,6 +161,7 @@ function appendToken(tokens: GameTextToken[], value: string, style: GameTextStyl
     previous.italic === token.italic &&
     previous.underline === token.underline &&
     previous.unbreak === token.unbreak &&
+    previous.fixed === token.fixed &&
     previous.scaling === token.scaling
   )
     previous.value += value;

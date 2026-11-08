@@ -41,7 +41,7 @@ test('homepage collages disappear on request failure while content cards retain 
   await expect(page.locator('.home-hero__collage img')).toHaveCount(0);
   await expect(page.locator('.home-hero__collage [data-image-fallback]')).toHaveCount(0);
   const artwork = page
-    .locator('[data-homepage-recent="avatar"] .entity-overview-card__artwork')
+    .locator('[data-homepage-category="new-characters"] .entity-overview-card__artwork')
     .first();
   await artwork.scrollIntoViewIfNeeded();
   const fallback = artwork.locator('[data-image-fallback]');
@@ -68,15 +68,14 @@ test('missing ability icons retain identity while supporting stat icons disappea
   await page.goto('/characters/1407/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   for (const selector of [
-    '#skills .skill-card__heading',
-    '#traces .trace-card__identity',
-    '#eidolons .rank-card'
+    '#skills [data-skill-id]',
+    '#traces [data-trace-type="ability"]',
+    '#eidolons [data-eidolon-id]'
   ]) {
     const slot = page.locator(selector).first();
     await expect(slot.locator('[data-image-fallback]')).toHaveText('?');
-    await expect(slot.locator('h3')).not.toBeEmpty();
+    await expect(slot.getByRole('heading').first()).not.toBeEmpty();
   }
-  await expect(page.locator('#eidolons .rank-label')).toHaveCount(6);
   await expect(page.locator('#stats .inspection-stat-label img')).toHaveCount(0);
   await expect(page.locator('#stats [data-image-fallback]')).toHaveCount(0);
   await expect(page.locator('#stats [data-base-stat="hp"] strong')).not.toBeEmpty();

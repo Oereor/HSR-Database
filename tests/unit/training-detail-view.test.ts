@@ -3,7 +3,6 @@ import { readFileSync } from 'node:fs';
 import {
   createSkillPreviewControls,
   createTrainingSkillTargets,
-  createTrainingTraceSummary,
   initializeSkillPreviewLevels,
   createTrainingExpenseCosts
 } from '../../src/lib/domain/training/detail-view';
@@ -156,56 +155,42 @@ describe('receipt training projections', () => {
     }
   });
 
-  it('filters the paid trace summary after DAG changes while preserving the original display order', () => {
+  it('updates receipt costs through shared prerequisites, branching and blocked activation', () => {
     const cost = data('1001');
     const profile = cost.profiles[0];
-    const traces = view('1001').profiles.base.traces;
     const target = createDefaultCharacterTrainingTarget(cost, 0);
-    const initial = createTrainingTraceSummary(traces, profile, target.activeTraceIds);
-    expect(initial.map((trace) => trace.id)).toEqual([
-      '1001101',
-      '1001202',
-      '1001203',
-      '1001102',
-      '1001205',
-      '1001206',
-      '1001103',
-      '1001208',
-      '1001209',
-      '1001210',
-      '1001201',
-      '1001204',
-      '1001207'
-    ]);
-    const activeIds = deactivateTrace(profile, target.activeTraceIds, '1001201');
-    expect(
-      createTrainingTraceSummary(traces, profile, [...activeIds].reverse()).map((trace) => trace.id)
-    ).toEqual(['1001103', '1001208', '1001209', '1001210', '1001204', '1001207']);
-    const restored = activateTrace(profile, activeIds, '1001102', 6);
-    expect(restored.ok).toBe(true);
-    expect(
-      createTrainingTraceSummary(traces, profile, restored.activeTraceIds).map((trace) => trace.id)
-    ).toContain('1001201');
-    const lowered = reconcileCharacterLevel(
-      cost,
-      { ...target, activeTraceIds: restored.activeTraceIds },
-      1
+    const remaining = deactivateTrace(profile, target.activeTraceIds, '1001201');
+    expect(remaining).toEqual(['1001103', '1001204', '1001207', '1001208', '1001209', '1001210']);
+
+    const first = activateTrace(profile, remaining, '1001203', { level: 80, promotion: 6 });
+    expect(first.ok).toBe(true);
+    expect(first.activeTraceIds).toEqual(
+      expect.arrayContaining(['1001201', '1001101', '1001202', '1001203'])
     );
-    expect(
-      createTrainingTraceSummary(traces, profile, lowered.activeTraceIds).map((trace) => trace.id)
-    ).toEqual(['1001201']);
-    expect(createTrainingTraceSummary(traces, profile, [])).toEqual([]);
-    const memory = data('8007');
-    const paid = createDefaultCharacterTrainingTarget(memory, 0).activeTraceIds;
-    expect(
-      createTrainingTraceSummary(view('8007').profiles.base.traces, memory.profiles[0], [
-        ...paid,
-        '8007501'
-      ]).map((trace) => trace.id)
-    ).not.toContain('8007501');
-    expect(
-      initial.every((trace) => traces.find((source) => source.id === trace.id) === trace)
-    ).toBe(true);
+    const second = activateTrace(profile, first.activeTraceIds, '1001206', {
+      level: 80,
+      promotion: 6
+    });
+    expect(second.ok).toBe(true);
+    const full = calculateCharacterTrainingTarget(cost, shared, target);
+    const restored = calculateCharacterTrainingTarget(cost, shared, {
+      ...target,
+      activeTraceIds: second.activeTraceIds
+    });
+    expect(restored.traceCost).toEqual(full.traceCost);
+    expect(restored.totalCost).toEqual(full.totalCost);
+
+    const lowered = reconcileCharacterLevel(cost, { ...target, activeTraceIds: remaining }, 1);
+    const blocked = activateTrace(profile, lowered.activeTraceIds, '1001203', {
+      level: 1,
+      promotion: 0
+    });
+    expect(blocked).toMatchObject({
+      ok: false,
+      activeTraceIds: [],
+      error: { code: 'requirements-unmet' }
+    });
+    expect(lowered.activeTraceIds).toEqual([]);
   });
 
   it('renders complete expense categories whose sum equals the authoritative character and cone total', () => {
