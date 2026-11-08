@@ -3,10 +3,6 @@
 @import './theme.css';
 
 :root {
-  --radius-card: 14px;
-  --radius-control: 10px;
-  --radius: var(--radius-card);
-  --radius-panel: 22px;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -196,7 +192,7 @@ main {
   gap: 0.85rem;
   margin: 0.15rem 0 1.25rem;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   background: var(--card);
   padding: 0.55rem 0.65rem 0.55rem 0.8rem;
 }
@@ -257,7 +253,7 @@ main {
   filter: brightness(1.16);
 }
 .special-effect-trigger:focus-visible {
-  border-radius: 3px;
+  border-radius: var(--radius-badge);
   outline: 2px solid var(--gold-soft);
   outline-offset: 3px;
 }
@@ -595,7 +591,7 @@ main {
 .data-placeholder {
   margin: 0;
   border: 1px dashed var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-card);
   background: rgb(255 255 255 / 2%);
   padding: 1rem;
   color: var(--faint);

@@ -14,7 +14,7 @@
 <span
   data-slot="badge"
   class={cn(
-    'inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-[0.375rem] border px-2 py-0.5 text-xs font-medium',
+    'inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-xs border px-2 py-0.5 text-xs font-medium',
     variant === 'outline'
       ? 'border-border text-foreground bg-transparent'
       : variant === 'default'

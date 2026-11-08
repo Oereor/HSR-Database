@@ -19,7 +19,7 @@
 </script>
 
 <a
-  class="endgame-overview-card group focus-visible:ring-ring/50 block min-w-0 rounded-xl outline-none focus-visible:ring-3"
+  class="endgame-overview-card group focus-visible:ring-ring/50 block min-w-0 rounded-lg outline-none focus-visible:ring-3"
   {href}
   style={`--endgame-accent: ${metadata.accent};`}
   data-endgame-overview-card={mode.mode}

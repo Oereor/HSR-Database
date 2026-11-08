@@ -19,7 +19,7 @@
 </script>
 
 <a
-  class="entity-overview-card bg-card text-card-foreground border-border focus-visible:border-ring focus-visible:ring-ring/50 hover:border-primary/40 relative flex min-w-0 flex-col overflow-hidden rounded-xl border shadow-xs transition-[border-color,box-shadow] outline-none hover:shadow-md focus-visible:ring-3"
+  class="entity-overview-card bg-card text-card-foreground border-border focus-visible:border-ring focus-visible:ring-ring/50 hover:border-primary/40 relative flex min-w-0 flex-col overflow-hidden rounded-lg border shadow-xs transition-[border-color,box-shadow] outline-none hover:shadow-md focus-visible:ring-3"
   data-image-missing={imageMissing}
   data-card-size={size}
   data-card-density={density}

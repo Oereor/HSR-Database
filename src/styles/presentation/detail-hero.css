@@ -215,7 +215,7 @@
   width: 100%;
   overflow: visible;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-control);
   background: color-mix(in srgb, var(--background) 76%, transparent);
   padding: 0.9rem 1rem;
   text-overflow: clip;

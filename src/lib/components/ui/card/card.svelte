@@ -15,7 +15,7 @@
   data-slot="card"
   data-size={size}
   class={cn(
-    'group/card bg-card text-card-foreground border-border flex min-w-0 flex-col rounded-xl border shadow-xs',
+    'group/card bg-card text-card-foreground border-border flex min-w-0 flex-col rounded-lg border shadow-xs',
     size === 'sm' ? 'gap-4 py-4' : 'gap-6 py-6',
     className
   )}

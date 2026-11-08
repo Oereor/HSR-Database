@@ -28,7 +28,7 @@
 <svelte:element
   this={href ? 'a' : 'article'}
   {...elementProps}
-  class="group/relic text-foreground focus-visible:ring-ring/50 block min-w-0 rounded-xl no-underline outline-none focus-visible:ring-3"
+  class="group/relic text-foreground focus-visible:ring-ring/50 block min-w-0 rounded-lg no-underline outline-none focus-visible:ring-3"
   data-player-relic-slot={view.slot}
   data-player-relic-state={view.relic ? (view.set && view.piece ? 'known' : 'unknown') : 'empty'}
 >

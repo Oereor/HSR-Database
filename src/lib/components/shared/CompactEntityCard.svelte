@@ -83,7 +83,7 @@
     height: 4rem;
     place-items: center;
     overflow: hidden;
-    border-radius: calc(var(--radius-control) - 2px);
+    border-radius: max(0px, calc(var(--radius-card) - var(--space-3) - 1px));
     background: var(--secondary);
   }
 

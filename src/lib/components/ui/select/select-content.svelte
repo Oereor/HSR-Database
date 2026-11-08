@@ -15,7 +15,7 @@
     data-slot="select-content"
     {sideOffset}
     class={cn(
-      'bg-popover text-popover-foreground border-border data-open:animate-in data-closed:animate-out data-open:fade-in-0 data-closed:fade-out-0 relative z-50 max-h-(--bits-select-content-available-height) min-w-(--bits-select-anchor-width) overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md',
+      'bg-popover text-popover-foreground border-border data-open:animate-in data-closed:animate-out data-open:fade-in-0 data-closed:fade-out-0 relative z-50 max-h-(--bits-select-content-available-height) min-w-(--bits-select-anchor-width) overflow-x-hidden overflow-y-auto rounded-lg border p-1 shadow-md',
       className
     )}
     {...restProps}
