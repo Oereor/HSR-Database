@@ -64,7 +64,7 @@
                 .map((v) => gameTextToPlain(v.name))
                 .join(' / ')}</span
             >{/if}
-          {#if playerSkillTree || progression.availableLevels.length < 2}
+          {#if level === null || progression.availableLevels.length < 2}
             <output
               class="text-foreground whitespace-nowrap tabular-nums"
               data-player-skill-state={level === null ? 'unresolved' : undefined}
@@ -75,16 +75,16 @@
               compact
               id={`skill-progression-${card.category}-${progression.id}`}
               label={m.skill_level({ category: card.displayLabel })}
-              value={Math.max(
-                0,
-                progression.availableLevels.indexOf(level ?? progression.defaultLevel)
-              )}
+              value={Math.max(0, progression.availableLevels.indexOf(level))}
               min={0}
               max={progression.availableLevels.length - 1}
-              displayValue={level ?? progression.defaultLevel}
+              displayValue={level}
               ariaValueMin={progression.availableLevels[0]}
               ariaValueMax={progression.availableLevels.at(-1)}
-              onValueChange={(index) => changeLevel(progression, index)}
+              interactive={!playerSkillTree}
+              onValueChange={playerSkillTree
+                ? undefined
+                : (index) => changeLevel(progression, index)}
             />
           {/if}
         </div>

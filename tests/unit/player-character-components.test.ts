@@ -1,7 +1,7 @@
 import { render } from 'svelte/server';
 import { afterEach, describe, expect, it } from 'vitest';
 import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
-import SkillProgressionPanel from '../../src/lib/components/character/SkillProgressionPanel.svelte';
+import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.svelte';
 import PlayerStatsPanel from '../../src/lib/components/player/PlayerStatsPanel.svelte';
 import PlayerEquipmentSection from '../../src/lib/components/player/PlayerEquipmentSection.svelte';
 import BaseStatsPanel from '../../src/lib/components/shared/BaseStatsPanel.svelte';
@@ -12,7 +12,7 @@ import type {
   BaseStatProgression,
   Eidolon,
   RelicProperty,
-  SkillProgression
+  SkillCard
 } from '../../src/lib/domain/types';
 import type { PlayerCharacter, PlayerStat } from '../../src/lib/player/contract';
 import type { PlayerEquipmentCatalog } from '../../src/lib/player/equipment';
@@ -64,35 +64,44 @@ describe('Player Character controls', () => {
     expect(playerBody).not.toMatch(/<input[^>]*\sreadonly(?:=|\s|>)/);
   });
 
-  it('uses the Player skill level read-only and marks missing progression as unresolved', () => {
-    const skillProgression: SkillProgression = {
-      id: '1304001',
-      availableLevels: [1, 2, 3, 4, 5, 6],
-      defaultLevel: 6,
-      variantIds: []
+  it('maps a shared player progression to its effective level and preserves the unknown fallback', () => {
+    const card: SkillCard = {
+      category: 'skill',
+      displayLabel: 'Synthetic skill',
+      order: 0,
+      progressions: [
+        { id: 'shared', availableLevels: [1, 10, 12], defaultLevel: 10, variantIds: ['variant'] }
+      ],
+      variants: [
+        {
+          id: 'variant',
+          name: 'Synthetic variant',
+          order: 0,
+          source: 'avatar',
+          progressionId: 'shared',
+          scalingParamIndexes: [],
+          combatMeta: {},
+          levels: [10, 12].map((level) => ({
+            level,
+            description: `Synthetic description at ${level}`,
+            descriptionTokens: [{ type: 'text', value: `Synthetic description at ${level}` }]
+          }))
+        }
+      ]
     };
-    const resolved = render(SkillProgressionPanel, {
-      props: {
-        progression: skillProgression,
-        variants: [],
-        categoryLabel: '普攻',
-        playerLevel: 4
-      }
-    }).body;
-    const unresolved = render(SkillProgressionPanel, {
-      props: {
-        progression: skillProgression,
-        variants: [],
-        categoryLabel: '普攻',
-        playerLevel: null
-      }
-    }).body;
-
-    expect(resolved).toContain('Lv.4');
-    expect(resolved).toMatch(/<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")/);
+    for (const category of ['skill', 'talent'] as const) {
+      const resolved = render(SkillCardPanel, {
+        props: { card: { ...card, category }, playerSkillTree: [{ id: 'shared', level: 12 }] }
+      }).body;
+      expect(resolved).toMatch(
+        /<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")(?=[^>]*aria-valuenow="12")(?=[^>]*data-value="2")/
+      );
+      expect(resolved).toContain('Synthetic description at 12');
+    }
+    const unresolved = render(SkillCardPanel, { props: { card, playerSkillTree: [] } }).body;
     expect(unresolved).toContain('data-player-skill-state="unresolved"');
-    expect(unresolved).toMatch(/data-player-skill-state="unresolved"[\s\S]*<p>[^<]+<\/p>/);
-    expect(unresolved).not.toContain('<input');
+    expect(unresolved).toContain('Synthetic description at 10');
+    expect(unresolved).not.toContain('role="slider"');
   });
 });
 

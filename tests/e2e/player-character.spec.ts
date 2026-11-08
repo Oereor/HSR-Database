@@ -520,7 +520,11 @@ test('reuses the Player cache and renders real progression without changing stat
   await page.route('**/api/player/**', async (route) => {
     requestCount += 1;
     const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';
-    await route.fulfill({ json: playerProfile(uid) });
+    const profile = playerProfile(uid);
+    profile.characters[0].skillTree = profile.characters[0].skillTree.map((entry) =>
+      entry.id === '1304002' ? { ...entry, level: 12 } : entry
+    );
+    await route.fulfill({ json: profile });
   });
 
   await page.goto('/player/?uid=100000001');
@@ -556,8 +560,27 @@ test('reuses the Player cache and renders real progression without changing stat
   ).toBe(true);
 
   const basicCard = page.locator('[data-skill-category="basic"]');
-  await expect(basicCard.getByRole('slider')).toHaveCount(0);
+  await expect(basicCard.getByRole('slider')).toBeDisabled();
   await expect(basicCard.locator('output')).toHaveText('Lv.6');
+  const skill = page.locator('[data-skill-category="skill"]');
+  const skillSlider = skill.getByRole('slider');
+  await expect(skillSlider).toBeDisabled();
+  await expect(skillSlider).toHaveAttribute('aria-valuenow', '12');
+  await expect(skill.locator('output')).toHaveText('Lv.12');
+  const track = skill.locator('[data-slot="slider-track"]');
+  await track.scrollIntoViewIfNeeded();
+  const bounds = (await track.boundingBox())!;
+  await page.mouse.click(bounds.x + 1, bounds.y + bounds.height / 2);
+  await page.mouse.move(bounds.x + bounds.width * 0.8, bounds.y + bounds.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(bounds.x + 1, bounds.y + bounds.height / 2, { steps: 4 });
+  await page.mouse.up();
+  await skillSlider.focus();
+  await page.keyboard.press('Home');
+  await expect(skillSlider).toHaveAttribute('aria-valuenow', '12');
+  const technique = page.locator('[data-skill-category="technique"]');
+  await expect(technique.getByRole('slider')).toHaveCount(0);
+  await expect(technique.locator('output')).toHaveText('Lv.1');
 
   const tree = page.locator('#traces [data-skill-tree-mode="readonly"]');
   await expect(tree.getByRole('button')).toHaveCount(0);

@@ -42,7 +42,7 @@
   </div>
   <Slider
     type="single"
-    class={compact ? 'min-w-0 flex-1' : 'my-3'}
+    class={compact ? ['min-w-0 flex-1', !interactive && 'data-[disabled]:opacity-100'] : 'my-3'}
     bind:value
     {min}
     {max}
