@@ -31,7 +31,7 @@
     "prebuild": "pnpm messages:compile && pnpm data:ensure && pnpm assets:ensure && pnpm relic-score:v2:benchmarks:validate",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "pnpm messages:check && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && pnpm check:scripts && pnpm check:api",
+    "check": "pnpm check:scripts && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && pnpm check:api",
     "check:api": "tsc -p tsconfig.api.json --noEmit",
     "check:scripts": "pnpm messages:check && tsc -p tsconfig.scripts.json --noEmit",
     "lint": "prettier --check . && eslint .",
