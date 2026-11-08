@@ -299,6 +299,8 @@ test('trace level gates apply within the same ascension and leave blocked costs 
 test('changing enhanced form keeps the character level and replaces the trace profile', async ({
   page
 }) => {
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/characters/1102/');
   await ready(page);
   const tree = page.locator('[data-training-tree]');
@@ -311,4 +313,9 @@ test('changing enhanced form keeps the character level and replaces the trace pr
   await expect(level).toHaveAttribute('data-value', '70');
   await expect(tree.locator('[data-point-id="1102101"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(tree.locator('[data-point-id="11102101"]')).toHaveCount(0);
+  await page.locator('.enhancement-switch').click();
+  await expect(tree).toHaveAttribute('data-training-profile', '1');
+  await expect(level).toHaveAttribute('data-value', '70');
+  await expect(tree.locator('[data-point-id="11102101"]')).toBeVisible();
+  expect(errors).toEqual([]);
 });

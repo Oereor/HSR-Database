@@ -255,16 +255,19 @@
       ? trainingCalculation.result
       : undefined;
   $: trainingProfile = characterTrainingData?.profiles.find(
-    (profile) => profile.enhancedId === characterTarget?.enhancedId
+    (profile) =>
+      profile.enhancedId === characterTarget?.enhancedId &&
+      (profile.enhancedId !== 0) === enhancedEnabled
   );
-  $: skillTargets = characterTrainingResult
-    ? createTrainingSkillTargets(
-        activeProfile.skillCards,
-        trainingProfile,
-        characterTrainingResult.skills,
-        characterTrainingResult.target.promotion
-      )
-    : [];
+  $: skillTargets =
+    characterTrainingResult && activeProfile && trainingProfile
+      ? createTrainingSkillTargets(
+          activeProfile.skillCards,
+          trainingProfile,
+          characterTrainingResult.skills,
+          characterTrainingResult.target.promotion
+        )
+      : [];
   $: trainingLevelControl =
     category === 'characters' && detail.baseStats
       ? {

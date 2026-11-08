@@ -75,19 +75,19 @@
           {onLevelChange}
           {onSkillTrainingLevelChange}
         >
-          {#if skillTree}
+          {#each skillTree ? [skillTree] : [] as tree (`${tree.profile.avatarId}:${tree.profile.enhancedId}`)}
             <TrainingSkillTree
-              path={skillTree.path}
-              profile={skillTree.profile}
-              presentation={skillTree.presentation}
-              accent={skillTree.accent}
+              path={tree.path}
+              profile={tree.profile}
+              presentation={tree.presentation}
+              accent={tree.accent}
               state={{
                 mode: 'interactive',
-                activeTraceIds: character.target.activeTraceIds,
-                onToggle: skillTree.onToggle
+                activeTraceIds: character?.target.activeTraceIds ?? [],
+                onToggle: tree.onToggle
               }}
             />
-          {/if}
+          {/each}
         </TrainingTargetSummary>
       {/if}
       <TrainingExpenseGroup
