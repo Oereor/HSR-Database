@@ -19,14 +19,18 @@ for (const prefix of ['', '/en']) {
     request
   }) => {
     const response = await request.get(`${prefix}/characters/1001/`);
-    expect(await response.text()).toContain('data-slot="breadcrumb-page"');
+    expect(response.ok()).toBe(true);
+    const navigation = (await response.text()).match(
+      /<nav\b[^>]*data-slot="breadcrumb"[^>]*>[\s\S]*?<\/nav>/
+    );
+    expect(navigation?.[0]).toContain('aria-current="page"');
     await page.goto(`${prefix}/characters/1001/?rank=2&level=20&encounter=ignored`);
     const breadcrumb = page.locator('[data-slot="breadcrumb"]');
     await expect(breadcrumb.locator('[aria-current="page"]')).toHaveCount(1);
     await expect(breadcrumb.locator('a').first()).toHaveAttribute('href', `${prefix}/`);
     await expect(breadcrumb.locator('a').nth(1)).toHaveAttribute('href', `${prefix}/characters/`);
     await expect(breadcrumb.locator('[aria-current="page"]')).not.toHaveAttribute('href');
-    expect(await breadcrumb.locator('li').count()).toBe(5);
+    await expect(breadcrumb.locator('a')).toHaveCount(2);
     const section = page.locator('.section-nav a').last();
     const hash = await section.getAttribute('href');
     await section.click();
@@ -44,7 +48,8 @@ for (const prefix of ['', '/en']) {
     ).toBeGreaterThanOrEqual(barBottom - 1);
     await breadcrumb.locator('a').nth(1).click();
     await expect(page).toHaveURL(new RegExp(`${prefix}/characters/$`));
-    await expect(breadcrumb.locator('[data-slot="breadcrumb-item"]')).toHaveCount(2);
+    await expect(breadcrumb.locator('[aria-current="page"]')).toHaveCount(1);
+    await expect(breadcrumb.locator('a')).toHaveCount(1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true
     );

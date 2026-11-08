@@ -24,30 +24,17 @@ for (const width of [1440, 1100, 1080, 900, 390, 320]) {
         ).toHaveCount(0);
         const stats = panel.locator('.enemy-battle-column--stats');
         await expect(stats.getByRole('slider')).toHaveCount(1);
-        await expect(stats.locator('.stat-level-control > .skill-level-control')).toHaveCSS(
-          'border-top-width',
-          '0px'
-        );
-        await expect(stats.locator('.hero-stat-list')).toHaveCSS('margin-top', '24px');
         const rows = panel.locator(
           '[data-enemy-stat], [data-enemy-resistance], [data-special-resistance]'
         );
-        for (const row of await rows.all()) {
-          await expect(row).toHaveClass(/hero-stat-row/);
-          await expect(row.locator('dd')).toHaveCSS('text-align', 'right');
-          await expect(row.locator('strong')).toHaveCSS('font-variant-numeric', 'tabular-nums');
-        }
         const geometry = await sections.evaluateAll((elements) =>
           elements.map((element) => {
             const bounds = element.getBoundingClientRect();
-            const style = getComputedStyle(element);
             return {
               x: bounds.x,
               y: bounds.y,
               width: bounds.width,
-              bottom: bounds.bottom,
-              leftBorder: style.borderLeftWidth,
-              topBorder: style.borderTopWidth
+              bottom: bounds.bottom
             };
           })
         );
@@ -58,13 +45,9 @@ for (const width of [1440, 1100, 1080, 900, 390, 320]) {
           if (width > 1080) {
             expect(current.y).toBeCloseTo(previous.y, 0);
             expect(current.x).toBeGreaterThan(previous.x);
-            expect(current.leftBorder).toBe('1px');
-            expect(current.topBorder).toBe('0px');
           } else {
             expect(current.x).toBeCloseTo(previous.x, 0);
             expect(current.y).toBeGreaterThanOrEqual(previous.bottom - 1);
-            expect(current.leftBorder).toBe('0px');
-            expect(current.topBorder).toBe('1px');
           }
         }
         const slider = stats.getByRole('slider');

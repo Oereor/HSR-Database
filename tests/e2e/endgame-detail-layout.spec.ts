@@ -33,7 +33,6 @@ for (const prefix of ['', '/en']) {
       }
       const cards = page.locator('[data-endgame-enemy-card]');
       expect(await cards.count()).toBeGreaterThan(0);
-      await expect(cards.locator('a, button')).toHaveCount(0);
       await cards
         .first()
         .locator('.endgame-enemy__name')

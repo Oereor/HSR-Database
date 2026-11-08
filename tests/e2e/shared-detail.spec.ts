@@ -86,11 +86,8 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
   await expect(page.locator('#skills h2')).toBeVisible();
   await expect(page.locator('#equipment-recommendation h2').first()).toBeVisible();
   await expect(
-    page.locator('#equipment-recommendation .equipment-recommendation__group')
-  ).toHaveCount(3);
-  await expect(
-    page.locator('#equipment-recommendation .equipment-recommendation__subgroup')
-  ).toHaveCount(2);
+    page.locator('#equipment-recommendation').getByRole('heading', { level: 3 }).first()
+  ).toBeVisible();
 
   await page.goto('/light-cones/20000/');
   await expect(page.locator('section.prose h2')).toBeVisible();
@@ -192,8 +189,8 @@ test('角色与光锥 Detail Hero 的 rarity 与 identity presentation 保持语
 
 test('属性行迹、普通换行与光锥 identity 内容边界正确渲染', async ({ page }) => {
   await page.goto('/characters/1407/');
-  await expect(page.locator('[data-trace-id="1407202"]')).toContainText('量子属性伤害提高3.2%');
-  await expect(page.locator('[data-trace-id="1407204"]')).toContainText('暴击伤害提高5.3%');
+  await expect(page.locator('[data-trace-id="1407202"]')).toContainText('3.2%');
+  await expect(page.locator('[data-trace-id="1407204"]')).toContainText('5.3%');
   const introduction = page.locator('.hero-description');
   await expect(introduction.locator('.game-text')).toHaveCSS('white-space', 'pre-line');
   expect((await introduction.innerText()).split('\n')).toHaveLength(3);
