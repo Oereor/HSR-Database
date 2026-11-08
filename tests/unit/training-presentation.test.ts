@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
+import type { Component } from 'svelte';
 import { render } from 'svelte/server';
+import TooltipHost from '../fixtures/TooltipHost.svelte';
 import {
   createSkillPreviewControls,
   createTrainingSkillTargets
@@ -30,6 +32,11 @@ vi.mock('$app/stores', async () => {
   const { readable } = await import('svelte/store');
   return { page: readable({ url: new URL('http://localhost/characters/1001/') }) };
 });
+
+const renderWithTooltip = <Props extends Record<string, unknown>>(
+  component: Component<Props>,
+  { props }: { props: Props }
+) => render(TooltipHost<Props>, { props: { component, props } });
 
 const json = <T>(path: string): T => JSON.parse(readFileSync(path, 'utf8'));
 const data = (id: string) =>
@@ -177,7 +184,7 @@ describe('training presentation contracts', () => {
       result.skills,
       result.target.promotion
     );
-    const html = render(TrainingSection, {
+    const html = renderWithTooltip(TrainingSection, {
       props: {
         state: 'ready',
         result,
@@ -237,7 +244,7 @@ describe('training presentation contracts', () => {
     const profile = data('1001').profiles[0];
     const skill = profile.nodes.find((node) => node.kind === 'skill')!;
     skill.iconKey = undefined;
-    const html = render(TrainingSkillTree, {
+    const html = renderWithTooltip(TrainingSkillTree, {
       props: {
         path: character.path!,
         profile,

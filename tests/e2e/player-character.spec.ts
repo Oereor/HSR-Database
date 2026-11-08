@@ -561,6 +561,12 @@ test('reuses the Player cache and renders real progression without changing stat
 
   const tree = page.locator('#traces [data-skill-tree-mode="readonly"]');
   await expect(tree.getByRole('button')).toHaveCount(0);
+  const activeTrace = tree.locator('[data-point-id="1304101"]');
+  await activeTrace.focus();
+  const traceTooltip = page.getByRole('tooltip');
+  await expect(traceTooltip).toContainText((await activeTrace.getAttribute('aria-label'))!);
+  await page.keyboard.press('Escape');
+  await expect(traceTooltip).toBeHidden();
   await expect(tree.locator('[data-point-id="1304101"]')).toHaveAttribute(
     'data-trace-state',
     'active'

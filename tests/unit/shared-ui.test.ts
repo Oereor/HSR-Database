@@ -1,5 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import type { ComponentProps } from 'svelte';
 import { render } from 'svelte/server';
+import TooltipHost from '../fixtures/TooltipHost.svelte';
 import SearchBar from '../../src/lib/components/search/SearchBar.svelte';
 import SectionNav from '../../src/lib/components/shared/SectionNav.svelte';
 import SectionHeadingFixture from '../fixtures/SectionHeadingFixture.svelte';
@@ -127,13 +129,16 @@ describe('SectionNav', () => {
 });
 
 describe('SearchBar', () => {
-  it('共享 canonical route 并将 Sidebar 可见标签关联到输入框', () => {
-    const { body } = render(SearchBar, {
+  it('共享 canonical route 并将 Sidebar 无障碍标签关联到输入框', () => {
+    const { body } = render(TooltipHost<ComponentProps<typeof SearchBar>>, {
       props: {
-        id: 'global-search',
-        label: 'synthetic search label',
-        placeholder: 'synthetic search placeholder',
-        variant: 'sidebar'
+        component: SearchBar,
+        props: {
+          id: 'global-search',
+          label: 'synthetic search label',
+          placeholder: 'synthetic search placeholder',
+          variant: 'sidebar'
+        }
       }
     });
 

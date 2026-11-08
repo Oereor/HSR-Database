@@ -93,23 +93,38 @@
 <Sidebar.Root collapsible="icon" class="navigator-panel">
   <Sidebar.Header>
     <div class="navigator-brand flex h-14 shrink-0 items-center gap-2 overflow-hidden">
-      <a
-        class="navigator-pane__brand flex min-w-0 flex-1 items-center gap-2 overflow-hidden"
-        href={homeHref}
-        aria-label={m.navigation_home_aria({ siteName: name })}
-        onclick={() => sidebar.setOpenMobile(false)}
-      >
-        <span
-          class="flex size-11 shrink-0 items-center justify-center [&_.brand-image-fallback]:size-8 [&_img]:size-8 [&_img]:object-contain"
-          aria-hidden="true"
-          ><AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" /></span
-        >
-        <strong
-          class="navigator-brand-title min-w-0 truncate text-xs font-semibold transition-none"
-          class:invisible={!sidebar.isMobile && (!sidebar.open || !sidebar.expandedReady)}
-          title={name}>{name}</strong
-        >
-      </a>
+      <Tooltip.Root disabled={!sidebar.isMobile && (!sidebar.open || !sidebar.expandedReady)}>
+        <Tooltip.Trigger>
+          {#snippet child({ props })}
+            <a
+              {...{ ...props, type: undefined, disabled: undefined }}
+              class="navigator-pane__brand flex min-w-0 flex-1 items-center gap-2 overflow-hidden"
+              href={homeHref}
+              aria-label={m.navigation_home_aria({ siteName: name })}
+              onclick={(event) => {
+                if (typeof props.onclick === 'function') props.onclick(event);
+                sidebar.setOpenMobile(false);
+              }}
+            >
+              <span
+                class="flex size-11 shrink-0 items-center justify-center [&_.brand-image-fallback]:size-8 [&_img]:size-8 [&_img]:object-contain"
+                aria-hidden="true"
+                ><AssetImage
+                  src={trainPartyIconUrl}
+                  alt=""
+                  fallbackClass="brand-image-fallback"
+                /></span
+              >
+              <strong
+                class="navigator-brand-title min-w-0 truncate text-xs font-semibold transition-none"
+                class:invisible={!sidebar.isMobile && (!sidebar.open || !sidebar.expandedReady)}
+                >{name}</strong
+              >
+            </a>
+          {/snippet}
+        </Tooltip.Trigger>
+        <Tooltip.Content side="right">{name}</Tooltip.Content>
+      </Tooltip.Root>
       {#if sidebar.isMobile}
         <Button
           variant="ghost"

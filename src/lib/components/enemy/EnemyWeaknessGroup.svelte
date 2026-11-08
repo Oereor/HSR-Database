@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ElementLabel } from '$lib/domain/types';
+  import * as Tooltip from '$lib/components/ui/tooltip';
   import { getElementColor } from '$lib/domain/elements';
   import SemanticIconLabel from '../shared/SemanticIconLabel.svelte';
   import { m } from '$lib/paraglide/messages.js';
@@ -25,15 +26,26 @@
     aria-label={accessibilityLabel}
   >
     {#each weaknesses as weakness (weakness.element)}
-      <span class="enemy-weakness-group__item" title={m.weakness_type({ element: weakness.name })}>
-        <SemanticIconLabel
-          kind="element"
-          code={weakness.element}
-          label={m.weakness_type({ element: weakness.name })}
-          color={getElementColor(weakness.element)}
-          showLabel={false}
-        />
-      </span>
+      {@const label = m.weakness_type({ element: weakness.name })}
+      <Tooltip.Root>
+        <Tooltip.Trigger>
+          {#snippet child({ props })}
+            <span
+              {...{ ...props, type: undefined, disabled: undefined, tabindex: undefined }}
+              class="enemy-weakness-group__item"
+            >
+              <SemanticIconLabel
+                kind="element"
+                code={weakness.element}
+                {label}
+                color={getElementColor(weakness.element)}
+                showLabel={false}
+              />
+            </span>
+          {/snippet}
+        </Tooltip.Trigger>
+        <Tooltip.Content>{label}</Tooltip.Content>
+      </Tooltip.Root>
     {/each}
   </span>
 {/if}

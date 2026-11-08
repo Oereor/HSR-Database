@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as Sidebar from '$lib/components/ui/sidebar';
   import * as Breadcrumb from '$lib/components/ui/breadcrumb';
+  import * as Tooltip from '$lib/components/ui/tooltip';
   import type { BreadcrumbItem } from '$lib/breadcrumbs';
   import { m } from '$lib/paraglide/messages.js';
   export let items: BreadcrumbItem[];
@@ -17,17 +18,25 @@
           <Breadcrumb.Item
             class={index === items.length - 1 ? 'min-w-16 flex-1' : 'min-w-0 shrink'}
           >
-            {#if item.href}
-              <Breadcrumb.Link
-                href={item.href}
-                title={item.label}
-                class="block max-w-24 truncate sm:max-w-52">{item.label}</Breadcrumb.Link
-              >
-            {:else}
-              <Breadcrumb.Page title={item.label} class="block truncate"
-                >{item.label}</Breadcrumb.Page
-              >
-            {/if}
+            <Tooltip.Root>
+              <Tooltip.Trigger>
+                {#snippet child({ props })}
+                  {@const attrs = { ...props, type: undefined, disabled: undefined }}
+                  {#if item.href}
+                    <Breadcrumb.Link
+                      {...attrs}
+                      href={item.href}
+                      class="block max-w-24 truncate sm:max-w-52">{item.label}</Breadcrumb.Link
+                    >
+                  {:else}
+                    <Breadcrumb.Page {...attrs} tabindex={undefined} class="block truncate"
+                      >{item.label}</Breadcrumb.Page
+                    >
+                  {/if}
+                {/snippet}
+              </Tooltip.Trigger>
+              <Tooltip.Content side="bottom">{item.label}</Tooltip.Content>
+            </Tooltip.Root>
           </Breadcrumb.Item>
         {/each}
       </Breadcrumb.List>

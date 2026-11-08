@@ -5,6 +5,7 @@
   import '../styles/presentation/detail-hero.css';
   import { page } from '$app/stores';
   import * as Sidebar from '$lib/components/ui/sidebar';
+  import * as Tooltip from '$lib/components/ui/tooltip';
   import Navigator from '$lib/components/layout/Navigator.svelte';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
@@ -58,36 +59,40 @@
   {#if faviconUrl}<link rel="icon" type="image/png" href={faviconUrl} />{/if}
 </svelte:head>
 
-<Sidebar.Provider
-  class="site-shell"
-  data-app-ready={appReady}
-  style={`--page-nav-height: ${pageNavHeight};`}
->
-  <Navigator
-    locale={data.locale}
-    siteVersion={data.siteVersion}
-    onOpenChangelog={() => changelogModal?.open()}
-  />
-  <ChangelogModal locale={data.locale} bind:this={changelogModal} />
+<Tooltip.Provider delayDuration={300} skipDelayDuration={300}>
+  <Sidebar.Provider
+    class="site-shell"
+    data-app-ready={appReady}
+    style={`--page-nav-height: ${pageNavHeight};`}
+  >
+    <Navigator
+      locale={data.locale}
+      siteVersion={data.siteVersion}
+      onOpenChangelog={() => changelogModal?.open()}
+    />
+    <ChangelogModal locale={data.locale} bind:this={changelogModal} />
 
-  <main>
-    <GlobalBreadcrumb items={breadcrumbs} />
-    <div class="content site-container"><slot /></div>
-    <footer class="site-footer">
-      <div class="site-container">
-        <p>{m.footer_disclaimer()}</p>
-        <p>
-          {m.footer_data_source()}<a href="https://github.com/DimbreathBot/TurnBasedGameData"
-            >TurnBasedGameData</a
-          >{m.footer_asset_source()}<a href="https://github.com/Mar-7th/StarRailRes">StarRailRes</a>
-          (<a href="/licenses/StarRailRes-AGPL-3.0.txt">{m.footer_license()}</a
-          >){m.footer_player_data_source()}<a href="https://enka.network/">Enka.Network</a
-          >{m.footer_scope_note()}
-        </p>
-      </div>
-    </footer>
-  </main>
-</Sidebar.Provider>
+    <main>
+      <GlobalBreadcrumb items={breadcrumbs} />
+      <div class="content site-container"><slot /></div>
+      <footer class="site-footer">
+        <div class="site-container">
+          <p>{m.footer_disclaimer()}</p>
+          <p>
+            {m.footer_data_source()}<a href="https://github.com/DimbreathBot/TurnBasedGameData"
+              >TurnBasedGameData</a
+            >{m.footer_asset_source()}<a href="https://github.com/Mar-7th/StarRailRes"
+              >StarRailRes</a
+            >
+            (<a href="/licenses/StarRailRes-AGPL-3.0.txt">{m.footer_license()}</a
+            >){m.footer_player_data_source()}<a href="https://enka.network/">Enka.Network</a
+            >{m.footer_scope_note()}
+          </p>
+        </div>
+      </footer>
+    </main>
+  </Sidebar.Provider>
+</Tooltip.Provider>
 
 <Toaster
   theme="dark"

@@ -153,7 +153,16 @@ test('trace buttons preserve branch dependencies and update the character receip
   await expect(skill).not.toHaveAttribute('aria-pressed');
   await expect(skill.locator('img')).toHaveAttribute('src', /character-details\/icons\/skill\//);
 
-  await node('1001201').press('Space');
+  const firstTrace = node('1001201');
+  const tooltip = page.getByRole('tooltip');
+  await firstTrace.hover();
+  await expect(tooltip).toContainText((await firstTrace.getAttribute('aria-label'))!);
+  await firstTrace.focus();
+  await page.keyboard.press('Escape');
+  await expect(tooltip).toBeHidden();
+  await expect(firstTrace).toBeFocused();
+
+  await firstTrace.press('Space');
   for (const id of ['1001201', '1001101', '1001203', '1001102', '1001206'])
     await expect(node(id)).toHaveAttribute('aria-pressed', 'false');
   await expect(node('1001209')).toHaveAttribute('aria-pressed', 'true');

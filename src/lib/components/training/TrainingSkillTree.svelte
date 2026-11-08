@@ -1,5 +1,8 @@
 <script lang="ts">
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import * as Tooltip from '$lib/components/ui/tooltip';
+  import { Tooltip as TooltipPrimitive } from 'bits-ui';
+  import type { HTMLButtonAttributes } from 'svelte/elements';
   import { traceRequirementText } from '$lib/components/character/trace-requirements';
   import { getCharacterDetailIconUrl, getPathIconUrl } from '$lib/data/visual-assets';
   import { gameTextToPlain } from '$lib/domain/game-text';
@@ -25,6 +28,8 @@
         onToggle: (pointId: string) => void;
       }
     | { mode: 'readonly'; playerIndex: ReadonlyMap<string, number> };
+
+  const tooltip = TooltipPrimitive.createTether<{ label: string; description?: string }>();
 
   $: layout = resolveLayout(path, profile);
   $: active = new Set(state.mode === 'interactive' ? state.activeTraceIds : []);
@@ -60,90 +65,114 @@
 {/snippet}
 
 {#if layout}
-  <div
-    class="skill-tree"
-    role="group"
-    aria-label={treeLabel}
-    data-skill-tree-mode={state.mode}
-    data-training-tree={layout.slug}
-    data-training-profile={profile.enhancedId}
-    style:--tree-accent={accent}
-    style:--tree-crop={layout.cropRatio}
-  >
-    <AssetImage src={getPathIconUrl(path, 'large')} decorative class="tree-path" />
-    <svg
-      class="tree-connections"
-      viewBox={skillTreeViewBox(layout.halfSize)}
-      aria-hidden="true"
-      focusable="false"
-      fill="none"
-    >
-      <g
-        stroke={skillTreeLineStyle.stroke}
-        opacity={skillTreeLineStyle.opacity}
-        stroke-width={skillTreeLineStyle.width * layout.referenceRadius}
-        stroke-linecap="round"
-        stroke-linejoin="round"
+  <Tooltip.Root tether={tooltip}>
+    {#snippet children({ payload })}
+      <div
+        class="skill-tree"
+        role="group"
+        aria-label={treeLabel}
+        data-skill-tree-mode={state.mode}
+        data-training-tree={layout.slug}
+        data-training-profile={profile.enhancedId}
+        style:--tree-accent={accent}
+        style:--tree-crop={layout.cropRatio}
       >
-        {#each layout.connections as d (d)}
-          <path {d} />
-        {/each}
-      </g>
-    </svg>
-    {#each layout.nodes as { anchorType, center: [x, y], radius, kind, node } (node.pointId)}
-      {@const label =
-        traceLabels.get(node.pointId) ||
-        skillLabels.get(node.pointId) ||
-        `${treeLabel} ${node.pointId}`}
-      {@const source = getCharacterDetailIconUrl(node.iconKey)}
-      {@const position = `--x:${50 + (50 * x) / layout.halfSize}%;--y:${50 + (50 * y) / layout.halfSize}%;--size:${(100 * radius) / layout.halfSize}%`}
-      {#if state.mode === 'interactive' && isToggleableTrainingNode(node)}
-        {@const step = node.steps[0]}
-        {@const requirements = traceRequirementText(
-          step.requiredPromotion,
-          step.requiredCharacterLevel
-        )}
-        {@const description = requirements
-          ? `${m.trace_unlock_condition()} ${requirements}`
-          : undefined}
-        {@const descriptionId = `training-trace-${profile.avatarId}-${profile.enhancedId}-${node.pointId}-requirements`}
-        <button
-          type="button"
-          class="tree-node"
-          class:tree-node--trace={kind !== 'skill'}
-          aria-label={label}
-          aria-describedby={description ? descriptionId : undefined}
-          aria-pressed={active.has(node.pointId)}
-          title={description ? `${label}\n${description}` : label}
-          data-point-id={node.pointId}
-          data-anchor={anchorType}
-          style={position}
-          on:click={() => state.mode === 'interactive' && state.onToggle(node.pointId)}
-          >{@render icon(source)}</button
+        <AssetImage src={getPathIconUrl(path, 'large')} decorative class="tree-path" />
+        <svg
+          class="tree-connections"
+          viewBox={skillTreeViewBox(layout.halfSize)}
+          aria-hidden="true"
+          focusable="false"
+          fill="none"
         >
-        {#if description}<span id={descriptionId} class="sr-only">{description}</span>{/if}
-      {:else}
-        {@const traceState =
-          state.mode === 'readonly' && kind !== 'skill'
-            ? resolvePlayerTraceState(node.pointId, state.playerIndex)
+          <g
+            stroke={skillTreeLineStyle.stroke}
+            opacity={skillTreeLineStyle.opacity}
+            stroke-width={skillTreeLineStyle.width * layout.referenceRadius}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            {#each layout.connections as d (d)}
+              <path {d} />
+            {/each}
+          </g>
+        </svg>
+        {#each layout.nodes as { anchorType, center: [x, y], radius, kind, node } (node.pointId)}
+          {@const label =
+            traceLabels.get(node.pointId) ||
+            skillLabels.get(node.pointId) ||
+            `${treeLabel} ${node.pointId}`}
+          {@const source = getCharacterDetailIconUrl(node.iconKey)}
+          {@const position = `--x:${50 + (50 * x) / layout.halfSize}%;--y:${50 + (50 * y) / layout.halfSize}%;--size:${(100 * radius) / layout.halfSize}%`}
+          {@const step = kind !== 'skill' ? node.steps[0] : undefined}
+          {@const requirements = step
+            ? traceRequirementText(step.requiredPromotion, step.requiredCharacterLevel)
             : undefined}
-        {@const stateLabel =
-          traceState === 'active' ? m.player_character_active() : m.player_character_inactive()}
-        {@const nodeLabel = traceState ? `${label} · ${stateLabel}` : label}
-        <span
-          class="tree-node"
-          class:tree-node--trace={kind !== 'skill'}
-          role="img"
-          aria-label={nodeLabel}
-          title={nodeLabel}
-          data-trace-state={traceState}
-          data-point-id={node.pointId}
-          data-anchor={anchorType}
-          style={position}>{@render icon(source)}</span
-        >
-      {/if}
-    {/each}
-  </div>
+          {@const description = requirements
+            ? `${m.trace_unlock_condition()} ${requirements}`
+            : undefined}
+          {@const descriptionId = `training-trace-${profile.avatarId}-${profile.enhancedId}-${node.pointId}-requirements`}
+          {@const traceState =
+            state.mode === 'readonly' && kind !== 'skill'
+              ? resolvePlayerTraceState(node.pointId, state.playerIndex)
+              : undefined}
+          {@const stateLabel =
+            traceState === 'active' ? m.player_character_active() : m.player_character_inactive()}
+          {@const nodeLabel = traceState ? `${label} · ${stateLabel}` : label}
+          <Tooltip.Trigger tether={tooltip} payload={{ label: nodeLabel, description }}>
+            {#snippet child({ props })}
+              {@const buttonProps = props as HTMLButtonAttributes}
+              {#if state.mode === 'interactive' && isToggleableTrainingNode(node)}
+                <button
+                  {...buttonProps}
+                  type="button"
+                  class="tree-node"
+                  class:tree-node--trace={kind !== 'skill'}
+                  aria-label={label}
+                  aria-describedby={buttonProps['aria-describedby'] ??
+                    (description ? descriptionId : undefined)}
+                  aria-pressed={active.has(node.pointId)}
+                  data-point-id={node.pointId}
+                  data-anchor={anchorType}
+                  style={position}
+                  onclick={(event) => {
+                    buttonProps.onclick?.(event);
+                    if (state.mode === 'interactive') state.onToggle(node.pointId);
+                  }}>{@render icon(source)}</button
+                >
+              {:else}
+                <!-- svelte-ignore a11y_no_noninteractive_tabindex (Keyboard access to trace tooltips) -->
+                <span
+                  {...{ ...props, type: undefined, disabled: undefined }}
+                  class="tree-node"
+                  class:tree-node--trace={kind !== 'skill'}
+                  role="img"
+                  tabindex="0"
+                  aria-label={nodeLabel}
+                  aria-describedby={buttonProps['aria-describedby'] ??
+                    (description ? descriptionId : undefined)}
+                  data-trace-state={traceState}
+                  data-point-id={node.pointId}
+                  data-anchor={anchorType}
+                  style={position}>{@render icon(source)}</span
+                >
+              {/if}
+            {/snippet}
+          </Tooltip.Trigger>
+          {#if description}<span id={descriptionId} class="sr-only">{description}</span>{/if}
+        {/each}
+      </div>
+      <Tooltip.Content>
+        {#if payload}
+          <div class="grid gap-1">
+            <span>{payload.label}</span>
+            {#if payload.description}<span class="text-muted-foreground">{payload.description}</span
+              >{/if}
+          </div>
+        {/if}
+      </Tooltip.Content>
+    {/snippet}
+  </Tooltip.Root>
 {:else}
   <p class="data-placeholder" role="status" data-training-tree-error>
     {state.mode === 'readonly'
@@ -211,7 +240,7 @@
     box-shadow: 0 0 0 2px var(--tree-accent);
   }
 
-  button.tree-node:focus-visible {
+  .tree-node:focus-visible {
     z-index: 2;
     outline: 2px solid #fff;
     outline-offset: 3px;

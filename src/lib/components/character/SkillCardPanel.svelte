@@ -52,7 +52,7 @@
   data-skill-category={card.category}
 >
   <Card.Header class="flex flex-row items-center justify-between gap-3">
-    <Card.Title class="min-w-0 text-lg" title={card.displayLabel}>{card.displayLabel}</Card.Title>
+    <Card.Title class="min-w-0 text-lg">{card.displayLabel}</Card.Title>
     <div class="skill-card__controls flex min-w-0 shrink-0 flex-col gap-2">
       {#each card.progressions as progression (progression.id)}
         {@const level = levels[progression.id]}
