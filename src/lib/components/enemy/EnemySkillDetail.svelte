@@ -52,6 +52,7 @@
     <h3><GameText text={skill.name} /></h3>
     {#if skill.damageType || skill.tag}
       <div class="enemy-skill-detail__metadata">
+        <SkillEffectTag effect={skill.tag} />
         {#if skill.damageType}
           <SemanticIconLabel
             kind="element"
@@ -60,7 +61,6 @@
             color={getElementColor(skill.damageType.element)}
           />
         {/if}
-        <SkillEffectTag effect={skill.tag} />
       </div>
     {/if}
   </header>
@@ -141,13 +141,12 @@
   .enemy-skill-detail__heading {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--space-3) var(--space-4);
+    align-items: baseline;
+    gap: var(--space-2) var(--space-3);
   }
   .enemy-skill-detail h3 {
     min-width: 0;
-    flex: 1 1 12rem;
+    max-width: 100%;
     margin: 0;
     font-size: var(--font-major-title);
     font-weight: 700;
@@ -155,18 +154,12 @@
     overflow-wrap: anywhere;
   }
   .enemy-skill-detail__metadata {
-    display: flex;
-    min-width: 0;
-    max-width: 100%;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--space-2) var(--space-3);
-    margin-left: auto;
-    overflow-wrap: anywhere;
+    display: contents;
   }
   .enemy-skill-detail__metadata :global(.semantic-icon-label) {
     min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
   .enemy-skill-detail__description {
     margin: 1rem 0 0;

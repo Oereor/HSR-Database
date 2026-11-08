@@ -570,39 +570,29 @@ main {
   scroll-snap-type: inline proximity;
   scrollbar-width: thin;
 }
-.enemy-monster-option {
-  display: grid;
-  min-width: 10rem;
-  min-height: 4rem;
-  flex: 0 0 auto;
-  align-content: center;
-  gap: var(--space-2);
-  scroll-snap-align: start;
+.selection-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
   background: var(--card);
-  color: var(--text-primary);
-  padding: var(--space-2) var(--space-3);
-  line-height: 1.2;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    border-color var(--motion),
-    background var(--motion);
+  color: var(--card-foreground);
 }
-.enemy-monster-option:hover {
+.selection-card:not(:disabled):hover {
+  background: var(--accent);
   border-color: var(--border-strong);
-  background: rgb(255 255 255 / 4%);
 }
-.enemy-monster-option--selected,
-.enemy-monster-option--selected:hover {
-  border-color: var(--gold);
-  background: rgb(215 181 109 / 4%);
+.selection-card:is([aria-checked='true'], [aria-selected='true'], [data-state='on']) {
+  border-color: var(--primary);
 }
-.enemy-monster-option:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
+.selection-card:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: -4px;
+  box-shadow: none;
 }
+.selection-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .enemy-monster-option__identity,
 .enemy-monster-option__weaknesses {
   display: flex;
@@ -694,31 +684,6 @@ main {
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(260px, 420px));
   gap: 0.7rem;
-}
-.enemy-phase-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: var(--space-4);
-}
-.enemy-phase-tab {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-control);
-  background: rgb(255 255 255 / 3%);
-  color: var(--text-secondary);
-  padding: 0.55rem 0.9rem;
-  font: inherit;
-  cursor: pointer;
-}
-.enemy-phase-tab:hover,
-.enemy-phase-tab--active {
-  border-color: var(--gold);
-  background: rgb(215 181 109 / 12%);
-  color: var(--text-primary);
-}
-.enemy-phase-tab:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
 }
 .enemy-extra-effects {
   margin-top: 1rem;

@@ -143,6 +143,9 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   await page.keyboard.press('ArrowRight');
   await expect(options.nth(1)).toBeFocused();
   await expect(options.nth(1)).toHaveAttribute('aria-checked', 'true');
+  await page.keyboard.press('End');
+  await expect(options.last()).toBeFocused();
+  await expect(options.last()).toHaveAttribute('aria-checked', 'true');
 });
 
 test('单 Monster 页面保留紧凑单项 selector、默认标记与共享实际属性', async ({ page }) => {
@@ -221,6 +224,9 @@ test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', asy
   const phase1 = tabs.getByRole('tab').nth(0);
   const phase2 = tabs.getByRole('tab').nth(1);
   await expect(phase1).toHaveAttribute('aria-selected', 'true');
+  const phase1Panel = page.getByRole('tabpanel');
+  await expect(phase1).toHaveAttribute('aria-controls', 'enemy-phase-panel-8034010-1');
+  await expect(phase1Panel).toHaveAttribute('aria-labelledby', 'enemy-phase-tab-8034010-1');
   const selector = page.locator('[data-enemy-skill-selector]');
   await expect(selector.locator('button').first()).toHaveAttribute(
     'data-enemy-skill-option',
@@ -252,6 +258,7 @@ test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', asy
   await phase1.focus();
   await page.keyboard.press('ArrowRight');
   await expect(phase2).toBeFocused();
+  await expect(phase2).toHaveAttribute('aria-selected', 'true');
   await expect(selector.locator('[data-enemy-skill-option="803401001"]')).toHaveAttribute(
     'aria-checked',
     'true'
@@ -385,7 +392,7 @@ test('Skill Browser 紧凑数值列、图标槽和长文本在双语不同宽度
         await metadata.evaluate((element) => {
           const icon = element.querySelector('[data-icon-kind="element"]')!;
           const tag = element.querySelector('[data-skill-effect]')!;
-          return !!(icon.compareDocumentPosition(tag) & Node.DOCUMENT_POSITION_FOLLOWING);
+          return !!(tag.compareDocumentPosition(icon) & Node.DOCUMENT_POSITION_FOLLOWING);
         })
       ).toBe(true);
       const damage = detail.locator('[data-enemy-skill-damage]');

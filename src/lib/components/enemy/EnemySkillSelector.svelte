@@ -26,7 +26,7 @@
     <ToggleGroup.Item
       value={skill.id}
       data-enemy-skill-option={skill.id}
-      class="h-auto min-w-0 justify-start gap-3 px-3 py-3 text-left whitespace-normal"
+      class="selection-card h-auto min-w-0 justify-start gap-3 px-3 py-3 text-left whitespace-normal"
       onclick={(event) => {
         if (skill.id === selectedSkillId) event.preventDefault();
       }}
@@ -43,7 +43,7 @@
             showLabel={false}
           />{/if}
       </span>
-      <strong><GameText text={skill.name} /></strong>
+      <strong class="min-w-0 wrap-anywhere"><GameText text={skill.name} /></strong>
     </ToggleGroup.Item>
   {/each}
 </ToggleGroup.Root>
