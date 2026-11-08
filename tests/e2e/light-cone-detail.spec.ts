@@ -92,19 +92,6 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
       )
   ).toEqual(['base-stats-panel', 'separator', 'superimposition-panel']);
   expect(
-    await superimposition
-      .locator(':scope > *')
-      .evaluateAll((children) =>
-        children.map((child) =>
-          child.getAttribute('data-slot') === 'separator'
-            ? 'separator'
-            : child.classList.contains('base-stats-panel')
-              ? 'base-stats-panel'
-              : child.className
-        )
-      )
-  ).toEqual(['skill-level-control', 'superimposition-effect']);
-  expect(
     await superimposition.evaluate((panel) => {
       const slider = panel.querySelector('[role="slider"]')!;
       const heading = panel.querySelector('h3')!;

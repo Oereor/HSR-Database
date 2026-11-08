@@ -264,22 +264,14 @@ describe('training presentation contracts', () => {
         state: 'ready',
         result,
         catalog: json<MaterialCatalog>('static/generated/en/materials.json'),
-        levelControl: {
-          id: 'training-light-cone-level-20000',
-          label: 'Synthetic Level',
-          value: 80,
-          min: 1,
-          max: 80,
-          promotion: 6
-        },
-        onLevelChange: () => {},
         onRetry: () => {}
       }
     }).body;
     expect([...html.matchAll(/data-training-expense="([^"]+)"/g)].map((match) => match[1])).toEqual(
       ['upgrade', 'promotion', 'total']
     );
-    expect(html.match(/role="slider"/g)).toHaveLength(1);
+    expect(html).not.toContain('role="slider"');
+    expect(html).not.toContain('data-training-target');
     expect(html).not.toContain('data-training-skill');
     expect(html).not.toContain('data-training-tree');
   });

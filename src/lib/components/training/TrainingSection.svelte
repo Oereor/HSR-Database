@@ -67,17 +67,19 @@
       data-training-promotion={result.target.promotion}
       data-training-level={result.target.level}
     >
-      <TrainingTargetSummary
-        {levelControl}
-        skills={skillTargets}
-        showTree={!!skillTree && !!character}
-        {onLevelChange}
-        {onSkillTrainingLevelChange}
-      >
-        {#if character && skillTree}
-          <TrainingSkillTree {...skillTree} activeTraceIds={character.target.activeTraceIds} />
-        {/if}
-      </TrainingTargetSummary>
+      {#if character}
+        <TrainingTargetSummary
+          {levelControl}
+          skills={skillTargets}
+          showTree={!!skillTree}
+          {onLevelChange}
+          {onSkillTrainingLevelChange}
+        >
+          {#if skillTree}
+            <TrainingSkillTree {...skillTree} activeTraceIds={character.target.activeTraceIds} />
+          {/if}
+        </TrainingTargetSummary>
+      {/if}
       <TrainingExpenseGroup
         kind="upgrade"
         title={m.training_upgrade_cost()}

@@ -52,7 +52,6 @@
   import TrainingSection from '$lib/components/training/TrainingSection.svelte';
   import ItemDetailModal from '$lib/components/training/ItemDetailModal.svelte';
   import { createTrainingLoader } from '$lib/data/training';
-  import { getPromotionAtLevel } from '$lib/domain/stats';
   import { getLocale } from '$lib/paraglide/runtime.js';
   import {
     activateTrace,
@@ -110,7 +109,7 @@
   let materialDetailRequestVersion = 0;
   let materialDetailTrigger: HTMLButtonElement | undefined;
   let materialDetailContext = '';
-  let trainingLevel = detail.baseStats?.defaultLevel ?? 1;
+  let lightConeLevel = detail.baseStats?.defaultLevel ?? 1;
   let previewLevels: Record<string, number> = {};
   let characterPreviewLevel = detail.baseStats?.defaultLevel ?? 1;
   let previewScope = '';
@@ -236,9 +235,6 @@
   $: synchronizeMaterialContext(
     `${$page.url.pathname}:${category}:${detail.id}:${profileMode}:${getLocale()}:${staticTrainingEnabled}`
   );
-  $: staticPromotion = detail.baseStats?.stages.length
-    ? getPromotionAtLevel(detail.baseStats, trainingLevel)
-    : 0;
   $: skillPreviewControls = activeProfile
     ? createCharacterPreviewControls(activeProfile.skillCards, previewLevels)
     : undefined;
@@ -248,7 +244,7 @@
     lightConeTrainingData,
     trainingShared,
     materialCatalog,
-    trainingLevel,
+    lightConeLevel,
     staticTrainingEnabled
   );
   $: trainingSectionState =
@@ -268,23 +264,17 @@
         characterTrainingResult.target.promotion
       )
     : [];
-  $: trainingLevelControl = detail.baseStats
-    ? {
-        id: `training-${category === 'characters' ? 'character' : 'light-cone'}-level-${detail.id}`,
-        label:
-          category === 'characters' ? m.base_stats_character_level() : m.detail_light_cone_level(),
-        value:
-          category === 'characters'
-            ? (characterTarget?.level ?? detail.baseStats.defaultLevel)
-            : trainingLevel,
-        min: detail.baseStats.minLevel as number,
-        max: detail.baseStats.maxLevel as number,
-        promotion:
-          category === 'characters'
-            ? (characterTrainingResult?.target.promotion ?? 0)
-            : staticPromotion
-      }
-    : undefined;
+  $: trainingLevelControl =
+    category === 'characters' && detail.baseStats
+      ? {
+          id: `training-character-level-${detail.id}`,
+          label: m.base_stats_character_level(),
+          value: characterTarget?.level ?? detail.baseStats.defaultLevel,
+          min: detail.baseStats.minLevel as number,
+          max: detail.baseStats.maxLevel as number,
+          promotion: characterTrainingResult?.target.promotion ?? 0
+        }
+      : undefined;
   const lightConeSectionNavItems = [
     { id: 'stats', label: m.detail_stats() },
     { id: 'training', label: m.training_title() },
@@ -378,8 +368,8 @@
       lightConeTrainingData = undefined;
       if (category === 'characters') toast.dismiss(traceNoticeId);
     }
-    if (entityChanged || category === 'light-cones')
-      trainingLevel = lightConeInitialLevel ?? detail.baseStats?.defaultLevel ?? 1;
+    if (category === 'light-cones')
+      lightConeLevel = lightConeInitialLevel ?? detail.baseStats?.defaultLevel ?? 1;
     trainingLoadState = 'loading';
     trainingLoadError = undefined;
     if (staticTrainingEnabled) void loadTraining(key, trainingRequestVersion);
@@ -433,13 +423,10 @@
     void loadTraining(handledTrainingKey, trainingRequestVersion);
   }
 
-  function handleTrainingLevel(level: number): void {
-    if (characterTrainingData && characterTarget) {
-      characterTarget = reconcileCharacterLevel(characterTrainingData, characterTarget, level);
-      toast.dismiss(traceNoticeId);
-    } else if (category === 'light-cones') {
-      trainingLevel = level;
-    }
+  function handleCharacterTrainingLevel(level: number): void {
+    if (!characterTrainingData || !characterTarget) return;
+    characterTarget = reconcileCharacterLevel(characterTrainingData, characterTarget, level);
+    toast.dismiss(traceNoticeId);
   }
 
   function handleSkillTrainingLevel(key: string, level: number): void {
@@ -752,8 +739,8 @@
             controlId={`light-cone-level-${detail.id}`}
             controlLabel={m.detail_light_cone_level()}
             showPromotion
-            level={trainingLevel}
-            onLevelChange={handleTrainingLevel}
+            level={lightConeLevel}
+            onLevelChange={(level) => (lightConeLevel = level)}
           />
           <Separator class="my-4" />
           {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
@@ -836,7 +823,7 @@
             onToggle: handleTraceToggle
           }
         : undefined}
-      onLevelChange={handleTrainingLevel}
+      onLevelChange={handleCharacterTrainingLevel}
       onSkillTrainingLevelChange={handleSkillTrainingLevel}
       onRetry={retryTraining}
       onSelectMaterial={openMaterialDetails}
@@ -859,8 +846,6 @@
     errorCode={trainingCalculation.error ?? trainingLoadError}
     result={trainingCalculation.result}
     catalog={materialCatalog}
-    levelControl={trainingLevelControl}
-    onLevelChange={handleTrainingLevel}
     onRetry={retryTraining}
     onSelectMaterial={openMaterialDetails}
   />
