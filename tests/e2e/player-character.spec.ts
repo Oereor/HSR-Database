@@ -448,6 +448,70 @@ test('Player Hero stats keep pane padding stable while loading and falling back'
   }
 });
 
+test('player traces use the selected build while the training shard loads', async ({ page }) => {
+  const profile = playerProfile('100000001');
+  const original = profile.characters[0];
+  const baseBuild = 'area:showcase:position:1:order:0';
+  const enhancedBuild = 'area:showcase:position:2:order:1';
+  profile.characters = [
+    { ...original, characterId: '1004', buildId: baseBuild, skillTree: [] },
+    {
+      ...original,
+      characterId: '1004',
+      buildId: enhancedBuild,
+      display: { ...original.display, position: 2, sourceOrder: 1 },
+      progression: { ...original.progression, enhanced: true },
+      skillTree: [{ id: '11004101', level: 1 }]
+    }
+  ];
+  await page.route('**/api/player/**', (route) => route.fulfill({ json: profile }));
+  const shard = '**/generated/training/characters/1004.json';
+  const release = Promise.withResolvers<void>();
+  let requests = 0;
+  await page.route(shard, async (route) => {
+    requests += 1;
+    await release.promise;
+    await route.continue();
+  });
+
+  const buildUrl = (id: string) =>
+    `/characters/1004/?uid=100000001&build=${encodeURIComponent(id)}`;
+  const navigate = (id: string) =>
+    page.evaluate((href) => {
+      const link = document.createElement('a');
+      link.href = href;
+      document.body.append(link);
+      link.click();
+      link.remove();
+    }, buildUrl(id));
+
+  try {
+    await page.goto(buildUrl(baseBuild));
+    await expect.poll(() => requests).toBe(1);
+    await navigate(enhancedBuild);
+    await expect(page).toHaveURL(new RegExp(encodeURIComponent(enhancedBuild)));
+  } finally {
+    release.resolve();
+  }
+
+  const tree = page.locator('#traces [data-skill-tree-mode="readonly"]');
+  await expect(tree).toHaveAttribute('data-training-profile', /^[1-9]\d*$/);
+  await expect(tree.locator('[data-point-id="11004101"]')).toHaveAttribute(
+    'data-trace-state',
+    'active'
+  );
+  await navigate(baseBuild);
+  await expect(tree).toHaveAttribute('data-training-profile', '0');
+  await expect(tree.locator('[data-trace-state="active"]')).toHaveCount(0);
+
+  await page.unroute(shard);
+  await page.route(shard, (route) => route.fulfill({ status: 404 }));
+  await page.goto(buildUrl(baseBuild));
+  await expect(page.locator('#traces [data-training-tree-error]')).toBeVisible();
+  await expect(page.locator('#traces [data-trace-abilities]')).toBeVisible();
+  await expect(tree).toHaveCount(0);
+});
+
 test('reuses the Player cache and renders real progression without changing static mode', async ({
   page,
   isMobile
@@ -495,18 +559,27 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(basicCard.getByRole('slider')).toHaveCount(0);
   await expect(basicCard.locator('output')).toHaveText('Lv.6');
 
-  await expect(page.locator('[data-trace-id="1304101"]')).toHaveAttribute(
-    'data-player-state',
+  const tree = page.locator('#traces [data-skill-tree-mode="readonly"]');
+  await expect(tree.getByRole('button')).toHaveCount(0);
+  await expect(tree.locator('[data-point-id="1304101"]')).toHaveAttribute(
+    'data-trace-state',
     'active'
   );
-  await expect(page.locator('[data-trace-id="1304102"]')).toHaveAttribute(
-    'data-player-state',
+  await expect(tree.locator('[data-point-id="1304102"]')).toHaveAttribute(
+    'data-trace-state',
     'inactive'
   );
-  await expect(page.locator('[data-trace-id="1304103"]')).toHaveAttribute(
-    'data-player-state',
+  await expect(tree.locator('[data-point-id="1304103"]')).toHaveAttribute(
+    'data-trace-state',
     'inactive'
   );
+  await expect(tree.locator('[data-point-id="1304001"]')).not.toHaveAttribute('data-trace-state');
+  await tree.locator('[data-point-id="1304102"]').click();
+  await expect(tree.locator('[data-point-id="1304102"]')).toHaveAttribute(
+    'data-trace-state',
+    'inactive'
+  );
+  await expect(page.locator('#traces [data-trace-id][data-player-state]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state="active"]')).toHaveCount(3);
   await expect(page.locator('#eidolons [data-player-state="inactive"]')).toHaveCount(3);
   await expect(page.locator('[data-player-stat="hp"]')).toContainText('9,677');

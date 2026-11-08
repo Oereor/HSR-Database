@@ -2,7 +2,6 @@ import { render } from 'svelte/server';
 import { afterEach, describe, expect, it } from 'vitest';
 import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
 import SkillProgressionPanel from '../../src/lib/components/character/SkillProgressionPanel.svelte';
-import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
 import PlayerStatsPanel from '../../src/lib/components/player/PlayerStatsPanel.svelte';
 import PlayerEquipmentSection from '../../src/lib/components/player/PlayerEquipmentSection.svelte';
 import BaseStatsPanel from '../../src/lib/components/shared/BaseStatsPanel.svelte';
@@ -13,8 +12,7 @@ import type {
   BaseStatProgression,
   Eidolon,
   RelicProperty,
-  SkillProgression,
-  Trace
+  SkillProgression
 } from '../../src/lib/domain/types';
 import type { PlayerCharacter, PlayerStat } from '../../src/lib/player/contract';
 import type { PlayerEquipmentCatalog } from '../../src/lib/player/equipment';
@@ -301,57 +299,6 @@ describe('Player Character presentation', () => {
     expect(englishBody).toMatch(/<span[^>]*class="[^"]*skill-effect-tag[^"]*"[^>]*>/);
     expect(englishBody).toContain('data-player-stat="elation_dmg"');
     expect(englishBody).not.toContain('elation_dmg</span>');
-  });
-
-  it('keeps Trace state metadata while showing text only for unresolved cards', () => {
-    const traces: Trace[] = [
-      {
-        id: '1304101',
-        name: '能力一',
-        description: '说明',
-        type: 'ability',
-        sourcePointType: 3,
-        prerequisiteIds: [],
-        anchorOrder: 1
-      },
-      {
-        id: '1304201',
-        name: '属性一',
-        description: '说明',
-        type: 'stat',
-        sourcePointType: 1,
-        prerequisiteIds: ['1304101'],
-        anchorOrder: 2
-      },
-      {
-        id: '1304202',
-        name: '属性二',
-        description: '说明',
-        type: 'stat',
-        sourcePointType: 1,
-        prerequisiteIds: ['1304101'],
-        anchorOrder: 3
-      }
-    ];
-    const playerBody = render(TraceCardPanel, {
-      props: {
-        traces,
-        playerSkillTree: [
-          { id: '1304101', level: 1 },
-          { id: '1304201', level: 0 },
-          { id: '1304202', level: -1 }
-        ]
-      }
-    }).body;
-    const staticBody = render(TraceCardPanel, { props: { traces } }).body;
-
-    expect(playerBody).toContain('data-player-state="active"');
-    expect(playerBody).toContain('data-player-state="inactive"');
-    expect(playerBody).toContain('data-player-state="unresolved"');
-    expect(playerBody).not.toContain('data-player-state-label="active"');
-    expect(playerBody).toContain('data-player-state-label="inactive"');
-    expect(playerBody).toContain('data-player-state-label="unresolved"');
-    expect(staticBody).not.toContain('data-player-state=');
   });
 
   it.each(['active', 'inactive'] as const)(

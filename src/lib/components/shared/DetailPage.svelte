@@ -13,6 +13,7 @@
   import SpecialEffectDialog from '$lib/components/character/SpecialEffectDialog.svelte';
   import SuperimpositionPanel from '$lib/components/light-cone/SuperimpositionPanel.svelte';
   import TraceCardPanel from '$lib/components/character/TraceCardPanel.svelte';
+  import PlayerTracePanel from '$lib/components/character/PlayerTracePanel.svelte';
   import DetailArtwork from '$lib/components/shared/DetailArtwork.svelte';
   import RarityStars from '$lib/components/shared/RarityStars.svelte';
   import SemanticIconLabel from '$lib/components/shared/SemanticIconLabel.svelte';
@@ -776,10 +777,19 @@
     </section>
     <section id="traces" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_traces()}</SectionHeading>
-      {#if activeProfile.traces.length}<TraceCardPanel
+      {#if activePlayerCharacter}
+        <PlayerTracePanel
+          character={activePlayerCharacter}
+          path={detail.path}
+          presentation={detail.profiles[
+            activePlayerCharacter.progression.enhanced ? 'enhanced' : 'base'
+          ]}
+          accent={getElementColor(detail.element)}
+          loadCharacter={trainingLoader.loadCharacter}
+        />
+      {:else if activeProfile.traces.length}<TraceCardPanel
           traces={activeProfile.traces}
           characterAccent={getElementColor(detail.element)}
-          playerSkillTree={activePlayerCharacter?.skillTree}
         />{:else}<p class="data-placeholder">
           {m.detail_traces_unavailable()}
         </p>{/if}

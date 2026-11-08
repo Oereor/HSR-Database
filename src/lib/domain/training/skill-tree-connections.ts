@@ -3,7 +3,6 @@ import { layoutSlugs, type LayoutSlot, type LayoutSlug } from './skill-tree-layo
 type Point = readonly [number, number];
 
 export const skillTreeLineStyle = { stroke: '#e1e5ec', opacity: 0.56, width: 0.006 };
-export const skillTreeRingStyle = { stroke: '#e1e5ec', opacity: 0.14, width: 0.003 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);

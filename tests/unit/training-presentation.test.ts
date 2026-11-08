@@ -242,9 +242,8 @@ describe('training presentation contracts', () => {
         path: character.path!,
         profile,
         presentation: character.profiles.base,
-        activeTraceIds: ['1001201'],
         accent: '#fcf',
-        onToggle: () => {}
+        state: { mode: 'interactive', activeTraceIds: ['1001201'], onToggle: () => {} }
       }
     }).body;
     expect(html.match(/<button\b/g)).toHaveLength(13);

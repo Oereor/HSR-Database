@@ -3,10 +3,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import sharp from 'sharp';
-import {
-  skillTreeLineStyle,
-  skillTreeRingStyle
-} from '../../../src/lib/domain/training/skill-tree-connections.js';
+import { skillTreeLineStyle } from '../../../src/lib/domain/training/skill-tree-connections.js';
 import {
   layoutHalfSize,
   skillTreeViewBox,
@@ -31,6 +28,8 @@ const halfSize = layoutHalfSize(layouts);
 const viewBox = skillTreeViewBox(halfSize);
 const repo = resolve(import.meta.dirname, '../../..');
 const audit = resolve(repo, 'data/audit/skill-tree-layouts');
+
+const skillTreeRingStyle = { stroke: '#e1e5ec', opacity: 0.14, width: 0.003 };
 
 function connectionLayer(
   connections: string[],

@@ -1,7 +1,6 @@
 <script lang="ts">
   import * as Card from '$lib/components/ui/card';
   import { Separator } from '$lib/components/ui/separator';
-  import { Badge } from '$lib/components/ui/badge';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import * as Collapsible from '$lib/components/ui/collapsible';
@@ -11,19 +10,12 @@
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { summarizeTraceStats, formatTraceBonus } from '$lib/domain/trace-summary';
   import type { Trace } from '$lib/domain/types';
-  import type { PlayerCharacter } from '$lib/player/contract';
-  import { createPlayerSkillTreeIndex, resolvePlayerTraceState } from '$lib/player/character';
   import { getLocale } from '$lib/paraglide/runtime.js';
   import { m } from '$lib/paraglide/messages.js';
 
   export let traces: Trace[];
   export let characterAccent: string | undefined = undefined;
-  export let playerSkillTree: PlayerCharacter['skillTree'] | undefined = undefined;
-  $: index = playerSkillTree ? createPlayerSkillTreeIndex(playerSkillTree) : undefined;
-  $: summary = summarizeTraceStats(
-    traces,
-    index ? (trace) => resolvePlayerTraceState(trace.id, index!) : undefined
-  );
+  $: summary = summarizeTraceStats(traces);
 </script>
 
 <div class="trace-card-panel @container/traces" style:--character-accent={characterAccent}>
@@ -37,14 +29,9 @@
           data-trace-group={trace.id}
           data-trace-type="ability"
           data-trace-special={trace.sourcePointType === 5 ? '' : undefined}
-          data-player-state={index ? resolvePlayerTraceState(trace.id, index) : undefined}
         >
           <Card.Content>
-            <TraceEntryContent
-              {trace}
-              {characterAccent}
-              playerState={index ? resolvePlayerTraceState(trace.id, index) : undefined}
-            />
+            <TraceEntryContent {trace} {characterAccent} />
           </Card.Content>
         </Card.Root>
       {/each}
@@ -86,9 +73,6 @@
           </Card.Header>
           <Separator />
           <Card.Content>
-            {#if stat.unresolved}<Badge variant="outline" data-player-state-label="unresolved"
-                >{m.player_character_status_unknown()}</Badge
-              >{/if}
             <Collapsible.Root>
               <Collapsible.Trigger
                 class="text-muted-foreground group focus-visible:ring-ring flex w-full cursor-pointer items-center gap-2 rounded-sm text-left text-sm focus-visible:ring-2 focus-visible:outline-none"
@@ -105,7 +89,6 @@
                       data-trace-type="stat"
                       data-trace-owner={node.owner?.id}
                       data-trace-standalone={node.owner ? undefined : ''}
-                      data-player-state={node.state}
                     >
                       <span
                         class="shrink-0 font-semibold tabular-nums"
@@ -142,15 +125,8 @@
           class="trace-card trace-card--stat"
           data-trace-id={trace.id}
           data-trace-type="stat"
-          data-player-state={index ? resolvePlayerTraceState(trace.id, index) : undefined}
         >
-          <Card.Content
-            ><TraceEntryContent
-              {trace}
-              {characterAccent}
-              playerState={index ? resolvePlayerTraceState(trace.id, index) : undefined}
-            /></Card.Content
-          >
+          <Card.Content><TraceEntryContent {trace} {characterAccent} /></Card.Content>
         </Card.Root>
       {/each}
     </section>

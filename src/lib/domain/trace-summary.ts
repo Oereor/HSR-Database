@@ -1,16 +1,14 @@
 import type { Trace } from './types';
 import { groupTracesForDisplay } from './trace-groups';
 
-type State = 'active' | 'inactive' | 'unresolved';
 export interface TraceStatSummary {
   propertyType: string;
   percent: boolean;
   value: number;
-  unresolved: boolean;
-  nodes: Array<{ trace: Trace; owner?: Trace; state?: State }>;
+  nodes: Array<{ trace: Trace; owner?: Trace }>;
 }
 
-export function summarizeTraceStats(traces: Trace[], stateOf?: (trace: Trace) => State) {
+export function summarizeTraceStats(traces: Trace[]) {
   const groups = groupTracesForDisplay(traces);
   const owners = new Map(
     groups.abilityGroups.flatMap((group) =>
@@ -38,14 +36,10 @@ export function summarizeTraceStats(traces: Trace[], stateOf?: (trace: Trace) =>
       propertyType: bonus.propertyType,
       percent: bonus.percent,
       value: 0,
-      unresolved: false,
       nodes: []
     };
-    const state = stateOf?.(trace);
-    summary.nodes.push({ trace, owner: owners.get(trace.id), state });
-    if (!stateOf || state === 'active')
-      summary.value = Number((summary.value + bonus.value).toFixed(10));
-    if (state === 'unresolved') summary.unresolved = true;
+    summary.nodes.push({ trace, owner: owners.get(trace.id) });
+    summary.value = Number((summary.value + bonus.value).toFixed(10));
     summaries.set(key, summary);
   }
   return {

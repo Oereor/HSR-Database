@@ -76,7 +76,17 @@
           {onSkillTrainingLevelChange}
         >
           {#if skillTree}
-            <TrainingSkillTree {...skillTree} activeTraceIds={character.target.activeTraceIds} />
+            <TrainingSkillTree
+              path={skillTree.path}
+              profile={skillTree.profile}
+              presentation={skillTree.presentation}
+              accent={skillTree.accent}
+              state={{
+                mode: 'interactive',
+                activeTraceIds: character.target.activeTraceIds,
+                onToggle: skillTree.onToggle
+              }}
+            />
           {/if}
         </TrainingTargetSummary>
       {/if}

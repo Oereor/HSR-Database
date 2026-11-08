@@ -449,48 +449,9 @@ main {
   justify-content: space-between;
   gap: 0.75rem;
 }
-.trace-card__tags {
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-1);
-}
 .player-progression-state[data-player-state-label='inactive'] {
   border-color: var(--border);
   color: var(--text-secondary);
-}
-.player-progression-state[data-player-state-label='unresolved'] {
-  border-style: dashed;
-  color: var(--text-muted);
-}
-.trace-card:is([data-player-state='inactive'], [data-training-state='inactive']) {
-  border-color: var(--border);
-  background: var(--card);
-  box-shadow: none;
-  filter: grayscale(1);
-}
-.trace-card:is([data-player-state='inactive'], [data-training-state='inactive']):hover {
-  border-color: var(--border);
-  box-shadow: none;
-}
-.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
-  .trace-card__heading,
-.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
-  .trace-card__condition,
-.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
-  .trace-card__description,
-.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
-  [data-skill-extra-effects] {
-  opacity: 0.72;
-}
-.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
-  .trace-card__identity
-  > :is(img, .trace-card__icon-fallback) {
-  opacity: 0.68;
-}
-.trace-card[data-player-state='unresolved'] {
-  border-style: dashed;
 }
 .trace-card__heading h3 {
   min-width: 0;

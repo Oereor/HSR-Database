@@ -78,20 +78,6 @@ describe('行迹卡片展示分组', () => {
     expect(summary.independent.map((node) => node.id)).toEqual(['conditional', 'unknown']);
     expect(formatTraceBonus(summary.summaries[0].value, true, 'en')).toBe('30.0%');
   });
-  it('counts only unlocked player nodes, retains zero and signals unresolved nodes', () => {
-    const nodes = ['a', 'b', 'c'].map((id) => ({
-      ...trace(id, 1),
-      propertyType: 'SpeedDelta',
-      statBonus: { propertyType: 'SpeedDelta', value: 2, percent: false }
-    }));
-    expect(summarizeTraceStats(nodes, () => 'inactive').summaries[0].value).toBe(0);
-    const group = summarizeTraceStats(nodes, (node) =>
-      node.id === 'a' ? 'active' : node.id === 'b' ? 'inactive' : 'unresolved'
-    ).summaries[0];
-    expect(group.value).toBe(2);
-    expect(group.unresolved).toBe(true);
-    expect(group.nodes.map((node) => node.state)).toEqual(['active', 'inactive', 'unresolved']);
-  });
   it('按属性节点自己的前置链进行直接和间接归组', () => {
     const groups = groupTracesForDisplay([
       trace('ability-a', 6, [], 'ability'),

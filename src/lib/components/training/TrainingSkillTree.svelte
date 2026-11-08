@@ -7,24 +7,28 @@
     isToggleableTrainingNode,
     resolveTrainingSkillTree
   } from '$lib/domain/training/skill-tree';
-  import {
-    skillTreeLineStyle,
-    skillTreeRingStyle
-  } from '$lib/domain/training/skill-tree-connections';
+  import { skillTreeLineStyle } from '$lib/domain/training/skill-tree-connections';
   import { skillTreeViewBox } from '$lib/domain/training/skill-tree-layout';
   import type { CharacterTrainingProfile } from '$lib/domain/training/types';
   import type { CharacterProfile, SkillCard } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
+  import { resolvePlayerTraceState } from '$lib/player/character';
 
   export let path: string;
   export let profile: CharacterTrainingProfile;
   export let presentation: CharacterProfile;
   export let accent: string;
-  export let activeTraceIds: readonly string[];
-  export let onToggle: (pointId: string) => void;
+  export let state:
+    | {
+        mode: 'interactive';
+        activeTraceIds: readonly string[];
+        onToggle: (pointId: string) => void;
+      }
+    | { mode: 'readonly'; playerIndex: ReadonlyMap<string, number> };
 
   $: layout = resolveLayout(path, profile);
-  $: active = new Set(activeTraceIds);
+  $: active = new Set(state.mode === 'interactive' ? state.activeTraceIds : []);
+  $: treeLabel = state.mode === 'readonly' ? m.player_trace_tree() : m.training_skill_tree();
   $: traceLabels = new Map(
     presentation.traces.map((trace) => [trace.id, gameTextToPlain(trace.name || trace.description)])
   );
@@ -59,7 +63,8 @@
   <div
     class="skill-tree"
     role="group"
-    aria-label={m.training_skill_tree()}
+    aria-label={treeLabel}
+    data-skill-tree-mode={state.mode}
     data-training-tree={layout.slug}
     data-training-profile={profile.enhancedId}
     style:--tree-accent={accent}
@@ -73,14 +78,6 @@
       focusable="false"
       fill="none"
     >
-      <circle
-        cx="0"
-        cy="0"
-        r={layout.referenceRadius}
-        stroke={skillTreeRingStyle.stroke}
-        stroke-opacity={skillTreeRingStyle.opacity}
-        stroke-width={skillTreeRingStyle.width * layout.referenceRadius}
-      />
       <g
         stroke={skillTreeLineStyle.stroke}
         opacity={skillTreeLineStyle.opacity}
@@ -97,10 +94,10 @@
       {@const label =
         traceLabels.get(node.pointId) ||
         skillLabels.get(node.pointId) ||
-        `${m.training_skill_tree()} ${node.pointId}`}
+        `${treeLabel} ${node.pointId}`}
       {@const source = getCharacterDetailIconUrl(node.iconKey)}
       {@const position = `--x:${50 + (50 * x) / layout.halfSize}%;--y:${50 + (50 * y) / layout.halfSize}%;--size:${(100 * radius) / layout.halfSize}%`}
-      {#if isToggleableTrainingNode(node)}
+      {#if state.mode === 'interactive' && isToggleableTrainingNode(node)}
         {@const step = node.steps[0]}
         {@const requirements = traceRequirementText(
           step.requiredPromotion,
@@ -121,16 +118,25 @@
           data-point-id={node.pointId}
           data-anchor={anchorType}
           style={position}
-          on:click={() => onToggle(node.pointId)}>{@render icon(source)}</button
+          on:click={() => state.mode === 'interactive' && state.onToggle(node.pointId)}
+          >{@render icon(source)}</button
         >
         {#if description}<span id={descriptionId} class="sr-only">{description}</span>{/if}
       {:else}
+        {@const traceState =
+          state.mode === 'readonly' && kind !== 'skill'
+            ? resolvePlayerTraceState(node.pointId, state.playerIndex)
+            : undefined}
+        {@const stateLabel =
+          traceState === 'active' ? m.player_character_active() : m.player_character_inactive()}
+        {@const nodeLabel = traceState ? `${label} · ${stateLabel}` : label}
         <span
           class="tree-node"
           class:tree-node--trace={kind !== 'skill'}
           role="img"
-          aria-label={label}
-          title={label}
+          aria-label={nodeLabel}
+          title={nodeLabel}
+          data-trace-state={traceState}
           data-point-id={node.pointId}
           data-anchor={anchorType}
           style={position}>{@render icon(source)}</span
@@ -140,7 +146,9 @@
   </div>
 {:else}
   <p class="data-placeholder" role="status" data-training-tree-error>
-    {m.training_skill_tree_unavailable()}
+    {state.mode === 'readonly'
+      ? m.player_trace_tree_unavailable()
+      : m.training_skill_tree_unavailable()}
   </p>
 {/if}
 
@@ -197,7 +205,7 @@
     cursor: pointer;
   }
 
-  .tree-node[aria-pressed='true'] {
+  .tree-node:is([aria-pressed='true'], [data-trace-state='active']) {
     background: #fff;
     color: #000;
     box-shadow: 0 0 0 2px var(--tree-accent);
@@ -221,7 +229,7 @@
     height: 84%;
   }
 
-  .tree-node[aria-pressed='true'] > :global(.tree-icon) {
+  .tree-node:is([aria-pressed='true'], [data-trace-state='active']) > :global(.tree-icon) {
     filter: brightness(0);
   }
 

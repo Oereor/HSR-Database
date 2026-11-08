@@ -141,6 +141,7 @@ test('trace buttons preserve branch dependencies and update the character receip
   const node = (id: string) => tree.locator(`[data-point-id="${id}"]`);
   const lines = tree.locator('svg.tree-connections');
   await expect(lines).toBeVisible();
+  await expect(lines.locator('circle')).toHaveCount(0);
   await expect(lines).toHaveCSS('pointer-events', 'none');
   const paths = () =>
     lines.locator('path').evaluateAll((elements) => elements.map((path) => path.getAttribute('d')));
@@ -210,10 +211,19 @@ test('trace buttons preserve branch dependencies and update the character receip
   }
 
   const bounds = async () => {
-    const canvas = (await tree.boundingBox())!;
-    const settings = (await page.locator('.training-target__settings.with-tree').boundingBox())!;
-    const sliders = (await page.locator('.training-target__skills').boundingBox())!;
-    const pathIcon = (await background.boundingBox())!;
+    const { canvas, settings, sliders, pathIcon } = await tree.evaluate((element) => {
+      const rect = (target: Element) => {
+        const { x, y, width, height } = target.getBoundingClientRect();
+        return { x, y, width, height };
+      };
+      const settings = element.closest('.training-target__settings.with-tree')!;
+      return {
+        canvas: rect(element),
+        settings: rect(settings),
+        sliders: rect(settings.querySelector('.training-target__skills')!),
+        pathIcon: rect(element.querySelector('img.tree-path')!)
+      };
+    });
     expect(Math.abs(canvas.width - canvas.height)).toBeLessThan(1);
     expect(Math.abs(pathIcon.x + pathIcon.width / 2 - canvas.x - canvas.width / 2)).toBeLessThan(1);
     expect(Math.abs(pathIcon.y + pathIcon.height / 2 - canvas.y - canvas.height / 2)).toBeLessThan(

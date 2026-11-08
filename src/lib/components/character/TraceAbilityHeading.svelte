@@ -5,11 +5,9 @@
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import type { Trace } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';
-  import type { PlayerProgressionState } from '$lib/player/character';
   import { traceRequirementText } from './trace-requirements';
 
   export let trace: Trace;
-  export let playerState: PlayerProgressionState | undefined = undefined;
 
   $: iconUrl = getCharacterDetailIconUrl(trace.iconKey);
   $: requirements = traceRequirementText(trace.promotionLimit, trace.characterLevelLimit);
@@ -27,12 +25,5 @@
         {#if requirements}<span>{m.trace_unlock_condition()}</span>{requirements}{/if}
       </div>
     </div>
-  </div>
-  <div class="trace-card__tags">
-    {#if playerState === 'unresolved'}<Badge
-        variant="outline"
-        class="player-progression-state text-primary"
-        data-player-state-label={playerState}>{m.player_character_status_unknown()}</Badge
-      >{/if}
   </div>
 </div>
