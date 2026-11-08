@@ -70,6 +70,7 @@ describe('BaseStatsPanel promotion tag', () => {
         ...(showPromotion === undefined ? {} : { showPromotion })
       }
     });
+    expect(body).not.toContain('synthetic promotion');
     expect(m.player_character_promotion).not.toHaveBeenCalled();
   });
 
