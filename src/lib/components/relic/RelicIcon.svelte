@@ -51,7 +51,6 @@
     width: 64px;
     height: 64px;
     border-radius: var(--radius-control);
-    background: var(--secondary);
   }
 
   .relic-icon-stage.relic-icon-stage--piece :global(img) {
@@ -67,7 +66,6 @@
   .relic-icon-stage--header {
     width: 100%;
     height: 100%;
-    background: var(--secondary);
   }
 
   .relic-icon-stage :global(img) {
