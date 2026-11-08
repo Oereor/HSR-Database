@@ -75,7 +75,7 @@ pnpm dev
 | ----------------------------------------- | ------------------------------------------------------------------------------- |
 | `pnpm dev` / `pnpm preview`               | 本地开发 / 查看已存在的静态 build                                               |
 | `pnpm data:ensure` / `pnpm data:sync`     | 按身份复用或生成 / 显式重新生成网站数据                                         |
-| `pnpm data:validate`                      | 完整输入与业务语义审计，等同 `data:validate:full`                               |
+| `pnpm data:validate:full`                 | 完整输入与业务语义审计                                                          |
 | `pnpm data:validate:build-inputs`         | 独立检查落盘输入、身份、bytes/schema/inventory 及消费者闭包，不重新计算业务语义 |
 | `pnpm assets:ensure` / `pnpm assets:sync` | 准备或复用 / 显式同步普通视觉资源                                               |
 | `pnpm assets:verify`                      | 验证普通视觉资源 manifest、文件集合与图片 metadata                              |
@@ -92,7 +92,7 @@ pnpm dev
 `static/generated-enemy-assets/` 是例外：它是受 Git 跟踪的维护快照，构建只离线消费。
 正式评分 Benchmark 与维护输入遵守[遗器评分专题](relic-score-feature/README.md)的独立契约，不能手工改写或混用历史产物。
 
-独立 `pnpm test` 与 `pnpm data:validate` 不自行准备全部 generated inputs。新克隆、pin 更新或发布边界使用自准备的 CI profile；已有工作区的定向测试按其实际依赖准备。
+独立运行 `pnpm test` 或 `pnpm data:validate:full` 前，先准备所需的生成数据。新克隆、更新 pin 或发布前使用自带准备步骤的 CI profile。已有工作区按定向测试的依赖准备。
 生成失败不能用旧 build 作为新改动的验收证据。Windows 下清理或重生成前停止同仓库 dev/preview，避免文件发布冲突。
 
 ## 验证策略

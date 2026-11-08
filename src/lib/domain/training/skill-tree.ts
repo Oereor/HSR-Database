@@ -9,7 +9,7 @@ import hunt from '../../../../data/skill-tree-layouts/hunt.json';
 import nihility from '../../../../data/skill-tree-layouts/nihility.json';
 import preservation from '../../../../data/skill-tree-layouts/preservation.json';
 import remembrance from '../../../../data/skill-tree-layouts/remembrance.json';
-import paths from '../../../../scripts/dev/skill-tree-layouts/paths.json';
+import paths from '../../../../data/skill-tree-layouts/paths.json';
 import { resolveConnections, validateConnectionLayouts } from './skill-tree-connections.js';
 import {
   cropHalfSize,

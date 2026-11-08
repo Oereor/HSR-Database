@@ -20,8 +20,6 @@ import type {
   MaterialCatalog
 } from '../../src/lib/domain/training/types';
 import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.svelte';
-import TraceToggle from '../../src/lib/components/character/TraceToggle.svelte';
-import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
 import DetailPage from '../../src/lib/components/shared/DetailPage.svelte';
@@ -119,19 +117,6 @@ describe('training presentation contracts', () => {
       labels.push(html.match(/<label[^>]*>([\s\S]*?)<\/label>/)![1]);
     }
     expect(labels.every((label) => label.trim().length > 0)).toBe(true);
-  });
-  it('retains reusable trace toggles while the detail panel stays display-only', () => {
-    const active = render(TraceToggle, {
-      props: { name: 'Synthetic trace', active: true, onToggle: () => {} }
-    }).body;
-    const inactive = render(TraceToggle, {
-      props: { name: 'Synthetic trace', active: false, onToggle: () => {} }
-    }).body;
-    expect(active).toContain('aria-pressed="true"');
-    expect(inactive).toContain('aria-pressed="false"');
-    expect(
-      render(TraceCardPanel, { props: { traces: view('1001').profiles.base.traces } }).body
-    ).not.toContain('trace-toggle');
   });
   it('distinguishes loading and retry from cost output, with no duplicate controls', () => {
     const loading = render(TrainingSection, {

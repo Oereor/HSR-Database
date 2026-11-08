@@ -33,7 +33,7 @@ Endgame 搜索目标以稳定 `MonsterTemplateID` 标识，同一目标关联具
 ```bash
 pnpm data:ensure
 pnpm exec vitest run tests/unit/search-metadata.test.ts tests/unit/search.test.ts
-pnpm data:validate
+pnpm data:validate:full
 ```
 
 `data:validate` 需要已准备的数据输入，完整语义审计不能由仅检查文件完整性的 gate 替代。
