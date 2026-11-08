@@ -84,7 +84,6 @@
     place-items: center;
     overflow: hidden;
     border-radius: max(0px, calc(var(--radius-card) - var(--space-3) - 1px));
-    background: var(--secondary);
   }
 
   .compact-entity-card__artwork :global(img) {
