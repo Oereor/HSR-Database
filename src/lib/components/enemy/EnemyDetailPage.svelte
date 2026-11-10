@@ -71,7 +71,7 @@
         source={detail.portraitUrl}
         width={1024}
         height={1024}
-        fit="cover"
+        fit="contain"
         data-enemy-portrait={detail.template.monsterTemplateId}
       />
       <div class="detail-profile-hero__gradient" aria-hidden="true"></div>

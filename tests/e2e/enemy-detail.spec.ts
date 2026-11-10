@@ -46,9 +46,12 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
     'effect-resistance': '30%',
     'initial-action-value': '20%'
   });
-  await expect(
-    hero.locator('.detail-profile-hero__identity [data-enemy-portrait] img')
-  ).toHaveAttribute('src', '/generated-enemy-assets/figures/Monster_1004010.webp');
+  const portrait = hero.locator('.detail-profile-hero__identity [data-enemy-portrait] img');
+  await expect(portrait).toHaveAttribute(
+    'src',
+    '/generated-enemy-assets/figures/Monster_1004010.webp'
+  );
+  await expect(portrait).toHaveCSS('object-fit', 'contain');
 });
 
 test('Enemy Detail Hero 本地化 raw rank 而不泄露内部值', async ({ page }) => {

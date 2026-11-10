@@ -31,6 +31,12 @@
   background: var(--surface);
 }
 
+.detail-profile-hero--enemy
+  .detail-profile-hero__identity
+  > .detail-artwork-stage[data-artwork-fit='contain'] {
+  padding: 0;
+}
+
 .detail-profile-hero--relic .detail-profile-hero__identity {
   min-height: 540px;
   background: var(--surface);
