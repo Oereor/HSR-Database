@@ -88,7 +88,7 @@ V2 审批按经过审核的八份来源内容校验，无关 commit 变化不会
 
 Enemy 图片目录 [static/generated-enemy-assets/](../static/generated-enemy-assets/README.md)在维护时更新并提交，Production、Preview、CI 只离线验证与消费，不请求 Nanoka。
 使用 `pnpm update:enemy-assets` 更新快照，使用 `pnpm validate:enemy-assets` 离线校验。
-更新阶段允许明确的单资源缺图并记录 unavailable，网络/解析/内容类型/图片校验等失败会中止更新；无效或过期快照会阻断构建，须显式更新并审阅。
+更新阶段按资源类型记录图片 404，另一类图片仍可使用。网络、解析、内容类型或图片校验失败会中止更新。无效或过期快照会阻断构建，须显式更新并审阅。
 不手改 manifest 或图片，不因为仓库 MIT License 就宣称 Nanoka 再分发许可已确认。
 
 ## 本地验证与清理

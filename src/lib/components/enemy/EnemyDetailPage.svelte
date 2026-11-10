@@ -206,8 +206,6 @@
         {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
             href={summon.href}
             imageUrl={summon.portraitUrl}
-            artworkFit="cover"
-            artworkPosition="center 35%"
             data-summon-monster={summon.monsterId}
             data-summon-template={summon.monsterTemplateId}
           >

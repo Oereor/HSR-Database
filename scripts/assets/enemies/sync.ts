@@ -12,11 +12,11 @@ import {
 import path from 'node:path';
 import sharp from 'sharp';
 import {
-  ENEMY_ASSET_RESOURCE_TYPE,
   ENEMY_ASSET_SCHEMA_VERSION,
-  ENEMY_FIGURE_DIRECTORY,
-  enemyFigureFileName,
-  enemyFigureUrl
+  ENEMY_IMAGE_DIRECTORIES,
+  ENEMY_IMAGE_TYPES,
+  enemyImageFileName,
+  type EnemyImageType
 } from '../../../src/lib/domain/enemy-asset-paths.js';
 import { assertInsideSite } from '../../data/paths.js';
 import { createCurlFetch } from './curl.js';
@@ -26,7 +26,7 @@ import {
   fetchNanokaVersion,
   fetchWithRetry,
   mapConcurrent,
-  nanokaFigureUrl,
+  nanokaImageUrl,
   parseNanokaMonster,
   type RetryOptions
 } from './network.js';
@@ -34,6 +34,7 @@ import {
   catalogFingerprint,
   enemyAssetRoot,
   inspectWebp,
+  isEnemyAssetEntry,
   parseManifest,
   readEnemyRequirements,
   validateSnapshot,
@@ -109,21 +110,22 @@ async function oldManifest(root: string): Promise<EnemyAssetManifest | undefined
 
 async function validOldImage(
   root: string,
+  type: EnemyImageType,
   id: string,
   old?: EnemyAssetManifest
 ): Promise<ImageDigest | undefined> {
-  if (!old?.images[id]) return undefined;
+  const expected = old?.images[type][id];
+  if (!expected) return undefined;
   try {
-    const image = await inspectWebp(figurePath(root, id));
-    const expected = old.images[id];
+    const image = await inspectWebp(imagePath(root, type, id));
     return image.size === expected.size && image.sha256 === expected.sha256 ? image : undefined;
   } catch {
     return undefined;
   }
 }
 
-function figurePath(root: string, id: string): string {
-  return path.join(root, ENEMY_FIGURE_DIRECTORY, enemyFigureFileName(id));
+function imagePath(root: string, type: EnemyImageType, id: string): string {
+  return path.join(root, ENEMY_IMAGE_DIRECTORIES[type], enemyImageFileName(id));
 }
 
 async function optimizeFigure(original: Buffer): Promise<Buffer> {
@@ -238,7 +240,8 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
       entry?: EnemyAssetEntry;
       unavailable?: UnavailableEntry;
     }> => {
-      const previous = old?.monsters[requirement.id];
+      const cached = old?.monsters[requirement.id];
+      const previous = isEnemyAssetEntry(cached) ? cached : undefined;
       if (!refreshAll && previous) return { requirement, entry: previous };
       const endpoint = `${baseUrl}/hsr/${encodeURIComponent(version)}/zh/monster/${requirement.id}.json`;
       detailRequests += 1;
@@ -270,8 +273,7 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
         requirement,
         entry: {
           name: previous?.imageId === monster.imageId ? previous.name : monster.name,
-          imageId: monster.imageId,
-          figure: enemyFigureUrl(monster.imageId)
+          imageId: monster.imageId
         }
       };
     }
@@ -291,7 +293,8 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
   assertInsideSite(stage);
   let published = false;
   try {
-    await mkdir(path.join(stage, ENEMY_FIGURE_DIRECTORY), { recursive: true });
+    for (const type of ENEMY_IMAGE_TYPES)
+      await mkdir(path.join(stage, ENEMY_IMAGE_DIRECTORIES[type]), { recursive: true });
     let downloads = 0;
     let downloadedSourceBytes = 0;
     let downloadedOutputBytes = 0;
@@ -299,61 +302,55 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
     const repaired: string[] = [];
     const added: string[] = [];
     const results = await mapConcurrent(
-      ids,
+      ENEMY_IMAGE_TYPES.flatMap((type) => ids.map((id) => ({ type, id }))),
       options.concurrency ?? DEFAULT_CONCURRENCY,
-      async (id) => {
-        const target = figurePath(stage, id);
-        const prior = await validOldImage(root, id, old);
+      async ({ type, id }) => {
+        const target = imagePath(stage, type, id);
+        const prior = await validOldImage(root, type, id, old);
         if (prior) {
-          await copyFile(figurePath(root, id), target);
+          await copyFile(imagePath(root, type, id), target);
           reused += 1;
-          return [id, prior] as const;
+          return { type, id, digest: prior };
         }
         downloads += 1;
-        const url = nanokaFigureUrl(baseUrl, id);
+        const url = nanokaImageUrl(baseUrl, type, id);
         try {
           const response = await fetchWithRetry(url, retry);
-          if (response.status === 404) return [id, undefined] as const;
+          if (response.status === 404) return { type, id, digest: null };
           if (!response.ok) throw new HttpError(`HTTP ${response.status}`, url, response.status);
-          const type = response.headers.get('content-type')?.split(';')[0].trim().toLowerCase();
+          const contentType = response.headers
+            .get('content-type')
+            ?.split(';')[0]
+            .trim()
+            .toLowerCase();
           if (
-            type &&
-            !['image/webp', 'application/octet-stream', 'binary/octet-stream'].includes(type)
+            contentType &&
+            !['image/webp', 'application/octet-stream', 'binary/octet-stream'].includes(contentType)
           )
-            throw new Error(`Unexpected image content-type: ${type}`);
+            throw new Error(`Unexpected image content-type: ${contentType}`);
           const original = Buffer.from(await response.arrayBuffer());
-          const figure = await optimizeFigure(original);
-          await writeFile(target, figure);
+          const output = type === 'MonsterFigure' ? await optimizeFigure(original) : original;
+          await writeFile(target, output);
           const digest = await inspectWebp(target);
           downloadedSourceBytes += original.length;
           downloadedOutputBytes += digest.size;
-          (old?.images[id] ? repaired : added).push(id);
-          return [id, digest] as const;
+          (old?.images[type][id] ? repaired : added).push(`${type}/${id}`);
+          return { type, id, digest };
         } catch (error) {
           return operational(error, url);
         }
       }
     );
-    const missing = new Set(results.filter(([, digest]) => !digest).map(([id]) => id));
-    for (const [id, entry] of Object.entries(candidates)) {
-      if (!missing.has(entry.imageId)) continue;
-      delete candidates[id];
-      unavailable[id] = { name: entry.name, kind: 'missing-image-file', status: 404 };
-    }
-    const images = sorted(
-      results.filter((entry): entry is readonly [string, ImageDigest] => !!entry[1])
-    );
-    const monsters = sorted(Object.entries(candidates));
-    const missingEntries = sorted(Object.entries(unavailable));
+    const images: EnemyAssetManifest['images'] = { MonsterMiddleIcon: {}, MonsterFigure: {} };
+    for (const { type, id, digest } of results) images[type][id] = digest;
     const manifest: EnemyAssetManifest = {
       schemaVersion: ENEMY_ASSET_SCHEMA_VERSION,
       source: 'static.nanoka.cc',
       version,
       generatedAt: (options.now ?? (() => new Date()))().toISOString(),
-      resourceType: ENEMY_ASSET_RESOURCE_TYPE,
       catalogFingerprint: catalogFingerprint(requirements),
-      monsters,
-      unavailable: missingEntries,
+      monsters: candidates,
+      unavailable,
       images
     };
     await writeFile(
@@ -361,13 +358,13 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
       await readFile(path.join(root, 'README.md'), 'utf8')
     );
     await writeFile(path.join(stage, 'index.json'), `${JSON.stringify(manifest, null, 2)}\n`);
-    await validateSnapshot(requirements, stage);
+    const validated = await validateSnapshot(requirements, stage);
     const changed = !oldValid || !old || semantic(manifest) !== semantic(old);
     const stats: UpdateStats = {
       catalog: requirements.length,
-      mapped: Object.keys(monsters).length,
-      unavailable: Object.keys(missingEntries).length,
-      images: Object.keys(images).length,
+      mapped: validated.mapped,
+      unavailable: validated.unavailable,
+      images: validated.images,
       detailRequests,
       imageDownloads: downloads,
       downloadedSourceBytes,
@@ -375,16 +372,20 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
       reusedImages: reused,
       repairedImages: repaired.sort(),
       newImages: added.sort(),
-      prunedImages: Object.keys(old?.images ?? {})
-        .filter((id) => !(id in images))
-        .sort(),
+      prunedImages: ENEMY_IMAGE_TYPES.flatMap((type) =>
+        Object.entries(old?.images[type] ?? {})
+          .filter(([id, digest]) => digest && !images[type][id])
+          .map(([id]) => `${type}/${id}`)
+      ).sort(),
       newTemplateIds: requirements.filter(({ id }) => !oldIds.has(id)).map(({ id }) => id),
-      changedMappings: Object.entries(monsters)
+      changedMappings: Object.entries(candidates)
         .filter(([id, entry]) => old?.monsters[id] && old.monsters[id].imageId !== entry.imageId)
         .map(([id]) => id),
       byteDelta:
-        Object.values(images).reduce((sum, item) => sum + item.size, 0) -
-        Object.values(old?.images ?? {}).reduce((sum, item) => sum + item.size, 0),
+        validated.bytes -
+        Object.values(old?.images ?? {})
+          .flatMap((digests) => Object.values(digests))
+          .reduce((sum, digest) => sum + (digest?.size ?? 0), 0),
       changed,
       wallSeconds: (performance.now() - started) / 1000
     };

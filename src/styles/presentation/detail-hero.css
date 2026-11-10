@@ -40,16 +40,6 @@
   min-height: 390px;
 }
 
-.detail-profile-hero--enemy .detail-artwork-stage {
-  background: var(--surface);
-  padding-left: 30%;
-}
-
-.detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='cover'] img {
-  object-position: center 40%;
-  filter: drop-shadow(0 1.25rem 2rem rgb(0 0 0 / 38%));
-}
-
 .detail-profile-hero__gradient {
   position: absolute;
   z-index: 1;
@@ -302,15 +292,6 @@
 
   .detail-profile-hero--enemy .detail-profile-hero__identity {
     min-height: 540px;
-  }
-
-  .detail-profile-hero--enemy .detail-artwork-stage {
-    max-height: 540px;
-    padding: 3rem 0 0 16%;
-  }
-
-  .detail-profile-hero--enemy .detail-artwork-stage img {
-    opacity: 0.62;
   }
 }
 

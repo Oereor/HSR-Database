@@ -7,15 +7,15 @@ test('敌人目录使用本地立绘、default Monster 弱点和归一化类型�
   expect(
     await heroArtwork.evaluateAll((images) => images.map((image) => image.getAttribute('src')))
   ).toEqual([
-    '/generated-enemy-assets/figures/Monster_1005010.webp',
-    '/generated-enemy-assets/figures/Monster_2004010.webp',
-    '/generated-enemy-assets/figures/Monster_4034010.webp'
+    '/generated-enemy-assets/icons/Monster_1005010.webp',
+    '/generated-enemy-assets/icons/Monster_2004010.webp',
+    '/generated-enemy-assets/icons/Monster_4034010.webp'
   ]);
   const card = page.locator('a[href="/enemies/1002015/"]');
   await expect(card).toBeVisible();
   await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
     'src',
-    /^\/generated-enemy-assets\/figures\/Monster_\d+\.webp$/
+    /^\/generated-enemy-assets\/icons\/Monster_\d+\.webp$/
   );
   await expect(
     card.locator('.entity-overview-card__metadata [data-icon-kind="element"]')

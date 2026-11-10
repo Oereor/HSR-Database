@@ -53,7 +53,7 @@ pnpm dev
 
 - [TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData)：本站主要的游戏数据来源。
 - [StarRailRes](https://github.com/Mar-7th/StarRailRes)：角色、光锥、遗器与图标等视觉资源。
-- [nanoka.cc](https://static.nanoka.cc)：敌方单位完整立绘（`MonsterFigure`），维护为仓库内快照。
+- [nanoka.cc](https://static.nanoka.cc)：敌方单位卡片图（`MonsterMiddleIcon`）和详情立绘（`MonsterFigure`），维护为仓库内快照。
 - [Enka.Network](https://enka.network/)：玩家公开信息查询服务。
 
 特别感谢以上项目、社区服务及其维护者。

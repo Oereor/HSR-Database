@@ -1,4 +1,7 @@
-import { enemyFigureFileName } from '../../../src/lib/domain/enemy-asset-paths.js';
+import {
+  enemyImageFileName,
+  type EnemyImageType
+} from '../../../src/lib/domain/enemy-asset-paths.js';
 
 export const DEFAULT_CONCURRENCY = 4;
 const DEFAULT_TIMEOUT_MS = 15_000;
@@ -43,8 +46,8 @@ export function extractImageId(value: unknown): string | undefined {
   return typeof value === 'string' ? value.match(/\d+/)?.[0] : undefined;
 }
 
-export function nanokaFigureUrl(baseUrl: string, imageId: string): string {
-  return `${baseUrl}/assets/hsr/monsterfigure/${enemyFigureFileName(imageId)}`;
+export function nanokaImageUrl(baseUrl: string, type: EnemyImageType, imageId: string): string {
+  return `${baseUrl}/assets/hsr/${type.toLowerCase()}/${enemyImageFileName(imageId)}`;
 }
 
 export function parseNanokaMonster(value: unknown, requirement: EnemyRequirement): NanokaMonster {

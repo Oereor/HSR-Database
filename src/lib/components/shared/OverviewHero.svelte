@@ -6,7 +6,6 @@
   export let description: string = m.characters_description();
   export let countLabel = '';
   export let artwork: Array<{ id: string; url: string }> = [];
-  export let artworkFit: 'cover' | 'contain' = 'contain';
 </script>
 
 <header
@@ -40,7 +39,7 @@
             decorative
             src={item.url}
             alt=""
-            class={`overview-hero__character overview-hero__character--${index + 1} absolute -bottom-4 h-44 w-3/5 saturate-[.82] sm:h-52 sm:w-[45%] sm:max-w-60 ${artworkFit === 'cover' ? 'object-cover object-[center_35%]' : 'object-contain object-bottom'} ${index === 0 ? 'right-[30%] opacity-60 sm:right-[40%]' : index === 1 ? 'right-0 opacity-80 sm:right-[17%]' : '-right-[2%] hidden opacity-50 sm:block'}`}
+            class={`overview-hero__character overview-hero__character--${index + 1} absolute -bottom-4 h-44 w-3/5 object-contain object-bottom saturate-[.82] sm:h-52 sm:w-[45%] sm:max-w-60 ${index === 0 ? 'right-[30%] opacity-60 sm:right-[40%]' : index === 1 ? 'right-0 opacity-80 sm:right-[17%]' : '-right-[2%] hidden opacity-50 sm:block'}`}
             loading="lazy"
             decoding="async"
           />

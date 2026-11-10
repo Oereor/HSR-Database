@@ -4,7 +4,7 @@ import {
   getEnemyCatalog,
   getHomepageVersionData
 } from '$lib/server/generated';
-import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
+import { getEnemyCardImageUrl } from '$lib/server/enemy-assets';
 
 function resolve<T extends { id: string }>(ids: string[], catalog: T[]): T[] {
   const byId = new Map(catalog.map((entry) => [entry.id, entry]));
@@ -34,7 +34,7 @@ export async function load({ locals }) {
       await Promise.all(
         newEnemies
           .slice(0, 6)
-          .map(async (entry) => [entry.id, await getEnemyPortraitUrl(Number(entry.id))])
+          .map(async (entry) => [entry.id, await getEnemyCardImageUrl(Number(entry.id))])
       )
     )
   };

@@ -1,4 +1,4 @@
-import { getEnemyPortraitMap } from '$lib/server/enemy-assets';
+import { getEnemyCardImageMap } from '$lib/server/enemy-assets';
 import {
   getCatalog,
   getEnemyCatalog,
@@ -16,7 +16,7 @@ export async function load({ locals }) {
     getCatalog(locale, 'light-cones'),
     getRelicCatalog(locale),
     getEnemyCatalog(locale),
-    getEnemyPortraitMap()
+    getEnemyCardImageMap()
   ]);
   const enemyIds = new Set(enemies.map((entry) => entry.id));
   const enemyPortraits = Object.fromEntries(

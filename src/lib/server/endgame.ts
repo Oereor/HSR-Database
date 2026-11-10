@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
+import { getEnemyCardImageUrl } from '$lib/server/enemy-assets';
 import type {
   EndgameDatasetByMode,
   EndgameGroup,
@@ -123,7 +123,7 @@ async function getEnemyReference(
       if (!reference) throw new Error(`敌方百科缺少 Endgame 引用的具体 MonsterID：${monsterId}`);
       return reference;
     }),
-    getEnemyPortraitUrl(templateId)
+    getEnemyCardImageUrl(templateId)
   ]).then(([reference, portraitUrl]) => ({
     ...reference,
     weaknesses: [...reference.weaknesses],
@@ -287,7 +287,7 @@ export async function getEndgameOccurrenceShard(
       throw new Error(`Endgame shard identity mismatch: ${locale}:${entry.id}`);
     await Promise.all(
       Object.values(projected.occurrences).map(async ({ occurrence }) => {
-        const portraitUrl = await getEnemyPortraitUrl(occurrence.monsterTemplateId);
+        const portraitUrl = await getEnemyCardImageUrl(occurrence.monsterTemplateId);
         if (portraitUrl) occurrence.portraitUrl = portraitUrl;
         else delete occurrence.portraitUrl;
       })

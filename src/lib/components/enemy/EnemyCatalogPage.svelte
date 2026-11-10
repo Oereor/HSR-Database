@@ -145,7 +145,6 @@
   {description}
   countLabel={m.enemies_count({ count: enemies.length })}
   artwork={heroArtwork}
-  artworkFit="cover"
 />
 
 <section class="overview-controls mb-6 grid gap-5" aria-label={m.enemies_controls_aria()}>
