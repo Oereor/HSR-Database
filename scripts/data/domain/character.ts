@@ -139,6 +139,9 @@ function buildProfile(
       .entries()) {
       const category = classifyAvatarSkill(skillRows[0] ?? {});
       if (!category) continue;
+      const effectCode =
+        (typeof buff.SkillEffect === 'string' && buff.SkillEffect.trim()) ||
+        variant?.combatLevels?.[0]?.effectCode;
       skills.push({
         id: `${skillId}:global-buff:${index + 1}`,
         category,
@@ -148,6 +151,7 @@ function buildProfile(
           kind: 'direct',
           ref: { kind: 'symbolic', key: `global-buff:${skillId}:name` }
         },
+        typeSource: textSource(buff.SkillTag),
         levels: [
           {
             level: 1,
@@ -158,7 +162,7 @@ function buildProfile(
         combatLevels: [
           {
             level: 1,
-            ...(typeof buff.SkillEffect === 'string' ? { effectCode: buff.SkillEffect } : {})
+            ...(effectCode ? { effectCode } : {})
           }
         ],
         progressionId: undefined,

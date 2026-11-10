@@ -18,7 +18,7 @@ import {
   type SkillVariantInput,
   SKILL_CATEGORY_LABELS
 } from '../skills.js';
-import { normalizeSkillCombatMeta } from '../skill-combat.js';
+import { normalizeSkillCombatMeta, SKILL_EFFECT_LABELS } from '../skill-combat.js';
 import { optionalText, projectLevels, requiredText } from './shared.js';
 import { configuredCharacterDetailIconKey } from '../character-detail-icons.js';
 import { annotateSpecialEffectCards } from '../special-effect-triggers.js';
@@ -125,6 +125,14 @@ function projectSkillVariant(
     entityId: domain.id,
     field: `skill.${variant.id}.${name}`
   });
+  const type = variant.typeSource
+    ? optionalText(context.resolver, variant.typeSource, field('type'))
+    : undefined;
+  const buffTag = variant.source === 'avatar-global-buff' ? gameTextToPlain(type ?? '').trim() : '';
+  const effectLabels = context.skillEffectLabels ?? SKILL_EFFECT_LABELS;
+  const buffEffect = buffTag
+    ? (Object.entries(effectLabels).find(([, label]) => label === buffTag)?.[0] ?? buffTag)
+    : undefined;
   const combatMetaLevels = (variant.combatLevels ?? []).map((combat) => {
     const resourceSource = {
       entity: 'character',
@@ -165,7 +173,7 @@ function projectSkillVariant(
       level: combat.level,
       combatMeta: normalizeSkillCombatMeta(
         {
-          skillEffect: combat.effectCode,
+          skillEffect: buffEffect ?? combat.effectCode,
           specialResource: resource,
           bpNeed: combat.bpNeed,
           bpAdd: combat.bpAdd,
@@ -174,14 +182,11 @@ function projectSkillVariant(
           showStanceList: combat.showStanceList,
           extraEffects
         },
-        context.skillEffectLabels
+        effectLabels
       )
     };
   });
   const name = requiredText(context.resolver, variant.nameSource, field('name'));
-  const type = variant.typeSource
-    ? optionalText(context.resolver, variant.typeSource, field('type'))
-    : undefined;
   const levels = projectLevels(
     context.resolver,
     variant.levels,
