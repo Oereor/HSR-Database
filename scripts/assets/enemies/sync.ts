@@ -1,6 +1,23 @@
 import { randomUUID } from 'node:crypto';
-import { copyFile, mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import {
+  access,
+  copyFile,
+  mkdir,
+  readFile,
+  readdir,
+  rename,
+  rm,
+  writeFile
+} from 'node:fs/promises';
 import path from 'node:path';
+import sharp from 'sharp';
+import {
+  ENEMY_ASSET_RESOURCE_TYPE,
+  ENEMY_ASSET_SCHEMA_VERSION,
+  ENEMY_FIGURE_DIRECTORY,
+  enemyFigureFileName,
+  enemyFigureUrl
+} from '../../../src/lib/domain/enemy-asset-paths.js';
 import { assertInsideSite } from '../../data/paths.js';
 import { createCurlFetch } from './curl.js';
 import {
@@ -9,11 +26,11 @@ import {
   fetchNanokaVersion,
   fetchWithRetry,
   mapConcurrent,
+  nanokaFigureUrl,
   parseNanokaMonster,
   type RetryOptions
 } from './network.js';
 import {
-  SCHEMA_VERSION,
   catalogFingerprint,
   enemyAssetRoot,
   inspectWebp,
@@ -28,6 +45,7 @@ import {
 } from './snapshot.js';
 
 const BASE_URL = 'https://static.nanoka.cc';
+const MAX_FIGURE_EDGE = 1280;
 const PROXY_KEYS = [
   'HTTPS_PROXY',
   'https_proxy',
@@ -46,6 +64,8 @@ export interface UpdateStats {
   images: number;
   detailRequests: number;
   imageDownloads: number;
+  downloadedSourceBytes: number;
+  downloadedOutputBytes: number;
   reusedImages: number;
   repairedImages: string[];
   newImages: string[];
@@ -94,12 +114,28 @@ async function validOldImage(
 ): Promise<ImageDigest | undefined> {
   if (!old?.images[id]) return undefined;
   try {
-    const image = await inspectWebp(path.join(root, 'icons', `Monster_${id}.webp`));
+    const image = await inspectWebp(figurePath(root, id));
     const expected = old.images[id];
     return image.size === expected.size && image.sha256 === expected.sha256 ? image : undefined;
   } catch {
     return undefined;
   }
+}
+
+function figurePath(root: string, id: string): string {
+  return path.join(root, ENEMY_FIGURE_DIRECTORY, enemyFigureFileName(id));
+}
+
+async function optimizeFigure(original: Buffer): Promise<Buffer> {
+  const image = sharp(original, { animated: true });
+  const { format, width, height, pageHeight } = await image.metadata();
+  if (format !== 'webp' || !width || !height) throw new Error('下载内容不是有效 WebP');
+  const optimized = await image
+    .resize(MAX_FIGURE_EDGE, MAX_FIGURE_EDGE, { fit: 'inside', withoutEnlargement: true })
+    .webp({ quality: 82 })
+    .toBuffer();
+  const needsResize = Math.max(width, pageHeight ?? height) > MAX_FIGURE_EDGE;
+  return needsResize || optimized.length <= original.length * 0.95 ? optimized : original;
 }
 
 function operational(error: unknown, endpoint: string): never {
@@ -114,12 +150,16 @@ async function recoverBackup(root: string): Promise<void> {
     name.startsWith(`.${path.basename(root)}.previous-`)
   );
   if (!backups.length) return;
-  const current = await oldManifest(root);
-  if (!current) {
-    if (backups.length !== 1) throw new Error('Multiple enemy backups require manual recovery');
+  try {
+    await access(root);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    if (backups.length !== 1)
+      throw new Error('Multiple enemy backups require manual recovery', { cause: error });
     await rename(path.join(parent, backups[0]), root);
     return;
   }
+  if (!(await oldManifest(root))) return;
   await validateSnapshot(await readEnemyRequirements(), root);
   for (const backup of backups) await rm(path.join(parent, backup), { recursive: true });
 }
@@ -217,7 +257,7 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
       }
       let monster;
       try {
-        monster = parseNanokaMonster(raw, requirement, endpoint, baseUrl);
+        monster = parseNanokaMonster(raw, requirement);
       } catch (error) {
         if (error instanceof Error && /缺少可解析的 image_path/.test(error.message))
           return {
@@ -231,7 +271,7 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
         entry: {
           name: previous?.imageId === monster.imageId ? previous.name : monster.name,
           imageId: monster.imageId,
-          icon: `/generated-enemy-assets/icons/Monster_${monster.imageId}.webp`
+          figure: enemyFigureUrl(monster.imageId)
         }
       };
     }
@@ -251,8 +291,10 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
   assertInsideSite(stage);
   let published = false;
   try {
-    await mkdir(path.join(stage, 'icons'), { recursive: true });
+    await mkdir(path.join(stage, ENEMY_FIGURE_DIRECTORY), { recursive: true });
     let downloads = 0;
+    let downloadedSourceBytes = 0;
+    let downloadedOutputBytes = 0;
     let reused = 0;
     const repaired: string[] = [];
     const added: string[] = [];
@@ -260,15 +302,15 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
       ids,
       options.concurrency ?? DEFAULT_CONCURRENCY,
       async (id) => {
-        const target = path.join(stage, 'icons', `Monster_${id}.webp`);
+        const target = figurePath(stage, id);
         const prior = await validOldImage(root, id, old);
         if (prior) {
-          await copyFile(path.join(root, 'icons', `Monster_${id}.webp`), target);
+          await copyFile(figurePath(root, id), target);
           reused += 1;
           return [id, prior] as const;
         }
         downloads += 1;
-        const url = `${baseUrl}/assets/hsr/monstermiddleicon/Monster_${id}.webp`;
+        const url = nanokaFigureUrl(baseUrl, id);
         try {
           const response = await fetchWithRetry(url, retry);
           if (response.status === 404) return [id, undefined] as const;
@@ -279,8 +321,12 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
             !['image/webp', 'application/octet-stream', 'binary/octet-stream'].includes(type)
           )
             throw new Error(`Unexpected image content-type: ${type}`);
-          await writeFile(target, new Uint8Array(await response.arrayBuffer()));
+          const original = Buffer.from(await response.arrayBuffer());
+          const figure = await optimizeFigure(original);
+          await writeFile(target, figure);
           const digest = await inspectWebp(target);
+          downloadedSourceBytes += original.length;
+          downloadedOutputBytes += digest.size;
           (old?.images[id] ? repaired : added).push(id);
           return [id, digest] as const;
         } catch (error) {
@@ -300,11 +346,11 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
     const monsters = sorted(Object.entries(candidates));
     const missingEntries = sorted(Object.entries(unavailable));
     const manifest: EnemyAssetManifest = {
-      schemaVersion: SCHEMA_VERSION,
+      schemaVersion: ENEMY_ASSET_SCHEMA_VERSION,
       source: 'static.nanoka.cc',
       version,
       generatedAt: (options.now ?? (() => new Date()))().toISOString(),
-      resourceType: 'MonsterMiddleIcon',
+      resourceType: ENEMY_ASSET_RESOURCE_TYPE,
       catalogFingerprint: catalogFingerprint(requirements),
       monsters,
       unavailable: missingEntries,
@@ -324,6 +370,8 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
       images: Object.keys(images).length,
       detailRequests,
       imageDownloads: downloads,
+      downloadedSourceBytes,
+      downloadedOutputBytes,
       reusedImages: reused,
       repairedImages: repaired.sort(),
       newImages: added.sort(),
@@ -350,6 +398,9 @@ export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<Up
     );
     log(
       `[enemy-update] catalog=${stats.catalog} mapped=${stats.mapped} unavailable=${stats.unavailable} images=${stats.images} details=${detailRequests} downloads=${downloads} reused=${reused} wall=${stats.wallSeconds.toFixed(3)}s`
+    );
+    log(
+      `[enemy-update] downloaded-source-bytes=${downloadedSourceBytes} downloaded-output-bytes=${downloadedOutputBytes}`
     );
     log(
       `[enemy-update] new-ids=${stats.newTemplateIds.join(',') || '-'} changed-mappings=${stats.changedMappings.join(',') || '-'} new-images=${added.join(',') || '-'} repaired=${repaired.join(',') || '-'} pruned=${stats.prunedImages.join(',') || '-'} byte-delta=${stats.byteDelta}`

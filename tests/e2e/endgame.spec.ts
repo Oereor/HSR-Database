@@ -1040,7 +1040,7 @@ test('遗忘冽风难度 4 使用本地海报立绘和精确战斗属性', async
     await expect(card).toBeVisible();
     await expect(card.locator('[data-enemy-portrait]')).toHaveAttribute(
       'src',
-      /generated-enemy-assets\/icons\/Monster_\d+\.webp/
+      /generated-enemy-assets\/figures\/Monster_\d+\.webp/
     );
     await expect(card.locator('[data-endgame-hp]')).toHaveText(hp);
     await expect(card.locator('[data-endgame-toughness]')).toHaveText(toughness);

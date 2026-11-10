@@ -1,3 +1,5 @@
+import { enemyFigureFileName } from '../../../src/lib/domain/enemy-asset-paths.js';
+
 export const DEFAULT_CONCURRENCY = 4;
 const DEFAULT_TIMEOUT_MS = 15_000;
 const DEFAULT_MAX_RETRIES = 3;
@@ -7,12 +9,8 @@ export interface EnemyRequirement {
   name: string;
 }
 export interface NanokaMonster {
-  id: string;
   name: string;
   imageId: string;
-  imagePath: string;
-  detailUrl: string;
-  iconUrl: string;
 }
 export interface RetryOptions {
   fetchImpl?: typeof fetch;
@@ -45,12 +43,11 @@ export function extractImageId(value: unknown): string | undefined {
   return typeof value === 'string' ? value.match(/\d+/)?.[0] : undefined;
 }
 
-export function parseNanokaMonster(
-  value: unknown,
-  requirement: EnemyRequirement,
-  detailUrl: string,
-  baseUrl = 'https://static.nanoka.cc'
-): NanokaMonster {
+export function nanokaFigureUrl(baseUrl: string, imageId: string): string {
+  return `${baseUrl}/assets/hsr/monsterfigure/${enemyFigureFileName(imageId)}`;
+}
+
+export function parseNanokaMonster(value: unknown, requirement: EnemyRequirement): NanokaMonster {
   const record = object(value);
   if (!record) throw new Error('monster JSON 不是对象。');
   const id = decimal(record.id);
@@ -62,14 +59,7 @@ export function parseNanokaMonster(
   const imagePath = typeof record.image_path === 'string' ? record.image_path : '';
   const imageId = extractImageId(imagePath);
   if (!imageId) throw new Error('monster JSON 缺少可解析的 image_path。');
-  return {
-    id,
-    name,
-    imageId,
-    imagePath,
-    detailUrl,
-    iconUrl: `${baseUrl.replace(/\/$/, '')}/assets/hsr/monstermiddleicon/Monster_${imageId}.webp`
-  };
+  return { name, imageId };
 }
 
 function retryAfter(response: Response): number | undefined {
@@ -140,13 +130,20 @@ export async function mapConcurrent<T, R>(
   if (!Number.isInteger(concurrency) || concurrency < 1) throw new Error('并发数必须为正整数。');
   const results = new Array<R>(values.length);
   let cursor = 0;
-  await Promise.all(
+  let failed = false;
+  const workers = await Promise.allSettled(
     Array.from({ length: Math.min(concurrency, values.length) }, async () => {
-      while (cursor < values.length) {
+      while (!failed && cursor < values.length) {
         const index = cursor++;
-        results[index] = await operation(values[index], index);
+        try {
+          results[index] = await operation(values[index], index);
+        } catch (error) {
+          failed = true;
+          throw error;
+        }
       }
     })
   );
+  for (const worker of workers) if (worker.status === 'rejected') throw worker.reason;
   return results;
 }

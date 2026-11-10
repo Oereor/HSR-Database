@@ -62,7 +62,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
 
   test(`${locale} Search preserves fallback on portrait request failure`, async ({ page }) => {
     let attempted = false;
-    await page.route('**/generated-enemy-assets/icons/Monster_3024020.webp', async (route) => {
+    await page.route('**/generated-enemy-assets/figures/Monster_3024020.webp', async (route) => {
       attempted = true;
       await route.fulfill({ status: 404, body: '' });
     });

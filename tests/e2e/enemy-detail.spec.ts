@@ -46,11 +46,8 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
     'effect-resistance': '30%',
     'initial-action-value': '20%'
   });
-  await expect(hero.locator('[data-enemy-portrait]')).toHaveAttribute(
-    'data-artwork-fit',
-    'contain'
-  );
-  await expect(hero.locator('[data-enemy-portrait] img')).toHaveCSS('object-fit', 'contain');
+  await expect(hero.locator('[data-enemy-portrait]')).toHaveAttribute('data-artwork-fit', 'cover');
+  await expect(hero.locator('[data-enemy-portrait] img')).toHaveCSS('object-fit', 'cover');
 });
 
 test('Enemy Detail Hero 本地化 raw rank 而不泄露内部值', async ({ page }) => {
@@ -206,6 +203,10 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   );
   await expect(page.locator('[data-summon-monster]')).toHaveCount(2);
   const summon = page.locator('[data-summon-template="1002050"]');
+  await expect(summon.locator('.compact-entity-card__artwork img')).toHaveAttribute(
+    'src',
+    '/generated-enemy-assets/figures/Monster_1002050.webp'
+  );
   await expect(summon.locator('.compact-entity-card__tertiary')).toHaveCount(1);
   await expect(summon.locator('.enemy-weakness-group')).toHaveCount(1);
   await expect(summon).not.toContainText(/Monster #/);

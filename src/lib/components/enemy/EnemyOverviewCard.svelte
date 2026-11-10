@@ -10,7 +10,15 @@
   export let imageUrl: string | undefined = undefined;
 </script>
 
-<EntityOverviewCard {href} {imageUrl} density="compact" imageAlt="" artworkAspect="landscape">
+<EntityOverviewCard
+  {href}
+  {imageUrl}
+  density="compact"
+  imageAlt=""
+  artworkAspect="landscape"
+  artworkFit="cover"
+  artworkPosition="center 35%"
+>
   <svelte:fragment slot="overlay">{getEnemyRankLabel(entry.type)}</svelte:fragment>
   <svelte:fragment slot="title"><GameText text={entry.name} /></svelte:fragment>
   <svelte:fragment slot="metadata">

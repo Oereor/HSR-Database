@@ -69,9 +69,9 @@
     <div class="detail-profile-hero__identity">
       <DetailArtwork
         source={detail.portraitUrl}
-        width={376}
-        height={512}
-        fit="contain"
+        width={1024}
+        height={1024}
+        fit="cover"
         data-enemy-portrait={detail.template.monsterTemplateId}
       />
       <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
@@ -206,6 +206,8 @@
         {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
             href={summon.href}
             imageUrl={summon.portraitUrl}
+            artworkFit="cover"
+            artworkPosition="center 35%"
             data-summon-monster={summon.monsterId}
             data-summon-template={summon.monsterTemplateId}
           >

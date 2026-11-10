@@ -43,11 +43,11 @@
         alt=""
         loading="lazy"
         decoding="async"
-        width="376"
-        height="512"
+        width="1024"
+        height="1024"
         data-enemy-portrait
         bind:missing={imageMissing}
-        class="absolute inset-0 block size-full max-w-full origin-bottom scale-[1.04] object-contain object-bottom opacity-[0.94] select-none"
+        class="absolute inset-0 block size-full max-w-full object-cover object-[center_35%] opacity-[0.94] select-none"
         fallbackClass="endgame-enemy__fallback size-28 place-self-center rounded-full border border-border bg-muted/20 leading-none [--image-fallback-font-size:2.25rem]"
       />
       {#if level !== undefined || occurrence.voracityLevel !== undefined || occurrence.count}

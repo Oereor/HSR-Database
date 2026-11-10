@@ -2,13 +2,20 @@ import { createHash } from 'node:crypto';
 import { open, readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
+import {
+  ENEMY_ASSET_DIRECTORY,
+  ENEMY_ASSET_RESOURCE_TYPE,
+  ENEMY_ASSET_SCHEMA_VERSION,
+  ENEMY_FIGURE_DIRECTORY,
+  enemyFigureFileName,
+  enemyFigureUrl
+} from '../../../src/lib/domain/enemy-asset-paths.js';
 import type { CatalogEntry } from '../../../src/lib/domain/types.js';
 import { generatedRoot, siteRoot } from '../../data/paths.js';
 
-export const SCHEMA_VERSION = 3 as const;
 sharp.cache(false);
 export const SANITY_CHECK_IDS = ['4064012', '1004014', '1004026', '4034013'] as const;
-export const enemyAssetRoot = path.join(siteRoot, 'static', 'generated-enemy-assets');
+export const enemyAssetRoot = path.join(siteRoot, 'static', ENEMY_ASSET_DIRECTORY);
 export const enemyCatalogPath = path.join(
   generatedRoot,
   'views',
@@ -24,7 +31,7 @@ export interface EnemyRequirement {
 export interface EnemyAssetEntry {
   name: string;
   imageId: string;
-  icon: string;
+  figure: string;
 }
 export interface UnavailableEntry {
   name: string;
@@ -36,11 +43,11 @@ export interface ImageDigest {
   sha256: string;
 }
 export interface EnemyAssetManifest {
-  schemaVersion: typeof SCHEMA_VERSION;
+  schemaVersion: typeof ENEMY_ASSET_SCHEMA_VERSION;
   source: 'static.nanoka.cc';
   version: string;
   generatedAt: string;
-  resourceType: 'MonsterMiddleIcon';
+  resourceType: typeof ENEMY_ASSET_RESOURCE_TYPE;
   catalogFingerprint: string;
   monsters: Record<string, EnemyAssetEntry>;
   unavailable: Record<string, UnavailableEntry>;
@@ -93,13 +100,13 @@ export function parseManifest(value: unknown): EnemyAssetManifest {
   const m = record(value);
   if (
     !m ||
-    m.schemaVersion !== SCHEMA_VERSION ||
+    m.schemaVersion !== ENEMY_ASSET_SCHEMA_VERSION ||
     m.source !== 'static.nanoka.cc' ||
     typeof m.version !== 'string' ||
     !m.version.trim() ||
     typeof m.generatedAt !== 'string' ||
     !Number.isFinite(Date.parse(m.generatedAt)) ||
-    m.resourceType !== 'MonsterMiddleIcon' ||
+    m.resourceType !== ENEMY_ASSET_RESOURCE_TYPE ||
     typeof m.catalogFingerprint !== 'string' ||
     !/^[a-f0-9]{64}$/.test(m.catalogFingerprint) ||
     !record(m.monsters) ||
@@ -178,7 +185,7 @@ export async function validateSnapshot(
       typeof entry.name !== 'string' ||
       !entry.name.trim() ||
       !numericId(entry.imageId) ||
-      entry.icon !== `/generated-enemy-assets/icons/Monster_${entry.imageId}.webp`
+      entry.figure !== enemyFigureUrl(entry.imageId)
     )
       fail(`无效 mapping 或非 canonical URL：${id}`);
     images.add(entry.imageId);
@@ -198,19 +205,19 @@ export async function validateSnapshot(
   const metadataIds = Object.keys(manifest.images);
   if (metadataIds.length !== images.size || metadataIds.some((id) => !images.has(id)))
     fail('images metadata 与映射不一致');
-  const iconRoot = path.join(root, 'icons');
+  const figureRoot = path.join(root, ENEMY_FIGURE_DIRECTORY);
   let entries;
   try {
-    entries = await readdir(iconRoot, { withFileTypes: true });
+    entries = await readdir(figureRoot, { withFileTypes: true });
   } catch {
-    return fail('icons 目录缺失');
+    return fail('figures 目录缺失');
   }
-  const expectedNames = new Set([...images].map((id) => `Monster_${id}.webp`));
+  const expectedNames = new Set([...images].map(enemyFigureFileName));
   if (
     entries.length !== expectedNames.size ||
     entries.some((entry) => !entry.isFile() || !expectedNames.has(entry.name))
   )
-    fail('icons 文件集合或文件名大小写不匹配');
+    fail('figures 文件集合或文件名大小写不匹配');
   let bytes = 0;
   for (const id of [...images].sort((a, b) => a.localeCompare(b))) {
     const declared = record(manifest.images[id]);
@@ -224,7 +231,7 @@ export async function validateSnapshot(
       fail(`图片 metadata 无效：${id}`);
     let actual: ImageDigest;
     try {
-      actual = await inspectWebp(path.join(iconRoot, `Monster_${id}.webp`));
+      actual = await inspectWebp(path.join(figureRoot, enemyFigureFileName(id)));
     } catch (error) {
       return fail(`图片 ${id} 无效：${(error as Error).message}`);
     }

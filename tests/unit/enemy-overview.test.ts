@@ -192,7 +192,9 @@ describe('Enemy Overview presentation', () => {
 
   it('Overview 只取得本地 Enemy URL，已知缺图 Template 保持 undefined', async () => {
     const portraits = await getEnemyPortraitMap();
-    expect(portraits.get(1002015)).toMatch(/^\/generated-enemy-assets\/icons\/Monster_\d+\.webp$/);
+    expect(portraits.get(1002015)).toMatch(
+      /^\/generated-enemy-assets\/figures\/Monster_\d+\.webp$/
+    );
     expect(portraits.get(2002020)).toBeUndefined();
   });
 });

@@ -4,6 +4,7 @@
   export let imageUrl: string | undefined = undefined;
   export let imageAlt = '';
   export let artworkFit: 'contain' | 'cover' | 'scale-down' = 'contain';
+  export let artworkPosition = 'center';
 
   let imageMissing = !imageUrl?.trim();
   $: elementProps = href ? { href } : {};
@@ -23,7 +24,7 @@
     <AssetImage
       src={imageUrl}
       alt={imageAlt}
-      style={`object-fit: ${artworkFit};`}
+      style={`object-fit: ${artworkFit}; object-position: ${artworkPosition};`}
       loading="lazy"
       decoding="async"
       bind:missing={imageMissing}
@@ -92,7 +93,6 @@
     height: calc(100% - var(--space-2));
     max-width: 100%;
     max-height: 100%;
-    object-position: center;
   }
 
   .compact-entity-card__artwork :global(.compact-entity-card__fallback) {

@@ -1,12 +1,15 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { parseCurlResponse } from '../../scripts/assets/enemies/curl';
 import { updateEnemyAssets } from '../../scripts/assets/enemies/sync';
 import {
-  SCHEMA_VERSION,
+  ENEMY_ASSET_RESOURCE_TYPE,
+  ENEMY_ASSET_SCHEMA_VERSION
+} from '../../src/lib/domain/enemy-asset-paths';
+import {
   catalogFingerprint,
   enemyAssetRoot,
   inspectWebp,
@@ -46,7 +49,7 @@ async function fixture(
 }> {
   const root = path.join(enemyAssetRoot, `.test-${label}-${crypto.randomUUID()}`);
   roots.push(root);
-  await mkdir(path.join(root, 'icons'), { recursive: true });
+  await mkdir(path.join(root, 'figures'), { recursive: true });
   const catalog = path.join(root, 'catalog.json');
   const requirements = ids.map((id) => ({ id, name: `Enemy ${id}` }));
   await writeFile(catalog, JSON.stringify(requirements));
@@ -63,17 +66,17 @@ async function snapshot(
   const images = Object.fromEntries(
     await Promise.all(
       imageIds.map(async (id) => {
-        await writeFile(path.join(f.root, 'icons', `Monster_${id}.webp`), webp);
-        return [id, await inspectWebp(path.join(f.root, 'icons', `Monster_${id}.webp`))];
+        await writeFile(path.join(f.root, 'figures', `Monster_${id}.webp`), webp);
+        return [id, await inspectWebp(path.join(f.root, 'figures', `Monster_${id}.webp`))];
       })
     )
   );
   const manifest: EnemyAssetManifest = {
-    schemaVersion: SCHEMA_VERSION,
+    schemaVersion: ENEMY_ASSET_SCHEMA_VERSION,
     source: 'static.nanoka.cc',
     version,
     generatedAt: '2026-01-01T00:00:00.000Z',
-    resourceType: 'MonsterMiddleIcon',
+    resourceType: ENEMY_ASSET_RESOURCE_TYPE,
     catalogFingerprint: catalogFingerprint(f.requirements),
     monsters: Object.fromEntries(
       Object.entries(mappings).map(([id, imageId]) => [
@@ -81,7 +84,7 @@ async function snapshot(
         {
           name: `Enemy ${id}`,
           imageId,
-          icon: `/generated-enemy-assets/icons/Monster_${imageId}.webp`
+          figure: `/generated-enemy-assets/figures/Monster_${imageId}.webp`
         }
       ])
     ),
@@ -100,6 +103,7 @@ function provider(
     version?: string;
     ids?: Record<string, string | number>;
     image404?: string;
+    imageFailure?: number;
     failure?: number;
   } = {}
 ) {
@@ -122,7 +126,9 @@ function provider(
         })
       );
     }
+    if (!url.includes('/assets/hsr/monsterfigure/')) throw new Error(`Unexpected URL: ${url}`);
     counts.images += 1;
+    if (options.imageFailure) return new Response('', { status: options.imageFailure });
     if (url.endsWith(`Monster_${options.image404}.webp`)) return new Response('', { status: 404 });
     return new Response(Uint8Array.from(webp).buffer, {
       headers: { 'content-type': 'image/webp' }
@@ -171,20 +177,20 @@ describe('offline tracked enemy snapshot', () => {
     await writeFile(index, original.replace('Monster_7000.webp', 'monster_7000.webp'));
     await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/canonical/);
     await writeFile(index, original);
-    await writeFile(path.join(f.root, 'icons', 'Monster_9999.webp'), webp);
+    await writeFile(path.join(f.root, 'figures', 'Monster_9999.webp'), webp);
     await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/文件集合/);
-    await rm(path.join(f.root, 'icons', 'Monster_9999.webp'));
-    await writeFile(path.join(f.root, 'icons', 'Monster_7000.webp'), Buffer.from('not a WebP'));
+    await rm(path.join(f.root, 'figures', 'Monster_9999.webp'));
+    await writeFile(path.join(f.root, 'figures', 'Monster_7000.webp'), Buffer.from('not a WebP'));
     await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/图片头部|WebP/);
-    await writeFile(path.join(f.root, 'icons', 'Monster_7000.webp'), webp);
+    await writeFile(path.join(f.root, 'figures', 'Monster_7000.webp'), webp);
     const wrong = JSON.parse(original);
     wrong.images['7000'].sha256 = createHash('sha256').update('wrong').digest('hex');
     await writeFile(index, JSON.stringify(wrong));
     await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/sha256/);
     await writeFile(index, original);
-    await rm(path.join(f.root, 'icons', 'Monster_7000.webp'));
+    await rm(path.join(f.root, 'figures', 'Monster_7000.webp'));
     await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/文件集合/);
-    await writeFile(path.join(f.root, 'icons', 'Monster_7000.webp'), webp);
+    await writeFile(path.join(f.root, 'figures', 'Monster_7000.webp'), webp);
     await expect(
       validateSnapshot([...f.requirements, { id: '3', name: 'New' }], f.root)
     ).rejects.toThrow(/fingerprint/);
@@ -215,6 +221,33 @@ describe('offline tracked enemy snapshot', () => {
 });
 
 describe('incremental network maintenance', () => {
+  it('replaces a MiddleIcon snapshot even when version, mapping and bytes match', async () => {
+    const f = await fixture('migration', ['1', '2']);
+    await snapshot(f, { '1': '7000', '2': '7000' });
+    const index = path.join(f.root, 'index.json');
+    const legacy = (await readFile(index, 'utf8'))
+      .replace('"schemaVersion": 4', '"schemaVersion": 3')
+      .replace('MonsterFigure', 'MonsterMiddleIcon')
+      .replaceAll('"figure":', '"icon":')
+      .replaceAll('/figures/', '/icons/');
+    await writeFile(index, legacy);
+    await rename(path.join(f.root, 'figures'), path.join(f.root, 'icons'));
+    await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/schema/);
+
+    const ids = { '1': '7000', '2': '7000' };
+    await expect(update(f, provider({ ids, imageFailure: 503 }).fetchImpl)).rejects.toThrow(
+      /operational failure/
+    );
+    expect(await readFile(index, 'utf8')).toBe(legacy);
+    expect(await readdir(path.join(f.root, 'icons'))).toEqual(['Monster_7000.webp']);
+
+    const result = await update(f, provider({ ids }).fetchImpl);
+    expect(result.stats).toMatchObject({ detailRequests: 2, imageDownloads: 1, reusedImages: 0 });
+    const { manifest } = await validateSnapshot(f.requirements, f.root);
+    expect(manifest.images['7000']).toEqual(JSON.parse(legacy).images['7000']);
+    expect(await readdir(f.root)).not.toContain('icons');
+  });
+
   it('no-change check preserves manifest bytes and reuses every image', async () => {
     const f = await fixture('nochange', ['1', '2']);
     await snapshot(f, { '1': '7000', '2': '7000' });
@@ -260,7 +293,7 @@ describe('incremental network maintenance', () => {
       newImages: ['8000'],
       prunedImages: ['7000']
     });
-    expect(await readdir(path.join(f.root, 'icons'))).toEqual(['Monster_8000.webp']);
+    expect(await readdir(path.join(f.root, 'figures'))).toEqual(['Monster_8000.webp']);
   });
 
   it('version-only refresh produces no diff and retains source version/timestamp', async () => {
@@ -276,11 +309,11 @@ describe('incremental network maintenance', () => {
   it('repairs corrupt images and leaves original snapshot intact on operational failure', async () => {
     const f = await fixture('repair');
     await snapshot(f, { '1': '7000' });
-    await writeFile(path.join(f.root, 'icons', 'Monster_7000.webp'), 'corrupt');
-    const corrupt = await readFile(path.join(f.root, 'icons', 'Monster_7000.webp'));
+    await writeFile(path.join(f.root, 'figures', 'Monster_7000.webp'), 'corrupt');
+    const corrupt = await readFile(path.join(f.root, 'figures', 'Monster_7000.webp'));
     const failure = provider({ failure: 403, version: '2', ids: { '1': '7000' } });
     await expect(update(f, failure.fetchImpl)).rejects.toThrow(/operational failure/);
-    expect(await readFile(path.join(f.root, 'icons', 'Monster_7000.webp'))).toEqual(corrupt);
+    expect(await readFile(path.join(f.root, 'figures', 'Monster_7000.webp'))).toEqual(corrupt);
     const success = provider();
     const result = await update(f, success.fetchImpl);
     expect(result.stats.repairedImages).toEqual(['7000']);
@@ -320,21 +353,20 @@ it('transport and runtime resolver preserve canonical behavior', async () => {
   expect(() =>
     parseNanokaMonster(
       { id: 2, name: 'Other', image_path: 'Monster_7000.png' },
-      { id: '1', name: 'A' },
-      'https://example.test'
+      { id: '1', name: 'A' }
     )
   ).toThrow(/id 不匹配/);
 
   const f = await fixture('resolver');
   await snapshot(f, { '1': '7000' });
   const staticRoot = path.join(f.root, 'static');
-  await mkdir(path.join(staticRoot, 'generated-enemy-assets', 'icons'), { recursive: true });
+  await mkdir(path.join(staticRoot, 'generated-enemy-assets', 'figures'), { recursive: true });
   await writeFile(
     path.join(staticRoot, 'generated-enemy-assets', 'index.json'),
     await readFile(path.join(f.root, 'index.json'))
   );
   await writeFile(
-    path.join(staticRoot, 'generated-enemy-assets', 'icons', 'Monster_7000.webp'),
+    path.join(staticRoot, 'generated-enemy-assets', 'figures', 'Monster_7000.webp'),
     webp
   );
   expect(
@@ -345,5 +377,5 @@ it('transport and runtime resolver preserve canonical behavior', async () => {
         warn: vi.fn()
       })
     ).get(1)
-  ).toBe('/generated-enemy-assets/icons/Monster_7000.webp');
+  ).toBe('/generated-enemy-assets/figures/Monster_7000.webp');
 });

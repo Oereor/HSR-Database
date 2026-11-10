@@ -1,15 +1,23 @@
 import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
+import {
+  ENEMY_ASSET_DIRECTORY,
+  ENEMY_ASSET_RESOURCE_TYPE,
+  ENEMY_ASSET_SCHEMA_VERSION,
+  ENEMY_FIGURE_DIRECTORY,
+  enemyFigureFileName,
+  enemyFigureUrl
+} from '../domain/enemy-asset-paths.js';
 
 interface EnemyAssetEntry {
   name: string;
   imageId: string;
-  icon: string;
+  figure: string;
 }
 
 interface EnemyAssetManifest {
-  schemaVersion: 1 | 2 | 3;
-  resourceType: 'MonsterMiddleIcon';
+  schemaVersion: typeof ENEMY_ASSET_SCHEMA_VERSION;
+  resourceType: typeof ENEMY_ASSET_RESOURCE_TYPE;
   monsters: Record<string, EnemyAssetEntry>;
 }
 
@@ -20,8 +28,6 @@ interface EnemyAssetLoadOptions {
 }
 
 const defaultStaticRoot = path.resolve('static');
-const defaultManifestPath = path.join(defaultStaticRoot, 'generated-enemy-assets', 'index.json');
-const PORTRAIT_URL = /^\/generated-enemy-assets\/icons\/Monster_(\d+)\.webp$/;
 
 const recordOf = (value: unknown): Record<string, unknown> | undefined =>
   value !== null && typeof value === 'object' && !Array.isArray(value)
@@ -32,8 +38,8 @@ function parseManifest(value: unknown): EnemyAssetManifest {
   const manifest = recordOf(value);
   if (
     !manifest ||
-    ![1, 2, 3].includes(manifest.schemaVersion as number) ||
-    manifest.resourceType !== 'MonsterMiddleIcon' ||
+    manifest.schemaVersion !== ENEMY_ASSET_SCHEMA_VERSION ||
+    manifest.resourceType !== ENEMY_ASSET_RESOURCE_TYPE ||
     !recordOf(manifest.monsters)
   )
     throw new Error('敌人资源 manifest 的 schema 或资源类型不匹配');
@@ -44,8 +50,9 @@ export async function loadEnemyPortraitMap(
   options: EnemyAssetLoadOptions = {}
 ): Promise<ReadonlyMap<number, string>> {
   const staticRoot = path.resolve(options.staticRoot ?? defaultStaticRoot);
-  const iconRoot = path.resolve(staticRoot, 'generated-enemy-assets', 'icons');
-  const manifestPath = path.resolve(options.manifestPath ?? defaultManifestPath);
+  const assetRoot = path.join(staticRoot, ENEMY_ASSET_DIRECTORY);
+  const figureRoot = path.join(assetRoot, ENEMY_FIGURE_DIRECTORY);
+  const manifestPath = path.resolve(options.manifestPath ?? path.join(assetRoot, 'index.json'));
   const warn = options.warn ?? console.warn;
   try {
     const manifest = parseManifest(JSON.parse(await readFile(manifestPath, 'utf8')));
@@ -53,25 +60,19 @@ export async function loadEnemyPortraitMap(
     let invalid = 0;
     for (const [templateId, entry] of Object.entries(manifest.monsters)) {
       const numericId = Number(templateId);
-      const iconMatch = PORTRAIT_URL.exec(entry?.icon);
       if (
         !Number.isSafeInteger(numericId) ||
         numericId <= 0 ||
         typeof entry?.imageId !== 'string' ||
-        !iconMatch ||
-        iconMatch[1] !== entry.imageId
+        !/^(0|[1-9]\d*)$/.test(entry.imageId) ||
+        entry.figure !== enemyFigureUrl(entry.imageId)
       ) {
         invalid += 1;
         continue;
       }
-      const file = path.resolve(staticRoot, entry.icon.slice(1));
-      if (!file.startsWith(`${iconRoot}${path.sep}`)) {
-        invalid += 1;
-        continue;
-      }
       try {
-        await access(file);
-        portraits.set(numericId, entry.icon);
+        await access(path.join(figureRoot, enemyFigureFileName(entry.imageId)));
+        portraits.set(numericId, entry.figure);
       } catch {
         invalid += 1;
       }

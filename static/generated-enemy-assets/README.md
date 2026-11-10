@@ -4,8 +4,9 @@ This directory is generated at maintenance time and intentionally committed to G
 Production, Preview and CI consume it offline; do not edit its mappings or binaries manually.
 
 - Source service: <https://static.nanoka.cc>
-- Resource type: `MonsterMiddleIcon`
-- Public URL: `/generated-enemy-assets/icons/Monster_<imageId>.webp`
+- Resource type: `MonsterFigure`
+- Public URL: `/generated-enemy-assets/figures/Monster_<imageId>.webp`
+- Encoding: WebP, quality 82, longest edge at most 1280 px, with transparency preserved. The updater keeps an eligible original if recompression saves less than 5%.
 - Update: `pnpm update:enemy-assets`
 - Validate offline: `pnpm validate:enemy-assets`
 
