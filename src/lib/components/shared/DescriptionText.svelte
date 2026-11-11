@@ -9,6 +9,12 @@
   export let specialEffectsAvailable = false;
   export let specialEffectIconUrl: string | undefined = undefined;
   export let onOpenSpecialEffects: ((trigger: HTMLButtonElement) => void) | undefined = undefined;
+  export let onOpenSeriesEffects:
+    | ((
+        trigger: HTMLButtonElement,
+        reference: NonNullable<DescriptionToken['interaction']>
+      ) => void)
+    | undefined = undefined;
 
   $: segments = segmentSpecialEffectTriggers(
     tokens,
@@ -28,9 +34,13 @@
             {characterAccent}
             iconUrl={specialEffectIconUrl}
           />{/each}</button
-      >{:else}{#each segment.tokens as token}<InlineGameTextToken
-          {token}
-          {characterAccent}
-        />{/each}{/if}
+      >{:else}{#each segment.tokens as token}{#if token.type === 'interaction' && token.interaction && onOpenSeriesEffects}<button
+            type="button"
+            class="text-primary inline cursor-pointer underline underline-offset-4"
+            data-series-skill-reference={token.interaction.skillId}
+            on:click={(event) => onOpenSeriesEffects?.(event.currentTarget, token.interaction!)}
+            ><InlineGameTextToken {token} {characterAccent} /></button
+          >
+        {:else}<InlineGameTextToken {token} {characterAccent} />{/if}{/each}{/if}
   {/each}
 </span>

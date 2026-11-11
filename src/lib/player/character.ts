@@ -110,6 +110,13 @@ export function resolvePlayerEidolonState(
   return eidolon.rank <= playerRank ? 'active' : 'inactive';
 }
 
+export function resolvePlayerExEidolonState(knownState?: PlayerEidolonState): {
+  displayState: PlayerEidolonState;
+  source: 'player' | 'missing';
+} {
+  return { displayState: knownState ?? 'inactive', source: knownState ? 'player' : 'missing' };
+}
+
 export function groupPlayerStats(
   stats: PlayerStat[],
   properties: RelicProperty[],

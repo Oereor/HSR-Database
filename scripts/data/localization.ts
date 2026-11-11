@@ -37,6 +37,8 @@ export interface TextProjectionContext {
 
 export interface GameTextProjectionContext extends TextProjectionContext {
   scalingParamIndexes?: ReadonlySet<number>;
+  seriesSkillReferences?: ReadonlySet<string>;
+  seriesReferenceLabel?: string;
 }
 
 export interface GameTextProjection {
@@ -379,6 +381,41 @@ export async function createTextResolver(
       );
       return resolved;
     }
+    const macroPattern = /#\{([^{}]*)\}/g;
+    const references = new Map<
+      string,
+      NonNullable<import('../../src/lib/domain/types.js').DescriptionToken['interaction']>
+    >();
+    for (const macro of resolved.value.matchAll(macroPattern)) {
+      const match = /^series_ref_skill_desc:(UIText_SeriesSkillDescFormat),(\d+),(2)$/.exec(
+        macro[1]
+      );
+      const template = match
+        ? resolveInternal(
+            { kind: 'direct', ref: { kind: 'symbolic', key: match[1] } },
+            context,
+            false
+          )
+        : undefined;
+      if (
+        !match ||
+        template?.status !== 'available' ||
+        !context.seriesReferenceLabel ||
+        !context.seriesSkillReferences?.has(`${match[2]}:${match[3]}`)
+      ) {
+        const reason = `Unsupported or unresolved game text macro: ${macro[0]}`;
+        record(
+          'unsupported-template',
+          identifier,
+          provenance,
+          reason,
+          context.diagnosticDisposition
+        );
+        recordHealth('unsupported', identifier, provenance, context.diagnosticDisposition, reason);
+        return { status: 'unsupported', reason, ref: resolved.ref };
+      }
+      references.set(macro[0], { kind: 'series-skill', skillId: match[2], level: 2 });
+    }
     const formatted = formatDescription(
       resolved.value,
       paramsOf(source),
@@ -398,13 +435,31 @@ export async function createTextResolver(
       return { status: 'unsupported', reason, ref: resolved.ref };
     }
     const markup = formatGameMarkup(resolved.value, paramsOf(source));
+    const tokens = formatted.descriptionTokens.flatMap((token) => {
+      const result: import('../../src/lib/domain/types.js').DescriptionToken[] = [];
+      let cursor = 0;
+      for (const macro of token.value.matchAll(macroPattern)) {
+        if (macro.index > cursor)
+          result.push({ ...token, value: token.value.slice(cursor, macro.index) });
+        result.push({
+          ...token,
+          type: 'interaction',
+          value: context.seriesReferenceLabel!,
+          interaction: references.get(macro[0])!
+        });
+        cursor = macro.index + macro[0].length;
+      }
+      if (cursor < token.value.length || token.type === 'icon')
+        result.push({ ...token, value: token.value.slice(cursor) });
+      return result;
+    });
     const result = {
       status: 'available',
       ref: resolved.ref,
       value: {
-        text: formatted.description,
-        markup: markup.text,
-        tokens: formatted.descriptionTokens,
+        text: tokens.map((token) => token.value).join(''),
+        markup: markup.text.replace(macroPattern, () => context.seriesReferenceLabel!),
+        tokens,
         diagnostics: formatted.diagnostics,
         usedParameterIndexes: markup.usedParameterIndexes
       }

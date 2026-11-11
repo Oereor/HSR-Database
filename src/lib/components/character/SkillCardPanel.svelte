@@ -9,8 +9,14 @@
   import { createPlayerSkillTreeIndex, resolvePlayerSkillLevel } from '$lib/player/character';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import { m } from '$lib/paraglide/messages.js';
+  import * as ToggleGroup from '$lib/components/ui/toggle-group';
+  import { Button } from '$lib/components/ui/button';
 
   export let card: SkillCard;
+  export let seriesLevel: 1 | 2 = 1;
+  export let onSeriesLevelChange: ((level: 1 | 2) => void) | undefined = undefined;
+  export let onOpenSeriesEffects: ((trigger: HTMLButtonElement, level: 1 | 2) => void) | undefined =
+    undefined;
   export let characterAccent: string | undefined = undefined;
   export let previewControls: Record<string, SkillPreviewControl> | undefined = undefined;
   export let onPreviewLevelChange: ((progressionId: string, level: number) => void) | undefined =
@@ -54,6 +60,21 @@
   <Card.Header class="flex flex-row items-center justify-between gap-3">
     <Card.Title class="min-w-0 text-lg">{card.displayLabel}</Card.Title>
     <div class="skill-card__controls flex min-w-0 shrink-0 flex-col gap-2">
+      {#if card.externalCondition}
+        <ToggleGroup.Root
+          type="single"
+          variant="outline"
+          size="sm"
+          value={String(seriesLevel)}
+          aria-label={m.series_skill_condition()}
+          onValueChange={(value) => {
+            if (value === '1' || value === '2') onSeriesLevelChange?.(Number(value) as 1 | 2);
+          }}
+        >
+          <ToggleGroup.Item value="1">{m.series_skill_e0()}</ToggleGroup.Item>
+          <ToggleGroup.Item value="2">{m.series_skill_e2()}</ToggleGroup.Item>
+        </ToggleGroup.Root>
+      {/if}
       {#each card.progressions as progression (progression.id)}
         {@const level = levels[progression.id]}
         <div data-preview-key={!playerSkillTree ? progression.id : undefined}>
@@ -102,12 +123,21 @@
       {#if index}<Separator />{/if}
       <SkillVariantView
         {variant}
-        selectedLevel={selectedLevel(variant, levels)}
+        selectedLevel={card.externalCondition ? seriesLevel : selectedLevel(variant, levels)}
         {characterAccent}
         {specialEffectsAvailable}
         {specialEffectIconUrl}
         {onOpenSpecialEffects}
       />
     {/each}
+    {#if card.externalCondition && onOpenSeriesEffects}
+      <Button
+        variant="outline"
+        type="button"
+        onclick={(event) =>
+          onOpenSeriesEffects?.(event.currentTarget as HTMLButtonElement, seriesLevel)}
+        >{m.series_skill_view_related()}</Button
+      >
+    {/if}
   </Card.Content>
 </Card.Root>

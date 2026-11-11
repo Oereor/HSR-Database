@@ -319,7 +319,8 @@ export async function readAssetRequirements(
                 ]),
                 ...profile.specialEffects.map((entry) => entry.skill.iconKey),
                 ...profile.traces.map((trace) => trace.iconKey),
-                ...profile.eidolons.map((eidolon) => eidolon.iconKey)
+                ...profile.eidolons.map((eidolon) => eidolon.iconKey),
+                ...profile.exEidolons.map((eidolon) => eidolon.iconKey)
               ]
             : []
         )

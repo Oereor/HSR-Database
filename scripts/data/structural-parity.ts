@@ -17,7 +17,7 @@ instanceValue instanceValueInternal levelRatio hardLevelRatio eliteRatio configu
 perBar barCount runtimeStatus hpBase baseEncounterMaxHpPerBar final maxHpPerBar eliteGroupId eliteGroupTable
 eliteContextSource eliteContextConfidence phase maxHp exact rounded roundedPerBar exactPerBar phaseCount effectiveTotalHp effectiveTotalHpStatus`;
 const characterFields = `baseAvatarId gender profile profiles base enhanced energy max iconCode iconPath iconKey iconKeys
-skillCards variants progressions traces eidolons equipmentRecommendation lightConeIds cavernSetIds planarSetIds
+skillCards variants progressions traces eidolons exEidolons entityId relatedSkillIds seriesSkills states condition externalCondition externalAvatarId threshold param relatedAvatarIds rootSkillId targetSkillId equipmentRecommendation lightConeIds cavernSetIds planarSetIds
 mainStatOptions subStatPropertyTypes propertyTypes sourcePointType extraEffects specialEffects relation kind
 tarotFigurePath tarotIconPath pathCode elementCode releaseVersion categoryCode typeCode visibility source
 combatLevels combatMetaLevels combatMeta effect code known tag damageType stanceDisplay`;

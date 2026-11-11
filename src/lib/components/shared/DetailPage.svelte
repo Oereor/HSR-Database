@@ -42,7 +42,11 @@
   import { traceRequirementText } from '$lib/components/character/trace-requirements';
   import { fetchPlayerProfile } from '$lib/player/client';
   import type { PlayerCharacter } from '$lib/player/contract';
-  import { findPlayerCharacter, resolvePlayerEidolonState } from '$lib/player/character';
+  import {
+    findPlayerCharacter,
+    resolvePlayerEidolonState,
+    resolvePlayerExEidolonState
+  } from '$lib/player/character';
   import {
     readPlayerBuildQuery,
     readPlayerUidQuery,
@@ -118,6 +122,9 @@
   let specialEffectsOpen = false;
   let specialEffectTrigger: HTMLButtonElement | undefined;
   let specialEffectLevel = 1;
+  let specialEffectMode: 'skill' | 'series' = 'skill';
+  let seriesSkillLevel: 1 | 2 = 1;
+  let seriesSkillScope = '';
   type PlayerContextState = 'idle' | 'invalid' | 'loading' | 'error' | 'missing' | 'active';
   let handledPlayerContext: string | null = null;
   let playerRequestVersion = 0;
@@ -153,6 +160,21 @@
         : detail.profiles.base
       : undefined;
   $: specialEffects = activeProfile?.specialEffects ?? [];
+  $: ordinarySpecialEffects = specialEffects.filter(
+    (entry: import('$lib/domain/types').CharacterSpecialEffectEntry) =>
+      entry.kind !== 'series-skill-link'
+  );
+  $: seriesSpecialEffects = specialEffects.filter(
+    (entry: import('$lib/domain/types').CharacterSpecialEffectEntry) =>
+      entry.kind === 'series-skill-link' && entry.linkedAvatarId !== '8009'
+  );
+  $: dialogSpecialEffects =
+    specialEffectMode === 'series' ? seriesSpecialEffects : ordinarySpecialEffects;
+  $: if (seriesSkillScope !== `${detail.id}:${profileMode}`) {
+    seriesSkillScope = `${detail.id}:${profileMode}`;
+    seriesSkillLevel = 1;
+    specialEffectsOpen = false;
+  }
   $: specialEffectsAvailable = specialEffects.length > 0;
   $: specialEffectIconUrl = category === 'characters' ? getCharacterIconUrl(detail.id) : undefined;
   $: characterPortraitSource =
@@ -523,9 +545,32 @@
   }
 
   function openSpecialEffects(trigger: HTMLButtonElement, level: number) {
+    specialEffectMode = 'skill';
     specialEffectTrigger = trigger;
     specialEffectLevel = level;
     specialEffectsOpen = true;
+  }
+
+  function openSeriesEffects(trigger: HTMLButtonElement, level: 1 | 2) {
+    if (detail.id !== '1511' || !seriesSpecialEffects.length) return;
+    specialEffectMode = 'series';
+    specialEffectTrigger = trigger;
+    specialEffectLevel = level;
+    specialEffectsOpen = true;
+  }
+
+  function openSeriesReference(
+    trigger: HTMLButtonElement,
+    reference: NonNullable<import('$lib/domain/types').DescriptionToken['interaction']>
+  ) {
+    if (
+      !seriesSpecialEffects.some(
+        (entry: import('$lib/domain/types').CharacterSpecialEffectEntry) =>
+          entry.kind === 'series-skill-link' && entry.rootSkillId === reference.skillId
+      )
+    )
+      return;
+    openSeriesEffects(trigger, reference.level);
   }
 
   function requestSpecialEffectsClose() {
@@ -769,9 +814,12 @@
           {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel
               {card}
               characterAccent={getElementColor(detail.element)}
-              {specialEffectsAvailable}
+              specialEffectsAvailable={ordinarySpecialEffects.length > 0}
               {specialEffectIconUrl}
               onOpenSpecialEffects={openSpecialEffects}
+              seriesLevel={seriesSkillLevel}
+              onSeriesLevelChange={(level) => (seriesSkillLevel = level)}
+              onOpenSeriesEffects={detail.id === '1511' ? openSeriesEffects : undefined}
               playerSkillTree={activePlayerCharacter?.skillTree}
               previewControls={skillPreviewControls}
               onPreviewLevelChange={handleSkillPreviewLevel}
@@ -802,11 +850,21 @@
       {#if activeProfile.eidolons.length}<div class="grid grid-cols-1 gap-4">
           {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard
               eidolon={rank}
+              onOpenSeriesEffects={detail.id === '1511' ? openSeriesReference : undefined}
               characterAccent={getElementColor(detail.element)}
               playerState={activePlayerCharacter
                 ? resolvePlayerEidolonState(rank, activePlayerCharacter.progression.rank)
                 : undefined}
             />{/each}
+          {#each activeProfile.exEidolons ?? [] as rank (rank.entityId)}
+            {@const activation = activePlayerCharacter ? resolvePlayerExEidolonState() : undefined}
+            <EidolonCard
+              eidolon={rank}
+              characterAccent={getElementColor(detail.element)}
+              playerState={activation?.displayState}
+              playerStateSource={activation?.source}
+            />
+          {/each}
         </div>{:else}<p class="data-placeholder">{m.detail_eidolons_unavailable()}</p>{/if}
     </section>
   {/key}
@@ -844,11 +902,12 @@
   {/if}
   {#if specialEffectsAvailable}<SpecialEffectDialog
       open={specialEffectsOpen}
-      entries={specialEffects}
+      entries={dialogSpecialEffects}
       targets={specialEffectTargets}
       characterAccent={getElementColor(detail.element)}
       ownerCharacterId={detail.id}
       selectedLevel={specialEffectLevel}
+      mode={specialEffectMode}
       onRequestClose={requestSpecialEffectsClose}
       onClosed={handleSpecialEffectsClosed}
     />{/if}

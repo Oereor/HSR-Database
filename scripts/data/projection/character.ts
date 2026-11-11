@@ -9,6 +9,7 @@ import type {
   CharacterSpecialEffectEntry,
   Trace,
   Eidolon,
+  ExEidolon,
   DescriptionToken
 } from '../../../src/lib/domain/types.js';
 import type { TextResolver } from '../localization.js';
@@ -29,6 +30,7 @@ import {
   isPlayerPropertyType
 } from '../../../src/lib/player/property-semantics.js';
 import { gameTextToPlain } from '../../../src/lib/domain/game-text.js';
+import * as m from '../../../src/lib/paraglide/messages.js';
 
 function projectDescription(
   context: CharacterProjectionContext,
@@ -49,6 +51,8 @@ function projectDescription(
     return { description: '', descriptionTokens: [] };
   }
   const projected = context.resolver.projectGameText(source, {
+    seriesSkillReferences: context.seriesSkillReferences,
+    seriesReferenceLabel: m.series_skill_view_enhanced({}, { locale: context.locale }),
     gender,
     nickname: context.nickname,
     provenance: { entity: field.domain, id: field.entityId, field: field.field },
@@ -59,6 +63,8 @@ function projectDescription(
       productRouteReachability: 'reachable'
     }
   });
+  if (projected.status === 'unsupported' || projected.status === 'invalid')
+    throw new Error(`[${field.domain}.${field.entityId}.${field.field}] ${projected.reason}`);
   if (projected.status !== 'available') return { description: '', descriptionTokens: [] };
   if (projected.value.diagnostics.some(({ code }) => code === 'invalid-param'))
     throw new Error(
@@ -68,6 +74,8 @@ function projectDescription(
 }
 
 export interface CharacterProjectionContext {
+  seriesSkillReferences?: ReadonlySet<string>;
+  charactersById?: ReadonlyMap<string, CharacterDomain>;
   locale: 'zh-CN' | 'en';
   resolver: TextResolver;
   extraEffectsById: ReadonlyMap<string, NeutralExtraEffect>;
@@ -226,6 +234,16 @@ function projectProfile(
   profile: CharacterDomain['profiles']['base'],
   context: CharacterProjectionContext
 ) {
+  context = {
+    ...context,
+    seriesSkillReferences: new Set(
+      profile.seriesSkills.flatMap((series) =>
+        series.states
+          .filter((state) => state.relatedAvatarIds.length)
+          .map((state) => `${series.skillId}:${state.level}`)
+      )
+    )
+  };
   const inputs = profile.skills
     .filter((skill) => skill.visibility !== 'hidden')
     .map((skill) => projectSkillVariant(domain, skill, context));
@@ -272,12 +290,51 @@ function projectProfile(
         : undefined);
     return {
       ...card,
-      displayLabel: label(context, card.category),
+      displayLabel:
+        card.category === 'elation-ascension'
+          ? requiredText(context.resolver, context.extraEffectsById.get('10015111')?.nameSource, {
+              domain: 'character',
+              entityId: domain.id,
+              field: 'seriesSkill.category'
+            })
+          : label(context, card.category),
+      ...(card.category === 'elation-ascension'
+        ? {
+            externalCondition:
+              profile.seriesSkills.find((series) =>
+                card.variants.some((variant) => variant.id === series.skillId)
+              ) &&
+              projectSeriesSkill(
+                profile.seriesSkills.find((series) =>
+                  card.variants.some((variant) => variant.id === series.skillId)
+                )!
+              )
+          }
+        : {}),
       ...(iconKey ? { iconKey } : {})
     };
   });
   const specialEffects: CharacterSpecialEffectEntry[] = profile.specialEffects.flatMap(
     (relation: NeutralSpecialEffectRelation): CharacterSpecialEffectEntry[] => {
+      if (relation.kind === 'series-skill-link') {
+        const target = context.charactersById?.get(relation.linkedAvatarId);
+        const source = target?.profiles.base.skills.find(
+          (skill) => skill.id === relation.targetSkillId
+        );
+        if (!target || !source)
+          throw new Error(
+            `[character/series] missing projection target ${relation.linkedAvatarId}:${relation.targetSkillId}`
+          );
+        return [
+          {
+            kind: 'series-skill-link',
+            rootSkillId: relation.skillId,
+            linkedAvatarId: relation.linkedAvatarId,
+            order: relation.order,
+            skill: buildSkillVariant(projectSkillVariant(target, source, context))
+          }
+        ];
+      }
       const variant = profile.skills.find((skill) => skill.id === relation.skillId);
       if (!variant) return [];
       const skill = buildSkillVariant(projectSkillVariant(domain, variant, context));
@@ -423,6 +480,37 @@ function projectProfile(
         : {})
     };
   });
+  const exEidolons: ExEidolon[] = profile.exEidolons.map((eidolon) => ({
+    kind: 'ex-rank',
+    id: eidolon.id,
+    entityId: eidolon.entityId,
+    avatarId: eidolon.avatarId,
+    relatedSkillIds: eidolon.relatedSkillIds,
+    badgeLabel: requiredText(
+      context.resolver,
+      {
+        kind: 'direct',
+        ref: {
+          kind: 'hash',
+          hash: '5057575626871868393' as import('../../../src/lib/domain/types.js').TextHash
+        }
+      },
+      { domain: 'character', entityId: domain.id, field: 'exEidolon.badge' }
+    ),
+    name: requiredText(context.resolver, eidolon.nameSource, {
+      domain: 'character',
+      entityId: domain.id,
+      field: `exEidolon.${eidolon.id}.name`
+    }),
+    ...projectDescription(
+      context,
+      eidolon.descriptionSource,
+      { domain: 'character', entityId: domain.id, field: `exEidolon.${eidolon.id}.description` },
+      domain.gender
+    ),
+    extraEffects: projectExtraEffects(domain, context, eidolon.extraEffectIds)
+    // The upstream skill-style path is retained in Neutral. No ordinary rank asset lookup.
+  }));
   return {
     energy:
       profile.energy.kind === 'special'
@@ -457,7 +545,23 @@ function projectProfile(
     skillCards,
     specialEffects,
     traces,
-    eidolons
+    eidolons,
+    seriesSkills: profile.seriesSkills.map(projectSeriesSkill),
+    exEidolons
+  };
+}
+
+function projectSeriesSkill(
+  series: import('../../../src/lib/domain/neutral.js').NeutralSeriesSkill
+) {
+  return {
+    avatarId: series.avatarId,
+    skillId: series.skillId,
+    states: series.states.map(({ level, condition, relatedAvatarIds }) => ({
+      level,
+      condition,
+      relatedAvatarIds
+    }))
   };
 }
 

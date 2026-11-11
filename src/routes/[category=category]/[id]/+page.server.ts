@@ -79,7 +79,8 @@ async function resolveSpecialEffectTargets(
   const ids = new Set<string>();
   for (const profile of Object.values(profiles ?? {})) {
     for (const entry of profile?.specialEffects ?? []) {
-      if (entry.kind === 'servant-skill-link') ids.add(entry.linkedAvatarId);
+      if (entry.kind === 'servant-skill-link' || entry.kind === 'series-skill-link')
+        ids.add(entry.linkedAvatarId);
       else for (const id of entry.linkedAvatarIds) ids.add(id);
     }
   }

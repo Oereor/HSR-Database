@@ -130,7 +130,9 @@ const character = (id: string): Character =>
         skillCards: [],
         specialEffects: [],
         traces: [],
-        eidolons: []
+        eidolons: [],
+        seriesSkills: [],
+        exEidolons: []
       }
     },
     baseStats: progression(),

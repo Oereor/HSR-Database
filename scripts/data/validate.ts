@@ -1,4 +1,5 @@
 import { validateTrainingSemantics } from './validation/training.js';
+import { validateCharacterExtensionSemantics } from './validation/character-extensions.js';
 import { validatePhaseHpSemantics } from './validation/phase-hp.js';
 import { normalizeEnemySkillKind, normalizeEnemySkillTag } from './enemy-skill-policy.js';
 import { createTextResolver } from './localization.js';
@@ -105,6 +106,7 @@ if (
 )
   throw new Error('Rating V2 profiles differ from pinned raw semantics');
 await validateTrainingSemantics(rawRoot, staticGeneratedRoot, currentTextMaps);
+await validateCharacterExtensionSemantics(rawRoot, generatedRoot, currentTextMaps);
 const playerRuntimeTables = Object.fromEntries(
   await Promise.all(
     PLAYER_RUNTIME_TABLE_NAMES.map(async (name) => [name, await readTable(rawRoot, name)] as const)
@@ -856,7 +858,7 @@ const validateCharacterProfile = (
           throw new Error(
             `角色 ${character.id} Avatar Special Effect ${skill.id} 的 ${field} 无效`
           );
-    } else {
+    } else if (entry.kind === 'servant-skill-link') {
       if (skill.source !== 'memosprite')
         throw new Error(`角色 ${character.id} Servant Special Effect ${skill.id} 来源异常`);
       if (
@@ -869,6 +871,16 @@ const validateCharacterProfile = (
       )
         throw new Error(`角色 ${character.id} Servant Special Effect ${skill.id} relation 无效`);
       previousServantOrder = entry.order;
+    } else {
+      if (
+        skill.source !== 'avatar' ||
+        skill.progressionId !== null ||
+        !profile.seriesSkills.some((series) => series.skillId === entry.rootSkillId) ||
+        !Number.isInteger(entry.order) ||
+        entry.order < 0 ||
+        !/^\d+$/.test(entry.linkedAvatarId)
+      )
+        throw new Error(`角色 ${character.id} SeriesSkill relation 无效`);
     }
     for (const effect of skill.combatMeta.extraEffects ?? [])
       if (
@@ -924,7 +936,36 @@ const validateCharacterProfile = (
         );
     }
   }
-  for (const eidolon of profile.eidolons) {
+  for (const series of profile.seriesSkills) {
+    const card = profile.skillCards.find(
+      (card) => card.externalCondition?.skillId === series.skillId
+    );
+    if (
+      !card ||
+      card.category !== 'elation-ascension' ||
+      card.progressions.length ||
+      series.avatarId !== character.id ||
+      series.states.length !== 2 ||
+      card.variants.some((variant) => variant.progressionId !== null)
+    )
+      throw new Error(`角色 ${character.id} SeriesSkill condition/card 无效`);
+  }
+  const exIdentities = new Set<string>();
+  for (const ex of profile.exEidolons) {
+    if (
+      ex.kind !== 'ex-rank' ||
+      ex.entityId !== `ex-rank:${character.id}:${ex.id}` ||
+      ex.avatarId !== character.id ||
+      !ex.name ||
+      !ex.description ||
+      !ex.badgeLabel ||
+      exIdentities.has(ex.entityId) ||
+      ex.iconKey?.startsWith('rank--')
+    )
+      throw new Error(`角色 ${character.id} ExRank identity/content 无效`);
+    exIdentities.add(ex.entityId);
+  }
+  for (const eidolon of [...profile.eidolons, ...profile.exEidolons]) {
     for (const effect of eidolon.extraEffects ?? []) {
       if (
         !effect.id ||
@@ -960,7 +1001,8 @@ const profileIds = (profile: CharacterProfile): Set<string> =>
         : `special:${entry.kind}:${entry.skill.id}:${entry.linkedAvatarId}`
     ),
     ...profile.traces.map((trace) => trace.id),
-    ...profile.eidolons.map((eidolon) => eidolon.id)
+    ...profile.eidolons.map((eidolon) => eidolon.id),
+    ...profile.exEidolons.map((eidolon) => eidolon.entityId)
   ]);
 
 for (const character of characters) {
