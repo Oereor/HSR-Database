@@ -20,6 +20,8 @@ export const DATA_GENERATION_TABLE_NAMES = [
   'AvatarSkillLink',
   'AvatarSpecialSkillTree',
   'AvatarGlobalBuffConfig',
+  'AvatarSeriesSkill',
+  'AvatarExRankConfig',
   'AvatarServantConfig',
   'AvatarServantSkillConfig',
   'AvatarServantSkillLink',

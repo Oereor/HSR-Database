@@ -640,6 +640,8 @@ export async function syncData(): Promise<DataManifest> {
     'AvatarServantSkillConfig',
     'AvatarServantSkillLink',
     'AvatarGlobalBuffConfig',
+    'AvatarSeriesSkill',
+    'AvatarExRankConfig',
     'AvatarEquipRecommend',
     'AvatarRelicRecommend',
     'EquipmentConfig',

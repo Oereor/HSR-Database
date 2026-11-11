@@ -48,6 +48,7 @@ export type SkillCategory =
   | 'memosprite-skill'
   | 'memosprite-talent'
   | 'elation-skill'
+  | 'elation-ascension'
   | 'assist';
 
 export type KnownSkillEffect =

@@ -41,6 +41,7 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
       'memosprite-skill': '忆灵技',
       'memosprite-talent': '忆灵天赋',
       'elation-skill': '欢愉技',
+      'elation-ascension': '「欢愉」命途升格',
       assist: '助战技'
     },
     skillEffectLabels: {
@@ -94,6 +95,7 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
       'memosprite-skill': 'Memosprite Skill',
       'memosprite-talent': 'Memosprite Talent',
       'elation-skill': 'Elation Skill',
+      'elation-ascension': '"Elation" Path Ascension',
       assist: 'Assist Skill'
     },
     skillEffectLabels: {

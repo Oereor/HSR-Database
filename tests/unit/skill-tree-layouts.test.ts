@@ -68,6 +68,42 @@ describe('skill tree layout geometry', () => {
     });
   });
 
+  it('treats Aha Point23 as a skill node while retaining free default training semantics', () => {
+    const slots = json<{ anchorType: string; center: [number, number] }[]>(
+      'data/skill-tree-layouts/elation-aha.json'
+    );
+    const profile = {
+      avatarId: '1511',
+      enhancedId: 0,
+      nodes: slots.map(({ anchorType }, index) => ({
+        key: `1511:0:${index}`,
+        pointId: String(index),
+        anchorType,
+        pointType: anchorType === 'Point23' ? 6 : 1,
+        kind: 'default' as const,
+        defaultUnlock: true,
+        maxLevel: 1,
+        prerequisiteIds: [],
+        linkedSkillIds: [],
+        bindings: [],
+        steps: []
+      }))
+    };
+    const tree = resolveTrainingSkillTree('Elation', profile);
+    const point = tree.nodes.find((slot) => slot.anchorType === 'Point23')!;
+    expect(tree.slug).toBe('elation-aha');
+    expect(point.kind).toBe('skill');
+    expect(point.radius).toBe(tree.nodes.find((slot) => slot.anchorType === 'Point03')?.radius);
+    expect(point.node.kind).toBe('default');
+    expect(isToggleableTrainingNode(point.node)).toBe(false);
+    expect(point.center[1]).toBeGreaterThan(
+      tree.nodes.find((slot) => slot.anchorType === 'Point22')!.center[1]
+    );
+    expect(point.center[1]).toBeLessThan(
+      tree.nodes.find((slot) => slot.anchorType === 'Point03')!.center[1]
+    );
+  });
+
   it('rejects empty layouts, invalid anchors and duplicates', () => {
     expect(() => validateLayout([])).toThrow(/nonempty/);
     expect(() => validateLayout([{ anchorType: 'Point00', center: [0, 0] }])).toThrow(
@@ -175,7 +211,9 @@ describe('character skill tree mapping', () => {
         );
       }
     }
-    expect([...covered].sort()).toEqual([...layoutSlugs].sort());
+    expect([...covered].filter((slug) => slug !== 'elation-aha').sort()).toEqual(
+      [...layoutSlugs].sort()
+    );
   });
 
   it('diagnoses missing, duplicate and unmapped anchors in the profile', () => {
