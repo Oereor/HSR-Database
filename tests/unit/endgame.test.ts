@@ -669,8 +669,16 @@ describe('Endgame schedule 容错', () => {
     expect(
       resolveEndgameSchedule(
         'moc',
-        { GroupID: groupId, ScheduleDataID: scheduleId },
-        [{ kind: 'global', schedules: new Map([[String(scheduleId), row]]) }],
+        { GroupID: groupId, GlobalScheduleID: scheduleId },
+        [
+          { kind: 'global', schedules: new Map([[String(scheduleId), row]]) },
+          {
+            kind: 'challenge-maze',
+            schedules: new Map([
+              [String(scheduleId), { ID: scheduleId, BeginTime: begin, EndTime: end }]
+            ])
+          }
+        ],
         diagnostics()
       )
     ).toEqual({ begin, end, source: 'global' });
@@ -695,6 +703,17 @@ describe('Endgame schedule 容错', () => {
     ).toThrow(/ambiguous-schedule/);
   });
 
+  it('拒绝同时声明两类 schedule 外键', () => {
+    expect(() =>
+      resolveEndgameSchedule(
+        'moc',
+        { GroupID: 1, ScheduleDataID: 1, GlobalScheduleID: 2 },
+        [],
+        diagnostics()
+      )
+    ).toThrow(/ambiguous-schedule/);
+  });
+
   it.each([
     [
       { ID: 1, BeginTime: '', GlobalBeginTime: '', EndTime: '2026-02-01 04:00:00' },
@@ -709,15 +728,19 @@ describe('Endgame schedule 容错', () => {
       },
       'conflicting-schedule-boundary'
     ]
-  ] as const)('拒绝无值或冲突的 Global boundary', (row, code) => {
-    expect(() =>
+  ] as const)('无值或冲突的 Global boundary 保留诊断并保持未知排期', (row, code) => {
+    const warnings: Array<{ code: string; context: Record<string, unknown> }> = [];
+    expect(
       resolveEndgameSchedule(
         'moc',
         { GroupID: 1, ScheduleDataID: 1 },
         [{ kind: 'global', schedules: new Map([['1', row]]) }],
-        diagnostics()
+        diagnostics(warnings)
       )
-    ).toThrow(new RegExp(code));
+    ).toBeUndefined();
+    expect(warnings).toEqual([
+      { code, context: expect.objectContaining({ groupId: 1, scheduleId: 1, boundary: 'begin' }) }
+    ]);
   });
 });
 

@@ -294,7 +294,7 @@ describe('Enemy Detail 真实数据回归', () => {
   });
 
   it('删除 appearance 数据并保持当前审计全量可解析', async () => {
-    expect(await enemy('5013090')).toMatchObject({ description: '' });
+    expect(await enemy('5013090')).not.toHaveProperty('description');
     expect(await enemy('8034010')).not.toHaveProperty('stages');
     const audit = JSON.parse(
       await readFile(path.join(auditRoot, 'latest.json'), 'utf8')
