@@ -1,8 +1,8 @@
 import { createHash } from 'node:crypto';
 import { readFile, mkdir, writeFile, rename, unlink } from 'node:fs/promises';
 import path from 'node:path';
-import { assertDataRoot, generatedRoot, resolveDataRoot, siteRoot } from '../data/paths.js';
-import { readPreparedSourceMetadata } from '../data/source-metadata.js';
+import { generatedRoot, siteRoot } from '../data/paths.js';
+import { resolveFormalDataSource } from '../deployment/formal-source.js';
 import {
   buildRatingV2Profiles,
   loadRatingV2Tables,
@@ -73,18 +73,30 @@ async function writeAtomic(file: string, value: unknown) {
 }
 async function loadPublishedProfiles(
   lockCommit: string,
-  sourceDigests: RatingV2SourceDigests
+  sourceDigests: RatingV2SourceDigests,
+  sourceRoot: string
 ): Promise<RatingV2Profiles> {
-  const manifest = await readDataManifest();
-  if (manifest.sourceCommit !== lockCommit)
-    throw new Error('Generated manifest is not pinned; run data:sync against prepared source');
-  const profiles: unknown = JSON.parse(
-    await readFile(path.join(generatedRoot, 'runtime/relic-rating-v2.json'), 'utf8')
-  );
-  const policy = (await readRatingV2PolicyInput()).value;
-  assertRatingV2Overrides(policy, manifest.routes.characters, sourceDigests);
-  assertRatingV2Profiles(profiles, manifest.routes.characters, lockCommit, policy);
-  return profiles;
+  let manifestCommit = 'unavailable';
+  let profileCommit = 'unavailable';
+  try {
+    const manifest = await readDataManifest();
+    manifestCommit = manifest.sourceCommit;
+    if (manifestCommit !== lockCommit) throw new Error('Generated manifest is not pinned');
+    const profiles: unknown = JSON.parse(
+      await readFile(path.join(generatedRoot, 'runtime/relic-rating-v2.json'), 'utf8')
+    );
+    if (profiles && typeof profiles === 'object' && 'sourceCommit' in profiles)
+      profileCommit = String(profiles.sourceCommit);
+    const policy = (await readRatingV2PolicyInput()).value;
+    assertRatingV2Overrides(policy, manifest.routes.characters, sourceDigests);
+    assertRatingV2Profiles(profiles, manifest.routes.characters, lockCommit, policy);
+    return profiles;
+  } catch (error) {
+    throw new Error(
+      `Generated Rating V2 artifacts at ${generatedRoot} failed validation against ${sourceRoot}; manifest=${manifestCommit}; profile=${profileCommit}; expected=${lockCommit}. ${error instanceof Error ? error.message : String(error)}. If generated artifacts are stale, run pnpm run prebuild with the same HSR_DATA_ROOT.`,
+      { cause: error }
+    );
+  }
 }
 async function main() {
   const option = process.argv[3];
@@ -100,10 +112,7 @@ async function main() {
     );
   const lock = await readUpstreamLock(siteRoot);
   const commit = lock.turnBasedGameData.commit;
-  const root = assertDataRoot(resolveDataRoot());
-  const metadata = readPreparedSourceMetadata(root);
-  if (metadata.sourceCommit !== commit)
-    throw new Error('Rating V2 input is not the formal upstream pin');
+  const { root } = await resolveFormalDataSource(lock);
   const derived = await buildRatingV2Profiles(root, await loadRatingV2Tables(root), commit);
   const blockers = derived.profiles.filter((profile) => profile.status !== 'ready');
   if (command === 'inspect') {
@@ -160,7 +169,7 @@ async function main() {
       await writeAtomic(path.join(candidateRoot, 'character-profiles.json'), derived);
     if (command !== 'validate') await writeAtomic(reviewPath, review);
     if (command === 'validate') {
-      const published = await loadPublishedProfiles(commit, derived.sourceDigests);
+      const published = await loadPublishedProfiles(commit, derived.sourceDigests, root);
       if (stableBenchmarkSerialize(published) !== stableBenchmarkSerialize(derived))
         throw new Error('Published Rating V2 profiles differ from pinned raw sources');
     }
@@ -169,7 +178,7 @@ async function main() {
     );
     return;
   }
-  const profiles = await loadPublishedProfiles(commit, derived.sourceDigests);
+  const profiles = await loadPublishedProfiles(commit, derived.sourceDigests, root);
   if (command === 'score') {
     const { runtime, model } = await loadFarmingInputs();
     const build = JSON.parse(

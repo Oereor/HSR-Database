@@ -28,7 +28,7 @@
     "deploy:build:production": "tsx scripts/deployment/build.ts --profile=production",
     "deploy:build:clean": "tsx scripts/deployment/clean.ts",
     "upstreams:update": "tsx scripts/update-upstream-lock.ts",
-    "prebuild": "pnpm messages:compile && pnpm data:ensure && pnpm assets:ensure && pnpm relic-score:v2:benchmarks:validate",
+    "prebuild": "tsx scripts/deployment/prebuild.ts",
     "build": "vite build",
     "preview": "vite preview",
     "check": "pnpm check:scripts && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && pnpm check:api",
