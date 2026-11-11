@@ -9,7 +9,10 @@ import { createTextResolver, loadTextMap } from '../../scripts/data/localization
 import { projectCharacterView } from '../../scripts/data/projection/character';
 import { getLocaleProjectionPolicy } from '../../scripts/data/projection/policy';
 import { resolveDataRoot } from '../../scripts/data/paths';
-import { resolvePlayerExEidolonState } from '../../src/lib/player/character';
+import {
+  resolvePlayerExEidolonState,
+  resolvePlayerSkillLevel
+} from '../../src/lib/player/character';
 import type { Character } from '../../src/lib/domain/types';
 
 let build: CharacterDomainBuild;
@@ -167,4 +170,13 @@ it('diagnoses unknown macros and unverified series references', async () => {
       ref: { kind: 'symbolic', key: 'AvatarRankDesc_151102' }
     }).status
   ).toBe('unsupported');
+});
+
+it('keeps the default Point23 skill resolved without player API node data', () => {
+  const aha = views.get('en')!.find((character) => character.id === '1511')!.profiles.base;
+  const fixed = aha.skillCards
+    .find((card) => card.category === 'talent')!
+    .progressions.find((progression) => progression.id === '1511601')!;
+  expect(fixed.fixedLevel).toBe(1);
+  expect(resolvePlayerSkillLevel(fixed, new Map())).toBe(1);
 });

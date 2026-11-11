@@ -65,11 +65,13 @@
           type="single"
           variant="outline"
           size="sm"
-          value={String(seriesLevel)}
+          bind:value={
+            () => String(seriesLevel),
+            (value) => {
+              if (value === '1' || value === '2') onSeriesLevelChange?.(Number(value) as 1 | 2);
+            }
+          }
           aria-label={m.series_skill_condition()}
-          onValueChange={(value) => {
-            if (value === '1' || value === '2') onSeriesLevelChange?.(Number(value) as 1 | 2);
-          }}
         >
           <ToggleGroup.Item value="1">{m.series_skill_e0()}</ToggleGroup.Item>
           <ToggleGroup.Item value="2">{m.series_skill_e2()}</ToggleGroup.Item>

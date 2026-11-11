@@ -358,7 +358,8 @@ function buildProfile(
       skills[index] = {
         ...skill,
         progressionIconPath: progressionRow.IconPath,
-        progressionPointType: Number(progressionRow.PointType ?? 0)
+        progressionPointType: Number(progressionRow.PointType ?? 0),
+        progressionDefaultUnlock: progressionRow.DefaultUnlock === true
       };
   }
   return {

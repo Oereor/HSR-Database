@@ -170,11 +170,7 @@
   );
   $: dialogSpecialEffects =
     specialEffectMode === 'series' ? seriesSpecialEffects : ordinarySpecialEffects;
-  $: if (seriesSkillScope !== `${detail.id}:${profileMode}`) {
-    seriesSkillScope = `${detail.id}:${profileMode}`;
-    seriesSkillLevel = 1;
-    specialEffectsOpen = false;
-  }
+  $: synchronizeSeriesSkillScope(`${detail.id}:${profileMode}`);
   $: specialEffectsAvailable = specialEffects.length > 0;
   $: specialEffectIconUrl = category === 'characters' ? getCharacterIconUrl(detail.id) : undefined;
   $: characterPortraitSource =
@@ -549,6 +545,13 @@
     specialEffectTrigger = trigger;
     specialEffectLevel = level;
     specialEffectsOpen = true;
+  }
+
+  function synchronizeSeriesSkillScope(scope: string) {
+    if (seriesSkillScope === scope) return;
+    seriesSkillScope = scope;
+    seriesSkillLevel = 1;
+    specialEffectsOpen = false;
   }
 
   function openSeriesEffects(trigger: HTMLButtonElement, level: 1 | 2) {

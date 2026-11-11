@@ -149,6 +149,7 @@ export interface SeriesSkill {
 }
 
 export interface SkillProgression {
+  fixedLevel?: number;
   id: string;
   availableLevels: number[];
   defaultLevel: number;

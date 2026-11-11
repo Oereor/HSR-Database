@@ -91,6 +91,11 @@ export function resolvePlayerSkillLevel(
   progression: SkillProgression,
   skillTree: ReadonlyMap<string, number>
 ): number | null {
+  if (
+    progression.fixedLevel !== undefined &&
+    progression.availableLevels.includes(progression.fixedLevel)
+  )
+    return progression.fixedLevel;
   const level = skillTree.get(progression.id);
   return level !== undefined && progression.availableLevels.includes(level) ? level : null;
 }

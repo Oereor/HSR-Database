@@ -64,6 +64,7 @@ export interface NeutralSkillVariant {
   progressionId?: string;
   progressionIconPath?: string;
   progressionPointType?: number;
+  progressionDefaultUnlock?: boolean;
   extraEffectIds: string[];
 }
 

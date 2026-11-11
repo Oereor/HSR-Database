@@ -290,6 +290,19 @@ function projectProfile(
         : undefined);
     return {
       ...card,
+      progressions: card.progressions.map((progression) => ({
+        ...progression,
+        ...(cardSources.some(
+          (skill) =>
+            skill.progressionId === progression.id &&
+            skill.progressionPointType === 6 &&
+            skill.progressionDefaultUnlock &&
+            skill.levels.length === 1 &&
+            skill.levels[0].level === 1
+        )
+          ? { fixedLevel: 1 }
+          : {})
+      })),
       displayLabel:
         card.category === 'elation-ascension'
           ? requiredText(context.resolver, context.extraEffectsById.get('10015111')?.nameSource, {
