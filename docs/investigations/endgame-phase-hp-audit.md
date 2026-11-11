@@ -2,6 +2,8 @@
 
 审计日期：2026-11-03。对应 Issue #53[^issue]。网站代码基线：`a155d388bc81e82de0aa083344dec07312b9dfe1`，分支 `develop`。本报告是调查结果，不替代架构规范，也不实现功能或设计 UI。
 
+版本说明：第 1—9 节保留旧锁定数据下的调查与实施结论，其中亚婆离缺失 Character Config 的结论仅适用于旧提交。4.7 提交已补全配置，当前解析结果见第 10 节。
+
 ## 1. 结论与数据口径
 
 **现有上游数据与参数工具已足以支持绝大多数 Endgame 敌人的静态分阶段 HP，尚不足以完整覆盖全部敌人。** 已确认多阶段的 354 个 occurrence 中，352 个可以完整计算，占 **99.44%**。缺省倍率按 1 处理；明确配置的值必须解析并通过 HP 倍率有效性检查。运行时 HP 状态不参与这个静态覆盖率门槛。
@@ -429,3 +431,37 @@ Monster `403206001`，Template `4032060`：
 按该规则，Monster 403501001 的静态阶段倍率恢复为 `[1, 1.25, 1]`。普通 AA occurrence 的显示值为 `[12,395,970, 15,494,962, 12,395,970]`，Hard 为 `[49,583,878, 61,979,848, 49,583,878]`；采用精确基础值先乘倍率、显示时取整。锁定数据中已确认的 354 个多阶段 occurrence 均可完整静态计算，历史 352/354 的统计保留为采用本规则之前的审计结果。
 
 亚婆离仍保留基础 HP，不推断阶段数量、不添加专用分支。阶段结果通过中性 domain、两种 locale 的 projection、统一 view 和 occurrence shard 传递；相同阶段 HP 压缩为数值乘阶段数，不同或部分 unresolved 的阶段以 HP 数值按钮打开下方 Popover。静态计算不解释运行时 Ability/Modifier，不宣称还原完整战斗总 HP。
+
+## 10. 4.7 配置补全：亚婆离阶段 HP
+
+更新日期：2026-11-11。TurnBasedGameData 提交 `fe15a954eba1f24bf1bcd4003848710eced44996`[^fallen-config] 补全了 `Config/ConfigCharacter/Monster/Monster_W5_Fallen_00_Config.json`。此前 4.6 锁定提交以及 4.7 的 `fe445594` 缺少该文件，基础 HP 回退是当时数据条件下的结果，不再作为当前数据的预期。
+
+Template `5034010` 继续经真实 `JsonConfig` 外键加载配置。`MaxMonsterPhase=2`；第一阶段未提供 `PhaseMaxHPRatio`，按既有默认规则取 1；第二阶段的 `AQAR` 表达式以 DynamicHash `1300048128` 读取 `PassiveSkill01[5]`。技能 `503401005` 的基础参数为 2；AA Monster `503401002` 对应位置覆盖为 -1，现有阶段 HP 局部继承规则取得基础正倍率 2。共享技能参数、伤害及行动位移解析保持不变。
+
+现有通用管线得到以下静态结果；先对各 encounter 的精确基础 HP 乘倍率，再按既有显示规则取整，未复用其他难度的最终 HP：
+
+| Encounter / StageID | 第一阶段精确 HP | 第二阶段精确 HP | 第一阶段显示 HP | 第二阶段显示 HP |
+| --- | ---: | ---: | ---: | ---: |
+| MoC 5512 / 30126122 | 5106432.898125 | 10212865.796250 | 5,106,433 | 10,212,866 |
+| AA 1004 普通 / 30510021 | 6389558.4346650 | 12779116.8693300 | 6,389,558 | 12,779,117 |
+| AA 1004 Hard / 30510022 | 23529802.004100 | 47059604.008200 | 23,529,802 | 47,059,604 |
+| AA 1101 初试 / 30511011 | 6284840.49000 | 12569680.98000 | 6,284,840 | 12,569,681 |
+
+四项的倍率均为 `[1, 2]`，View 使用 `hp.display='phases'` 展示两行阶段 HP。无需修改解析器、Domain、View 或 UI，也不增加 Boss 专用分支。删除旧测试中要求所有 `5034010` occurrence 缺少阶段数据的断言；Iron Tomb、真实共享参数和通用缺失配置测试继续保留。正常敌人 ID、资源和映射引用保持不变。
+
+这些结果仅描述配置中的静态阶段 HP，不解释运行时 Ability/Modifier，也不宣称还原完整战斗总 HP。真正缺失 Character Config 或存在不可可靠解析表达式时，仍沿用通用缺失／unresolved 语义。
+
+### 10.1 验证记录
+
+通过现有准备流程将固定 `fe15a954` 物化到网站内部 `.upstream/TurnBasedGameData`，明确设置 `HSR_DATA_ROOT` 后运行正常 `pnpm data:sync`，成功生成中文及英文数据。生成 manifest 的 `sourceCommit` 与新 pin 一致。逐项复核中文投影、英文投影及英文 occurrence shard，四项均完整保留上述精确阶段 HP；AA 普通与 Hard 的同一 MonsterID 使用各自的基础 HP。
+
+- 阶段 HP、共享技能参数与 Endgame View 三个定向测试文件共 96 项通过；关卡上下文独立 HP 的现有定向测试 1 项通过。
+- `pnpm data:validate:full` 通过，包括重新读取真实源配置的阶段 HP 语义验证；校验 2,500 项产物、1,132 条路由及 195 个英文 Endgame shards。114 个缺失 TextHash 和 13 个敌方弱点／抗性冲突仍按既有审计记录，不属于该修复新增阻断。
+- `pnpm check` 和 `pnpm lint` 通过，Svelte 检查无错误和警告。
+- 本地开发页面完成中英文各四项、共八项 Popover 抽查，阶段显示值与生成产物一致；Escape 关闭后焦点恢复到 HP 按钮。截图及精确值复核记录保存在忽略目录 `data/audit/fallen-phase-hp/`，未新增快照测试。
+
+未运行完整 `pnpm ci:develop` 或生产构建；此前记录的 Vite Windows 原生崩溃属于独立限制。两个相邻上游仓库保持只读。
+
+### 参考文献
+
+[^fallen-config]: DimbreathBot. TurnBasedGameData，固定提交 fe15a954eba1f24bf1bcd4003848710eced44996. GitHub, 2026. [亚婆离 Character Config](https://github.com/DimbreathBot/TurnBasedGameData/blob/fe15a954eba1f24bf1bcd4003848710eced44996/Config/ConfigCharacter/Monster/Monster_W5_Fallen_00_Config.json).
