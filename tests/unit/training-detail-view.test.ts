@@ -31,6 +31,48 @@ const view = (id: string, locale = 'zh-CN') =>
 const shared = json<TrainingSharedData>('static/generated/training/shared.json');
 
 describe('receipt training projections', () => {
+  it('keeps Aha paid talent mapping independent of its fixed default progression', () => {
+    const cost = data('1511');
+    const profile = cost.profiles[0];
+    const target = createDefaultCharacterTrainingTarget(cost, 0);
+    const result = calculateCharacterTrainingTarget(cost, shared, target);
+    for (const locale of ['zh-CN', 'en']) {
+      const cards = view('1511', locale).profiles.base.skillCards;
+      const talent = cards.find((card) => card.category === 'talent')!;
+      expect(talent.progressions.map((progression) => progression.id)).toEqual([
+        '1511004',
+        '1511601'
+      ]);
+      const targets = createTrainingSkillTargets(
+        [talent],
+        profile,
+        result.skills,
+        result.target.promotion
+      );
+      expect(targets).toHaveLength(1);
+      expect(targets[0]).toMatchObject({
+        pointId: '1511004',
+        categoryLabel: talent.displayLabel,
+        trainingLevel: result.skills.find((skill) => skill.key === targets[0].key)!.trainingLevel
+      });
+      expect(
+        createTrainingSkillTargets(
+          [
+            {
+              ...talent,
+              progressions: talent.progressions.filter(
+                (progression) => progression.availableLevels.length > 1
+              )
+            }
+          ],
+          profile,
+          result.skills,
+          result.target.promotion
+        )
+      ).toEqual(targets);
+    }
+  });
+
   it.each(json<CatalogEntry[]>('src/lib/generated/views/zh-CN/catalogs/characters.json'))(
     'projects each paid canonical target once with legal levels, icons and independent preview for $id',
     ({ id }) => {

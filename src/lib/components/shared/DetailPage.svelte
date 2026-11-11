@@ -822,7 +822,14 @@
               onOpenSpecialEffects={openSpecialEffects}
               seriesLevel={seriesSkillLevel}
               onSeriesLevelChange={(level) => (seriesSkillLevel = level)}
-              onOpenSeriesEffects={detail.id === '1511' ? openSeriesEffects : undefined}
+              onOpenSeriesEffects={card.externalCondition &&
+              seriesSpecialEffects.some(
+                (entry: import('$lib/domain/types').CharacterSpecialEffectEntry) =>
+                  entry.kind === 'series-skill-link' &&
+                  entry.rootSkillId === card.externalCondition?.skillId
+              )
+                ? openSeriesEffects
+                : undefined}
               playerSkillTree={activePlayerCharacter?.skillTree}
               previewControls={skillPreviewControls}
               onPreviewLevelChange={handleSkillPreviewLevel}

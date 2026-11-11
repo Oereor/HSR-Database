@@ -615,7 +615,12 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
     'src',
     /generated-assets\/characters\/icons\/8002\.png/
   );
-  await expect(himekoTrailblazer.locator('strong')).toHaveText('开拓者');
+  const trailblazerCatalog = JSON.parse(
+    readFileSync('src/lib/generated/views/zh-CN/catalogs/characters.json', 'utf8')
+  ) as Array<{ id: string; name: string }>;
+  await expect(himekoTrailblazer.locator('strong')).toHaveText(
+    trailblazerCatalog.find((entry) => entry.id === '8001')!.name
+  );
   await expect(himekoDialog.locator('[data-linked-avatar-id="1001"] strong')).toHaveText('三月七');
   await expect(himekoDialog.locator('[data-linked-avatar-id="1003"]')).toContainText('姬子');
   await himekoDialog.locator('.special-effect-dialog__close').click();

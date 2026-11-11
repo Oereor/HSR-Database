@@ -1417,7 +1417,7 @@ describe('真实数据管线', () => {
         sourceAvatarId: '8001',
         sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
       })
-    ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者' });
+    ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者·毁灭' });
     expect(
       resolveSpecialEffectLinkedAvatarPresentation({
         ownerCharacterId: '1510',
