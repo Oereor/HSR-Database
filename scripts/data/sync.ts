@@ -640,6 +640,8 @@ export async function syncData(): Promise<DataManifest> {
     'AvatarServantSkillConfig',
     'AvatarServantSkillLink',
     'AvatarGlobalBuffConfig',
+    'AvatarSeriesSkill',
+    'AvatarExRankConfig',
     'AvatarEquipRecommend',
     'AvatarRelicRecommend',
     'EquipmentConfig',
@@ -667,7 +669,9 @@ export async function syncData(): Promise<DataManifest> {
       for (const id of trace.extraEffectIds ?? []) references.add(id);
     for (const eidolon of [
       ...domain.profiles.base.eidolons,
-      ...(domain.profiles.enhanced?.eidolons ?? [])
+      ...(domain.profiles.enhanced?.eidolons ?? []),
+      ...domain.profiles.base.exEidolons,
+      ...(domain.profiles.enhanced?.exEidolons ?? [])
     ])
       for (const id of eidolon.extraEffectIds) references.add(id);
     for (const id of references)
@@ -749,6 +753,7 @@ export async function syncData(): Promise<DataManifest> {
     });
     const characters: Character[] = characterDomains.map((domain) =>
       projectCharacter(domain, {
+        charactersById: new Map(characterDomains.map((character) => [character.id, character])),
         locale: config.locale,
         resolver: runtime.text,
         extraEffectsById,

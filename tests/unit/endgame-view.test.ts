@@ -310,7 +310,7 @@ describe('Endgame archive 赛期分组', () => {
         .filter((group) => buildPeriodView(group, now).status === 'upcoming')
         .map(({ groupId }) => groupId)
     );
-    expect(mocGroups.unknown.map(({ groupId }) => groupId)).toEqual([100, 900]);
+    expect(mocGroups.unknown.map(({ groupId }) => groupId)).toEqual([100, 900, 1014]);
     expect(mocGroups.historical.length).toBeGreaterThan(0);
     expect(
       groupEndgamePeriods(buildModeView('moc', moc.groups, undefined, now).periods).upcoming.map(
@@ -754,12 +754,12 @@ describe('Endgame mechanics 视图投影', () => {
       kingEncounters
         .filter(({ encounter }) => encounter.battles[0]?.stages[0]?.waves.length === 1)
         .map(({ groupId }) => groupId)
-    ).toEqual([2, 2, 3, 3, 9, 9]);
+    ).toEqual([2, 2, 3, 3, 9, 9, 11, 11]);
     expect(
       kingEncounters
         .filter(({ encounter }) => encounter.battles[0]?.stages[0]?.waves[0]?.enemies.length === 1)
         .map(({ groupId }) => groupId)
-    ).toEqual([2, 2, 3, 3, 9, 9]);
+    ).toEqual([2, 2, 3, 3, 9, 9, 11, 11]);
   });
 });
 

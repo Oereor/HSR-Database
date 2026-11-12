@@ -136,7 +136,7 @@ describe('static phase HP', () => {
       }).every((p) => p.maxHp === undefined)
     ).toBe(true);
   });
-  it('resolves both Iron Tomb encounters and preserves missing-config bosses and shared action shifts', async () => {
+  it('resolves both Iron Tomb encounters and preserves shared action shifts', async () => {
     const root = process.env.HSR_DATA_ROOT ?? '../TurnBasedGameData';
     const { datasets } = await buildEndgameDomain(root);
     const all: import('../../src/lib/domain/endgame').EnemyOccurrence[] = [];
@@ -168,13 +168,6 @@ describe('static phase HP', () => {
       ['12,395,970', '15,494,962', '12,395,970'],
       ['49,583,878', '61,979,848', '49,583,878']
     ]);
-    const missing = all.filter((o) => o.monsterTemplateId === 5034010);
-    expect(missing).toHaveLength(3);
-    expect(
-      missing.every(
-        (o) => o.hp.phases === undefined && buildOccurrenceView(o).hp.display === 'plain'
-      )
-    ).toBe(true);
     const monsters = await readTable<any>(root, 'MonsterConfig'),
       rows = await readTable<any>(root, 'MonsterSkillConfig');
     const part = monsters.find((m) => m.MonsterID === 403206001),

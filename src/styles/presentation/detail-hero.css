@@ -31,6 +31,12 @@
   background: var(--surface);
 }
 
+.detail-profile-hero--enemy
+  .detail-profile-hero__identity
+  > .detail-artwork-stage[data-artwork-fit='contain'] {
+  padding: 0;
+}
+
 .detail-profile-hero--relic .detail-profile-hero__identity {
   min-height: 540px;
   background: var(--surface);
@@ -38,16 +44,6 @@
 
 .detail-profile-hero--relic-compact .detail-profile-hero__identity {
   min-height: 390px;
-}
-
-.detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] {
-  background: var(--surface);
-  padding: 1.5rem 1.25rem 0 36%;
-}
-
-.detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] img {
-  object-position: right bottom;
-  filter: drop-shadow(0 1.25rem 2rem rgb(0 0 0 / 38%));
 }
 
 .detail-profile-hero__gradient {
@@ -284,10 +280,6 @@
   .detail-profile-hero--relic .hero-identity-copy {
     max-width: 100%;
   }
-
-  .detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] {
-    padding: 2rem 0 0 38%;
-  }
 }
 
 @media (max-width: 520px) {
@@ -306,14 +298,6 @@
 
   .detail-profile-hero--enemy .detail-profile-hero__identity {
     min-height: 540px;
-  }
-
-  .detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] {
-    padding: 8rem 0 0 42%;
-  }
-
-  .detail-profile-hero--enemy .detail-artwork-stage img {
-    opacity: 0.62;
   }
 }
 

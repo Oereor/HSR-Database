@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { localPlayerMock, playerMockEnabled } from './scripts/dev/player-mock.js';
+import { previewAddress } from './scripts/dev/preview-address.js';
 
 export default defineConfig(({ command, mode, isPreview }) => ({
   plugins: [
@@ -47,9 +48,7 @@ export default defineConfig(({ command, mode, isPreview }) => ({
     host: '127.0.0.1',
     port: 4174
   },
-  preview: {
-    host: '127.0.0.1'
-  },
+  preview: previewAddress,
   test: {
     include: ['tests/unit/**/*.test.ts'],
     environment: 'node'

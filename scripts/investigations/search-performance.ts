@@ -5,6 +5,7 @@ import { chromium, devices } from '@playwright/test';
 import { build } from 'vite';
 import { siteRoot } from '../data/paths.js';
 import { artifactPath, readDataManifest } from '../data/generated-artifacts.js';
+import { previewOrigin } from '../dev/preview-address.js';
 import {
   GLOBAL_SEARCH_SCHEMA_VERSION,
   type GlobalSearchIndex,
@@ -13,7 +14,7 @@ import {
 import type { GlobalSearchCatalogs } from '../../src/lib/search/search.js';
 
 // Run against a production preview, with no other browser tests competing for CPU.
-const origin = process.env.SEARCH_BENCHMARK_URL ?? 'http://127.0.0.1:4173';
+const origin = process.env.SEARCH_BENCHMARK_URL ?? previewOrigin;
 const benchmarkLocale: SearchLocale = 'zh-CN';
 const queries = ['三月七', '丹恒', '丹恒饮月', '银鬃尉官', '的', '者'];
 const catalogFiles = ['characters', 'light-cones', 'relics', 'enemies'] as const;

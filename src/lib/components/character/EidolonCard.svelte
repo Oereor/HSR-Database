@@ -7,12 +7,19 @@
   import GameText from '$lib/components/shared/GameText.svelte';
   import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
-  import type { Eidolon } from '$lib/domain/types';
+  import type { Eidolon, ExEidolon, DescriptionToken } from '$lib/domain/types';
   import type { PlayerEidolonState } from '$lib/player/character';
   import { m } from '$lib/paraglide/messages.js';
   export let characterAccent: string | undefined = undefined;
-  export let eidolon: Eidolon;
+  export let eidolon: Eidolon | ExEidolon;
   export let playerState: PlayerEidolonState | undefined = undefined;
+  export let playerStateSource: 'player' | 'missing' | undefined = undefined;
+  export let onOpenSeriesEffects:
+    | ((
+        trigger: HTMLButtonElement,
+        reference: NonNullable<DescriptionToken['interaction']>
+      ) => void)
+    | undefined = undefined;
 </script>
 
 <Card.Root
@@ -20,6 +27,8 @@
   class="rank-card character-detail-card"
   data-eidolon-id={eidolon.id}
   data-player-state={playerState}
+  data-player-state-source={playerStateSource}
+  data-eidolon-kind={'rank' in eidolon ? 'rank' : 'ex-rank'}
 >
   <Card.Header class="flex flex-row items-center gap-3">
     <AssetImage
@@ -30,8 +39,11 @@
     />
     <div class="rank-card__content min-w-0 flex-1 space-y-2">
       <div class="flex min-w-0 flex-wrap items-center gap-2">
-        <Badge variant="outline" class="rank-label text-muted-foreground"
-          >{m.eidolon_rank({ rank: eidolon.rank })}</Badge
+        <Badge
+          variant="outline"
+          class="rank-label text-muted-foreground"
+          style={'rank' in eidolon ? undefined : `color: ${characterAccent}`}
+          >{'rank' in eidolon ? m.eidolon_rank({ rank: eidolon.rank }) : eidolon.badgeLabel}</Badge
         >
         {#if playerState}<Badge
             variant="outline"
@@ -49,7 +61,11 @@
   <Card.Content class="space-y-3">
     <p class="text-secondary-foreground m-0 text-base leading-relaxed">
       {#if eidolon.descriptionTokens?.length}
-        <DescriptionText tokens={eidolon.descriptionTokens} {characterAccent} />
+        <DescriptionText
+          tokens={eidolon.descriptionTokens}
+          {characterAccent}
+          {onOpenSeriesEffects}
+        />
       {:else}<GameText
           text={eidolon.description || m.common_localized_description_unavailable()}
         />{/if}

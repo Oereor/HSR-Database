@@ -74,6 +74,7 @@ interface ChallengeGroupRow {
   GroupID: Id;
   GroupName?: HashRef;
   ScheduleDataID?: Id;
+  GlobalScheduleID?: Id;
   TierceID?: Id;
   MazeBuffID?: Id;
 }
@@ -404,21 +405,30 @@ export function buildUniqueIndex<T>(
 
 export function resolveEndgameSchedule(
   mode: 'moc' | 'pf' | 'as',
-  group: Pick<ChallengeGroupRow, 'GroupID' | 'ScheduleDataID'>,
+  group: Pick<ChallengeGroupRow, 'GroupID' | 'ScheduleDataID' | 'GlobalScheduleID'>,
   sources: readonly EndgameScheduleSource[],
   issues: Pick<Diagnostics, 'fail' | 'warn'>
 ): ResolvedEndgameSchedule | undefined {
-  if (!group.ScheduleDataID) return undefined;
-  const scheduleId = String(group.ScheduleDataID);
+  if (group.ScheduleDataID && group.GlobalScheduleID)
+    issues.fail('ambiguous-schedule', 'Group 同时声明普通与 Global schedule 外键', {
+      mode,
+      groupId: group.GroupID,
+      scheduleId: group.ScheduleDataID,
+      globalScheduleId: group.GlobalScheduleID
+    });
+  const referenceId = group.GlobalScheduleID ?? group.ScheduleDataID;
+  if (!referenceId) return undefined;
+  const scheduleId = String(referenceId);
   const matches = sources.flatMap((source) => {
+    if (group.GlobalScheduleID && source.kind !== 'global') return [];
     const schedule = source.schedules.get(scheduleId);
     return schedule ? [{ source, schedule }] : [];
   });
   if (!matches.length) {
-    issues.warn('missing-schedule', 'Group.ScheduleDataID 无法解析', {
+    issues.warn('missing-schedule', 'Group schedule 外键无法解析', {
       mode,
       groupId: group.GroupID,
-      scheduleId: group.ScheduleDataID
+      scheduleId: referenceId
     });
     return undefined;
   }
@@ -426,7 +436,7 @@ export function resolveEndgameSchedule(
     issues.fail('ambiguous-schedule', 'Group.ScheduleDataID 在多个 schedule source 中命中', {
       mode,
       groupId: group.GroupID,
-      scheduleId: group.ScheduleDataID,
+      scheduleId: referenceId,
       sources: matches.map(({ source }) => source.kind).join(',')
     });
   const [{ source, schedule }] = matches;
@@ -437,28 +447,42 @@ export function resolveEndgameSchedule(
       source: source.kind
     };
   const global = schedule as GlobalScheduleRow;
-  const boundary = (boundaryKind: 'begin' | 'end', values: Array<string | undefined>): string => {
+  const boundary = (
+    boundaryKind: 'begin' | 'end',
+    values: Array<string | undefined>
+  ): string | undefined => {
     const explicit = [...new Set(values.map((value) => value?.trim()).filter(Boolean) as string[])];
     if (!explicit.length)
-      issues.fail('missing-schedule-boundary', 'ScheduleDataGlobal 缺少显式时间边界', {
-        mode,
-        groupId: group.GroupID,
-        scheduleId: group.ScheduleDataID,
-        boundary: boundaryKind
-      });
+      issues.warn(
+        'missing-schedule-boundary',
+        'ScheduleDataGlobal 缺少显式时间边界，排期保持未知',
+        {
+          mode,
+          groupId: group.GroupID,
+          scheduleId: referenceId,
+          boundary: boundaryKind
+        }
+      );
     if (explicit.length > 1)
-      issues.fail('conflicting-schedule-boundary', 'ScheduleDataGlobal 时间边界存在冲突', {
-        mode,
-        groupId: group.GroupID,
-        scheduleId: group.ScheduleDataID,
-        boundary: boundaryKind,
-        values: explicit.join(',')
-      });
-    return explicit[0];
+      issues.warn(
+        'conflicting-schedule-boundary',
+        'ScheduleDataGlobal 时间边界存在冲突，排期保持未知',
+        {
+          mode,
+          groupId: group.GroupID,
+          scheduleId: referenceId,
+          boundary: boundaryKind,
+          values: explicit.join(',')
+        }
+      );
+    return explicit.length === 1 ? explicit[0] : undefined;
   };
+  const begin = boundary('begin', [global.BeginTime, global.GlobalBeginTime]);
+  const end = boundary('end', [global.EndTime, global.GlobalEndTime]);
+  if (!begin || !end) return undefined;
   return {
-    begin: boundary('begin', [global.BeginTime, global.GlobalBeginTime]),
-    end: boundary('end', [global.EndTime, global.GlobalEndTime]),
+    begin,
+    end,
     source: source.kind
   };
 }

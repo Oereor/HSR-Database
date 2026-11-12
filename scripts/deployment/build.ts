@@ -1,4 +1,4 @@
-import { execFileSync, spawn } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { DataManifest } from '../../src/lib/domain/types.js';
@@ -8,6 +8,7 @@ import {
   prepareTurnBasedGameData,
   siteRoot
 } from './prepare.js';
+import { runPnpm } from './run-pnpm.js';
 import { logFileSummary, summarizeDirectory, withProcessTelemetry } from './telemetry.js';
 import { verifyBuildAssetClosure, verifyBuildSmoke } from './verify-build.js';
 import { verifyBuildPageRoutes } from './verify-routes.js';
@@ -74,25 +75,6 @@ function resolveBuildProfile(
   if (vercelEnv === 'production') return 'production';
   if (vercelEnv === 'preview' || vercelEnv === 'development') return 'preview';
   throw new Error(`无法从 VERCEL_ENV=${vercelEnv} 解析 build profile`);
-}
-
-function runPnpm(args: string[], env: NodeJS.ProcessEnv): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const pnpmEntrypoint = process.env.npm_execpath;
-    const command = pnpmEntrypoint ? process.execPath : 'pnpm';
-    const commandArgs = pnpmEntrypoint ? [pnpmEntrypoint, ...args] : args;
-    const child = spawn(command, commandArgs, {
-      cwd: siteRoot,
-      env,
-      shell: false,
-      stdio: 'inherit',
-      windowsHide: true
-    });
-    child.on('error', reject);
-    child.on('close', (code) =>
-      code === 0 ? resolve() : reject(new Error(`[build] pnpm ${args.join(' ')} 失败（${code}）`))
-    );
-  });
 }
 
 function namedError(label: string, error: unknown): Error {

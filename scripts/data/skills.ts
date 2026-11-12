@@ -33,6 +33,7 @@ const categoryOrder: SkillCategory[] = [
   'memosprite-skill',
   'memosprite-talent',
   'elation-skill',
+  'elation-ascension',
   'assist',
   'technique'
 ];
@@ -46,6 +47,7 @@ export const SKILL_CATEGORY_LABELS: Record<SkillCategory, string> = {
   'memosprite-skill': '忆灵技',
   'memosprite-talent': '忆灵天赋',
   'elation-skill': '欢愉技',
+  'elation-ascension': '「欢愉」命途升格',
   assist: '助战技'
 };
 
@@ -66,6 +68,8 @@ export function classifyAvatarSkill(row: StructuredSkillFields): SkillCategory |
     case 'Assist':
       return 'assist';
     default:
+      if (row.SkillTriggerKey === 'SkillAha') return 'elation-ascension';
+      if (row.SkillTriggerKey === 'SkillAeon') return 'talent';
       return String(row.SkillTriggerKey ?? '').startsWith('SkillP') ? 'talent' : undefined;
   }
 }

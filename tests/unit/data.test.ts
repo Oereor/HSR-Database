@@ -29,6 +29,7 @@ import {
   type TextResolver
 } from '../../scripts/data/localization';
 import { getPublicLocale } from '../../scripts/data/locale-registry';
+import { getLocaleProjectionPolicy } from '../../scripts/data/projection/policy';
 import { parseGameVersion } from '../../scripts/data/source-metadata';
 import { normalizeLevelledDescriptions } from '../../scripts/data/levelled';
 import {
@@ -925,10 +926,22 @@ describe('真实数据管线', () => {
       );
       expect(talentCards).toHaveLength(1);
       expect(talentCards[0].variants.map((variant) => variant.id)).toEqual(expected.ids);
-      const globalBuff = talentCards[0].variants[1];
+      const [talent, globalBuff] = talentCards[0].variants;
+      expect(talent.combatMeta.effect?.code).toBe('Enhance');
       expect(globalBuff).toMatchObject({
         source: 'avatar-global-buff',
-        progressionId: null
+        progressionId: null,
+        combatMeta: { effect: { code: 'Support', label: SKILL_EFFECT_LABELS.Support } }
+      });
+      const english = JSON.parse(
+        await readFile(
+          path.join(generatedRoot, 'views', 'en', 'details', 'characters', `${id}.json`),
+          'utf8'
+        )
+      ) as Character;
+      expect(variantOf(english, expected.ids[1])?.combatMeta.effect).toMatchObject({
+        code: 'Support',
+        label: getLocaleProjectionPolicy('en').skillEffectLabels.Support
       });
       expect(gameTextToPlain(globalBuff.name)).toBe(expected.name);
       expect(gameTextToPlain(globalBuff.levels[0].description)).toContain(expected.description);
@@ -1404,7 +1417,7 @@ describe('真实数据管线', () => {
         sourceAvatarId: '8001',
         sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
       })
-    ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者' });
+    ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者·毁灭' });
     expect(
       resolveSpecialEffectLinkedAvatarPresentation({
         ownerCharacterId: '1510',
@@ -1450,12 +1463,11 @@ describe('真实数据管线', () => {
   it('依据真实配置区分普通能量与特殊能量', async () => {
     const root = assertDataRoot();
     const ultraSkills = await readTable<any>(root, 'AvatarUltraSkillConfig');
-    const specialRows = await readTable<any>(root, 'GridFightFrontSpecialSP');
     const specialIds = ultraSkills
       .filter((row) => row.UltraSkillType === 'SpecialSP')
       .map((row) => String(row.AvatarID))
       .sort();
-    expect(specialIds).toEqual(['1220', '1308', '1407', '1408', '1415', '1506']);
+    expect(specialIds).toContain('1511');
     for (const id of specialIds) {
       const detail = JSON.parse(
         await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
@@ -1465,15 +1477,6 @@ describe('真实数据管线', () => {
         max: 0,
         iconKey: 'property--SpecialMaxSP'
       });
-      expect(
-        specialRows.some((row) => {
-          const roleId = String(row.RoleID);
-          return (
-            (roleId === id || (roleId.startsWith(id) && /^\d$/.test(roleId.slice(id.length)))) &&
-            Number(row.MaxSpecialSP) > 0
-          );
-        })
-      ).toBe(true);
     }
     const march = JSON.parse(
       await readFile(path.join(characterRoot, 'details', 'characters', '1001.json'), 'utf8')

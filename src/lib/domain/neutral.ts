@@ -64,6 +64,7 @@ export interface NeutralSkillVariant {
   progressionId?: string;
   progressionIconPath?: string;
   progressionPointType?: number;
+  progressionDefaultUnlock?: boolean;
   extraEffectIds: string[];
 }
 
@@ -107,7 +108,38 @@ export interface NeutralEidolon {
   iconPath?: string;
 }
 
+export interface SeriesSkillCondition {
+  type: 'AvatarLevel' | 'AvatarEidolon';
+  param: string;
+  externalAvatarId: string;
+  threshold: number;
+}
+
+export interface NeutralSeriesSkill {
+  avatarId: string;
+  skillId: string;
+  states: Array<
+    NeutralSkillLevel & {
+      condition: SeriesSkillCondition;
+      relatedAvatarIds: string[];
+    }
+  >;
+}
+
+export interface NeutralExEidolon extends Omit<NeutralEidolon, 'rank'> {
+  entityId: string;
+  avatarId: string;
+  relatedSkillIds: string[];
+}
+
 export type NeutralSpecialEffectRelation =
+  | {
+      kind: 'series-skill-link';
+      skillId: string;
+      targetSkillId: string;
+      linkedAvatarId: string;
+      order: number;
+    }
   | {
       kind: 'avatar-skill-link';
       skillId: string;
@@ -137,6 +169,8 @@ export interface NeutralCharacterProfile {
   skills: NeutralSkillVariant[];
   traces: NeutralTrace[];
   eidolons: NeutralEidolon[];
+  seriesSkills: NeutralSeriesSkill[];
+  exEidolons: NeutralExEidolon[];
   specialEffects: NeutralSpecialEffectRelation[];
 }
 

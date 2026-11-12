@@ -1,11 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
+import { previewOrigin } from './scripts/dev/preview-address.js';
 
 const today = new Date();
 const localDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(
   today.getDate()
 ).padStart(2, '0')}`;
 const localMock = process.env.PLAYER_MOCK_ENABLED === '1';
-const baseURL = localMock ? 'http://127.0.0.1:4174' : 'http://127.0.0.1:4173';
+const baseURL = localMock ? 'http://127.0.0.1:4174' : previewOrigin;
 const reuseBuild = process.env.PLAYWRIGHT_REUSE_BUILD === '1';
 
 export default defineConfig({
@@ -29,7 +30,7 @@ export default defineConfig({
   webServer: {
     command: localMock
       ? 'pnpm dev --host 127.0.0.1 --port 4174'
-      : `${reuseBuild ? '' : 'pnpm build && '}pnpm preview --host 127.0.0.1 --port 4173`,
+      : `${reuseBuild ? '' : 'pnpm build && '}pnpm preview --strictPort`,
     url: baseURL,
     reuseExistingServer: true,
     timeout: 180_000

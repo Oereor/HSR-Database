@@ -91,6 +91,11 @@ export function resolvePlayerSkillLevel(
   progression: SkillProgression,
   skillTree: ReadonlyMap<string, number>
 ): number | null {
+  if (
+    progression.fixedLevel !== undefined &&
+    progression.availableLevels.includes(progression.fixedLevel)
+  )
+    return progression.fixedLevel;
   const level = skillTree.get(progression.id);
   return level !== undefined && progression.availableLevels.includes(level) ? level : null;
 }
@@ -108,6 +113,13 @@ export function resolvePlayerEidolonState(
   playerRank: number
 ): PlayerEidolonState {
   return eidolon.rank <= playerRank ? 'active' : 'inactive';
+}
+
+export function resolvePlayerExEidolonState(knownState?: PlayerEidolonState): {
+  displayState: PlayerEidolonState;
+  source: 'player' | 'missing';
+} {
+  return { displayState: knownState ?? 'inactive', source: knownState ? 'player' : 'missing' };
 }
 
 export function groupPlayerStats(

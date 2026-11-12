@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ArrowUpRightIcon from '@lucide/svelte/icons/arrow-up-right';
   import type { DescriptionToken } from '$lib/domain/types';
   import InlineGameTextToken from '$lib/components/shared/InlineGameTextToken.svelte';
   import { segmentSpecialEffectTriggers } from '$lib/domain/special-effects-presentation';
@@ -9,6 +10,12 @@
   export let specialEffectsAvailable = false;
   export let specialEffectIconUrl: string | undefined = undefined;
   export let onOpenSpecialEffects: ((trigger: HTMLButtonElement) => void) | undefined = undefined;
+  export let onOpenSeriesEffects:
+    | ((
+        trigger: HTMLButtonElement,
+        reference: NonNullable<DescriptionToken['interaction']>
+      ) => void)
+    | undefined = undefined;
 
   $: segments = segmentSpecialEffectTriggers(
     tokens,
@@ -28,9 +35,16 @@
             {characterAccent}
             iconUrl={specialEffectIconUrl}
           />{/each}</button
-      >{:else}{#each segment.tokens as token}<InlineGameTextToken
-          {token}
-          {characterAccent}
-        />{/each}{/if}
+      >{:else}{#each segment.tokens as token}{#if token.type === 'interaction' && token.interaction && onOpenSeriesEffects}<button
+            type="button"
+            class="text-primary inline-flex cursor-pointer items-center gap-1 whitespace-nowrap"
+            aria-haspopup="dialog"
+            data-series-skill-reference={token.interaction.skillId}
+            on:click={(event) => onOpenSeriesEffects?.(event.currentTarget, token.interaction!)}
+            ><span class="underline underline-offset-4"
+              ><InlineGameTextToken {token} {characterAccent} /></span
+            ><ArrowUpRightIcon class="size-4 shrink-0" aria-hidden="true" /></button
+          >
+        {:else}<InlineGameTextToken {token} {characterAccent} />{/if}{/each}{/if}
   {/each}
 </span>

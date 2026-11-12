@@ -2,7 +2,7 @@ import type { Enemy } from '$lib/domain/types';
 import type { EnemyDetailPageData, EnemySummonView } from '$lib/domain/enemy-view';
 import { buildEnemyDetailPageData } from '$lib/domain/enemy-view';
 import { localizedHref } from '$lib/i18n/routing';
-import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
+import { getEnemyCardImageUrl, getEnemyHeroImageUrl } from '$lib/server/enemy-assets';
 import { getDetail } from '$lib/server/generated';
 import type { SearchLocale } from '$lib/domain/search-index';
 
@@ -19,10 +19,10 @@ export async function getEnemyDetail(
     )
   ];
   const [portraitUrl, summonPortraitEntries] = await Promise.all([
-    getEnemyPortraitUrl(Number(detail.id)),
+    getEnemyHeroImageUrl(Number(detail.id)),
     Promise.all(
       summonTemplateIds.map(
-        async (templateId) => [templateId, await getEnemyPortraitUrl(Number(templateId))] as const
+        async (templateId) => [templateId, await getEnemyCardImageUrl(Number(templateId))] as const
       )
     )
   ]);

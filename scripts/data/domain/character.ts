@@ -13,6 +13,7 @@ import { configuredCharacterDetailIconKey } from '../character-detail-icons.js';
 import { characterStatFields, normalizeStatProgression } from '../stats.js';
 import { classifyAvatarSkill, classifyProductSkill, isPlayerFacingSkillConfig } from '../skills.js';
 import { normalizeSpecialEffectLinks } from '../special-effects.js';
+import { buildExEidolons, buildSeriesSkills } from './character-extensions.js';
 import {
   byId,
   decimalString,
@@ -139,6 +140,9 @@ function buildProfile(
       .entries()) {
       const category = classifyAvatarSkill(skillRows[0] ?? {});
       if (!category) continue;
+      const effectCode =
+        (typeof buff.SkillEffect === 'string' && buff.SkillEffect.trim()) ||
+        variant?.combatLevels?.[0]?.effectCode;
       skills.push({
         id: `${skillId}:global-buff:${index + 1}`,
         category,
@@ -148,6 +152,7 @@ function buildProfile(
           kind: 'direct',
           ref: { kind: 'symbolic', key: `global-buff:${skillId}:name` }
         },
+        typeSource: textSource(buff.SkillTag),
         levels: [
           {
             level: 1,
@@ -158,7 +163,7 @@ function buildProfile(
         combatLevels: [
           {
             level: 1,
-            ...(typeof buff.SkillEffect === 'string' ? { effectCode: buff.SkillEffect } : {})
+            ...(effectCode ? { effectCode } : {})
           }
         ],
         progressionId: undefined,
@@ -353,7 +358,8 @@ function buildProfile(
       skills[index] = {
         ...skill,
         progressionIconPath: progressionRow.IconPath,
-        progressionPointType: Number(progressionRow.PointType ?? 0)
+        progressionPointType: Number(progressionRow.PointType ?? 0),
+        progressionDefaultUnlock: progressionRow.DefaultUnlock === true
       };
   }
   return {
@@ -379,6 +385,8 @@ function buildProfile(
     skills,
     traces,
     eidolons,
+    seriesSkills: buildSeriesSkills(avatarId, skills, tables),
+    exEidolons: buildExEidolons(avatarId, tables),
     specialEffects: relations
   };
 }
@@ -402,6 +410,28 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
     )
   ];
   const avatarsById = byId(avatars, 'AvatarID');
+  const seriesKeys = new Set<string>();
+  for (const row of rows(tables, 'AvatarSeriesSkill')) {
+    const key = `${row.SkillID}:${row.Level}`;
+    if (!avatarsById.has(String(row.AvatarID)) || seriesKeys.has(key))
+      throw new Error(
+        `[character/series] invalid owner or duplicate relation ${row.AvatarID}:${key}`
+      );
+    seriesKeys.add(key);
+  }
+  const exIds = new Set<string>();
+  for (const row of rows(tables, 'AvatarExRankConfig')) {
+    const key = String(row.PHFMCACHFIJ);
+    if (!/^\d+$/.test(key) || !avatarsById.has(String(row.ACCJKGEKHKP)) || exIds.has(key))
+      throw new Error(`[character/ex-rank] invalid owner or duplicate ID ${key}`);
+    exIds.add(key);
+  }
+  for (const row of rows(tables, 'AvatarSkillConfig'))
+    for (const exId of ids(row.RelatedExRankIDList))
+      if (!exIds.has(exId))
+        throw new Error(
+          `[character/ex-rank] Skill ${row.SkillID} references missing ExRank ${exId}`
+        );
   const items = byId(rows(tables, 'ItemConfigAvatar'), 'ID');
   const paths = byId(rows(tables, 'AvatarBaseType'), 'ID');
   const elements = byId(rows(tables, 'DamageType'), 'ID');
@@ -544,6 +574,51 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
       elementNameSource: textSource(elements.get(String(avatar.DamageType))?.DamageTypeName)
     } satisfies CharacterDomain;
   });
+  const charactersById = new Map(characters.map((character) => [character.id, character]));
+  for (const character of characters) {
+    for (const profile of [character.profiles.base, character.profiles.enhanced].filter(
+      (profile) => !!profile
+    )) {
+      for (const series of profile.seriesSkills) {
+        const targets = series.states[0].relatedAvatarIds;
+        if (
+          new Set(targets).size !== targets.length ||
+          series.states.some(
+            (state) => JSON.stringify(state.relatedAvatarIds) !== JSON.stringify(targets)
+          )
+        )
+          throw new Error(`[character/series] inconsistent related avatars ${series.skillId}`);
+        for (const [order, linkedAvatarId] of targets.entries()) {
+          const target = charactersById.get(linkedAvatarId)?.profiles.base;
+          if (
+            !target ||
+            target.seriesSkills.length !== 1 ||
+            series.states.some(
+              (state) =>
+                !target.seriesSkills[0].states.some((candidate) => candidate.level === state.level)
+            )
+          )
+            throw new Error(
+              `[character/series] unresolved related avatar ${series.skillId}:${linkedAvatarId}`
+            );
+          profile.specialEffects.push({
+            kind: 'series-skill-link',
+            skillId: series.skillId,
+            targetSkillId: target.seriesSkills[0].skillId,
+            linkedAvatarId,
+            order
+          });
+        }
+      }
+      for (const ex of profile.exEidolons)
+        if (
+          ex.relatedSkillIds.some(
+            (skillId) => !profile.skills.some((skill) => skill.id === skillId)
+          )
+        )
+          throw new Error(`[character/ex-rank] invalid skill ownership ${ex.entityId}`);
+    }
+  }
   return {
     characters,
     extraEffects,

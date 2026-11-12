@@ -19,11 +19,13 @@ workspace/
 新的本地环境需要先准备两个上游；其来源见[项目 README](../README.md#数据来源与致谢)。
 本地 sibling 开发源与部署 pin 是两种入口：部署 profile 会在网站内部 `.upstream/` 准备锁定 SHA，不切换相邻仓库。
 
+正式本地构建 `pnpm build` 的 prebuild，以及 `pnpm relic-score:v2:*` 维护命令，在未显式设置 `HSR_DATA_ROOT`（或值为空白）时，也通过既有准备流程使用 `.upstream/TurnBasedGameData` 中的锁定提交。显式指定的来源必须完整且与 lock 一致，否则在生成之前报错，不切换该仓库或回退到其他来源。`pnpm dev`、独立的 `data:ensure` / `data:sync` 继续使用相邻仓库的本地开发默认值。
+
 ## 环境变量与启动
 
 | 变量              | 用途与默认值                                                         |
 | ----------------- | -------------------------------------------------------------------- |
-| `HSR_DATA_ROOT`   | 脚本游戏数据根目录，默认 `../TurnBasedGameData`                      |
+| `HSR_DATA_ROOT`   | 游戏数据根目录；开发脚本默认 `../TurnBasedGameData`，正式 prebuild / V2 命令默认准备锁定 `.upstream/TurnBasedGameData` |
 | `HSR_ASSET_ROOT`  | 脚本视觉资源根目录，默认 `../StarRailRes`                            |
 | `PUBLIC_SITE_URL` | 页面站点 URL、sitemap 与 robots 的绝对地址基础，应与访问 origin 一致 |
 
@@ -41,6 +43,16 @@ pnpm dev
 
 `predev` 依次执行 `messages:compile`、`data:ensure` 与 `assets:ensure`，先准备站点消息，再准备或复用生成数据和普通资源；启动后以终端实际地址为准。
 这些准备步骤不刷新 tracked enemy snapshot。需要离线核对时运行 `pnpm validate:enemy-assets`。
+
+从 sibling 开发数据切回正式构建时，可清除显式游戏数据路径并单独运行准备步骤。prebuild 先校验源，再依次编译消息、准备数据和资源、校验 V2；所有子进程共用已验证的游戏数据路径和预期提交。视觉资源路径规则保持不变。
+
+```powershell
+Remove-Item Env:HSR_DATA_ROOT -ErrorAction SilentlyContinue
+pnpm run prebuild
+pnpm relic-score:v2:benchmarks:validate
+```
+
+V2 校验不会自动修复旧 manifest 或 Profile；若开发命令已将产物切回其他提交，重新执行正式 prebuild。来源提交不一致与评分输入内容变化分别诊断，不能通过改写审批 SHA 或重新标记 Benchmark 来放行。
 
 联网操作先确认代理端口，再配置进程代理变量；本地通常使用 7890，以 [AGENTS.md](../AGENTS.md#internet-connectivity) 为准。
 不要把代理、私有路径、token 或本地 `.vercel/` 状态提交到仓库。
@@ -85,7 +97,8 @@ pnpm dev
 | `pnpm test`                               | 运行 Vitest；优先用 `pnpm exec vitest run <相关测试文件>` 做定向验证            |
 | `pnpm test:components`                    | 组件浏览器测试                                                                  |
 | `pnpm test:e2e` / `pnpm test:e2e:smoke`   | 桌面/移动 E2E / 发布门禁 smoke                                                  |
-| `pnpm build`                              | 使用本地数据源，经 prebuild 编译站点消息、准备数据与资源、校验评分 Benchmark，再生成静态站点 |
+| `pnpm run prebuild`                      | 校验正式数据源，再编译消息、准备数据与资源及校验评分 Benchmark；不运行 Vite 构建 |
+| `pnpm build`                              | 执行正式 prebuild 后生成静态站点；未设置游戏数据路径时默认准备 lock 固定源 |
 | `pnpm ci:develop` / `pnpm ci:validate`    | 自准备 pinned 输入的轻量开发验证 / 完整 correctness 验证                        |
 
 数据生成结果主要位于 `src/lib/generated/`、`static/generated/`，普通视觉资源位于 `src/lib/generated-assets/`、`static/generated-assets/`；这些目录的生成内容被忽略。

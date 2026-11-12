@@ -71,7 +71,7 @@ export function resolveSpecialEffectLinkedAvatarPresentation(input: {
       return {
         sourceAvatarId,
         displayAvatarId: '8002',
-        displayName: requireName(sourceTarget, true)
+        displayName: requireName(sourceTarget, false)
       };
     if (sourceAvatarId === '1001' || sourceAvatarId === '1224')
       return {

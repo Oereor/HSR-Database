@@ -81,6 +81,8 @@ export const characterDomainTableNames = [
   'AvatarServantSkillConfig',
   'AvatarServantSkillLink',
   'AvatarGlobalBuffConfig',
+  'AvatarSeriesSkill',
+  'AvatarExRankConfig',
   'AvatarEquipRecommend',
   'AvatarRelicRecommend',
   'EquipmentConfig',

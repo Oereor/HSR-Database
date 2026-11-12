@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ArrowUpRightIcon from '@lucide/svelte/icons/arrow-up-right';
   import * as Card from '$lib/components/ui/card';
   import { Separator } from '$lib/components/ui/separator';
   import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
@@ -9,8 +10,14 @@
   import { createPlayerSkillTreeIndex, resolvePlayerSkillLevel } from '$lib/player/character';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import { m } from '$lib/paraglide/messages.js';
+  import * as ToggleGroup from '$lib/components/ui/toggle-group';
+  import { Button } from '$lib/components/ui/button';
 
   export let card: SkillCard;
+  export let seriesLevel: 1 | 2 = 1;
+  export let onSeriesLevelChange: ((level: 1 | 2) => void) | undefined = undefined;
+  export let onOpenSeriesEffects: ((trigger: HTMLButtonElement, level: 1 | 2) => void) | undefined =
+    undefined;
   export let characterAccent: string | undefined = undefined;
   export let previewControls: Record<string, SkillPreviewControl> | undefined = undefined;
   export let onPreviewLevelChange: ((progressionId: string, level: number) => void) | undefined =
@@ -22,6 +29,9 @@
     ((trigger: HTMLButtonElement, level: number) => void) | undefined = undefined;
 
   let localLevels: Record<string, number> = {};
+  $: adjustableProgressions = card.progressions.filter(
+    (progression) => progression.availableLevels.length > 1
+  );
   $: playerIndex = playerSkillTree ? createPlayerSkillTreeIndex(playerSkillTree) : undefined;
   $: levels = Object.fromEntries(
     card.progressions.map((progression) => [
@@ -51,20 +61,62 @@
   class="skill-card character-detail-card"
   data-skill-category={card.category}
 >
-  <Card.Header class="flex flex-row items-center justify-between gap-3">
-    <Card.Title class="min-w-0 text-lg">{card.displayLabel}</Card.Title>
+  <Card.Header
+    class={`flex flex-row items-center justify-between gap-3 ${card.externalCondition ? 'flex-wrap' : ''}`}
+  >
+    <div class="flex min-w-0 flex-wrap items-center gap-2">
+      <Card.Title class="min-w-0 text-lg">{card.displayLabel}</Card.Title>
+      {#if card.externalCondition && onOpenSeriesEffects}
+        <Button
+          variant="outline"
+          size="sm"
+          type="button"
+          aria-haspopup="dialog"
+          onclick={(event) =>
+            onOpenSeriesEffects?.(event.currentTarget as HTMLButtonElement, seriesLevel)}
+        >
+          {m.series_skill_view_related()}
+          <ArrowUpRightIcon data-icon="inline-end" aria-hidden="true" />
+        </Button>
+      {/if}
+    </div>
     <div class="skill-card__controls flex min-w-0 shrink-0 flex-col gap-2">
-      {#each card.progressions as progression (progression.id)}
+      {#if card.externalCondition}
+        <ToggleGroup.Root
+          type="single"
+          variant="outline"
+          size="sm"
+          bind:value={
+            () => String(seriesLevel),
+            (value) => {
+              if (value === '1' || value === '2') onSeriesLevelChange?.(Number(value) as 1 | 2);
+            }
+          }
+          aria-label={m.series_skill_condition()}
+        >
+          <ToggleGroup.Item
+            value="1"
+            class="data-[state=on]:bg-primary/15 data-[state=on]:text-primary data-[state=on]:hover:bg-primary/20 data-[state=on]:hover:text-primary"
+            >{m.series_skill_e0()}</ToggleGroup.Item
+          >
+          <ToggleGroup.Item
+            value="2"
+            class="data-[state=on]:bg-primary/15 data-[state=on]:text-primary data-[state=on]:hover:bg-primary/20 data-[state=on]:hover:text-primary"
+            >{m.series_skill_e2()}</ToggleGroup.Item
+          >
+        </ToggleGroup.Root>
+      {/if}
+      {#each adjustableProgressions as progression (progression.id)}
         {@const level = levels[progression.id]}
         <div data-preview-key={!playerSkillTree ? progression.id : undefined}>
-          {#if card.progressions.length > 1}<span
+          {#if adjustableProgressions.length > 1}<span
               class="text-muted-foreground block text-xs wrap-anywhere"
               >{card.variants
                 .filter((v) => progression.variantIds.includes(v.id))
                 .map((v) => gameTextToPlain(v.name))
                 .join(' / ')}</span
             >{/if}
-          {#if level === null || progression.availableLevels.length < 2}
+          {#if level === null}
             <output
               class="text-foreground whitespace-nowrap tabular-nums"
               data-player-skill-state={level === null ? 'unresolved' : undefined}
@@ -102,7 +154,7 @@
       {#if index}<Separator />{/if}
       <SkillVariantView
         {variant}
-        selectedLevel={selectedLevel(variant, levels)}
+        selectedLevel={card.externalCondition ? seriesLevel : selectedLevel(variant, levels)}
         {characterAccent}
         {specialEffectsAvailable}
         {specialEffectIconUrl}

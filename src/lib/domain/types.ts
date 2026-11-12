@@ -23,8 +23,9 @@ export interface InlineGameTextIcon {
 }
 
 export interface DescriptionToken {
+  interaction?: { kind: 'series-skill'; skillId: string; level: 1 | 2 };
   semanticReference?: `character-special-effects:${string}`;
-  type: 'text' | 'scaling-value' | 'fixed-param' | 'icon';
+  type: 'text' | 'scaling-value' | 'fixed-param' | 'icon' | 'interaction';
   value: string;
   icon?: InlineGameTextIcon;
   color?: string;
@@ -48,6 +49,7 @@ export type SkillCategory =
   | 'memosprite-skill'
   | 'memosprite-talent'
   | 'elation-skill'
+  | 'elation-ascension'
   | 'assist';
 
 export type KnownSkillEffect =
@@ -126,9 +128,28 @@ export interface ServantSkillSpecialEffectEntry {
 }
 
 export type CharacterSpecialEffectEntry =
-  AvatarSkillSpecialEffectEntry | ServantSkillSpecialEffectEntry;
+  | AvatarSkillSpecialEffectEntry
+  | ServantSkillSpecialEffectEntry
+  | {
+      kind: 'series-skill-link';
+      skill: SkillVariant;
+      rootSkillId: string;
+      linkedAvatarId: string;
+      order: number;
+    };
+
+export interface SeriesSkill {
+  avatarId: string;
+  skillId: string;
+  states: Array<{
+    level: number;
+    condition: import('./neutral.js').SeriesSkillCondition;
+    relatedAvatarIds: string[];
+  }>;
+}
 
 export interface SkillProgression {
+  fixedLevel?: number;
   id: string;
   availableLevels: number[];
   defaultLevel: number;
@@ -136,6 +157,7 @@ export interface SkillProgression {
 }
 
 export interface SkillCard {
+  externalCondition?: SeriesSkill;
   category: SkillCategory;
   displayLabel: string;
   order: number;
@@ -220,12 +242,22 @@ export interface Eidolon {
   extraEffects?: SkillExtraEffect[];
 }
 
+export interface ExEidolon extends Omit<Eidolon, 'rank'> {
+  kind: 'ex-rank';
+  entityId: string;
+  avatarId: string;
+  badgeLabel: string;
+  relatedSkillIds: string[];
+}
+
 export interface CharacterProfile {
   energy: CharacterEnergy;
   skillCards: SkillCard[];
   specialEffects: CharacterSpecialEffectEntry[];
   traces: Trace[];
   eidolons: Eidolon[];
+  seriesSkills: SeriesSkill[];
+  exEidolons: ExEidolon[];
 }
 
 export type RelicSlot = 'HEAD' | 'HAND' | 'BODY' | 'FOOT' | 'NECK' | 'OBJECT';

@@ -6,7 +6,7 @@ import {
   getEndgameOccurrenceShard,
   getEndgameOccurrenceTargetIds
 } from '../../src/lib/server/endgame';
-import { getEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
+import { getEnemyCardImageMap } from '../../src/lib/server/enemy-assets';
 import type { EndgameOccurrenceShard } from '../../src/lib/domain/search-index';
 
 describe('Endgame Search portrait delivery', () => {
@@ -66,7 +66,7 @@ describe('Endgame Search portrait delivery', () => {
   });
 
   it('resolves portraits by template ID across all four modes without changing projected fields', async () => {
-    const portraits = await getEnemyPortraitMap();
+    const portraits = await getEnemyCardImageMap();
     expect(portraits.size).toBeGreaterThan(0);
     const index = await getSearchIndex('en');
     const modesWithArtwork = new Set<string>();
@@ -105,7 +105,7 @@ describe('Endgame Search portrait delivery', () => {
     for (const [key, item] of Object.entries(en!.occurrences)) {
       expect(item.occurrence.portraitUrl).toBeTruthy();
       expect(item.occurrence.portraitUrl).toBe(zh!.occurrences[key].occurrence.portraitUrl);
-      expect(item.occurrence.portraitUrl).toMatch(/^\/generated-enemy-assets\//);
+      expect(item.occurrence.portraitUrl).toMatch(/^\/generated-enemy-assets\/icons\//);
     }
     expect(await getEndgameOccurrenceShard('../missing', 'en')).toBeUndefined();
   }, 30000);

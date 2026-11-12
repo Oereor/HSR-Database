@@ -12,7 +12,7 @@
 - **角色与光锥**：基础属性、逐等级技能与效果、行迹、星魂及装备推荐。
 - **遗器与评分**：套装、部件及效果；对玩家配装提供遗器评分。
 - **敌方单位**：属性、弱点、抗性、技能与部分数值详情。
-- **高难模式**：混沌回忆、虚构叙事、末日幻影与异相仲裁的赛期、关卡、波次及敌方实例。
+- **逐光捡金**：混沌回忆、虚构叙事、末日幻影与异相仲裁的赛期、关卡、波次及敌方实例。
 - **玩家信息**：通过 UID 查询玩家公开展示的角色、光锥、遗器与面板信息。
 - **站内搜索**：在统一的入口处搜索角色、光锥、遗器、敌方单位、关卡与赛期等数据。
 
@@ -53,7 +53,7 @@ pnpm dev
 
 - [TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData)：本站主要的游戏数据来源。
 - [StarRailRes](https://github.com/Mar-7th/StarRailRes)：角色、光锥、遗器与图标等视觉资源。
-- [nanoka.cc](https://static.nanoka.cc)：敌方单位视觉资源，维护为仓库内快照。
+- [nanoka.cc](https://static.nanoka.cc)：敌方单位卡片图（`MonsterMiddleIcon`）和详情立绘（`MonsterFigure`），维护为仓库内快照。
 - [Enka.Network](https://enka.network/)：玩家公开信息查询服务。
 
 特别感谢以上项目、社区服务及其维护者。

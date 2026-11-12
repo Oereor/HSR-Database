@@ -69,8 +69,8 @@
     <div class="detail-profile-hero__identity">
       <DetailArtwork
         source={detail.portraitUrl}
-        width={376}
-        height={512}
+        width={1024}
+        height={1024}
         fit="contain"
         data-enemy-portrait={detail.template.monsterTemplateId}
       />

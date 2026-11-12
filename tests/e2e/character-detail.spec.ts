@@ -65,10 +65,6 @@ test('四名 LD 角色进入 Character Overview、Search、Detail 与本地资�
 });
 
 test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', async ({ page }) => {
-  const messages = JSON.parse(readFileSync('messages/zh-CN.json', 'utf8')) as Record<
-    string,
-    string
-  >;
   for (const [id, originalId, globalId, originalName, globalName, description] of [
     ['1407', '140704', '140704:global-buff:1', '掌心淌过的荒芜', '月茧之庇', '月茧'],
     ['1506', '150604', '150604:global-buff:1', '有我在，把把都是顺风局', '999安全卫士', '防火墙']
@@ -81,9 +77,10 @@ test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', a
     const globalVariant = talentCard.locator(`[data-skill-id="${globalId}"]`);
     await expect(globalVariant).toContainText(globalName);
     await expect(globalVariant).toContainText(description);
-    await expect(globalVariant.locator('.skill-variant__heading .skill-effect-tag')).toHaveText(
-      messages.skill_exclusive
-    );
+    const tags = globalVariant.locator('.skill-variant__heading .skill-effect-tag');
+    await expect(tags).toHaveCount(2);
+    await expect(tags.first()).toHaveAttribute('data-skill-effect', 'Support');
+    await expect(tags.last()).not.toHaveAttribute('data-skill-effect');
     await expect(globalVariant.locator('.skill-variant__heading')).not.toContainText('Lv.1');
     await expect(page.locator('[data-skill-category="global-buff"]')).toHaveCount(0);
     await expect(page.locator('body')).not.toContainText('仓库技');
@@ -618,7 +615,12 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
     'src',
     /generated-assets\/characters\/icons\/8002\.png/
   );
-  await expect(himekoTrailblazer.locator('strong')).toHaveText('开拓者');
+  const trailblazerCatalog = JSON.parse(
+    readFileSync('src/lib/generated/views/zh-CN/catalogs/characters.json', 'utf8')
+  ) as Array<{ id: string; name: string }>;
+  await expect(himekoTrailblazer.locator('strong')).toHaveText(
+    trailblazerCatalog.find((entry) => entry.id === '8001')!.name
+  );
   await expect(himekoDialog.locator('[data-linked-avatar-id="1001"] strong')).toHaveText('三月七');
   await expect(himekoDialog.locator('[data-linked-avatar-id="1003"]')).toContainText('姬子');
   await himekoDialog.locator('.special-effect-dialog__close').click();

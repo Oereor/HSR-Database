@@ -52,7 +52,7 @@
             <div class="training-target__skill-control">
               <LevelSlider
                 id={`training-skill-${skill.key.replaceAll(':', '-')}`}
-                label={skill.variantLabel ? `${label} · ${skill.variantLabel}` : label}
+                {label}
                 value={index}
                 min={0}
                 max={skill.availableLevels.length - 1}

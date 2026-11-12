@@ -14,6 +14,7 @@
   export let targets: CatalogEntry[] = [];
   export let ownerCharacterId: string;
   export let selectedLevel: number;
+  export let mode: 'skill' | 'series' = 'skill';
   export let onRequestClose: () => void = () => undefined;
   export let onClosed: () => void = () => undefined;
 
@@ -47,7 +48,11 @@
           <Badge
             variant="outline"
             class="skill-effect-tag special-effect-dialog__level text-primary"
-            >Lv.{selectedLevel}</Badge
+            >{mode === 'series'
+              ? selectedLevel === 2
+                ? m.series_skill_e2()
+                : m.series_skill_e0()
+              : `Lv.${selectedLevel}`}</Badge
           >
         </div>
       </div>

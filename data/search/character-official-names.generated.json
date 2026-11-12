@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "normalizationVersion": 1,
   "namingPolicyVersion": 1,
-  "sourceCommit": "74a7b96fba32f00cf495a5c00b0311bd02207aaf",
+  "sourceCommit": "fe15a954eba1f24bf1bcd4003848710eced44996",
   "characters": {
     "1001": {
       "canonicalName": "三月七·存护",
@@ -978,6 +978,17 @@
         "recordId": "1510",
         "field": "AvatarName",
         "textHash": "12653203655511224443",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1511": {
+      "canonicalName": "星神★阿哈",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1511",
+        "field": "AvatarName",
+        "textHash": "14922431951980054096",
         "policy": "avatar-name"
       },
       "officialAliases": []

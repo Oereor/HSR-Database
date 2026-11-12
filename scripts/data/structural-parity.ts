@@ -8,7 +8,7 @@ source table field recordId textHash policy baseAvatarId required variantIds pre
 simplifiedLinkedAvatarIds linkedAvatarId avatarId characterId lightConeId relicId setId pieceId monsterId
 monsterTemplateId skillId traceId eidolonId groupId encounterId stageId eventId waveId waveGroupId
 monsterGroupId entryId targetId occurrenceId configId gachaId equipmentId propertyType element path rarity rank slot battleSlot level minLevel
-maxLevel defaultLevel fromLevel toLevel promotionLimit characterLevelLimit anchorOrder sourcePointType pointType attackType effectCode
+maxLevel defaultLevel fixedLevel fromLevel toLevel promotionLimit characterLevelLimit anchorOrder sourcePointType pointType attackType effectCode
 bpNeed bpAdd spBase stanceDamageDisplay showStanceList order availableLevels scalingParamIndexes params
 extraEffectIds skillIds phases arrayIndex ordinal begin end infiniteWaveId card encounter battle stage wave`;
 const statFields = `base perLevel fixed stages hp attack defence speed toughness effectHit effectResistance
@@ -17,7 +17,7 @@ instanceValue instanceValueInternal levelRatio hardLevelRatio eliteRatio configu
 perBar barCount runtimeStatus hpBase baseEncounterMaxHpPerBar final maxHpPerBar eliteGroupId eliteGroupTable
 eliteContextSource eliteContextConfidence phase maxHp exact rounded roundedPerBar exactPerBar phaseCount effectiveTotalHp effectiveTotalHpStatus`;
 const characterFields = `baseAvatarId gender profile profiles base enhanced energy max iconCode iconPath iconKey iconKeys
-skillCards variants progressions traces eidolons equipmentRecommendation lightConeIds cavernSetIds planarSetIds
+skillCards variants progressions traces eidolons exEidolons entityId relatedSkillIds seriesSkills states condition externalCondition externalAvatarId threshold param relatedAvatarIds rootSkillId targetSkillId equipmentRecommendation lightConeIds cavernSetIds planarSetIds
 mainStatOptions subStatPropertyTypes propertyTypes sourcePointType extraEffects specialEffects relation kind
 tarotFigurePath tarotIconPath pathCode elementCode releaseVersion categoryCode typeCode visibility source
 combatLevels combatMetaLevels combatMeta effect code known tag damageType stanceDisplay`;

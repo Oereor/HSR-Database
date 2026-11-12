@@ -2,6 +2,7 @@ import abundance from '../../../../data/skill-tree-layouts/abundance.json';
 import connectionConfig from '../../../../data/skill-tree-layouts/connections.json';
 import destruction from '../../../../data/skill-tree-layouts/destruction.json';
 import elation from '../../../../data/skill-tree-layouts/elation.json';
+import elationAha from '../../../../data/skill-tree-layouts/elation-aha.json';
 import erudition from '../../../../data/skill-tree-layouts/erudition.json';
 import geometryConfig from '../../../../data/skill-tree-layouts/geometry.json';
 import harmony from '../../../../data/skill-tree-layouts/harmony.json';
@@ -45,6 +46,14 @@ const layouts = layoutSlugs.map((slug) => {
   };
 });
 const referenceHalfSize = layoutHalfSize(layouts);
+const ahaGeometry = resolveLayout('elation', validateLayout(elationAha), geometry);
+const ahaLayout = {
+  slug: 'elation-aha',
+  path: 'Elation',
+  ...ahaGeometry,
+  halfSize: cropHalfSize(ahaGeometry.nodes),
+  connections: resolveConnections(connections.elation, ahaGeometry.nodes)
+};
 
 export function isToggleableTrainingNode(node: TrainingNode): boolean {
   return node.kind === 'trace' && [1, 3, 5].includes(node.pointType);
@@ -52,7 +61,10 @@ export function isToggleableTrainingNode(node: TrainingNode): boolean {
 
 export function resolveTrainingSkillTree(path: string, profile: CharacterTrainingProfile) {
   const context = `[training/tree] ${profile.avatarId}:${profile.enhancedId} (${path})`;
-  const layout = layouts.find((entry) => entry.path === path);
+  const layout =
+    profile.avatarId === '1511' && path === 'Elation'
+      ? ahaLayout
+      : layouts.find((entry) => entry.path === path);
   if (!layout) throw new Error(`${context}: unknown path`);
 
   const slots = new Set(layout.nodes.map((slot) => slot.anchorType));

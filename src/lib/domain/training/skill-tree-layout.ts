@@ -120,7 +120,7 @@ function classifyNode(slug: LayoutSlug, anchorType: string): NodeKind {
   if (
     /^Point0[1-5]$/.test(anchorType) ||
     (slug === 'remembrance' && (anchorType === 'Point19' || anchorType === 'Point20')) ||
-    (slug === 'elation' && anchorType === 'Point22')
+    (slug === 'elation' && (anchorType === 'Point22' || anchorType === 'Point23'))
   ) {
     return 'skill';
   }

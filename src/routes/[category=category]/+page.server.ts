@@ -1,6 +1,6 @@
 import { CATEGORY_CONFIG, isCategory } from '$lib/domain/constants';
 import { getCatalog } from '$lib/server/generated';
-import { getEnemyPortraitMap } from '$lib/server/enemy-assets';
+import { getEnemyCardImageMap } from '$lib/server/enemy-assets';
 import { error } from '@sveltejs/kit';
 
 export const prerender = true;
@@ -12,7 +12,7 @@ export async function load({ params, locals }) {
   const enemyPortraits =
     params.category === 'enemies'
       ? Object.fromEntries(
-          [...(await getEnemyPortraitMap()).entries()]
+          [...(await getEnemyCardImageMap()).entries()]
             .filter(([templateId]) => catalog.some((entry) => entry.id === String(templateId)))
             .map(([templateId, url]) => [String(templateId), url])
         )

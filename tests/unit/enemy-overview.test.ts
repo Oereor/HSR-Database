@@ -14,7 +14,7 @@ import {
   writeEnemyOverviewFilterState
 } from '../../src/lib/domain/enemy-overview';
 import type { DataManifest, Enemy, EnemyCatalogEntry } from '../../src/lib/domain/types';
-import { getEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
+import { getEnemyCardImageMap } from '../../src/lib/server/enemy-assets';
 
 const generatedRoot = path.join(process.cwd(), 'src', 'lib', 'generated');
 
@@ -191,7 +191,7 @@ describe('Enemy Overview presentation', () => {
   });
 
   it('Overview 只取得本地 Enemy URL，已知缺图 Template 保持 undefined', async () => {
-    const portraits = await getEnemyPortraitMap();
+    const portraits = await getEnemyCardImageMap();
     expect(portraits.get(1002015)).toMatch(/^\/generated-enemy-assets\/icons\/Monster_\d+\.webp$/);
     expect(portraits.get(2002020)).toBeUndefined();
   });

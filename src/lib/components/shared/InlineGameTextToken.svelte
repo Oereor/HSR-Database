@@ -4,7 +4,7 @@
 
   export let token: {
     value: string;
-    type?: 'text' | 'scaling-value' | 'fixed-param' | 'icon';
+    type?: 'text' | 'scaling-value' | 'fixed-param' | 'icon' | 'interaction';
     icon?: InlineGameTextIcon;
     color?: string;
     italic?: boolean;

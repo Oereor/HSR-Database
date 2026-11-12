@@ -19,7 +19,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
     const shard = (await response.json()) as EndgameOccurrenceShard;
     const item = Object.values(shard.occurrences)[0];
     const imageUrl = item.occurrence.portraitUrl!;
-    expect(imageUrl).toMatch(/^\/generated-enemy-assets\//);
+    expect(imageUrl).toMatch(/^\/generated-enemy-assets\/icons\//);
     expect((await request.get(imageUrl)).ok()).toBe(true);
     await page.goto(`${prefix}/search/?q=${encodeURIComponent(target.name)}`);
     const card = page.locator(selector).first();
@@ -40,7 +40,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
       )
       .toBe(true);
     await page.goto(`${prefix}/enemies/${target.id}/`);
-    const ordinaryImage = page.locator(`img[src="${imageUrl}"]`).first();
+    const figureUrl = imageUrl.replace('/icons/', '/figures/');
+    const ordinaryImage = page.locator(`[data-enemy-portrait] img[src="${figureUrl}"]`);
     await ordinaryImage.scrollIntoViewIfNeeded();
     await expect
       .poll(() =>
@@ -50,7 +51,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await page.goto(`${prefix}/enemies/?sort=id`);
     await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
     const overviewImage = page
-      .locator(`a[href^="${prefix}/enemies/"] img[src^="/generated-enemy-assets/"]`)
+      .locator(`a[href^="${prefix}/enemies/"] img[src^="/generated-enemy-assets/icons/"]`)
       .first();
     await overviewImage.scrollIntoViewIfNeeded();
     await expect

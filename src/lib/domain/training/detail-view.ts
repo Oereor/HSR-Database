@@ -1,5 +1,4 @@
 import type { SkillCard } from '../types.js';
-import { gameTextToPlain } from '../game-text.js';
 import type {
   CharacterTrainingProfile,
   CharacterTrainingResult,
@@ -36,7 +35,6 @@ export interface TrainingSkillTarget {
   key: string;
   pointId: string;
   categoryLabel: string;
-  variantLabel?: string;
   availableLevels: number[];
   trainingLevel: number;
 }
@@ -73,19 +71,12 @@ export function createTrainingSkillTargets(
         previous.iconKey ??= card.iconKey;
         continue;
       }
-      const variants =
-        card.progressions.length > 1
-          ? card.variants.filter((variant) => progression.variantIds.includes(variant.id))
-          : [];
       targets.set(node.key, {
         jointLabel: hasJointLabel(node),
         iconKey: card.iconKey,
         key: node.key,
         pointId: node.pointId,
         categoryLabel: card.displayLabel,
-        variantLabel: variants.length
-          ? [...new Set(variants.map((variant) => gameTextToPlain(variant.name)))].join(' / ')
-          : undefined,
         availableLevels: allowedSkillTrainingLevels(node, promotion),
         trainingLevel: skill.trainingLevel
       });

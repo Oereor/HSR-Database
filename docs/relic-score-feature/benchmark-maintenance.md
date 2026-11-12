@@ -2,7 +2,11 @@
 
 唯一正式文件位于 data/relic-score/v2/farming-benchmarks.json，审计位于同目录 benchmark-generation-audit.json。schema 4；Lens B 条件包含角色、实际槽与实际主词条。N=1，K=65536，seed=123456789，既有 mulberry32、自然五星 +15 和 257 点 CDF 不变，最大表示误差必须 ≤0.005。每轮直接计算单件 U，selectionMode=single-base-raw-sub-utility；不取多件最大值，也不从旧 N=3 CDF 开立方。
 
-pnpm relic-score:v2:benchmarks:generate 在 .staging 隔离目录生成并校验，覆盖集合由当前 Profile 和合法条件实际推导，当前为 2744 条。全部通过后才发布两份产物；发布后 bytes 校验也在回滚保护内，异常恢复原文件并保留诊断。禁止手工编辑 JSON、降门槛、513 点替换或借用旧算法。pnpm relic-score:v2:benchmarks:validate 独立验证 identity、覆盖、有限值、单调性、逐分布审计、汇总与真实 bytes/hash。pnpm relic-score:v2:benchmarks:determinism 对 1413 OBJECT/SPRatioBase、1001 HEAD/HPDelta、1505 NECK/PhysicalAddedRatio、1506 OBJECT/SPRatioBase 全 K 复算。
+pnpm relic-score:v2:benchmarks:generate 在 .staging 隔离目录生成并校验，覆盖集合由当前 Profile 和合法条件实际推导，4.7 当前为 2772 条，包含阿哈 `1511` 的 28 条。全部通过后才发布两份产物；发布后 bytes 校验也在回滚保护内，异常恢复原文件并保留诊断。禁止手工编辑 JSON、降门槛、513 点替换或借用旧算法。pnpm relic-score:v2:benchmarks:validate 独立验证 identity、覆盖、有限值、单调性、逐分布审计、汇总与真实 bytes/hash。pnpm relic-score:v2:benchmarks:determinism 对 1413 OBJECT/SPRatioBase、1001 HEAD/HPDelta、1505 NECK/PhysicalAddedRatio、1506 OBJECT/SPRatioBase 全 K 复算。
+
+正式 prebuild 与全部 V2 CLI 共用数据源入口：未设置 `HSR_DATA_ROOT` 或值为空白时，在网站内部 `.upstream/TurnBasedGameData` 准备 lock 指定提交；显式路径则校验完整性和实际提交，不切换或替换该仓库。准备或校验失败直接停止，不回退到 sibling 开发源。`pnpm dev` 和独立数据开发命令的默认路径保持不变。
+
+出现来源提交不匹配时，按诊断检查实际路径、actual 和 expected 提交。清除错误的 `HSR_DATA_ROOT` 后运行 `pnpm run prebuild`，或将其指向已准备好的正确提交。V2 命令不会因默认源正确而放行旧 manifest/Profile；生成产物过期时也运行正式 prebuild，使用同一游戏数据路径恢复绑定。单独的 prebuild 不启动完整 Vite 构建。
 
 Manifest schema 54 绑定 schema 2 政策 bytes/hash 及正式 Benchmark bytes/hash/audit hash。生成后运行 pnpm data:ensure；旧缓存自动失效。prebuild、自动上游更新和部署流水线验证正式 V2 分布及 audit。服务端完整验证一次并缓存，逐件核对条件，缺失/过期时返回明确 unavailable。
 
