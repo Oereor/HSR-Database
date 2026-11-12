@@ -1,32 +1,9 @@
-import { spawn } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { siteRoot } from '../data/paths.js';
 import { readUpstreamLock, type UpstreamLock } from './lock.js';
 import { resolveFormalDataSource } from './formal-source.js';
-
-function runPnpm(args: string[], env: NodeJS.ProcessEnv): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const entrypoint = process.env.npm_execpath;
-    const child = spawn(
-      entrypoint ? process.execPath : 'pnpm',
-      entrypoint ? [entrypoint, ...args] : args,
-      {
-        cwd: siteRoot,
-        env,
-        shell: false,
-        stdio: 'inherit',
-        windowsHide: true
-      }
-    );
-    child.on('error', reject);
-    child.on('close', (code) =>
-      code === 0
-        ? resolve()
-        : reject(new Error(`[prebuild] pnpm ${args.join(' ')} failed (${code})`))
-    );
-  });
-}
+import { runPnpm } from './run-pnpm.js';
 
 interface PrebuildDependencies {
   env?: NodeJS.ProcessEnv;

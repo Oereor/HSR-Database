@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ArrowUpRightIcon from '@lucide/svelte/icons/arrow-up-right';
   import type { DescriptionToken } from '$lib/domain/types';
   import InlineGameTextToken from '$lib/components/shared/InlineGameTextToken.svelte';
   import { segmentSpecialEffectTriggers } from '$lib/domain/special-effects-presentation';
@@ -36,10 +37,13 @@
           />{/each}</button
       >{:else}{#each segment.tokens as token}{#if token.type === 'interaction' && token.interaction && onOpenSeriesEffects}<button
             type="button"
-            class="text-primary inline cursor-pointer underline underline-offset-4"
+            class="text-primary inline-flex cursor-pointer items-center gap-1 whitespace-nowrap"
+            aria-haspopup="dialog"
             data-series-skill-reference={token.interaction.skillId}
             on:click={(event) => onOpenSeriesEffects?.(event.currentTarget, token.interaction!)}
-            ><InlineGameTextToken {token} {characterAccent} /></button
+            ><span class="underline underline-offset-4"
+              ><InlineGameTextToken {token} {characterAccent} /></span
+            ><ArrowUpRightIcon class="size-4 shrink-0" aria-hidden="true" /></button
           >
         {:else}<InlineGameTextToken {token} {characterAccent} />{/if}{/each}{/if}
   {/each}

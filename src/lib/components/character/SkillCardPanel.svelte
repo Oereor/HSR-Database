@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ArrowUpRightIcon from '@lucide/svelte/icons/arrow-up-right';
   import * as Card from '$lib/components/ui/card';
   import { Separator } from '$lib/components/ui/separator';
   import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
@@ -67,14 +68,16 @@
       <Card.Title class="min-w-0 text-lg">{card.displayLabel}</Card.Title>
       {#if card.externalCondition && onOpenSeriesEffects}
         <Button
-          variant="ghost"
+          variant="outline"
           size="sm"
-          class="h-7 text-xs"
           type="button"
+          aria-haspopup="dialog"
           onclick={(event) =>
             onOpenSeriesEffects?.(event.currentTarget as HTMLButtonElement, seriesLevel)}
-          >{m.series_skill_view_related()}</Button
         >
+          {m.series_skill_view_related()}
+          <ArrowUpRightIcon data-icon="inline-end" aria-hidden="true" />
+        </Button>
       {/if}
     </div>
     <div class="skill-card__controls flex min-w-0 shrink-0 flex-col gap-2">
