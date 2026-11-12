@@ -82,7 +82,7 @@ export const NAVIGATION_ICON_SOURCE_NAMES: Readonly<Record<NavigationIconKey, st
   'light-cones': 'ShopLightConIcon',
   relics: 'InventoryFosterIcon',
   enemies: 'IconActivityTreasureTrotter',
-  endgame: 'AbyssIcon01'
+  endgame: 'DailyQuestChallengeStoryIcon'
 };
 
 export const BRAND_ICON_SOURCE_NAMES: Readonly<Record<BrandIconKey, string>> = {
@@ -192,7 +192,9 @@ export function assetRequirementsFingerprint(requirements: AssetRequirements): s
       ),
     elements: [...requirements.elements].sort(),
     paths: [...requirements.paths].sort(),
-    navigationIcons: [...requirements.navigationIcons].sort(),
+    navigationIcons: [...requirements.navigationIcons]
+      .sort()
+      .map((key) => [key, NAVIGATION_ICON_SOURCE_NAMES[key]]),
     brandIcons: [...requirements.brandIcons].sort(),
     utilityIcons: [...requirements.utilityIcons].sort(),
     endgameModeIcons: [...requirements.endgameModeIcons].sort()

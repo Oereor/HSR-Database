@@ -50,6 +50,7 @@ import {
   resolveIndexedAssetPath,
   assetOutputPaths,
   assetRequirementsFingerprint,
+  type AssetRequirements,
   validateGeneratedAssetFiles,
   writePortraitAsset,
   writeSemanticIconAsset,
@@ -123,16 +124,18 @@ afterEach(async () => {
 });
 
 describe('视觉资源管线', () => {
-  it('generates only requested material and character icons with missing-asset fallback', async () => {
+  it('generates only requested icons and preserves missing-asset fallback', async () => {
     const root = await mkdtemp(path.join(process.cwd(), '.material-assets-'));
     temporaryDirectories.push(root);
     const indexDirectory = path.join(root, 'index_new', 'cn');
     const itemDirectory = path.join(root, 'icon', 'item');
     const characterDirectory = path.join(root, 'icon', 'character');
+    const signDirectory = path.join(root, 'icon', 'sign');
     await Promise.all([
       mkdir(indexDirectory, { recursive: true }),
       mkdir(itemDirectory, { recursive: true }),
-      mkdir(characterDirectory, { recursive: true })
+      mkdir(characterDirectory, { recursive: true }),
+      mkdir(signDirectory, { recursive: true })
     ]);
     await Promise.all(
       [
@@ -157,7 +160,11 @@ describe('视觉资源管线', () => {
         await readFile(path.join(itemDirectory, '2.png'))
       );
     }
-    const requirements = {
+    await writeFile(
+      path.join(signDirectory, 'AbyssIcon01.png'),
+      await readFile(path.join(itemDirectory, '2.png'))
+    );
+    const requirements: AssetRequirements = {
       materialIds: ['2', '9999'],
       characterIds: ['1001', '9999'],
       playerAvatars: [],
@@ -168,7 +175,7 @@ describe('视觉资源管线', () => {
       relicPropertyIcons: [],
       elements: [],
       paths: [],
-      navigationIcons: [],
+      navigationIcons: ['endgame'],
       brandIcons: [],
       utilityIcons: [],
       endgameModeIcons: []
@@ -198,6 +205,8 @@ describe('视觉资源管线', () => {
     );
     expect(resolveMaterialIconAsset('9999', candidate)).toBeUndefined();
     expect(resolveMaterialIconAsset('../2', candidate)).toBeUndefined();
+    expect(candidate.navigation.icons).toEqual({ available: [], missing: ['endgame'] });
+    expect(resolveNavigationIconAsset('endgame', candidate)).toBeUndefined();
     expect(manifestCoversRequirements(candidate, requirements)).toBe(true);
     expect(
       manifestCoversRequirements(
@@ -380,7 +389,7 @@ describe('视觉资源管线', () => {
       'light-cones': 'ShopLightConIcon',
       relics: 'InventoryFosterIcon',
       enemies: 'IconActivityTreasureTrotter',
-      endgame: 'AbyssIcon01'
+      endgame: 'DailyQuestChallengeStoryIcon'
     });
     expect(BRAND_ICON_SOURCE_NAMES).toEqual({ 'train-party': 'TrainPartyIcon' });
     expect(UTILITY_ICON_SOURCE_NAMES).toEqual({
