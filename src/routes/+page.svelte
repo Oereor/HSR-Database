@@ -176,7 +176,7 @@
     total={data.homepage.additions.enemies.length}
     shown={data.newEnemies.length}
   >
-    {#each data.newEnemies as entry}
+    {#each data.newEnemies as entry (entry.id)}
       <EnemyOverviewCard
         {entry}
         href={localizedHref(`/enemies/${entry.id}`)}

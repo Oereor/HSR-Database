@@ -1,7 +1,9 @@
 import { normalizeGameText } from '../../../src/lib/domain/game-text.js';
 import type { LevelledDescription } from '../../../src/lib/domain/types.js';
 import type { NeutralSkillLevel, NeutralTextSource } from '../../../src/lib/domain/neutral.js';
-import type { LocalizationResult, TextResolver } from '../localization.js';
+import type { LocalizationResult, TextProjectionContext, TextResolver } from '../localization.js';
+
+type TextContext = Pick<TextProjectionContext, 'gender' | 'nickname'>;
 
 export interface ProjectionField {
   domain: string;
@@ -23,7 +25,8 @@ function failure(
 export function requiredText(
   resolver: TextResolver,
   source: NeutralTextSource | undefined,
-  field: ProjectionField
+  field: ProjectionField,
+  textContext: TextContext = {}
 ): string {
   if (!source) {
     resolver.recordAbsent(
@@ -38,6 +41,7 @@ export function requiredText(
     throw failure({ status: 'absent' }, field);
   }
   const result = resolver.resolve(source, {
+    ...textContext,
     provenance: { entity: field.domain, id: field.entityId, field: field.field },
     diagnosticDisposition: {
       requirement: 'required',
@@ -53,7 +57,8 @@ export function requiredText(
 export function optionalText(
   resolver: TextResolver,
   source: NeutralTextSource | undefined,
-  field: ProjectionField
+  field: ProjectionField,
+  textContext: TextContext = {}
 ): string {
   if (!source) {
     resolver.recordAbsent(
@@ -68,6 +73,7 @@ export function optionalText(
     return '';
   }
   const result = resolver.resolve(source, {
+    ...textContext,
     provenance: { entity: field.domain, id: field.entityId, field: field.field },
     diagnosticDisposition: {
       requirement: 'optional',
@@ -85,7 +91,7 @@ export function projectLevels(
   resolver: TextResolver,
   levels: readonly NeutralSkillLevel[],
   field: Omit<ProjectionField, 'field'>,
-  textContext: { gender?: 'female' | 'male'; nickname?: string } = {}
+  textContext: TextContext = {}
 ): { scalingParamIndexes: number[]; levels: LevelledDescription[] } {
   const parameterCount = Math.max(0, ...levels.map((level) => level.params.length));
   const scalingParamIndexes = Array.from({ length: parameterCount }, (_, index) => index).filter(

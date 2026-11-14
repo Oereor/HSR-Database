@@ -47,6 +47,19 @@ describe('DescriptionText SSR', () => {
     expect(body).toContain('&lt;unsafe>&amp;');
   });
 
+  it('renders a single Ruby annotation over a base with mixed token styles', () => {
+    const { descriptionTokens } = formatDescription(
+      '{RUBY_B#Rank & tier}<i>Rank</i> #1[i]{RUBY_E#}',
+      [3],
+      new Set([0])
+    );
+    const { body } = render(DescriptionText, { props: { tokens: descriptionTokens } });
+    expect(body.match(/<ruby\b/g)).toHaveLength(1);
+    expect(body).toMatch(
+      /<ruby\b[\s\S]*<em>Rank<\/em>[\s\S]*scaling-value[^>]*>3<\/span>[\s\S]*<rt[^>]*>Rank &amp; tier<\/rt>[\s\S]*<\/ruby>/
+    );
+  });
+
   it('retains the special effect button and surrounding line breaks', () => {
     const { body } = render(DescriptionText, {
       props: {

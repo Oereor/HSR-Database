@@ -1,5 +1,9 @@
 import type { DescriptionToken } from '../../src/lib/domain/types.js';
-import { normalizeGameText, parseGameTextWithScaling } from '../../src/lib/domain/game-text.js';
+import {
+  normalizeGameText,
+  normalizeRubyMarkup,
+  parseGameTextWithScaling
+} from '../../src/lib/domain/game-text.js';
 
 export type DescriptionDiagnosticCode = 'invalid-param' | 'missing-param';
 
@@ -108,6 +112,7 @@ function formatTemplate(
             ? 'fixed-param'
             : 'text',
       value: token.value,
+      ...(token.ruby ? { ruby: token.ruby } : {}),
       ...(token.icon ? { icon: token.icon } : {}),
       ...(token.color ? { color: token.color } : {}),
       ...(token.italic ? { italic: true } : {}),
@@ -130,7 +135,11 @@ export function formatDescription(
   params: readonly number[] = [],
   scalingParamIndexes: ReadonlySet<number> = new Set()
 ): FormattedDescription {
-  return formatTemplate(normalizeGameText(template), params, scalingParamIndexes);
+  return formatTemplate(
+    normalizeRubyMarkup(normalizeGameText(template)),
+    params,
+    scalingParamIndexes
+  );
 }
 
 /** Interpolates verified game parameters while preserving markup for the safe GameText renderer. */
@@ -138,7 +147,7 @@ export function formatGameMarkup(
   template = '',
   params: readonly number[] = []
 ): FormattedGameMarkup {
-  const formatted = interpolateTemplate(normalizeGameText(template), params);
+  const formatted = interpolateTemplate(normalizeRubyMarkup(normalizeGameText(template)), params);
   return {
     text: formatted.text,
     diagnostics: formatted.diagnostics,

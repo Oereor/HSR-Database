@@ -29,12 +29,10 @@ export async function load({ locals }) {
     newCharacters: resolve(homepage.additions.characters, characters),
     newLightCones: resolve(homepage.additions['light-cones'], lightCones),
     newRelics: resolve(homepage.additions.relics, relics),
-    newEnemies: newEnemies.slice(0, 6),
+    newEnemies,
     enemyPortraits: Object.fromEntries(
       await Promise.all(
-        newEnemies
-          .slice(0, 6)
-          .map(async (entry) => [entry.id, await getEnemyCardImageUrl(Number(entry.id))])
+        newEnemies.map(async (entry) => [entry.id, await getEnemyCardImageUrl(Number(entry.id))])
       )
     )
   };

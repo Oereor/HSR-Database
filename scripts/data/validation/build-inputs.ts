@@ -82,6 +82,20 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
 }
 
+const sourceMacro = /\{(?:[FM]#|NICKNAME\}|TextID#|RUBY_[BE]#)|#\{[\w-]+:|#\d+\[(?:i|f\d*)\]/;
+
+function assertNoSourceMacros(value: unknown, location: string): void {
+  if (typeof value === 'string') {
+    const match = sourceMacro.exec(value);
+    if (match) throw new Error(`[game-text] Unresolved source macro at ${location}: ${match[0]}`);
+  } else if (Array.isArray(value)) {
+    value.forEach((item, index) => assertNoSourceMacros(item, `${location}[${index}]`));
+  } else if (isRecord(value)) {
+    for (const [key, item] of Object.entries(value))
+      assertNoSourceMacros(item, `${location}.${key}`);
+  }
+}
+
 function exactSet(left: readonly string[], right: readonly string[]): boolean {
   const normalizedLeft = [...left].sort();
   const normalizedRight = [...right].sort();
@@ -212,6 +226,8 @@ export async function validateBuildInputs(
     { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
     {
       async onArtifact(logicalPath, value, metadata) {
+        if (/^(?:views|static\/generated)\/(?:zh-CN|en)\//.test(logicalPath))
+          assertNoSourceMacros(value, logicalPath);
         if (/^views\/(zh-CN|en)\/homepage\.json$/.test(logicalPath)) {
           assertArtifactLocale(logicalPath, metadata);
           const homepage = value as HomepageVersionData;
