@@ -470,12 +470,14 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
     const id = String(avatar.AvatarID);
     const traceRows = tracesByAvatar.get(id) ?? [];
     const enhancedConfig = enhanced.get(id);
+    const multiplePath = multiplePaths.get(id);
     const baseAvatarId =
       avatar.BaseAvatarID !== undefined
         ? String(avatar.BaseAvatarID)
-        : multiplePaths.get(id)?.BaseAvatarID === undefined
+        : multiplePath?.BaseAvatarID === undefined
           ? undefined
-          : String(multiplePaths.get(id)?.BaseAvatarID);
+          : String(multiplePath.BaseAvatarID);
+    const gender = multiplePath?.Gender ?? avatar.Gender;
     const baseProfile = buildProfile(
       avatar,
       tables,
@@ -509,9 +511,9 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
       id,
       baseAvatarId,
       gender:
-        avatar.Gender === 'Female' || avatar.Gender === 'female'
+        gender === 'GENDER_WOMAN' || gender === 'Female' || gender === 'female'
           ? 'female'
-          : avatar.Gender === 'Male' || avatar.Gender === 'male'
+          : gender === 'GENDER_MAN' || gender === 'Male' || gender === 'male'
             ? 'male'
             : undefined,
       pathCode: String(avatar.AvatarBaseType ?? ''),

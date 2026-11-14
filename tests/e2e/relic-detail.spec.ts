@@ -1,5 +1,52 @@
 import { expect, test } from '@playwright/test';
 
+for (const [prefix, examples] of [
+  [
+    '',
+    [
+      ['319', '塞纳托斯', '死亡之泰坦'],
+      ['320', '瑟希斯', '理性之泰坦']
+    ]
+  ],
+  [
+    '/en',
+    [
+      ['319', 'Thanatos', 'Death Titan'],
+      ['320', 'Cerces', 'Reason Titan']
+    ]
+  ]
+] as const) {
+  test(`relic Ruby annotations fit above the base without taking horizontal space (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    for (const [id, base, annotation] of examples) {
+      await page.goto(`${prefix}/relics/${id}/`);
+      const ruby = page.locator('[data-relic-piece-id] ruby');
+      await expect(ruby).toHaveCount(1);
+      await expect(ruby.locator('.game-text-ruby__base')).toHaveText(base);
+      await expect(ruby.locator('rt')).toHaveText(annotation);
+      expect(
+        await ruby.evaluate((node) => {
+          const base = node.querySelector('.game-text-ruby__base')!;
+          const note = node.querySelector('rt')!;
+          const outer = node.getBoundingClientRect();
+          const body = base.getBoundingClientRect();
+          const label = note.getBoundingClientRect();
+          return {
+            above: label.bottom <= body.top + 1,
+            centered: Math.abs(label.x + label.width / 2 - body.x - body.width / 2) < 1,
+            baseWidth: Math.abs(outer.width - body.width) < 1,
+            fits: label.left >= 0 && label.right <= innerWidth,
+            smaller:
+              parseFloat(getComputedStyle(note).fontSize) <
+              parseFloat(getComputedStyle(base).fontSize)
+          };
+        })
+      ).toEqual({ above: true, centered: true, baseWidth: true, fits: true, smaller: true });
+    }
+  });
+}
+
 test('隧洞遗器详情使用双栏 Hero、唯一套装效果和四张部件卡', async ({ page }) => {
   await page.setViewportSize({ width: 1600, height: 1000 });
   await page.goto('/relics/101/');

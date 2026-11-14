@@ -84,11 +84,12 @@ export interface CharacterProjectionContext {
   skillEffectLabels?: Parameters<typeof normalizeSkillCombatMeta>[1];
   composePathName?: (baseName: string, pathName: string) => string;
   normalizeBaseName?: (name: string) => string;
-  presentationPolicy?: {
-    optionalText?: 'empty' | 'throw';
-    nickname?: 'replace' | 'preserve-placeholder';
-  };
 }
+
+const textContext = (domain: CharacterDomain, context: CharacterProjectionContext) => ({
+  gender: domain.gender,
+  nickname: context.nickname
+});
 
 const label = (
   context: CharacterProjectionContext,
@@ -107,11 +108,16 @@ function projectExtraEffects(
         `[character/fk] Character=${domain.id} field=ExtraEffectIDList references missing ExtraEffectConfig=${id}`
       );
     const name = source.nameSource
-      ? optionalText(context.resolver, source.nameSource, {
-          domain: 'character',
-          entityId: domain.id,
-          field: `extraEffect.${id}.name`
-        })
+      ? optionalText(
+          context.resolver,
+          source.nameSource,
+          {
+            domain: 'character',
+            entityId: domain.id,
+            field: `extraEffect.${id}.name`
+          },
+          textContext(domain, context)
+        )
       : '';
     const description = projectDescription(
       context,
@@ -134,7 +140,12 @@ function projectSkillVariant(
     field: `skill.${variant.id}.${name}`
   });
   const type = variant.typeSource
-    ? optionalText(context.resolver, variant.typeSource, field('type'))
+    ? optionalText(
+        context.resolver,
+        variant.typeSource,
+        field('type'),
+        textContext(domain, context)
+      )
     : undefined;
   const buffTag = variant.source === 'avatar-global-buff' ? gameTextToPlain(type ?? '').trim() : '';
   const effectLabels = context.skillEffectLabels ?? SKILL_EFFECT_LABELS;
@@ -194,7 +205,12 @@ function projectSkillVariant(
       )
     };
   });
-  const name = requiredText(context.resolver, variant.nameSource, field('name'));
+  const name = requiredText(
+    context.resolver,
+    variant.nameSource,
+    field('name'),
+    textContext(domain, context)
+  );
   const levels = projectLevels(
     context.resolver,
     variant.levels,
@@ -202,7 +218,7 @@ function projectSkillVariant(
       domain: 'character',
       entityId: domain.id
     },
-    { gender: domain.gender, nickname: context.nickname }
+    textContext(domain, context)
   );
   return {
     id: variant.id,
@@ -305,11 +321,16 @@ function projectProfile(
       })),
       displayLabel:
         card.category === 'elation-ascension'
-          ? requiredText(context.resolver, context.extraEffectsById.get('10015111')?.nameSource, {
-              domain: 'character',
-              entityId: domain.id,
-              field: 'seriesSkill.category'
-            })
+          ? requiredText(
+              context.resolver,
+              context.extraEffectsById.get('10015111')?.nameSource,
+              {
+                domain: 'character',
+                entityId: domain.id,
+                field: 'seriesSkill.category'
+              },
+              textContext(domain, context)
+            )
           : label(context, card.category),
       ...(card.category === 'elation-ascension'
         ? {
@@ -375,11 +396,16 @@ function projectProfile(
   annotateSpecialEffectCards(skillCards, domain.id, specialEffects);
   const traces: Trace[] = profile.traces.flatMap((trace) => {
     const name = trace.nameSource
-      ? optionalText(context.resolver, trace.nameSource, {
-          domain: 'character',
-          entityId: domain.id,
-          field: `trace.${trace.id}.name`
-        })
+      ? optionalText(
+          context.resolver,
+          trace.nameSource,
+          {
+            domain: 'character',
+            entityId: domain.id,
+            field: `trace.${trace.id}.name`
+          },
+          textContext(domain, context)
+        )
       : '';
     let { description, descriptionTokens } = trace.descriptionSource
       ? projectDescription(
@@ -475,11 +501,16 @@ function projectProfile(
       id: eidolon.id,
       rank: eidolon.rank,
       name: eidolon.nameSource
-        ? optionalText(context.resolver, eidolon.nameSource, {
-            domain: 'character',
-            entityId: domain.id,
-            field: `eidolon.${eidolon.id}.name`
-          })
+        ? optionalText(
+            context.resolver,
+            eidolon.nameSource,
+            {
+              domain: 'character',
+              entityId: domain.id,
+              field: `eidolon.${eidolon.id}.name`
+            },
+            textContext(domain, context)
+          )
         : '',
       ...projectDescription(
         context,
@@ -508,13 +539,19 @@ function projectProfile(
           hash: '5057575626871868393' as import('../../../src/lib/domain/types.js').TextHash
         }
       },
-      { domain: 'character', entityId: domain.id, field: 'exEidolon.badge' }
+      { domain: 'character', entityId: domain.id, field: 'exEidolon.badge' },
+      textContext(domain, context)
     ),
-    name: requiredText(context.resolver, eidolon.nameSource, {
-      domain: 'character',
-      entityId: domain.id,
-      field: `exEidolon.${eidolon.id}.name`
-    }),
+    name: requiredText(
+      context.resolver,
+      eidolon.nameSource,
+      {
+        domain: 'character',
+        entityId: domain.id,
+        field: `exEidolon.${eidolon.id}.name`
+      },
+      textContext(domain, context)
+    ),
     ...projectDescription(
       context,
       eidolon.descriptionSource,
@@ -582,30 +619,43 @@ export function projectCharacterView(
   domain: CharacterDomain,
   context: CharacterProjectionContext
 ): CharacterView {
-  const rawName = requiredText(context.resolver, domain.naming.avatarName, {
-    domain: 'character',
-    entityId: domain.id,
-    field: 'name'
-  });
-  const pathName = requiredText(context.resolver, domain.pathNameSource, {
-    domain: 'character',
-    entityId: domain.id,
-    field: 'pathName'
-  });
+  const characterText = textContext(domain, context);
+  const rawName = requiredText(
+    context.resolver,
+    domain.naming.avatarName,
+    {
+      domain: 'character',
+      entityId: domain.id,
+      field: 'name'
+    },
+    characterText
+  );
+  const pathName = requiredText(
+    context.resolver,
+    domain.pathNameSource,
+    {
+      domain: 'character',
+      entityId: domain.id,
+      field: 'pathName'
+    },
+    characterText
+  );
   const isMultiplePath = domain.baseAvatarId === '1001' || domain.baseAvatarId === '8001';
   const sourceBaseName = domain.naming.baseNameSource
-    ? optionalText(context.resolver, domain.naming.baseNameSource, {
-        domain: 'character',
-        entityId: domain.id,
-        field: 'baseName'
-      })
+    ? optionalText(
+        context.resolver,
+        domain.naming.baseNameSource,
+        {
+          domain: 'character',
+          entityId: domain.id,
+          field: 'baseName'
+        },
+        characterText
+      )
     : undefined;
   const resolvedBaseName = sourceBaseName || rawName;
   const baseName = isMultiplePath
-    ? (context.normalizeBaseName?.(resolvedBaseName) ?? resolvedBaseName).replace(
-        '{NICKNAME}',
-        context.nickname ?? ''
-      )
+    ? (context.normalizeBaseName?.(resolvedBaseName) ?? resolvedBaseName)
     : rawName;
   const name = isMultiplePath
     ? (context.composePathName?.(baseName, pathName) ?? `${baseName}·${pathName}`)
@@ -623,20 +673,12 @@ export function projectCharacterView(
     );
   const fullNameResult = domain.naming.fullName
     ? context.resolver.resolve(domain.naming.fullName, {
-        gender: domain.gender,
-        nickname: context.nickname,
+        ...characterText,
         provenance: { entity: 'character', id: domain.id, field: 'fullName' },
         diagnosticDisposition: fullNameDisposition
       })
     : { status: 'absent' as const };
-  const fullName =
-    fullNameResult.status === 'available' &&
-    !(
-      fullNameResult.value.includes('{NICKNAME}') &&
-      context.presentationPolicy?.nickname === 'preserve-placeholder'
-    )
-      ? fullNameResult.value
-      : name;
+  const fullName = fullNameResult.status === 'available' ? fullNameResult.value : name;
   const baseProfile = projectProfile(domain, domain.profiles.base, context);
   const enhanced = domain.profiles.enhanced
     ? projectProfile(domain, domain.profiles.enhanced, context)
@@ -646,20 +688,30 @@ export function projectCharacterView(
     name,
     baseName: isMultiplePath ? baseName : name,
     fullName,
-    description: optionalText(context.resolver, domain.descriptionSource, {
-      domain: 'character',
-      entityId: domain.id,
-      field: 'description'
-    }),
+    description: optionalText(
+      context.resolver,
+      domain.descriptionSource,
+      {
+        domain: 'character',
+        entityId: domain.id,
+        field: 'description'
+      },
+      characterText
+    ),
     kind: 'character',
     path: domain.pathCode,
     pathName,
     element: normalizeElementType(domain.elementCode),
-    elementName: requiredText(context.resolver, domain.elementNameSource, {
-      domain: 'character',
-      entityId: domain.id,
-      field: 'elementName'
-    }),
+    elementName: requiredText(
+      context.resolver,
+      domain.elementNameSource,
+      {
+        domain: 'character',
+        entityId: domain.id,
+        field: 'elementName'
+      },
+      characterText
+    ),
     rarity: domain.rarity,
     profiles: { base: baseProfile, ...(enhanced ? { enhanced } : {}) },
     baseStats: domain.stats,

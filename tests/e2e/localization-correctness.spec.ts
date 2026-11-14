@@ -2,6 +2,34 @@ import { openLanguageSelect, switchLanguage } from '../helpers/language';
 import { readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 
+for (const [prefix, male, female, nickname] of [
+  ['', '少年', '少女', '开拓者'],
+  ['/en', 'boy', 'girl', 'Trailblazer']
+] as const) {
+  test(`public game text resolves character and story macros (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    for (const [id, term] of [
+      ['8001', male],
+      ['8002', female]
+    ] as const) {
+      await page.goto(`${prefix}/characters/${id}/`);
+      await expect(page.locator('.hero-description')).toContainText(term);
+      await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+        'content',
+        new RegExp(term)
+      );
+      await expect(page.locator('.hero-description')).not.toContainText(/\{[FM]#/);
+    }
+    await page.goto(`${prefix}/light-cones/21046/`);
+    await expect(page.locator('#story')).toContainText(prefix ? 'woman' : female);
+    await expect(page.locator('#story')).not.toContainText(/\{[FM]#/);
+    await page.goto(`${prefix}/light-cones/21002/`);
+    await expect(page.locator('#story')).toContainText(nickname);
+    await expect(page.locator('#story')).not.toContainText('{NICKNAME}');
+  });
+}
+
 test('sidebar language Select supports keyboard, focus return and outside dismissal', async ({
   page,
   isMobile

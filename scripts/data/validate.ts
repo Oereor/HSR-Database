@@ -164,6 +164,7 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
   localeAudits: Record<
     Locale,
     {
+      textDiagnostics: TextDiagnosticSummary;
       localizationHealth: import('./localization.js').LocalizationHealthSummary;
       enemyAudit: import('./robustness-invariants.js').EnemyRelationAudit;
     }
@@ -1177,6 +1178,12 @@ for (const projection of [
   const localeAudit = audit.localeAudits?.[projection.locale];
   if (!localeAudit)
     throw new Error(`[localization/audit] missing locale audit for ${projection.locale}`);
+  for (const kind of ['malformed-ruby', 'unresolved-text-id'] as const) {
+    for (const { source, reason, identifier } of localeAudit.textDiagnostics[kind].samples)
+      console.warn(
+        `[${projection.locale}/${kind}] ${source.entity} ${source.id ?? ''} ${source.field} (${identifier}): ${reason}`
+      );
+  }
   assertValidationReport(
     mergeValidationReports(
       validateLocalizationHealth(

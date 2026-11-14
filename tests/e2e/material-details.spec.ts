@@ -30,6 +30,21 @@ async function trainingSnapshot(page: Page) {
 
 for (const locale of ['zh-CN', 'en'] as const) {
   const prefix = locale === 'en' ? '/en' : '';
+  test(`Elation material detail shows the localized game nickname (${locale})`, async ({
+    page
+  }) => {
+    await ready(page, `${prefix}/characters/8010/`);
+    await page.locator('#training-character-level-8010').press('End');
+    await page.locator('[data-training-skill="8010:0:8010001"]').getByRole('slider').press('End');
+    await cell(page, 'total', '110263').click();
+    await expect(modal(page)).toHaveAttribute('data-item-detail-id', '110263');
+    await expect(modal(page).locator('.item-detail-modal__background')).toContainText(
+      locale === 'en' ? 'Trailblazer' : '开拓者'
+    );
+    await expect(modal(page).locator('.item-detail-modal__background')).not.toContainText(
+      '{NICKNAME}'
+    );
+  });
   for (const path of ['/light-cones/20000/']) {
     test(`material details are lazy, cached, accessible and preserve targets (${locale} ${path})`, async ({
       page

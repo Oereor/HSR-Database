@@ -55,6 +55,7 @@ describe('material detail metadata and presentation', () => {
     'projects lossless %s texts without leaking sources or descriptions into the catalog',
     async (locale: 'zh-CN' | 'en') => {
       const prefix = locale === 'en' ? 'fixture' : '合成文本';
+      const nickname = locale === 'en' ? 'Trailblazer' : '开拓者';
       const resolver = await createTextResolver(
         { locale, textMapCode: locale === 'en' ? 'EN' : 'CHS' },
         {
@@ -76,18 +77,18 @@ describe('material detail metadata and presentation', () => {
       expect(detail.materials[0]).toEqual({
         id: '2',
         description: `${prefix} <unbreak>1000</unbreak> <color=#f29e38ff>value</color>`,
-        backgroundDescription: `${prefix}\n\n<i>quote</i> {NICKNAME}`
+        backgroundDescription: `${prefix}\n\n<i>quote</i> ${nickname}`
       });
       validateMaterialDetails(detail, base);
     }
   );
 
-  it('renders italic text, placeholders and color markers through GameText', () => {
+  it('renders italic text, resolved names and color markers through GameText', () => {
     const html = render(GameText, {
-      props: { text: '<i>quote</i> {NICKNAME} <color=#f29e38ff>value</color>' }
+      props: { text: '<i>quote</i> Trailblazer <color=#f29e38ff>value</color>' }
     }).body;
     expect(html).toContain('<em>quote</em>');
-    expect(html).toContain('{NICKNAME}');
+    expect(html).toContain('Trailblazer');
     expect(html).toContain('data-game-color="#f29e38ff"');
   });
 

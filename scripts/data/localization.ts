@@ -3,6 +3,7 @@ import path from 'node:path';
 import xxhash from 'xxhash-wasm';
 import { parseTextHash, type TextHash } from '../../src/lib/domain/types.js';
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
+import { normalizeRubyMarkup } from '../../src/lib/domain/game-text.js';
 import { formatDescription, formatGameMarkup, type FormattedDescription } from './text.js';
 import { getLocaleConfig, type Locale, type TextMapCode } from './locale-registry.js';
 export type { Locale, TextMapCode } from './locale-registry.js';
@@ -30,7 +31,6 @@ export type RuntimeTextSource =
 export interface TextProjectionContext {
   gender?: 'female' | 'male';
   nickname?: string;
-  allowNicknamePlaceholder?: boolean;
   provenance?: BuildTextProvenance;
   diagnosticDisposition?: TextDiagnosticDisposition;
 }
@@ -62,6 +62,8 @@ export type TextDiagnosticKind =
   | 'unresolved-hash'
   | 'unresolved-symbolic-key'
   | 'empty-locale-value'
+  | 'malformed-ruby'
+  | 'unresolved-text-id'
   | 'unsupported-template';
 
 export interface TextDiagnosticSample {
@@ -139,6 +141,9 @@ export interface TextResolver {
 }
 
 const MAX_DIAGNOSTIC_SAMPLES = 20;
+const genderBranch = /\{([FM])#((?:[^{}]|\{[^{}]*\})*)\}/g;
+const textIdPattern = /\{TextID#([^{}]*)\}/g;
+const defaultNickname = { 'zh-CN': '开拓者', en: 'Trailblazer' } as const;
 
 /** Load a TextMap using an explicit configured upstream code. */
 export async function loadTextMap(
@@ -191,6 +196,8 @@ export async function createTextResolver(
     'unresolved-hash': { count: 0, samples: [], entries: [] },
     'unresolved-symbolic-key': { count: 0, samples: [], entries: [] },
     'empty-locale-value': { count: 0, samples: [], entries: [] },
+    'malformed-ruby': { count: 0, samples: [], entries: [] },
+    'unresolved-text-id': { count: 0, samples: [], entries: [] },
     'unsupported-template': { count: 0, samples: [], entries: [] }
   };
   const seenDiagnostics = new Set<string>();
@@ -267,7 +274,8 @@ export async function createTextResolver(
   const resolveInternal = (
     source: RuntimeTextSource,
     context: TextProjectionContext,
-    trackHealth: boolean
+    trackHealth: boolean,
+    parentHashes: readonly TextHash[] = []
   ): LocalizationResult<string> => {
     const provenance = sourceOf(source, context);
     const ref = source.ref;
@@ -299,6 +307,8 @@ export async function createTextResolver(
     }
     const resolvedRef: RuntimeTextRef =
       ref.kind === 'hash' ? ref : { kind: 'symbolic', key: ref.key, hash };
+    if (parentHashes.includes(hash))
+      return { status: 'unsupported', reason: 'Cyclic TextID reference', ref: resolvedRef };
     const value = textMap[hash];
     if (value === undefined) {
       record(
@@ -330,17 +340,43 @@ export async function createTextResolver(
         );
       return result;
     }
-    let rendered = value;
-    if (context.gender) {
-      rendered = rendered.replace(/\{F#([^{}]*)\}\{M#([^{}]*)\}/g, (_m, female, male) =>
-        context.gender === 'female' ? female : male
+    const gender = context.gender === 'male' ? 'M' : 'F';
+    const selected = value.replace(genderBranch, (_macro, branch, text) =>
+      branch === gender ? text : ''
+    );
+    let unresolvedTextId: string | undefined;
+    const expanded = selected.replace(textIdPattern, (_macro, key: string) => {
+      const nested = resolveInternal(
+        { kind: 'direct', ref: { kind: 'symbolic', key }, provenance },
+        context,
+        false,
+        [...parentHashes, hash]
       );
-      rendered = rendered.replace(/\{M#([^{}]*)\}\{F#([^{}]*)\}/g, (_m, male, female) =>
-        context.gender === 'female' ? female : male
-      );
+      if (nested.status === 'available') return nested.value;
+      const reason = 'reason' in nested ? nested.reason : `TextID ${key} is ${nested.status}`;
+      unresolvedTextId ??= reason;
+      if (!parentHashes.length)
+        record('unresolved-text-id', key, provenance, reason, context.diagnosticDisposition);
+      return '';
+    });
+    if (unresolvedTextId) {
+      if (parentHashes.length)
+        return { status: 'unsupported', reason: unresolvedTextId, ref: resolvedRef };
+      if (trackHealth) recordHealth('missing', hash, provenance, context.diagnosticDisposition);
+      return { status: 'missing', ref: resolvedRef };
     }
-    if (context.nickname !== undefined)
-      rendered = rendered.replaceAll('{NICKNAME}', context.nickname);
+    const nickname = context.nickname ?? defaultNickname[resolverConfig.locale];
+    const rendered = normalizeRubyMarkup(
+      expanded.replaceAll('{NICKNAME}', () => nickname),
+      (offset) =>
+        record(
+          'malformed-ruby',
+          hash,
+          provenance,
+          `Malformed Ruby marker at offset ${offset}`,
+          context.diagnosticDisposition
+        )
+    );
     const result = { status: 'available' as const, value: rendered, ref: resolvedRef };
     if (trackHealth)
       recordHealth(

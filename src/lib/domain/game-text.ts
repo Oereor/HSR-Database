@@ -1,7 +1,13 @@
 import type { InlineGameTextIcon } from './types.js';
 
+export interface GameTextRuby {
+  index: number;
+  annotation: string;
+}
+
 export interface GameTextToken {
   value: string;
+  ruby?: GameTextRuby;
   icon?: InlineGameTextIcon;
   color?: string;
   italic?: boolean;
@@ -31,8 +37,48 @@ export function normalizeGameText(value = ''): string {
   return value.replace(/\\n/g, '\n').replaceAll('\\u00A0', ' ');
 }
 
+export function normalizeRubyMarkup(value: string, onMalformed?: (offset: number) => void): string {
+  let result = '';
+  let cursor = 0;
+  let start: { offset: number; annotation: string } | undefined;
+  for (const match of value.matchAll(/\{RUBY_([BE])#([^{}\r\n]*)\}/g)) {
+    const base = value.slice(cursor, match.index);
+    if (match[1] === 'B') {
+      if (start) onMalformed?.(start.offset);
+      result += base;
+      start = { offset: match.index, annotation: match[2].trim() };
+    } else {
+      if (start?.annotation && !match[2] && base.trim() && !/[\r\n]|\\n/.test(base)) {
+        const annotation = encodeURIComponent(start.annotation.toWellFormed());
+        result += `<ruby-note=${annotation}>${base}</ruby-note>`;
+      } else {
+        onMalformed?.(start?.offset ?? match.index);
+        result += base;
+      }
+      start = undefined;
+    }
+    cursor = match.index + match[0].length;
+  }
+  if (start) onMalformed?.(start.offset);
+  return result + value.slice(cursor);
+}
+
+export function groupGameTextRuby<T extends { ruby?: GameTextRuby }>(
+  tokens: readonly T[]
+): Array<{ ruby: GameTextRuby; tokens: T[] } | { token: T }> {
+  const groups: Array<{ ruby: GameTextRuby; tokens: T[] } | { token: T }> = [];
+  for (const token of tokens) {
+    const previous = groups.at(-1);
+    if (!token.ruby) groups.push({ token });
+    else if (previous && 'ruby' in previous && previous.ruby.index === token.ruby.index)
+      previous.tokens.push(token);
+    else groups.push({ ruby: token.ruby, tokens: [token] });
+  }
+  return groups;
+}
+
 function parseStyledGameText(value = '', allowScaling = false): GameTextToken[] {
-  const source = normalizeGameText(value);
+  const source = normalizeRubyMarkup(normalizeGameText(value));
   const tokens: GameTextToken[] = [];
   const stack: Array<{ tag: SupportedTag; previous: GameTextStyle }> = [];
   let style: GameTextStyle = {
@@ -42,13 +88,23 @@ function parseStyledGameText(value = '', allowScaling = false): GameTextToken[] 
     fixed: false,
     scaling: false
   };
+  let ruby: GameTextRuby | undefined;
   let cursor = 0;
 
   for (const match of source.matchAll(markupPattern)) {
-    appendToken(tokens, source.slice(cursor, match.index), style);
+    appendToken(tokens, source.slice(cursor, match.index), style, ruby);
     const markup = match[0];
     const color = markup.match(colorPattern)?.[1];
-    if (color) {
+    const annotation = markup.match(/^<ruby-note=([^>]+)>$/)?.[1];
+    if (annotation) {
+      try {
+        ruby = { index: match.index, annotation: decodeURIComponent(annotation) };
+      } catch {
+        ruby = undefined;
+      }
+    } else if (markup === '</ruby-note>') {
+      ruby = undefined;
+    } else if (color) {
       stack.push({ tag: 'color', previous: style });
       style = { ...style, color };
     } else if (/^<i\s*>$/i.test(markup)) {
@@ -68,7 +124,7 @@ function parseStyledGameText(value = '', allowScaling = false): GameTextToken[] 
       style = { ...style, fixed: true };
     } else {
       const icon = parseInlineIcon(markup);
-      if (icon) appendIconToken(tokens, icon, style);
+      if (icon) appendToken(tokens, '', style, ruby, icon);
       else {
         const closingTag = markup
           .match(/^<\/(color|i|u|unbreak|scaling-value|fixed-param)\s*>$/i)?.[1]
@@ -79,7 +135,7 @@ function parseStyledGameText(value = '', allowScaling = false): GameTextToken[] 
     }
     cursor = match.index + markup.length;
   }
-  appendToken(tokens, source.slice(cursor), style);
+  appendToken(tokens, source.slice(cursor), style, ruby);
   return tokens;
 }
 
@@ -111,23 +167,6 @@ function parseInlineIcon(markup: string): InlineGameTextIcon | undefined {
   };
 }
 
-function appendIconToken(
-  tokens: GameTextToken[],
-  icon: InlineGameTextIcon,
-  style: GameTextStyle
-): void {
-  tokens.push({
-    value: '',
-    icon,
-    ...(style.color ? { color: style.color } : {}),
-    ...(style.italic ? { italic: true } : {}),
-    ...(style.underline ? { underline: true } : {}),
-    ...(style.unbreak ? { unbreak: true } : {}),
-    ...(style.fixed ? { fixed: true } : {}),
-    ...(style.scaling ? { scaling: true } : {})
-  });
-}
-
 export function parseGameText(value = ''): GameTextToken[] {
   return parseStyledGameText(value);
 }
@@ -142,10 +181,18 @@ export function gameTextToPlain(value = ''): string {
     .join('');
 }
 
-function appendToken(tokens: GameTextToken[], value: string, style: GameTextStyle): void {
-  if (!value) return;
+function appendToken(
+  tokens: GameTextToken[],
+  value: string,
+  style: GameTextStyle,
+  ruby?: GameTextRuby,
+  icon?: InlineGameTextIcon
+): void {
+  if (!value && !icon) return;
   const token: GameTextToken = {
     value,
+    ...(ruby ? { ruby } : {}),
+    ...(icon ? { icon } : {}),
     ...(style.color ? { color: style.color } : {}),
     ...(style.italic ? { italic: true } : {}),
     ...(style.underline ? { underline: true } : {}),
@@ -156,7 +203,9 @@ function appendToken(tokens: GameTextToken[], value: string, style: GameTextStyl
   const previous = tokens.at(-1);
   if (
     previous &&
+    !icon &&
     !previous.icon &&
+    previous.ruby === ruby &&
     previous.color === token.color &&
     previous.italic === token.italic &&
     previous.underline === token.underline &&

@@ -1,4 +1,5 @@
 import type { DATA_MANIFEST_SCHEMA_VERSION } from './data-manifest.js';
+import type { GameTextRuby } from './game-text.js';
 
 export type EntityKind = 'character' | 'light-cone' | 'relic' | 'enemy';
 
@@ -23,6 +24,7 @@ export interface InlineGameTextIcon {
 }
 
 export interface DescriptionToken {
+  ruby?: GameTextRuby;
   interaction?: { kind: 'series-skill'; skillId: string; level: 1 | 2 };
   semanticReference?: `character-special-effects:${string}`;
   type: 'text' | 'scaling-value' | 'fixed-param' | 'icon' | 'interaction';
