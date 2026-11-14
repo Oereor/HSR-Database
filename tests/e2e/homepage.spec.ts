@@ -61,7 +61,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
         await expect(page.locator(`.home-directory a[href="${prefix}/${target}/"]`)).toBeVisible();
       for (const category of categories) {
         const ids = homepage.additions[category];
-        const limit = category === 'relics' ? 4 : 6;
+        const visibleIds =
+          category === 'enemies' ? ids : ids.slice(0, category === 'relics' ? 4 : 6);
         const section = page.locator(`section[aria-labelledby="new-${category}"]`);
         await expect(section).toHaveCount(ids.length ? 1 : 0);
         if (!ids.length) continue;
@@ -70,7 +71,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
           await section
             .locator('.entity-overview-card')
             .evaluateAll((cards) => cards.map((card) => card.getAttribute('href')))
-        ).toEqual(ids.slice(0, limit).map((id) => `${prefix}/${category}/${id}/`));
+        ).toEqual(visibleIds.map((id) => `${prefix}/${category}/${id}/`));
       }
       const compact = page.locator('.home-additions');
       const visibleCategories = categories
@@ -138,10 +139,11 @@ for (const locale of ['zh-CN', 'en'] as const) {
             element.parentElement?.classList.contains('homepage')
           )
         ).toBe(true);
-        const columns = await enemySection
-          .locator('[data-homepage-category]')
-          .evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
-        expect(columns).toBe(width > 1180 ? 6 : width > 640 ? 3 : 2);
+        const grid = enemySection.locator('.overview-grid');
+        await expect(grid).toHaveCount(1);
+        await expect(
+          grid.locator('.entity-overview-card__artwork img:not([loading="lazy"])')
+        ).toHaveCount(0);
       }
       expect(await page.locator('.home-hero__character').count()).toBeLessThanOrEqual(1);
       expect(await page.locator('.home-hero__cone').count()).toBeLessThanOrEqual(1);

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import OverviewGrid from '$lib/components/shared/OverviewGrid.svelte';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import { m } from '$lib/paraglide/messages.js';
   export let id: string;
@@ -20,14 +21,18 @@
         </span>
       </a>
     </SectionHeading>
-    <div
-      class={compact
-        ? 'grid grid-cols-[repeat(auto-fill,min(100%,12rem))] justify-start gap-3'
-        : 'home-section__grid'}
-      data-homepage-category={id}
-    >
-      <slot />
-    </div>
+    {#if compact}
+      <div
+        class="grid grid-cols-[repeat(auto-fill,min(100%,12rem))] justify-start gap-3"
+        data-homepage-category={id}
+      >
+        <slot />
+      </div>
+    {:else}
+      <OverviewGrid>
+        <slot />
+      </OverviewGrid>
+    {/if}
   </section>
 {/if}
 
@@ -55,25 +60,5 @@
     color: var(--gold);
     font-size: 0.8rem;
     font-weight: 400;
-  }
-  .home-section__grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: var(--space-3);
-  }
-  @media (max-width: 1180px) {
-    .home-section__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-  @media (max-width: 640px) {
-    .home-section__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media (max-width: 359px) {
-    .home-section__grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
   }
 </style>
