@@ -373,9 +373,6 @@ main {
   color: var(--text-muted);
   font-size: var(--font-helper);
 }
-.special-effect-entry-list {
-  margin-top: 0;
-}
 .special-effect-relation {
   display: grid;
   gap: var(--space-2);

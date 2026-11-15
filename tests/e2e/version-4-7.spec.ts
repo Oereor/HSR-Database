@@ -12,9 +12,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
     const aha: Character = JSON.parse(
       readFileSync(`src/lib/generated/views/${locale}/details/characters/1511.json`, 'utf8')
     );
-    const variant = aha.profiles.base.skillCards.find(
-      (card) => card.category === 'elation-ascension'
-    )!.variants[0];
+    const variant = aha.profiles.base.skillCards.find((card) => card.category === 'innate-trace')!
+      .variants[0];
     const messages = JSON.parse(readFileSync(`messages/${locale}.json`, 'utf8'));
     const catalog = JSON.parse(
       readFileSync(`src/lib/generated/views/${locale}/catalogs/characters.json`, 'utf8')
@@ -23,7 +22,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await expect(page.locator('[data-app-ready]')).toHaveAttribute('data-app-ready', 'true', {
       timeout: 30_000
     });
-    const card = page.locator('[data-skill-category="elation-ascension"]');
+    const card = page.locator('[data-skill-category="innate-trace"]');
     const states = card.locator('[data-slot="toggle-group-item"]');
     const description = card.locator('.levelled-description');
     await expect(states.nth(0)).toHaveText(messages.series_skill_e0);
@@ -33,10 +32,15 @@ for (const locale of ['zh-CN', 'en'] as const) {
     const talentHeader = talent.locator('[data-slot="card-header"]');
     await expect(talentHeader.getByRole('slider')).toHaveCount(1);
     await expect(talentHeader.locator('output')).toHaveCount(1);
-    await expect(talent.locator('[data-skill-id="151131"] .skill-variant__heading h4')).toHaveText(
+    const authority = page.locator('[data-skill-category="aeonic-authority"]');
+    await expect(page.locator('[data-skill-id="151131"]')).toHaveCount(1);
+    await expect(authority.getByRole('slider')).toHaveCount(0);
+    await expect(
+      authority.locator('[data-skill-id="151131"] .skill-variant__heading h4')
+    ).toHaveText(
       gameTextToPlain(
         aha.profiles.base.skillCards
-          .find((card) => card.category === 'talent')!
+          .find((card) => card.category === 'aeonic-authority')!
           .variants.find((variant) => variant.id === '151131')!.name
       )
     );
@@ -70,7 +74,11 @@ for (const locale of ['zh-CN', 'en'] as const) {
     const summary = card.locator('[data-slot="card-header"] button[data-slot="button"]');
     await expect(summary).toHaveCount(1);
     await summary.click();
-    const dialog = page.getByRole('dialog');
+    const dialog = page.getByRole('dialog', { name: messages.special_effect_title_aha });
+    await expect(dialog.locator('[data-slot="dialog-header"] img')).toHaveAttribute(
+      'src',
+      /\/1511\.png$/
+    );
     await expect(dialog.locator('[data-special-effect-kind="series-skill-link"]')).toHaveCount(8);
     await expect(dialog.locator('a[href$="/characters/8009/"]')).toHaveCount(0);
     await expect(dialog.locator(`a[href="${prefix}/characters/8010/"]`)).toHaveCount(1);
@@ -115,7 +123,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await expect(page).toHaveURL(`${prefix}/characters/8010/`);
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(
-      page.locator('[data-skill-category="elation-ascension"] button[data-slot="button"]')
+      page.locator('[data-skill-category="innate-trace"] button[data-slot="button"]')
     ).toHaveCount(0);
   });
 
@@ -179,5 +187,9 @@ test('player mode preserves missing ExRank provenance and default Point23 semant
   await expect(point).not.toHaveAttribute('aria-pressed');
   const talent = page.locator('[data-skill-category="talent"]');
   await expect(talent.locator('[data-slot="card-header"] output')).toHaveCount(1);
-  await expect(talent.locator('[data-skill-id="151131"] .levelled-description')).toBeVisible();
+  await expect(
+    page.locator(
+      '[data-skill-category="aeonic-authority"] [data-skill-id="151131"] .levelled-description'
+    )
+  ).toBeVisible();
 });

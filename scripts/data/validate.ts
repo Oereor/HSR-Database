@@ -943,7 +943,7 @@ const validateCharacterProfile = (
     );
     if (
       !card ||
-      card.category !== 'elation-ascension' ||
+      card.category !== 'innate-trace' ||
       card.progressions.length ||
       series.avatarId !== character.id ||
       series.states.length !== 2 ||

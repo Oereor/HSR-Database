@@ -25,7 +25,7 @@ export function buildSeriesSkills(
       typeof condition?.Param === 'string' ? /^(\d+)\.(\d+)$/.exec(condition.Param) : null;
     if (
       !skill ||
-      skill.category !== 'elation-ascension' ||
+      skill.category !== 'innate-trace' ||
       skill.progressionId ||
       !source ||
       !match ||
@@ -58,7 +58,7 @@ export function buildSeriesSkills(
     });
     result.set(skillId, group);
   }
-  for (const skill of skills.filter((skill) => skill.category === 'elation-ascension')) {
+  for (const skill of skills.filter((skill) => skill.category === 'innate-trace')) {
     const group = result.get(skill.id);
     if (!group || group.states.length !== skill.levels.length || group.states.length !== 2)
       throw new Error(

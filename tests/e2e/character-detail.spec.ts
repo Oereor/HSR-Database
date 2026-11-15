@@ -509,6 +509,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   page,
   isMobile
 }) => {
+  const messages = JSON.parse(readFileSync('messages/zh-CN.json', 'utf8'));
   await page.goto('/characters/1415/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const initialBodyOverflow = await page.evaluate(() => document.body.style.overflow);
@@ -530,8 +531,11 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await trigger.focus();
   await trigger.press('Enter');
 
-  const dialog = page.locator('.special-effect-dialog');
-  await expect(dialog).toBeVisible();
+  const dialog = page.getByRole('dialog', { name: messages.special_effect_title_cyrene });
+  await expect(dialog.locator('[data-slot="dialog-header"] img')).toHaveAttribute(
+    'src',
+    /\/1415\.png$/
+  );
   await expect(dialog.locator('[data-special-effect-kind="servant-skill-link"]')).toHaveCount(14);
   await expect(dialog.locator('.skill-variant__heading img')).toHaveCount(0);
   await expect(page.locator('#skills .skill-variant__heading img').first()).toBeAttached();
@@ -556,11 +560,15 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
     /generated-assets\/characters\/icons\/8008\.png/
   );
   await expect(cyreneTrailblazer.locator('strong')).toHaveText('开拓者·记忆');
+  const body = dialog.locator('[data-slot="dialog-body"]');
+  expect(await body.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true);
+  await body.evaluate((element) => {
+    element.scrollTop = element.scrollHeight;
+  });
+  await expect(dialog.getByRole('heading', { level: 2 })).toBeInViewport();
   expect(
-    await dialog
-      .locator('.special-effect-dialog__content')
-      .evaluate((element) => element.scrollHeight > element.clientHeight)
-  ).toBe(true);
+    await dialog.evaluate((element) => element.scrollWidth - element.clientWidth)
+  ).toBeLessThanOrEqual(1);
   expect(await page.evaluate(() => document.body.style.overflow)).toBe('hidden');
 
   await dialog.locator('.special-effect-dialog__close').click();
@@ -600,7 +608,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   );
   await expect(page.locator('.special-effect-trigger')).toHaveCount(2);
   await himekoTrigger.click();
-  const himekoDialog = page.locator('.special-effect-dialog');
+  const himekoDialog = page.getByRole('dialog', { name: messages.special_effect_title_himeko });
   await expect(himekoDialog.locator('[data-special-effect-kind="avatar-skill-link"]')).toHaveCount(
     2
   );

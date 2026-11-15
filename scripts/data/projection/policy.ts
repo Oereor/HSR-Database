@@ -1,13 +1,14 @@
-import type { SkillCategory, KnownSkillEffect } from '../../../src/lib/domain/types.js';
+import type { KnownSkillEffect } from '../../../src/lib/domain/types.js';
 import {
   ENDGAME_MISSING_VALUE,
   type EndgameViewPresentation
 } from '../../../src/lib/domain/endgame-view.js';
 import { getEndgamePeriodFallbackName } from '../../../src/lib/i18n/endgame.js';
 import type { Locale } from '../locale-registry.js';
+import type { SKILL_CATEGORY_LABELS } from '../skills.js';
 
 export interface LocaleProjectionPolicy {
-  skillCategoryLabels: Record<SkillCategory, string>;
+  skillCategoryLabels: typeof SKILL_CATEGORY_LABELS;
   skillEffectLabels: Record<KnownSkillEffect, string>;
   elementLabels: Record<string, string>;
   specialResistanceLabels: Record<string, string>;
@@ -41,7 +42,6 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
       'memosprite-skill': '忆灵技',
       'memosprite-talent': '忆灵天赋',
       'elation-skill': '欢愉技',
-      'elation-ascension': '「欢愉」命途升格',
       assist: '助战技'
     },
     skillEffectLabels: {
@@ -95,7 +95,6 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
       'memosprite-skill': 'Memosprite Skill',
       'memosprite-talent': 'Memosprite Talent',
       'elation-skill': 'Elation Skill',
-      'elation-ascension': '"Elation" Path Ascension',
       assist: 'Assist Skill'
     },
     skillEffectLabels: {

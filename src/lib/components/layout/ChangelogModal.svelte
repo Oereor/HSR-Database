@@ -76,9 +76,8 @@
 
 <Dialog.Root bind:open={isOpen}>
   <Dialog.Content
-    showCloseButton={false}
     aria-describedby={undefined}
-    class="changelog-dialog flex max-h-[calc(100dvh-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-3xl"
+    class="changelog-dialog max-w-3xl"
     onCloseAutoFocus={(event) => {
       if (returnFocus?.isConnected) {
         event.preventDefault();
@@ -87,24 +86,14 @@
       returnFocus = undefined;
     }}
   >
-    <header
-      class="border-border flex shrink-0 items-start justify-between gap-4 border-b p-4 sm:p-6"
-    >
-      <div>
-        <p class="kicker">{m.changelog_eyebrow()}</p>
-        <Dialog.Title id="changelog-dialog-title" class="text-xl"
-          >{m.changelog_title()}</Dialog.Title
-        >
-      </div>
-      <Button
-        variant="ghost"
-        size="icon"
+    <Dialog.Header>
+      <Dialog.Title id="changelog-dialog-title">{m.changelog_title({}, { locale })}</Dialog.Title>
+      <Dialog.Close
+        label={m.changelog_close_aria({}, { locale })}
         class="changelog-dialog__close"
-        aria-label={m.changelog_close_aria()}
-        onclick={close}>×</Button
-      >
-    </header>
-    <div class="changelog-dialog__content min-h-0 overflow-y-auto overscroll-contain p-4 sm:p-6">
+      />
+    </Dialog.Header>
+    <Dialog.Body class="changelog-dialog__content">
       {#if changelogEntries.length}
         {#each changelogEntries as entry (entry.id)}
           <article class="changelog-entry">
@@ -118,15 +107,15 @@
           </article>
         {/each}
       {:else}
-        <p class="changelog-dialog__empty">{m.changelog_empty()}</p>
+        <p class="changelog-dialog__empty">{m.changelog_empty({}, { locale })}</p>
       {/if}
-    </div>
+    </Dialog.Body>
 
-    <div class="border-border flex shrink-0 flex-wrap justify-end gap-2 border-t p-4">
+    <div class="border-border flex shrink-0 flex-wrap justify-end gap-2 border-t px-4 py-3 sm:px-6">
       <Button variant="outline" class="changelog-dialog__today" onclick={dismissToday}
-        >{m.changelog_dismiss_today()}</Button
+        >{m.changelog_dismiss_today({}, { locale })}</Button
       >
-      <Button class="button-primary" onclick={close}>{m.common_close()}</Button>
+      <Button class="button-primary" onclick={close}>{m.common_close({}, { locale })}</Button>
     </div>
   </Dialog.Content>
 </Dialog.Root>

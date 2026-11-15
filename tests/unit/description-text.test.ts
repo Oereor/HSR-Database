@@ -54,9 +54,9 @@ describe('DescriptionText SSR', () => {
       new Set([0])
     );
     const { body } = render(DescriptionText, { props: { tokens: descriptionTokens } });
-    expect(body.match(/<ruby\b/g)).toHaveLength(1);
+    expect(body.match(/class="game-text-ruby__annotation\b/g)).toHaveLength(1);
     expect(body).toMatch(
-      /<ruby\b[\s\S]*<em>Rank<\/em>[\s\S]*scaling-value[^>]*>3<\/span>[\s\S]*<rt[^>]*>Rank &amp; tier<\/rt>[\s\S]*<\/ruby>/
+      /class="game-text-ruby__base\b[\s\S]*<em>Rank<\/em>[\s\S]*scaling-value[^>]*>3<\/span>[\s\S]*class="game-text-ruby__annotation\b[^>]*>Rank &amp; tier<\/span>/
     );
   });
 

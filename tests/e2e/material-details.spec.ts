@@ -70,6 +70,10 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await expect(modal(page).getByRole('heading', { level: 2 })).toHaveText(
         plain(catalog.materials.find((item) => item.id === '2')!.name)
       );
+      await expect(
+        modal(page).locator('[data-slot="dialog-header"]').getByRole('heading')
+      ).toBeVisible();
+      await expect(modal(page).locator('.item-detail-modal__background em')).toBeVisible();
       await expect(modal(page).locator('.item-detail-modal__description')).toHaveText(
         plain(details.materials.find((item) => item.id === '2')!.description!)
       );
@@ -208,6 +212,7 @@ test('long descriptions scroll internally, missing optional text is valid, and f
     node.scrollTop = node.scrollHeight;
   });
   await expect(modal(page).locator('.item-detail-modal__close')).toBeInViewport();
+  await expect(modal(page).getByRole('heading', { level: 2 })).toBeInViewport();
   expect(await content.evaluate((node) => node.scrollWidth <= node.clientWidth)).toBe(true);
   await modal(page).locator('.item-detail-modal__close').click();
   expect(await page.evaluate(() => document.documentElement.style.overflow)).not.toBe('hidden');

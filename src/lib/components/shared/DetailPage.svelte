@@ -916,6 +916,7 @@
       targets={specialEffectTargets}
       characterAccent={getElementColor(detail.element)}
       ownerCharacterId={detail.id}
+      locale={getLocale()}
       selectedLevel={specialEffectLevel}
       mode={specialEffectMode}
       onRequestClose={requestSpecialEffectsClose}

@@ -13,10 +13,11 @@ import {
   resolvePlayerExEidolonState,
   resolvePlayerSkillLevel
 } from '../../src/lib/player/character';
+import * as m from '../../src/lib/paraglide/messages.js';
 import type { Character } from '../../src/lib/domain/types';
 
 let build: CharacterDomainBuild;
-const views = new Map<string, Character[]>();
+const views = new Map<'zh-CN' | 'en', Character[]>();
 beforeAll(async () => {
   const root = resolveDataRoot();
   build = buildCharacterDomain({ tables: await loadCharacterDomainTables(root) });
@@ -54,12 +55,13 @@ it('preserves all real series relations and external conditions without training
       character.profiles.base.seriesSkills.flatMap((series) => series.states)
     )
   ).toHaveLength(18);
-  for (const characters of views.values()) {
+  for (const [locale, characters] of views) {
     for (const character of characters.filter(
       (character) => character.profiles.base.seriesSkills.length
     )) {
       const profile = character.profiles.base;
-      const card = profile.skillCards.find((card) => card.category === 'elation-ascension')!;
+      const card = profile.skillCards.find((card) => card.category === 'innate-trace')!;
+      expect(card.displayLabel).toBe(m.skill_category_innate_trace({}, { locale }));
       expect(card.progressions).toEqual([]);
       expect(card.variants[0].progressionId).toBeNull();
       expect(
@@ -84,14 +86,23 @@ it('preserves all real series relations and external conditions without training
       aha.skillCards
         .find((card) => card.category === 'talent')!
         .variants.map((variant) => variant.id)
-    ).toEqual(['151104', '151104:global-buff:1', '151131']);
+    ).toEqual(['151104', '151104:global-buff:1']);
+    const authority = aha.skillCards.find((card) => card.category === 'aeonic-authority')!;
+    expect(authority.displayLabel).toBe(m.skill_category_aeonic_authority({}, { locale }));
+    expect(authority.variants.map((variant) => variant.id)).toEqual(['151131']);
+    expect(authority.order).toBeGreaterThan(
+      aha.skillCards.find((card) => card.category === 'talent')!.order
+    );
+    expect(authority.order).toBeLessThan(
+      aha.skillCards.find((card) => card.category === 'elation-skill')!.order
+    );
   }
 });
 
 it('resolves series records by actual foreign keys and rejects duplicate or unsupported conditions', () => {
   const source = build.characters.find((character) => character.id === '1511')!.profiles.base;
   const skill = {
-    ...source.skills.find((skill) => skill.category === 'elation-ascension')!,
+    ...source.skills.find((skill) => skill.category === 'innate-trace')!,
     id: '42'
   };
   const records = source.seriesSkills[0].states.map((state) => ({
@@ -175,8 +186,9 @@ it('diagnoses unknown macros and unverified series references', async () => {
 it('keeps the default Point23 skill resolved without player API node data', () => {
   const aha = views.get('en')!.find((character) => character.id === '1511')!.profiles.base;
   const fixed = aha.skillCards
-    .find((card) => card.category === 'talent')!
+    .find((card) => card.category === 'aeonic-authority')!
     .progressions.find((progression) => progression.id === '1511601')!;
+  expect(fixed.availableLevels).toEqual([1]);
   expect(fixed.fixedLevel).toBe(1);
   expect(resolvePlayerSkillLevel(fixed, new Map())).toBe(1);
 });

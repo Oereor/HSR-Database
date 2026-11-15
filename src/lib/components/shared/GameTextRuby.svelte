@@ -2,8 +2,11 @@
   export let annotation: string;
 </script>
 
-<ruby class="game-text-ruby"
-  ><span class="game-text-ruby__base"><slot /></span><rt>{annotation}</rt></ruby
+<!-- WebKit forces native rt elements into normal flow. -->
+<span class="game-text-ruby"
+  ><span class="game-text-ruby__base"><slot /></span><span class="game-text-ruby__annotation"
+    >{annotation}</span
+  ></span
 >
 
 <style>
@@ -15,11 +18,11 @@
     overflow-wrap: normal;
   }
 
-  rt {
+  .game-text-ruby__annotation {
     position: absolute;
     inset-block-start: 0;
-    inset-inline-start: 50%;
-    display: block;
+    left: 50%;
+    inline-size: max-content;
     transform: translateX(-50%);
     font-size: 0.62em;
     line-height: 1;
