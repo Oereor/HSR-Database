@@ -36,15 +36,15 @@ describe('receipt training projections', () => {
     const profile = cost.profiles[0];
     const target = createDefaultCharacterTrainingTarget(cost, 0);
     const result = calculateCharacterTrainingTarget(cost, shared, target);
+    expect(result.steps).not.toContainEqual(expect.objectContaining({ key: '1511:0:1511601' }));
     for (const locale of ['zh-CN', 'en']) {
       const cards = view('1511', locale).profiles.base.skillCards;
       const talent = cards.find((card) => card.category === 'talent')!;
-      expect(talent.progressions.map((progression) => progression.id)).toEqual([
-        '1511004',
-        '1511601'
-      ]);
+      const authority = cards.find((card) => card.category === 'aeonic-authority')!;
+      expect(talent.progressions.map((progression) => progression.id)).toEqual(['1511004']);
+      expect(authority.progressions).toMatchObject([{ id: '1511601', fixedLevel: 1 }]);
       const targets = createTrainingSkillTargets(
-        [talent],
+        [talent, authority],
         profile,
         result.skills,
         result.target.promotion
@@ -55,21 +55,6 @@ describe('receipt training projections', () => {
         categoryLabel: talent.displayLabel,
         trainingLevel: result.skills.find((skill) => skill.key === targets[0].key)!.trainingLevel
       });
-      expect(
-        createTrainingSkillTargets(
-          [
-            {
-              ...talent,
-              progressions: talent.progressions.filter(
-                (progression) => progression.availableLevels.length > 1
-              )
-            }
-          ],
-          profile,
-          result.skills,
-          result.target.promotion
-        )
-      ).toEqual(targets);
     }
   });
 
