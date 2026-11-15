@@ -47,6 +47,12 @@ export default defineConfig({
       use: { ...devices['Pixel 5'] }
     },
     {
+      name: 'ruby-webkit',
+      testMatch: '**/relic-detail.spec.ts',
+      grep: /relic Ruby annotations/,
+      use: { ...devices['iPhone 13'] }
+    },
+    {
       name: 'ci-smoke',
       testMatch: '**/ci-smoke.spec.ts',
       use: { ...devices['Desktop Chrome'] }

@@ -16,35 +16,69 @@ for (const [prefix, examples] of [
     ]
   ]
 ] as const) {
-  test(`relic Ruby annotations fit above the base without taking horizontal space (${prefix || 'zh-CN'})`, async ({
-    page
-  }) => {
-    for (const [id, base, annotation] of examples) {
-      await page.goto(`${prefix}/relics/${id}/`);
-      const ruby = page.locator('[data-relic-piece-id] ruby');
-      await expect(ruby).toHaveCount(1);
-      await expect(ruby.locator('.game-text-ruby__base')).toHaveText(base);
-      await expect(ruby.locator('rt')).toHaveText(annotation);
-      expect(
-        await ruby.evaluate((node) => {
-          const base = node.querySelector('.game-text-ruby__base')!;
-          const note = node.querySelector('rt')!;
-          const outer = node.getBoundingClientRect();
-          const body = base.getBoundingClientRect();
-          const label = note.getBoundingClientRect();
-          return {
-            above: label.bottom <= body.top + 1,
-            centered: Math.abs(label.x + label.width / 2 - body.x - body.width / 2) < 1,
-            baseWidth: Math.abs(outer.width - body.width) < 1,
-            fits: label.left >= 0 && label.right <= innerWidth,
-            smaller:
-              parseFloat(getComputedStyle(note).fontSize) <
-              parseFloat(getComputedStyle(base).fontSize)
-          };
-        })
-      ).toEqual({ above: true, centered: true, baseWidth: true, fits: true, smaller: true });
-    }
-  });
+  for (const width of [390, 1194]) {
+    test(`relic Ruby annotations align with the base (${prefix || 'zh-CN'}, ${width}px)`, async ({
+      page
+    }) => {
+      await page.setViewportSize({ width, height: 834 });
+      for (const [id, base, annotation] of examples) {
+        await page.goto(`${prefix}/relics/${id}/`);
+        await page.evaluate(() => document.fonts.ready.then(() => undefined));
+        const ruby = page.locator('[data-relic-piece-id] .game-text-ruby');
+        await expect(ruby).toHaveCount(1);
+        await expect(ruby.locator('.game-text-ruby__base')).toHaveText(base);
+        await expect(ruby.locator('.game-text-ruby__annotation')).toHaveText(annotation);
+        expect(
+          await ruby.evaluate((node) => {
+            const base = node.querySelector('.game-text-ruby__base')!;
+            const note = node.querySelector('.game-text-ruby__annotation')!;
+            const outer = node.getBoundingClientRect();
+            const body = base.getBoundingClientRect();
+            const label = note.getBoundingClientRect();
+            const characterBox = (element: Element | null, last = false) => {
+              if (!element) return undefined;
+              const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+              let position: { text: Text; offset: number } | undefined;
+              while (walker.nextNode()) {
+                const text = walker.currentNode as Text;
+                const offset = last ? text.data.trimEnd().length - 1 : text.data.search(/\S/u);
+                if (offset < 0) continue;
+                position = { text, offset };
+                if (!last) break;
+              }
+              if (!position) return undefined;
+              const range = document.createRange();
+              range.setStart(position.text, position.offset);
+              range.setEnd(position.text, position.offset + 1);
+              return range.getBoundingClientRect();
+            };
+            const baseCharacter = characterBox(base)!;
+            const aligned = [
+              characterBox(node.previousElementSibling, true),
+              characterBox(node.nextElementSibling)
+            ].some((neighbor) => neighbor && Math.abs(neighbor.bottom - baseCharacter.bottom) < 1);
+            return {
+              above: label.bottom <= body.top + 1,
+              aligned,
+              centered: Math.abs(label.x + label.width / 2 - body.x - body.width / 2) < 1,
+              baseWidth: Math.abs(outer.width - body.width) < 1,
+              fits: label.left >= 0 && label.right <= innerWidth,
+              smaller:
+                parseFloat(getComputedStyle(note).fontSize) <
+                parseFloat(getComputedStyle(base).fontSize)
+            };
+          })
+        ).toEqual({
+          above: true,
+          aligned: true,
+          centered: true,
+          baseWidth: true,
+          fits: true,
+          smaller: true
+        });
+      }
+    });
+  }
 }
 
 test('隧洞遗器详情使用双栏 Hero、唯一套装效果和四张部件卡', async ({ page }) => {
