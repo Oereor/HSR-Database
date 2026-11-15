@@ -176,7 +176,9 @@ describe('真实数据管线', () => {
       category: 'skill'
     };
     expect(
-      buildSkillCards([visibleWithoutDescription])[0].variants.map((variant) => variant.id)
+      buildSkillCards([visibleWithoutDescription], () => 'fixture label')[0].variants.map(
+        (variant) => variant.id
+      )
     ).toEqual(['visible-without-description']);
   });
 

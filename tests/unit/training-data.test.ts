@@ -50,6 +50,20 @@ const full = (id: string, enhancedId = 0) =>
   );
 
 describe('pinned training data', () => {
+  it('binds Aeonic Authority to the free fixed-level Point23 node', () => {
+    const profile = character('1511').profiles[0];
+    const point = profile.nodes.find((node) => node.pointId === '1511601')!;
+    expect(point).toMatchObject({
+      anchorType: 'Point23',
+      kind: 'default',
+      defaultUnlock: true,
+      maxLevel: 1,
+      linkedSkillIds: ['151131'],
+      bindings: [{ skillId: '151131', category: 'aeonic-authority', displayLevels: [1] }]
+    });
+    expect(point.steps.map((step) => step.cost)).toEqual([{}]);
+  });
+
   it('matches promotion and EXP baselines without substituting rarity templates', () => {
     expect(full('1001').requiredExp).toBe(5797920);
     expect(full('1001').promotionCost).toEqual({

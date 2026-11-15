@@ -30,15 +30,19 @@ const categoryOrder: SkillCategory[] = [
   'skill',
   'ultimate',
   'talent',
+  'aeonic-authority',
   'memosprite-skill',
   'memosprite-talent',
   'elation-skill',
-  'elation-ascension',
+  'innate-trace',
   'assist',
   'technique'
 ];
 
-export const SKILL_CATEGORY_LABELS: Record<SkillCategory, string> = {
+export const SKILL_CATEGORY_LABELS: Record<
+  Exclude<SkillCategory, 'aeonic-authority' | 'innate-trace'>,
+  string
+> = {
   basic: '普攻',
   skill: '战技',
   ultimate: '终结技',
@@ -47,7 +51,6 @@ export const SKILL_CATEGORY_LABELS: Record<SkillCategory, string> = {
   'memosprite-skill': '忆灵技',
   'memosprite-talent': '忆灵天赋',
   'elation-skill': '欢愉技',
-  'elation-ascension': '「欢愉」命途升格',
   assist: '助战技'
 };
 
@@ -68,8 +71,8 @@ export function classifyAvatarSkill(row: StructuredSkillFields): SkillCategory |
     case 'Assist':
       return 'assist';
     default:
-      if (row.SkillTriggerKey === 'SkillAha') return 'elation-ascension';
-      if (row.SkillTriggerKey === 'SkillAeon') return 'talent';
+      if (row.SkillTriggerKey === 'SkillAha') return 'innate-trace';
+      if (row.SkillTriggerKey === 'SkillAeon') return 'aeonic-authority';
       return String(row.SkillTriggerKey ?? '').startsWith('SkillP') ? 'talent' : undefined;
   }
 }
@@ -115,7 +118,10 @@ export interface SkillVariantInput extends Omit<SkillVariant, 'combatMeta'> {
   combatMetaLevels: Array<{ level: number; combatMeta: SkillCombatMeta }>;
 }
 
-export function buildSkillCards(inputs: SkillVariantInput[]): SkillCard[] {
+export function buildSkillCards(
+  inputs: SkillVariantInput[],
+  categoryLabel: (category: SkillCategory) => string
+): SkillCard[] {
   const groups = new Map<SkillCategory, SkillVariantInput[]>();
   for (const input of inputs)
     groups.set(input.category, [...(groups.get(input.category) ?? []), input]);
@@ -146,7 +152,7 @@ export function buildSkillCards(inputs: SkillVariantInput[]): SkillCard[] {
     return [
       {
         category,
-        displayLabel: SKILL_CATEGORY_LABELS[category],
+        displayLabel: categoryLabel(category),
         order,
         progressions,
         variants: variants.map(buildSkillVariant)

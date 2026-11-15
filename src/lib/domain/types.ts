@@ -47,11 +47,12 @@ export type SkillCategory =
   | 'skill'
   | 'ultimate'
   | 'talent'
+  | 'aeonic-authority'
   | 'technique'
   | 'memosprite-skill'
   | 'memosprite-talent'
   | 'elation-skill'
-  | 'elation-ascension'
+  | 'innate-trace'
   | 'assist';
 
 export type KnownSkillEffect =

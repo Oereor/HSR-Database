@@ -10,7 +10,8 @@ import type {
   Trace,
   Eidolon,
   ExEidolon,
-  DescriptionToken
+  DescriptionToken,
+  SkillCategory
 } from '../../../src/lib/domain/types.js';
 import type { TextResolver } from '../localization.js';
 import {
@@ -91,10 +92,12 @@ const textContext = (domain: CharacterDomain, context: CharacterProjectionContex
   nickname: context.nickname
 });
 
-const label = (
-  context: CharacterProjectionContext,
-  category: keyof typeof SKILL_CATEGORY_LABELS
-): string => context.skillCategoryLabels?.[category] ?? SKILL_CATEGORY_LABELS[category];
+function categoryLabel(context: CharacterProjectionContext, category: SkillCategory): string {
+  const options = { locale: context.locale };
+  if (category === 'aeonic-authority') return m.skill_category_aeonic_authority({}, options);
+  if (category === 'innate-trace') return m.skill_category_innate_trace({}, options);
+  return context.skillCategoryLabels?.[category] ?? SKILL_CATEGORY_LABELS[category];
+}
 
 function projectExtraEffects(
   domain: CharacterDomain,
@@ -263,7 +266,8 @@ function projectProfile(
   const inputs = profile.skills
     .filter((skill) => skill.visibility !== 'hidden')
     .map((skill) => projectSkillVariant(domain, skill, context));
-  const skillCards = buildSkillCards(inputs).map((card) => {
+  const cards = buildSkillCards(inputs, (category) => categoryLabel(context, category));
+  const skillCards = cards.map((card) => {
     const cardSources = card.variants.flatMap((variant) => {
       const source = profile.skills.find((skill) => skill.id === variant.id);
       return source ? [source] : [];
@@ -304,6 +308,12 @@ function projectProfile(
             `AvatarSkillConfig.${source.id}`
           )
         : undefined);
+    const series =
+      card.category === 'innate-trace'
+        ? profile.seriesSkills.find((series) =>
+            card.variants.some((variant) => variant.id === series.skillId)
+          )
+        : undefined;
     return {
       ...card,
       progressions: card.progressions.map((progression) => ({
@@ -319,32 +329,7 @@ function projectProfile(
           ? { fixedLevel: 1 }
           : {})
       })),
-      displayLabel:
-        card.category === 'elation-ascension'
-          ? requiredText(
-              context.resolver,
-              context.extraEffectsById.get('10015111')?.nameSource,
-              {
-                domain: 'character',
-                entityId: domain.id,
-                field: 'seriesSkill.category'
-              },
-              textContext(domain, context)
-            )
-          : label(context, card.category),
-      ...(card.category === 'elation-ascension'
-        ? {
-            externalCondition:
-              profile.seriesSkills.find((series) =>
-                card.variants.some((variant) => variant.id === series.skillId)
-              ) &&
-              projectSeriesSkill(
-                profile.seriesSkills.find((series) =>
-                  card.variants.some((variant) => variant.id === series.skillId)
-                )!
-              )
-          }
-        : {}),
+      ...(series ? { externalCondition: projectSeriesSkill(series) } : {}),
       ...(iconKey ? { iconKey } : {})
     };
   });
