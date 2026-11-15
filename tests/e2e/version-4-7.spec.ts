@@ -74,7 +74,11 @@ for (const locale of ['zh-CN', 'en'] as const) {
     const summary = card.locator('[data-slot="card-header"] button[data-slot="button"]');
     await expect(summary).toHaveCount(1);
     await summary.click();
-    const dialog = page.getByRole('dialog');
+    const dialog = page.getByRole('dialog', { name: messages.special_effect_title_aha });
+    await expect(dialog.locator('[data-slot="dialog-header"] img')).toHaveAttribute(
+      'src',
+      /\/1511\.png$/
+    );
     await expect(dialog.locator('[data-special-effect-kind="series-skill-link"]')).toHaveCount(8);
     await expect(dialog.locator('a[href$="/characters/8009/"]')).toHaveCount(0);
     await expect(dialog.locator(`a[href="${prefix}/characters/8010/"]`)).toHaveCount(1);

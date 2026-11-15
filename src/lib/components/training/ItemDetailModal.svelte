@@ -28,27 +28,24 @@
   }}
 >
   <Dialog.Content
-    showCloseButton={false}
     aria-describedby={undefined}
     data-item-detail-state={state}
     data-item-detail-id={material?.id}
-    class="item-detail-modal flex max-h-[calc(100dvh-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-3xl"
+    class="item-detail-modal max-w-[42.5rem]"
     onCloseAutoFocus={(event) => {
       event.preventDefault();
       onClosed();
     }}
   >
-    <div class="flex shrink-0 justify-end px-3 pt-3">
-      <Button
-        variant="ghost"
-        size="icon"
+    <Dialog.Header>
+      <Dialog.Title id="item-detail-title"><GameText text={material?.name} /></Dialog.Title>
+      <Dialog.Close
+        label={m.material_detail_close({}, { locale })}
         class="item-detail-modal__close"
-        aria-label={m.material_detail_close({}, { locale })}
-        onclick={onRequestClose}>×</Button
-      >
-    </div>
-    <div
-      class="item-detail-modal__content grid min-h-0 gap-6 overflow-y-auto overscroll-contain p-4 sm:grid-cols-[160px_minmax(0,1fr)] sm:p-6"
+      />
+    </Dialog.Header>
+    <Dialog.Body
+      class="item-detail-modal__content grid items-start gap-4 sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:gap-6"
     >
       {#if material}
         <div class="item-detail-modal__visual">
@@ -59,19 +56,16 @@
             <AssetImage
               src={resolveMaterialIconAsset(material.iconKey)}
               alt=""
-              width={160}
-              height={160}
+              width={120}
+              height={120}
               decoding="async"
             />
           </div>
           {#if rarity !== undefined && rarity >= 2 && rarity <= 5}
-            <RarityStars {rarity} size="hero" />
+            <RarityStars {rarity} />
           {/if}
         </div>
         <div class="item-detail-modal__text">
-          <Dialog.Title id="item-detail-title" class="text-xl leading-snug"
-            ><GameText text={material.name} /></Dialog.Title
-          >
           {#if state === 'loading'}
             <p class="item-detail-modal__status" role="status">
               {m.material_detail_loading({}, { locale })}
@@ -93,7 +87,7 @@
           {/if}
         </div>
       {/if}
-    </div>
+    </Dialog.Body>
   </Dialog.Content>
 </Dialog.Root>
 
@@ -102,10 +96,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-3);
+    gap: var(--space-2);
   }
   .item-detail-modal__icon {
-    width: 160px;
+    width: 7.5rem;
+    max-width: 100%;
     aspect-ratio: 1;
     border-radius: var(--radius-control);
     background: color-mix(in srgb, var(--item-rarity) 8%, transparent);
@@ -118,21 +113,28 @@
     height: 100%;
     object-fit: contain;
   }
+  .item-detail-modal__visual :global(.rarity-stars) {
+    text-shadow: none;
+  }
   .item-detail-modal__text {
     min-width: 0;
     overflow-wrap: anywhere;
+    line-height: 1.65;
   }
   .item-detail-modal__description {
-    margin-top: var(--space-4);
     color: var(--text-body);
     font-weight: 600;
   }
   .item-detail-modal__background {
-    margin-top: var(--space-6);
     color: var(--text-secondary);
   }
+  .item-detail-modal__description + .item-detail-modal__background {
+    margin-top: var(--space-3);
+  }
+  .item-detail-modal__background :global(em) {
+    color: var(--text-muted);
+  }
   .item-detail-modal__status {
-    margin-top: var(--space-4);
     color: var(--text-secondary);
   }
 </style>
