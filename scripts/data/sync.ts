@@ -76,7 +76,7 @@ import { buildLightConeDomain } from './domain/light-cone.js';
 import { buildRelicDomain } from './domain/relic.js';
 import { buildPlayerRuntimeData } from './player-runtime.js';
 import { projectCharacter } from './projection/character.js';
-import { projectLightCone } from './projection/light-cone.js';
+import { projectLightCone, projectPlayerLightConeDetails } from './projection/light-cone.js';
 import { projectRelic } from './projection/relic.js';
 import { buildEnemyDomain } from './domain/enemy.js';
 import { textSource } from './domain/shared.js';
@@ -878,6 +878,10 @@ export async function syncData(): Promise<DataManifest> {
         enemies: enemyCatalog
       },
       details: { characters, 'light-cones': lightCones, relics, enemies },
+      playerLightConeDetails: projectPlayerLightConeDetails(lightCones, {
+        locale: config.locale,
+        resolver: runtime.text
+      }),
       relicProperties,
       endgame,
       searchInputs,
@@ -991,6 +995,16 @@ export async function syncData(): Promise<DataManifest> {
       { locale: projectedLocale },
       `static/generated/${projectedLocale}/player-equipment.json`
     );
+    for (const lightCone of projection.playerLightConeDetails) {
+      const filename = `${projectedLocale}/player-light-cones/${lightCone.id}.json`;
+      await writeArtifact(
+        nextStaticGeneratedRoot,
+        filename,
+        lightCone,
+        { locale: projectedLocale },
+        `static/generated/${filename}`
+      );
+    }
     if (projectedLocale === 'en')
       for (const [targetId, shard] of Object.entries(projection.occurrenceShards))
         await writeArtifact(

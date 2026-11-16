@@ -242,6 +242,21 @@ async function createFixture(): Promise<Fixture> {
       },
       locale
     );
+    await writeArtifact(
+      `static/generated/${locale}/player-light-cones/2.json`,
+      {
+        schemaVersion: 1,
+        locale,
+        id: '2',
+        baseStats: { minLevel: 1, maxLevel: 80, defaultLevel: 80, stages: [] },
+        passive: {
+          id: '2',
+          name: 'Effect',
+          superimposition: { scalingParamIndexes: [], levels: [] }
+        }
+      },
+      locale
+    );
   }
   await writeArtifact(
     'views/en/endgame-occurrences/4',

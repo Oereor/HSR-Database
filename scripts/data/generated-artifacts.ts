@@ -102,7 +102,10 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
       `views/${locale}/homepage.json`,
       `views/${locale}/search-inputs.json`,
       `static/generated/${locale}/search.json`,
-      `static/generated/${locale}/player-equipment.json`
+      `static/generated/${locale}/player-equipment.json`,
+      ...(value.routes as Record<string, string[]>)['light-cones'].map(
+        (id) => `static/generated/${locale}/player-light-cones/${id}.json`
+      )
     ])
       if (!(requiredPath in value.artifacts))
         throw new Error(`Generated data manifest is missing ${requiredPath}`);
