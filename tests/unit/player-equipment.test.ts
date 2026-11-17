@@ -1,13 +1,21 @@
 import { describe, expect, it, vi } from 'vitest';
+import { createTextResolver } from '../../scripts/data/localization';
+import { getLocaleConfig } from '../../scripts/data/locale-registry';
+import { projectPlayerLightConeDetails } from '../../scripts/data/projection/light-cone';
 import type { EquipmentRecommendationView } from '../../src/lib/domain/equipment-recommendation-view';
-import type { RelicProperty } from '../../src/lib/domain/types';
-import { createPlayerEquipmentCatalogClient } from '../../src/lib/player/equipment-client';
+import type { LightCone, RelicProperty } from '../../src/lib/domain/types';
+import {
+  createPlayerEquipmentCatalogClient,
+  createPlayerLightConeDetailsClient
+} from '../../src/lib/player/equipment-client';
 import {
   createPlayerEquipmentCatalogIndex,
   playerRelicSlot,
   resolvePlayerLightCone,
+  resolvePlayerLightConeDetails,
   resolvePlayerRelicSlots,
-  type PlayerEquipmentCatalog
+  type PlayerEquipmentCatalog,
+  type PlayerLightConeDetails
 } from '../../src/lib/player/equipment';
 import type { PlayerRelic } from '../../src/lib/player/contract';
 
@@ -27,6 +35,44 @@ const catalog: PlayerEquipmentCatalog = {
       ]
     }
   ]
+};
+
+const cone: LightCone = {
+  ...catalog.lightCones[0],
+  kind: 'light-cone',
+  baseStats: {
+    minLevel: 1,
+    maxLevel: 30,
+    defaultLevel: 30,
+    stages: [10, 100].map((base, index) => ({
+      fromLevel: index === 0 ? 1 : 21,
+      toLevel: index === 0 ? 20 : 30,
+      hp: { base, perLevel: 1 },
+      attack: { base, perLevel: 2 },
+      defence: { base, perLevel: 3 }
+    }))
+  },
+  passive: {
+    id: '23023',
+    name: 'Sample effect',
+    superimposition: {
+      scalingParamIndexes: [0],
+      levels: [1, 3].map((level) => ({
+        level,
+        description: `${level}%`,
+        descriptionTokens: [{ type: 'scaling-value', value: `${level}%` }]
+      }))
+    }
+  }
+};
+
+const details: PlayerLightConeDetails = {
+  schemaVersion: 1,
+  locale: 'zh-CN',
+  id: cone.id,
+  baseStats: cone.baseStats,
+  passive: cone.passive,
+  pathMismatchWarning: 'Sample warning'
 };
 
 const properties: RelicProperty[] = [
@@ -96,6 +142,33 @@ describe('Player equipment resolver', () => {
     expect(resolvePlayerLightCone(null, index)).toEqual({ equipment: null });
     expect(unknown.metadata).toBeUndefined();
     expect(unknown.equipment).toMatchObject({ level: 70, promotion: 5, rank: 2 });
+  });
+
+  it('uses recorded promotion at a shared cap and selects only the recorded superimposition', () => {
+    const equipment = { lightConeId: cone.id, level: 20, promotion: 0, rank: 3 };
+    const before = resolvePlayerLightCone(equipment, index);
+    const after = resolvePlayerLightCone({ ...equipment, promotion: 1 }, index);
+    expect(resolvePlayerLightConeDetails(before, 'Knight', details)).toMatchObject({
+      stats: { hp: 29, attack: 48, defence: 67 },
+      effectTokens: [{ type: 'scaling-value', value: '3%' }],
+      pathMismatchWarning: undefined
+    });
+    expect(resolvePlayerLightConeDetails(after, 'Mage', details)).toMatchObject({
+      stats: { hp: 119, attack: 138, defence: 157 },
+      pathMismatchWarning: details.pathMismatchWarning
+    });
+    expect(
+      resolvePlayerLightConeDetails(after, undefined, details)?.pathMismatchWarning
+    ).toBeUndefined();
+    const missing = resolvePlayerLightCone({ ...equipment, promotion: 9, rank: 2 }, index);
+    expect(resolvePlayerLightConeDetails(missing, 'Knight', details)).toMatchObject({
+      stats: undefined,
+      effectTokens: undefined
+    });
+    expect(resolvePlayerLightConeDetails(before, 'Knight', undefined)).toBeUndefined();
+    expect(
+      resolvePlayerLightConeDetails(before, 'Knight', { ...details, id: '999999' })
+    ).toBeUndefined();
   });
 
   it('maps relic slot types to the canonical six-slot order', () => {
@@ -175,6 +248,47 @@ describe('Player equipment resolver', () => {
     expect(head.mainAffix).toBeNull();
     expect(head.subAffixes).toHaveLength(2);
   });
+});
+
+it.each([
+  ['zh-CN', '样本文案 <color=#f29e38ff>#1</color>', '样本命途'],
+  ['en', '<color=#f29e38ff>#1</color> example', 'Sample Path']
+] as const)(
+  'projects the %s warning with a string hash and the Light Cone Path',
+  async (locale, template, pathName) => {
+    const config = getLocaleConfig(locale);
+    const resolver = await createTextResolver(config, { '15998603839633828117': template });
+    const [projected] = projectPlayerLightConeDetails([{ ...cone, pathName }], {
+      locale,
+      resolver
+    });
+    expect(projected.pathMismatchWarning).toBe(template.replace('#1', pathName));
+
+    const missing = await createTextResolver(config, {});
+    expect(
+      projectPlayerLightConeDetails([{ ...cone, pathName }], { locale, resolver: missing })[0]
+        .pathMismatchWarning
+    ).toBeUndefined();
+  }
+);
+
+it('deduplicates Light Cone requests per locale and ID and retries invalid shards', async () => {
+  const fetchImpl = vi
+    .fn()
+    .mockResolvedValueOnce(Response.json(details))
+    .mockResolvedValueOnce(Response.json(details))
+    .mockResolvedValueOnce(Response.json({ ...details, locale: 'en' }));
+  const client = createPlayerLightConeDetailsClient(fetchImpl as typeof fetch);
+  const pending = client.load('zh-CN', cone.id);
+  expect(client.load('zh-CN', cone.id)).toBe(pending);
+  await expect(pending).resolves.toEqual(details);
+  await expect(client.load('en', cone.id)).rejects.toThrow('identity');
+  await expect(client.load('en', cone.id)).resolves.toMatchObject({ locale: 'en' });
+  expect(fetchImpl.mock.calls.map(([url]) => url)).toEqual([
+    `/generated/zh-CN/player-light-cones/${cone.id}.json`,
+    `/generated/en/player-light-cones/${cone.id}.json`,
+    `/generated/en/player-light-cones/${cone.id}.json`
+  ]);
 });
 
 describe('Player equipment catalog client', () => {

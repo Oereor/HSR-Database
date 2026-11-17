@@ -628,38 +628,21 @@ test('reuses the Player cache and renders real progression without changing stat
     'href',
     '/light-cones/23023/?level=70&rank=2'
   );
-  await expect(lightConeCard.locator('.player-light-cone__identity > span')).toHaveCount(2);
-  await expect(lightConeCard.locator('.player-light-cone__progression > span')).toHaveCount(3);
-  const lightConeImage = lightConeCard.locator('.compact-entity-card__artwork img');
+  await expect(lightConeCard.locator('[data-player-light-cone-level="70"]')).toBeVisible();
+  await expect(lightConeCard.locator('[data-player-light-cone-promotion="6"]')).toBeVisible();
+  await expect(lightConeCard.locator('[data-player-light-cone-rank="2"]')).toBeVisible();
+  await expect(lightConeCard.locator('[data-base-stat]')).toHaveCount(3);
+  await expect(lightConeCard.locator('.levelled-description')).not.toBeEmpty();
+  await expect(lightConeCard.locator('[data-player-light-cone-warning]')).toHaveCount(0);
+  await expect(lightConeCard.locator('a, button, [role="slider"]')).toHaveCount(1);
+  const lightConeImage = lightConeCard.locator('[data-player-light-cone-artwork] img');
+  await expect(lightConeImage).toHaveAttribute('src', /light-cones\/portrait\/23023\.webp$/);
   await lightConeImage.scrollIntoViewIfNeeded();
   await lightConeImage.evaluate((image: HTMLImageElement) => image.decode());
-  const lightConeArtworkFit = await lightConeCard
-    .locator('.compact-entity-card__artwork')
-    .evaluate((artwork) => {
-      const image = artwork.querySelector('img')!;
-      const artworkBounds = artwork.getBoundingClientRect();
-      const imageBounds = image.getBoundingClientRect();
-      const imageStyles = getComputedStyle(image);
-      return {
-        insetTop: imageBounds.top - artworkBounds.top,
-        insetRight: artworkBounds.right - imageBounds.right,
-        insetBottom: artworkBounds.bottom - imageBounds.bottom,
-        insetLeft: imageBounds.left - artworkBounds.left,
-        objectFit: imageStyles.objectFit,
-        transform: imageStyles.transform
-      };
-    });
-  expect(lightConeArtworkFit.objectFit).toBe('contain');
-  expect(lightConeArtworkFit.transform).toBe('none');
-  expect(
-    [
-      lightConeArtworkFit.insetTop,
-      lightConeArtworkFit.insetRight,
-      lightConeArtworkFit.insetBottom,
-      lightConeArtworkFit.insetLeft
-    ].every((inset) => inset >= 3),
-    JSON.stringify(lightConeArtworkFit)
-  ).toBe(true);
+  await expect(lightConeImage).toHaveCSS('object-fit', 'contain');
+  const coneIdentity = lightConeCard.locator('[data-player-light-cone-identity]');
+  const coneStats = lightConeCard.locator('[data-player-light-cone-stats]');
+  const coneEffect = lightConeCard.locator('[data-player-light-cone-effect]');
   await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
   await expect(page.locator('[data-player-relic-slot="BODY"]')).toHaveAttribute(
     'href',
@@ -732,16 +715,11 @@ test('reuses the Player cache and renders real progression without changing stat
   expect(contextBounds.contextBottom).toBeLessThanOrEqual(contextBounds.identityTop + 1);
 
   if (isMobile) {
-    await expect(lightConeCard.locator('.player-light-cone__progression')).toHaveCSS(
-      'display',
-      'flex'
-    );
-    const progressionRows = await lightConeCard
-      .locator('.player-light-cone__progression > span')
-      .evaluateAll(
-        (items) => new Set(items.map((item) => Math.round(item.getBoundingClientRect().y))).size
-      );
-    expect(progressionRows).toBe(1);
+    const identityBounds = (await coneIdentity.boundingBox())!;
+    const statBounds = (await coneStats.boundingBox())!;
+    const effectBounds = (await coneEffect.boundingBox())!;
+    expect(statBounds.y).toBeGreaterThanOrEqual(identityBounds.y + identityBounds.height);
+    expect(effectBounds.y).toBeGreaterThanOrEqual(statBounds.y + statBounds.height);
     const columns = await page
       .locator('.player-stats-grid')
       .evaluate((element) =>
@@ -761,10 +739,10 @@ test('reuses the Player cache and renders real progression without changing stat
     ).toBeLessThanOrEqual(1);
   } else {
     await page.setViewportSize({ width: 1280, height: 900 });
-    await expect(lightConeCard.locator('.player-light-cone__progression')).toHaveCSS(
-      'display',
-      'grid'
-    );
+    const identityBounds = (await coneIdentity.boundingBox())!;
+    const statBounds = (await coneStats.boundingBox())!;
+    expect(statBounds.x).toBeGreaterThanOrEqual(identityBounds.x + identityBounds.width);
+    expect(statBounds.y).toBeLessThan(identityBounds.y + identityBounds.height);
     await expect(page.locator('.detail-profile-hero--character')).toHaveCSS(
       'grid-template-columns',
       /\S+\s+\S+/
@@ -784,7 +762,10 @@ test('reuses the Player cache and renders real progression without changing stat
     expect(mediumRelicColumns).toHaveLength(2);
   }
 
-  await lightConeCard.getByRole('link').click();
+  const lightConeLink = lightConeCard.getByRole('link');
+  await lightConeLink.focus();
+  await expect(lightConeLink).toBeFocused();
+  await lightConeLink.press('Enter');
   await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=70&rank=2$/);
   await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
     'href',
@@ -822,6 +803,83 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
   await expect(page.locator('#equipment')).toHaveCount(0);
+});
+
+test('keeps Light Cone shard loading independent and renders the Path warning at narrow widths', async ({
+  page
+}, testInfo) => {
+  const uid = '100000001';
+  const profile = playerProfile(uid);
+  const second = {
+    ...profile.characters[0],
+    buildId: 'area:showcase:position:2:order:1',
+    display: { area: 'showcase', position: 2, sourceOrder: 1 },
+    lightCone: { lightConeId: '20000', level: 70, promotion: 5, rank: 2 }
+  };
+  profile.characters.push(second);
+  await page.route('**/api/player/**', (route) => route.fulfill({ json: profile }));
+
+  let releaseFirst: () => void = () => {};
+  const firstDeferred = new Promise<void>((resolve) => {
+    releaseFirst = resolve;
+  });
+  const firstShard = '**/generated/en/player-light-cones/23023.json';
+  await page.route(
+    firstShard,
+    async (route) => {
+      await firstDeferred;
+      await route.continue();
+    },
+    { times: 1 }
+  );
+  await page.route(
+    '**/generated/en/player-light-cones/20000.json',
+    (route) => route.fulfill({ status: 503, json: {} }),
+    { times: 1 }
+  );
+
+  await page.goto(`/en/player/?uid=${uid}`);
+  const playerLink = (buildId: string) =>
+    page.locator(`.player-characters a[href*="build=${encodeURIComponent(buildId)}"]`);
+  await playerLink(profile.characters[0].buildId).click();
+  const effect = page.locator('[data-player-light-cone-effect]');
+  await expect(effect).toHaveAttribute('data-details-state', 'loading');
+  await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
+  await page.locator('.back-link').click();
+  await playerLink(second.buildId).click();
+  const cone = page.locator('[data-player-light-cone="20000"]');
+  await expect(cone.locator('[data-details-state="unavailable"]')).toBeVisible();
+  await expect(cone.getByRole('link')).toHaveAttribute(
+    'href',
+    '/en/light-cones/20000/?level=70&rank=2'
+  );
+  const firstResponse = page.waitForResponse((response) =>
+    response.url().endsWith('/player-light-cones/23023.json')
+  );
+  releaseFirst();
+  expect((await firstResponse).ok()).toBe(true);
+  await expect(cone.locator('[data-details-state="unavailable"]')).toBeVisible();
+  await expect(cone.locator('[data-base-stat]')).toHaveCount(0);
+
+  await page.locator('.back-link').click();
+  await playerLink(second.buildId).click();
+  const warning = cone.locator('[data-player-light-cone-warning]');
+  await expect(warning).toBeVisible();
+  const conePath = await cone.locator('[data-icon-kind="path"]').getAttribute('aria-label');
+  expect(conePath).toBeTruthy();
+  await expect(warning.locator('[data-game-color]')).toHaveText(conePath!);
+  await expect(cone.locator('.levelled-description')).not.toBeEmpty();
+  for (const width of testInfo.project.name === 'mobile-chromium' ? [320] : [1440, 768]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await cone.evaluate((card) => card.scrollWidth - card.clientWidth)).toBeLessThanOrEqual(
+      1
+    );
+    await cone.locator('[data-player-light-cone-artwork] img').scrollIntoViewIfNeeded();
+    await cone
+      .locator('[data-player-light-cone-artwork] img')
+      .evaluate((image: HTMLImageElement) => image.decode());
+    await cone.screenshot({ path: testInfo.outputPath(`light-cone-${width}.png`) });
+  }
 });
 
 for (const prefix of ['', '/en'])

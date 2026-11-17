@@ -30,6 +30,7 @@ import {
   type GeneratedArtifactValidationSummary
 } from '../generated-artifacts.js';
 import { assertPlayerRuntimeData } from '../player-runtime.js';
+import { parsePlayerLightConeDetails } from '../../../src/lib/player/equipment-client.js';
 import { assertRelicScoreRecommendations } from '../../../src/lib/relic-score/recommendations.js';
 import {
   assertRatingV2Profiles,
@@ -408,6 +409,16 @@ export async function validateBuildInputs(
             lightCones: decimalIds(value.lightCones, `${locale} player light cones`),
             relicSets: decimalIds(value.relicSets, `${locale} player relic sets`)
           });
+          return;
+        }
+        const playerLightConeMatch = logicalPath.match(
+          /^static\/generated\/(zh-CN|en)\/player-light-cones\/(\d+)\.json$/
+        );
+        if (playerLightConeMatch) {
+          const [, locale, id] = playerLightConeMatch;
+          if (!manifest.routes['light-cones'].includes(id))
+            throw new Error(`Unexpected player Light Cone details: ${logicalPath}`);
+          parsePlayerLightConeDetails(value, locale as Locale, id);
           return;
         }
         const shardMatch = logicalPath.match(/^views\/en\/endgame-occurrences\/(\d+)$/);

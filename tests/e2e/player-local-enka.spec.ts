@@ -1,5 +1,6 @@
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
+import type { LightCone } from '../../src/lib/domain/types.js';
 import type { PlayerProfile } from '../../src/lib/player/contract.js';
 
 const directory = process.env.PLAYER_MOCK_DIR;
@@ -59,7 +60,53 @@ for (const [sample, file] of files.entries())
         await expect(page.locator('[data-player-rating-v2-details]')).toHaveCount(0);
         await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
         await expect(page.locator('[data-player-stats-panel]')).toBeVisible();
-        await expect(page.locator('.player-light-cone')).toBeVisible();
+        const card = page.locator('[data-player-light-cone]');
+        await expect(card).toBeVisible();
+        const equipment = character.lightCone;
+        if (equipment) {
+          const { lightConeId, level, promotion, rank } = equipment;
+          const locale = prefix ? 'en' : 'zh-CN';
+          const projected = JSON.parse(
+            readFileSync(
+              new URL(
+                `../../src/lib/generated/views/${locale}/details/light-cones/${lightConeId}.json`,
+                import.meta.url
+              ),
+              'utf8'
+            )
+          ) as LightCone;
+          await expect(card).toHaveAttribute('data-player-light-cone', lightConeId);
+          await expect(card.getByRole('link')).toHaveAttribute(
+            'href',
+            `${prefix}/light-cones/${lightConeId}/?level=${level}&rank=${rank}`
+          );
+          await expect(card.locator(`[data-player-light-cone-level="${level}"]`)).toBeVisible();
+          await expect(
+            card.locator(`[data-player-light-cone-promotion="${promotion}"]`)
+          ).toBeVisible();
+          await expect(card.locator(`[data-player-light-cone-rank="${rank}"]`)).toBeVisible();
+          await expect(card.locator('[data-player-light-cone-artwork] img')).toHaveAttribute(
+            'src',
+            `/generated-assets/light-cones/portrait/${lightConeId}.webp`
+          );
+          const growth = projected.baseStats.stages[promotion];
+          for (const key of ['hp', 'attack', 'defence'] as const) {
+            const value = growth[key].base + growth[key].perLevel * (level - 1);
+            const expected = Math.round(Number(value.toFixed(6))).toLocaleString(locale);
+            await expect(card.locator(`[data-base-stat="${key}"] dd`)).toHaveText(expected);
+          }
+          const rankTokens = projected.passive.superimposition.levels.find(
+            ({ level }) => level === rank
+          )!.descriptionTokens;
+          const description = card.locator('.levelled-description');
+          await expect(description).not.toBeEmpty();
+          await expect(description.locator('.scaling-value')).toHaveText(
+            rankTokens.filter((token) => token.type === 'scaling-value').map((token) => token.value)
+          );
+        } else {
+          await expect(card).toHaveAttribute('data-player-light-cone', 'empty');
+          await expect(card.getByRole('link')).toHaveCount(0);
+        }
         const score = character.relicScore!;
         if (score.build.status === 'available') {
           await expect(summary.locator('[data-player-build-score]')).toHaveText(

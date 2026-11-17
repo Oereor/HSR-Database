@@ -881,6 +881,8 @@
   {#if activePlayerCharacter}
     <PlayerEquipmentSection
       character={activePlayerCharacter}
+      characterPath={detail.path}
+      locale={$page.data.locale}
       recommendation={equipmentRecommendation}
       {relicProperties}
     />

@@ -1,6 +1,13 @@
 import type { EquipmentRecommendationView } from '../domain/equipment-recommendation-view.js';
-import type { CatalogEntry, RelicProperty, RelicSet, RelicSlot } from '../domain/types.js';
+import type {
+  CatalogEntry,
+  LightCone,
+  RelicProperty,
+  RelicSet,
+  RelicSlot
+} from '../domain/types.js';
 import type { SearchLocale } from '../domain/search-index.js';
+import { getBaseStatsAtPromotion } from '../domain/stats.js';
 import type {
   PlayerLightCone,
   PlayerRelic,
@@ -14,6 +21,12 @@ export interface PlayerEquipmentLightConeMetadata {
   rarity?: number;
   path?: string;
   pathName?: string;
+}
+
+export interface PlayerLightConeDetails extends Pick<LightCone, 'id' | 'baseStats' | 'passive'> {
+  schemaVersion: 1;
+  locale: SearchLocale;
+  pathMismatchWarning?: string;
 }
 
 export interface PlayerEquipmentRelicSetMetadata {
@@ -150,6 +163,26 @@ export function resolvePlayerLightCone(
   return {
     equipment: lightCone,
     ...(lightCone ? { metadata: catalog.lightCones.get(lightCone.lightConeId) } : {})
+  };
+}
+
+export function resolvePlayerLightConeDetails(
+  view: PlayerLightConeView,
+  characterPath: string | undefined,
+  details: PlayerLightConeDetails | undefined
+) {
+  const { equipment, metadata } = view;
+  if (!equipment || !metadata || details?.id !== equipment.lightConeId) return undefined;
+  return {
+    stats: getBaseStatsAtPromotion(details.baseStats, equipment.level, equipment.promotion),
+    effectName: details.passive.name,
+    effectTokens: details.passive.superimposition.levels.find(
+      ({ level }) => level === equipment.rank
+    )?.descriptionTokens,
+    pathMismatchWarning:
+      characterPath && metadata.path && characterPath !== metadata.path
+        ? details.pathMismatchWarning
+        : undefined
   };
 }
 

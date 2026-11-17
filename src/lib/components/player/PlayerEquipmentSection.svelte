@@ -7,7 +7,10 @@
   import { getLocale } from '$lib/paraglide/runtime.js';
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerCharacter } from '$lib/player/contract';
-  import { loadPlayerEquipmentCatalog } from '$lib/player/equipment-client';
+  import {
+    loadPlayerEquipmentCatalog,
+    loadPlayerLightConeDetails
+  } from '$lib/player/equipment-client';
   import {
     createPlayerEquipmentCatalogIndex,
     resolvePlayerLightCone,
@@ -22,15 +25,20 @@
   export let recommendation: EquipmentRecommendationView | undefined = undefined;
   export let relicProperties: RelicProperty[] = [];
   export let catalog: PlayerEquipmentCatalog | null | undefined = undefined;
+  export let locale: SearchLocale = getLocale();
+  export let characterPath: string | undefined = undefined;
 
-  let loadedCatalog: PlayerEquipmentCatalog | null | undefined;
-  $: effectiveCatalog = catalog === undefined ? loadedCatalog : catalog;
+  let mounted = false;
+  let catalogVersion = 0;
+  let loadedCatalog: { locale: SearchLocale; value: PlayerEquipmentCatalog | null } | undefined;
+  $: effectiveCatalog =
+    catalog === undefined && loadedCatalog?.locale === locale ? loadedCatalog.value : catalog;
   $: catalogIndex = effectiveCatalog
     ? createPlayerEquipmentCatalogIndex(effectiveCatalog)
     : effectiveCatalog === null
       ? createPlayerEquipmentCatalogIndex({
           schemaVersion: 1,
-          locale: getLocale() as SearchLocale,
+          locale,
           lightCones: [],
           relicSets: []
         })
@@ -38,17 +46,36 @@
   $: lightCone = catalogIndex
     ? resolvePlayerLightCone(character.lightCone, catalogIndex)
     : undefined;
+  $: lightConeId = lightCone?.metadata?.id;
+  $: lightConeDetails =
+    mounted && lightConeId ? loadPlayerLightConeDetails(locale, lightConeId) : undefined;
   $: relicSlots = catalogIndex
     ? resolvePlayerRelicSlots(character.relics, catalogIndex, relicProperties, recommendation)
     : [];
 
-  onMount(() => {
-    if (catalog !== undefined) return;
-    const locale = getLocale() as SearchLocale;
+  function requestCatalog(
+    locale: SearchLocale,
+    provided: PlayerEquipmentCatalog | null | undefined
+  ) {
+    const version = ++catalogVersion;
+    if (provided !== undefined) return;
     void loadPlayerEquipmentCatalog(locale).then(
-      (value) => (loadedCatalog = value),
-      () => (loadedCatalog = null)
+      (value) => {
+        if (version === catalogVersion) loadedCatalog = { locale, value };
+      },
+      () => {
+        if (version === catalogVersion) loadedCatalog = { locale, value: null };
+      }
     );
+  }
+
+  $: if (mounted) requestCatalog(locale, catalog);
+
+  onMount(() => {
+    mounted = true;
+    return () => {
+      catalogVersion++;
+    };
   });
 </script>
 
@@ -60,7 +87,7 @@
   {:else}
     <div class="grid min-w-0 gap-4">
       <SectionHeading level={2}>{m.player_equipment_light_cone()}</SectionHeading>
-      <PlayerLightConeCard view={lightCone!} />
+      <PlayerLightConeCard view={lightCone!} {locale} {characterPath} details={lightConeDetails} />
     </div>
 
     <div class="mt-3 grid min-w-0 gap-4">

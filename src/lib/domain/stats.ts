@@ -16,6 +16,23 @@ export function getBaseStatsAtLevel(
     Math.max(progression.minLevel, Math.round(requestedLevel))
   );
   const stage = progression.stages[getPromotionAtLevel(progression, level)];
+  return calculateStage(stage, level);
+}
+
+export function getBaseStatsAtPromotion(
+  progression: BaseStatProgression,
+  level: number,
+  promotion: number
+): BaseStats | undefined {
+  const stage = progression.stages[promotion];
+  // The next promotion is unlocked at the previous stage's cap, before leveling again.
+  const minLevel = progression.stages[promotion - 1]?.toLevel ?? progression.minLevel;
+  if (!stage || !Number.isInteger(level) || level < minLevel || level > stage.toLevel)
+    return undefined;
+  return calculateStage(stage, level);
+}
+
+function calculateStage(stage: PromotionStage, level: number): BaseStats {
   return {
     hp: calculate(stage, 'hp', level),
     attack: calculate(stage, 'attack', level),
