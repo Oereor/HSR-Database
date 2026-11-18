@@ -35,10 +35,6 @@
   {/if}
   <SectionHeading level={1}>
     {legacyEquipmentView ? m.detail_equipment_recommendation() : m.detail_build_guide()}
-    <svelte:fragment slot="meta"
-      >{#if recommendation}<span aria-hidden="true">ⓘ</span>
-        {m.equipment_source_note()}{/if}</svelte:fragment
-    >
   </SectionHeading>
 
   {#if teamRecommendations && gender && !legacyEquipmentView}

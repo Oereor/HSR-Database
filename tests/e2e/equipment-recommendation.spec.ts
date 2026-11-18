@@ -98,8 +98,9 @@ for (const [prefix, male] of [
   ['', '穹'],
   ['/en', 'Caelus']
 ] as const) {
-  test(`Build Guide shows official ordered teams and grouped alternate links (${prefix || 'zh-CN'})`, async ({
-    page
+  test(`Build Guide shows ordered direct alternatives with exclusive popovers (${prefix || 'zh-CN'})`, async ({
+    page,
+    isMobile
   }) => {
     const data = JSON.parse(
       readFileSync('src/lib/generated/runtime/character-team-recommendations.json', 'utf8')
@@ -109,6 +110,7 @@ for (const [prefix, male] of [
     const teams = data.teamsByAvatar[sourceId];
     await page.goto(`${prefix}/characters/${femaleId}/#build-guide`);
     const cards = page.locator('#build-guide [data-team-id]');
+    await expect(cards).toHaveCount(teams.length);
     expect(
       await cards.evaluateAll((elements) =>
         elements.map((element) => Number(element.getAttribute('data-team-id')))
@@ -133,24 +135,77 @@ for (const [prefix, male] of [
       `${prefix}/characters/${femaleId}/`
     );
 
-    const slotWithGroups = teams[0].slots.findIndex(
-      ({ backupGroupIds }) => backupGroupIds.length > 1
+    const groupOnlySlot = teams[0].slots.findIndex(
+      ({ backupGroupIds, backupAvatarIds }) => backupGroupIds.length && !backupAvatarIds.length
     );
-    await first
-      .locator(`[data-team-slot="${slotWithGroups + 1}"] [data-team-backups-trigger]`)
-      .click();
-    const popover = page.locator('[data-slot="popover-content"]');
-    await expect(popover).toBeVisible();
-    const groups = popover.locator('[data-team-backup-group]');
-    await expect(groups).toHaveCount(teams[0].slots[slotWithGroups].backupGroupIds.length);
-    expect(
-      await groups.evaluateAll((elements) =>
-        elements.map((element) => element.getAttribute('data-team-backup-group'))
+    const triggerAt = (teamIndex: number, slotIndex: number) =>
+      cards
+        .nth(teamIndex)
+        .locator(`[data-team-slot="${slotIndex + 1}"] [data-team-backups-trigger]`);
+    await expect(triggerAt(0, groupOnlySlot)).toHaveCount(0);
+
+    const directSlots = teams[0].slots.flatMap(({ backupAvatarIds }, index) =>
+      backupAvatarIds.length ? [index] : []
+    );
+    const firstTrigger = triggerAt(0, directSlots[0]);
+    const nextTrigger = triggerAt(0, directSlots[1]);
+    const otherTeamTrigger = triggerAt(
+      1,
+      teams[1].slots.findIndex(({ backupAvatarIds }) => backupAvatarIds.length)
+    );
+    const popover = page.locator('[data-slot="popover-content"][data-state="open"]');
+    await firstTrigger.click();
+    await expect(popover).toBeFocused();
+    await expect(popover.getByRole('heading')).toHaveCount(0);
+    await expect(page.getByRole('tooltip')).toHaveCount(0);
+    const expectedBackups = [
+      ...new Set(
+        teams[0].slots[directSlots[0]].backupAvatarIds.map((id) =>
+          withTrailblazerGender(id, 'female')
+        )
       )
-    ).toEqual(teams[0].slots[slotWithGroups].backupGroupIds);
-    for (const id of starters)
-      await expect(popover.locator(`[data-team-avatar="${id}"]`)).toHaveCount(0);
-    const backup = groups.first().locator('a').first();
+    ].filter((id) => !starters.includes(id));
+    const links = popover.getByRole('link');
+    expect(
+      await links.evaluateAll((elements) =>
+        elements.map((element) => element.getAttribute('data-team-avatar'))
+      )
+    ).toEqual(expectedBackups);
+    if (!isMobile) {
+      await popover.evaluate(async (panel) => {
+        await Promise.allSettled(panel.getAnimations().map((animation) => animation.finished));
+      });
+      await links.first().hover();
+      await expect(page.getByRole('tooltip')).toBeVisible();
+      await page.locator('#build-guide-teams').hover();
+      await expect(page.getByRole('tooltip')).toHaveCount(0);
+    }
+    await page.keyboard.press('Tab');
+    await expect(links.first()).toBeFocused();
+    await expect(page.getByRole('tooltip')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(popover).toHaveCount(0);
+    await expect(firstTrigger).toBeFocused();
+
+    await firstTrigger.click();
+    await nextTrigger.click();
+    await expect(firstTrigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(nextTrigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(popover).toHaveCount(1);
+    await otherTeamTrigger.click();
+    await expect(nextTrigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(otherTeamTrigger).toHaveAttribute('aria-expanded', 'true');
+    await expect(popover).toHaveCount(1);
+    await expect(popover).toBeFocused();
+    await otherTeamTrigger.click();
+    await expect(popover).toHaveCount(0);
+    await expect(otherTeamTrigger).toBeFocused();
+
+    await firstTrigger.click();
+    await page.locator('#build-guide-teams').click();
+    await expect(popover).toHaveCount(0);
+    await firstTrigger.click();
+    const backup = popover.getByRole('link').first();
     const href = (await backup.getAttribute('href'))!;
     await backup.click();
     await expect(page).toHaveURL(href);

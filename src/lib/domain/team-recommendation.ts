@@ -29,8 +29,11 @@ export interface CharacterTeamRecommendations {
 }
 
 export interface TeamRecommendationPageData {
-  teams: CharacterTeamRecommendation[];
-  groups: CharacterTeamRecommendations['groups'];
+  teams: Array<
+    Omit<CharacterTeamRecommendation, 'slots'> & {
+      slots: Omit<TeamRecommendationSlot, 'backupGroupIds'>[];
+    }
+  >;
   characters: TeamCharacterReference[];
 }
 
@@ -52,22 +55,19 @@ export function teamRecommendationPageData(
   const teams = data.teamsByAvatar[avatarId] ?? data.teamsByAvatar[counterpart];
   if (!teams?.length) return;
 
-  const groups: CharacterTeamRecommendations['groups'] = {};
   const ids = new Set<string>();
   const addAvatar = (id: string) => {
     ids.add(withTrailblazerGender(id, 'female'));
     ids.add(withTrailblazerGender(id, 'male'));
   };
-  for (const team of teams) {
-    for (const slot of team.slots) {
-      addAvatar(slot.avatarId);
-      slot.backupAvatarIds.forEach(addAvatar);
-      for (const groupId of slot.backupGroupIds) {
-        groups[groupId] = data.groups[groupId];
-        groups[groupId].forEach(addAvatar);
-      }
-    }
-  }
+  const pageTeams = teams.map((team) => ({
+    ...team,
+    slots: team.slots.map(({ avatarId, backupAvatarIds }) => {
+      addAvatar(avatarId);
+      backupAvatarIds.forEach(addAvatar);
+      return { avatarId, backupAvatarIds };
+    })
+  }));
   const characters = catalog
     .filter(({ id }) => ids.has(id))
     .map((entry) => {
@@ -79,7 +79,7 @@ export function teamRecommendationPageData(
         ...(gender && name && name !== entry.name ? { trailblazerName: { [gender]: name } } : {})
       };
     });
-  return { teams, groups, characters };
+  return { teams: pageTeams, characters };
 }
 
 export function presentTeamRecommendations(
@@ -113,11 +113,7 @@ export function presentTeamRecommendations(
       position: team.position,
       slots: team.slots.map((slot) => ({
         avatar: display(slot.avatarId),
-        backups: backups(slot.backupAvatarIds),
-        groups: slot.backupGroupIds.flatMap((id, index) => {
-          const avatars = backups(data.groups[id]);
-          return avatars.length ? [{ id, ordinal: index + 1, avatars }] : [];
-        })
+        backups: backups(slot.backupAvatarIds)
       }))
     };
   });

@@ -12,7 +12,7 @@ const row = {
   TeamID: 2,
   Position: 3,
   MemberList: [10, 11, 12],
-  BackupList1: [8008, 14, 14, 11],
+  BackupList1: [8008, 16, 14, 14, 11],
   BackupList2: [16],
   BackupList3: [],
   BackupGroupList1: [501, 500],
@@ -38,15 +38,22 @@ it('uses stable source ownership, ordered teams and slot-relative backups', () =
   expect(page.teams[0].slots.map(({ avatarId }) => avatarId)).toEqual(['10', '11', '8007', '12']);
   expect(page.teams[0].slots[1].backupAvatarIds).toEqual(['16']);
   expect(page.teams[0].slots[2].backupAvatarIds).toEqual([]);
+  expect(page).not.toHaveProperty('groups');
+  expect(page.teams[0].slots[0]).not.toHaveProperty('backupGroupIds');
+  expect(page.characters.map(({ id }) => id)).toEqual([
+    '10',
+    '11',
+    '12',
+    '14',
+    '16',
+    '8007',
+    '8008'
+  ]);
 
   const [female] = presentTeamRecommendations(page, 'female');
   expect(female.slots[2].avatar).toEqual({ id: '8008', name: 'Stelle' });
   const firstSlot = female.slots[0];
-  expect(firstSlot.backups.map(({ id }) => id)).toEqual(['14']);
-  expect(firstSlot.groups.map(({ id, avatars }) => [id, avatars.map(({ id }) => id)])).toEqual([
-    ['501', ['13', '14']],
-    ['500', ['13', '15']]
-  ]);
+  expect(firstSlot.backups.map(({ id }) => id)).toEqual(['16', '14']);
   expect(presentTeamRecommendations(page, 'male')[0].slots[2].avatar.id).toBe('8007');
   expect(data.groups['501']).toEqual(['8007', '8008', '13', '13', '14']);
 

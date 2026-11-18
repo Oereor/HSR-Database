@@ -52,7 +52,7 @@ The verified Aha E2 series_ref_skill_desc macro becomes a structured Description
 
 Manifest schema 70 includes the locale-neutral schema 1 `runtime/character-team-recommendations.json` artifact. `TeamBuildConfig` owns team IDs, positions, primary members and backup references. `TeamBuildGroupConfig` supplies ordered candidate IDs through a single shared group index. Sync verifies the published avatar and group references before replacing artifacts. Full validation rebuilds the team data from the locked tables and compares it with the artifact.
 
-Both locales use the same team structure and resolve avatar labels from their own character catalogs. Trailblazer pages prefer their own official records and use their same-Path counterpart's records when needed. The client applies the selected gender before filtering starter IDs and duplicate alternatives within each backup list or group. The Build Guide sets `#build-guide` as the section anchor and accepts `#equipment-recommendation` as an alias. Player equipment continues to use its actual build context.
+Both locales use the same team structure and resolve avatar labels from their own character catalogs. Trailblazer pages prefer their own official records and use their same-Path counterpart's records when needed. Character pages send direct backup lists and the catalog entries they reference. The client applies the selected gender before removing starter IDs and duplicate alternatives from each list. Group references remain in the generated artifact. The Build Guide sets `#build-guide` as the section anchor and accepts `#equipment-recommendation` as an alias. Player equipment continues to use its actual build context.
 
 ## Ownership rules
 
