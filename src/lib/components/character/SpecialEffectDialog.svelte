@@ -15,6 +15,8 @@
   export let entries: CharacterSpecialEffectEntry[] = [];
   export let targets: CatalogEntry[] = [];
   export let ownerCharacterId: string;
+  export let trailblazerPreference:
+    import('$lib/domain/trailblazer').TrailblazerGender | undefined = undefined;
   export let locale: Locale;
   export let selectedLevel: number;
   export let mode: 'skill' | 'series' = 'skill';
@@ -80,7 +82,12 @@
               compactHeading
             >
               <svelte:fragment slot="prefix"
-                ><SpecialEffectRelation {entry} {targets} {ownerCharacterId} /></svelte:fragment
+                ><SpecialEffectRelation
+                  {entry}
+                  {targets}
+                  {ownerCharacterId}
+                  {trailblazerPreference}
+                /></svelte:fragment
               >
             </SkillVariantView>
           {/each}

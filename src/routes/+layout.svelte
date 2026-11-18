@@ -18,6 +18,8 @@
   import { resolveBreadcrumbs, type BreadcrumbData } from '$lib/breadcrumbs';
   import { onMount } from 'svelte';
   import { dev } from '$app/environment';
+  import { provideTrailblazerPreference } from '$lib/client/trailblazer-preference';
+  import { staticTrailblazerText, trailblazerGender } from '$lib/domain/trailblazer';
 
   if (!dev) injectAnalytics();
 
@@ -25,17 +27,31 @@
   const faviconUrl = getBrandIconUrl('train-party');
   let changelogModal: ChangelogModal;
   let appReady = false;
-  onMount(() => (appReady = true));
+  const preference = provideTrailblazerPreference();
+  const trailblazer = preference.state;
+  onMount(() => {
+    preference.mount();
+    appReady = true;
+  });
   // eslint-disable-next-line svelte/no-immutable-reactive-statements
   $: name = siteName();
   $: canonicalPath = trailingSlashHref($page.url.pathname);
   $: chinesePath = localeCounterpartHref(canonicalPath, 'zh-CN');
   $: englishPath = localeCounterpartHref(canonicalPath, 'en');
+  $: breadcrumbData = $page.data as BreadcrumbData;
+  $: breadcrumbDetail =
+    breadcrumbData.detail &&
+    (appReady && ($page.url.searchParams.has('uid') || $page.url.searchParams.has('build'))
+      ? breadcrumbData.detail
+      : staticTrailblazerText(
+          breadcrumbData.detail,
+          trailblazerGender(breadcrumbData.detail.id) ?? $trailblazer.gender
+        ));
   $: breadcrumbs = resolveBreadcrumbs({
     routeId: $page.route.id,
     params: $page.params,
     locale: data.locale,
-    data: $page.data as BreadcrumbData,
+    data: { ...breadcrumbData, detail: breadcrumbDetail },
     status: $page.status
   });
   $: pageNavHeight =

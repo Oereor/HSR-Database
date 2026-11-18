@@ -1,5 +1,6 @@
 import type { EndgameSearchTargetEntry, GlobalSearchIndex } from '../domain/search-index.js';
 import type { CatalogEntry, EnemyCatalogEntry, RelicCatalogEntry } from '../domain/types.js';
+import { staticTrailblazerText, trailblazerGender } from '../domain/trailblazer.js';
 import {
   normalizeSearchDocument,
   SEARCH_DOCUMENT_SCHEMA_VERSION,
@@ -48,7 +49,11 @@ const emptyResults = (): GlobalSearchResults => ({
   endgame: emptyEndgameSearchResults()
 });
 
-function createSearchMatcher(index: GlobalSearchIndex, kind?: SearchTarget['kind']) {
+function createSearchMatcher(
+  index: GlobalSearchIndex,
+  kind?: SearchTarget['kind'],
+  characterDisplayNames?: ReadonlyMap<string, string>
+) {
   const documents = new Map<string, NormalizedSearchDocument>();
   const targetsById = new Map<string, NormalizedSearchDocument[]>();
   let engine: ReturnType<typeof createFlexSearchAdapter> | undefined;
@@ -62,7 +67,11 @@ function createSearchMatcher(index: GlobalSearchIndex, kind?: SearchTarget['kind
     for (const doc of index.documents) {
       if (kind && doc.target.kind !== kind) continue;
       if (documents.has(doc.key)) throw new Error(`重复搜索 key：${doc.key}`);
-      const normalized = normalizeSearchDocument(doc);
+      const displayName =
+        doc.target.kind === 'character' ? characterDisplayNames?.get(doc.target.id) : undefined;
+      const normalized = normalizeSearchDocument(
+        displayName ? { ...doc, officialAliases: [...doc.officialAliases, displayName] } : doc
+      );
       documents.set(doc.key, normalized);
       const exactTargets = targetsById.get(doc.target.id) ?? [];
       exactTargets.push(normalized);
@@ -119,7 +128,14 @@ export function createGlobalSearchService(
     enemy: new Map(catalogs.enemies.map((entry) => [entry.id, entry]))
   };
   const endgame = new Map(index.endgameTargets.map((entry) => [entry.id, entry]));
-  const matchSearch = createSearchMatcher(index);
+  const displayNames = new Map<string, string>();
+  for (const entry of catalogs.characters) {
+    const gender = trailblazerGender(entry.id);
+    if (!gender) continue;
+    const display = staticTrailblazerText(entry, gender);
+    if (display.name !== entry.name) displayNames.set(entry.id, display.name);
+  }
+  const matchSearch = createSearchMatcher(index, undefined, displayNames);
   const reportedMissing = new Set<string>();
   function search(query: string): GlobalSearchSnapshot {
     const { matches, unavailable } = matchSearch(query);

@@ -1,4 +1,9 @@
 import type { CatalogEntry, CharacterSpecialEffectEntry, DescriptionToken } from './types.js';
+import {
+  staticTrailblazerText,
+  withTrailblazerGender,
+  type TrailblazerGender
+} from './trailblazer.js';
 
 export type DescriptionPresentationSegment =
   | { kind: 'text'; tokens: DescriptionToken[] }
@@ -46,45 +51,31 @@ export function segmentSpecialEffectTriggers(
   return segments;
 }
 
-/** Product-specific identities used only inside Character Special Effect relation metadata. */
 export function resolveSpecialEffectLinkedAvatarPresentation(input: {
   ownerCharacterId: string;
   entryKind: CharacterSpecialEffectEntry['kind'];
   sourceAvatarId: string;
-  sourceTarget?: CatalogEntry;
+  targets: ReadonlyMap<string, CatalogEntry>;
+  trailblazerPreference?: TrailblazerGender;
 }): SpecialEffectLinkedAvatarPresentation {
-  const { ownerCharacterId, entryKind, sourceAvatarId, sourceTarget } = input;
-
-  if (
-    ownerCharacterId === '1415' &&
-    entryKind === 'servant-skill-link' &&
-    sourceAvatarId === '8007'
-  )
-    return {
-      sourceAvatarId,
-      displayAvatarId: '8008',
-      displayName: requireName(sourceTarget, false)
-    };
-
-  if (ownerCharacterId === '1510' && entryKind === 'avatar-skill-link') {
-    if (sourceAvatarId === '8001')
-      return {
-        sourceAvatarId,
-        displayAvatarId: '8002',
-        displayName: requireName(sourceTarget, false)
-      };
-    if (sourceAvatarId === '1001' || sourceAvatarId === '1224')
-      return {
-        sourceAvatarId,
-        displayAvatarId: sourceAvatarId,
-        displayName: requireName(sourceTarget, true)
-      };
-  }
-
+  const { ownerCharacterId, entryKind, sourceAvatarId, targets, trailblazerPreference } = input;
+  const displayAvatarId = trailblazerPreference
+    ? withTrailblazerGender(sourceAvatarId, trailblazerPreference)
+    : sourceAvatarId;
+  const target = targets.get(displayAvatarId);
+  const useBaseName =
+    ownerCharacterId === '1510' &&
+    entryKind === 'avatar-skill-link' &&
+    (sourceAvatarId === '1001' || sourceAvatarId === '1224');
   return {
     sourceAvatarId,
-    displayAvatarId: sourceAvatarId,
-    displayName: requireName(sourceTarget, false)
+    displayAvatarId,
+    displayName: requireName(
+      target && trailblazerPreference
+        ? staticTrailblazerText(target, trailblazerPreference)
+        : target,
+      useBaseName
+    )
   };
 }
 

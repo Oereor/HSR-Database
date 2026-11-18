@@ -13,6 +13,10 @@ import type {
 import { parseTextHash } from '../../src/lib/domain/types.js';
 import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import {
+  catalogTrailblazerText,
+  projectWithTrailblazerText
+} from './projection/trailblazer-text.js';
+import {
   createTextResolver,
   loadTextMap,
   runtimeTextSourceFromRef,
@@ -705,6 +709,9 @@ export async function syncData(): Promise<DataManifest> {
 
   const projectLocale = async (runtime: (typeof localeRuntimes)[number]) => {
     const config: LocaleConfig = runtime.config;
+    const variantResolver = await createTextResolver(config, runtime.textMap);
+    const withVariants = <T extends object>(project: (resolver: typeof runtime.text) => T) =>
+      projectWithTrailblazerText(runtime.text, variantResolver, project);
     const siteMessages = siteMessageCatalogs[config.siteMessageLocale];
     const projectionPolicy = getLocaleProjectionPolicy(config.locale);
     const relicProperties: RelicProperty[] = relicPropertyDefinitions.map(
@@ -719,7 +726,7 @@ export async function syncData(): Promise<DataManifest> {
       })
     );
     const lightCones = lightConeDomains.map((domain) =>
-      projectLightCone(domain, { locale: config.locale, resolver: runtime.text })
+      withVariants((resolver) => projectLightCone(domain, { locale: config.locale, resolver }))
     );
     const lightConeCatalog: CatalogEntry[] = lightCones.map((lightCone) => {
       const catalog: Partial<typeof lightCone> = { ...lightCone };
@@ -727,21 +734,27 @@ export async function syncData(): Promise<DataManifest> {
       delete catalog.story;
       delete catalog.passive;
       delete catalog.baseStats;
-      return catalog as CatalogEntry;
+      delete catalog.trailblazerText;
+      return {
+        ...(catalog as CatalogEntry),
+        ...catalogTrailblazerText(lightCone, Object.keys(catalog))
+      };
     });
     const relics = relicDomains.map((domain) =>
-      projectRelic(domain, {
-        locale: config.locale,
-        resolver: runtime.text,
-        categoryLabels: {
-          cavern: siteMessages.relic_category_cavern,
-          planar: siteMessages.relic_category_planar
-        },
-        formatEffectSummary: (required, description) =>
-          siteMessages.relic_effect_summary
-            .replace('{required}', String(required))
-            .replace('{description}', description)
-      })
+      withVariants((resolver) =>
+        projectRelic(domain, {
+          locale: config.locale,
+          resolver,
+          categoryLabels: {
+            cavern: siteMessages.relic_category_cavern,
+            planar: siteMessages.relic_category_planar
+          },
+          formatEffectSummary: (required, description) =>
+            siteMessages.relic_effect_summary
+              .replace('{required}', String(required))
+              .replace('{description}', description)
+        })
+      )
     );
     const relicCatalog: RelicCatalogEntry[] = relics.map((relic) => {
       const catalog: Partial<typeof relic> = { ...relic };
@@ -749,22 +762,29 @@ export async function syncData(): Promise<DataManifest> {
       delete catalog.effects;
       delete catalog.pieces;
       delete catalog.sources;
-      return catalog as RelicCatalogEntry;
+      delete catalog.trailblazerText;
+      return {
+        ...(catalog as RelicCatalogEntry),
+        ...catalogTrailblazerText(relic, Object.keys(catalog))
+      };
     });
+    const charactersById = new Map(characterDomains.map((character) => [character.id, character]));
     const characters: Character[] = characterDomains.map((domain) =>
-      projectCharacter(domain, {
-        charactersById: new Map(characterDomains.map((character) => [character.id, character])),
-        locale: config.locale,
-        resolver: runtime.text,
-        extraEffectsById,
-        skillCategoryLabels: projectionPolicy.skillCategoryLabels,
-        skillEffectLabels: projectionPolicy.skillEffectLabels,
-        composePathName: projectionPolicy.composeCharacterPathName,
-        normalizeBaseName: projectionPolicy.normalizeCharacterBaseName
-      })
+      withVariants((resolver) =>
+        projectCharacter(domain, {
+          charactersById,
+          locale: config.locale,
+          resolver,
+          extraEffectsById,
+          skillCategoryLabels: projectionPolicy.skillCategoryLabels,
+          skillEffectLabels: projectionPolicy.skillEffectLabels,
+          composePathName: projectionPolicy.composeCharacterPathName,
+          normalizeBaseName: projectionPolicy.normalizeCharacterBaseName
+        })
+      )
     );
     const characterCatalog: CatalogEntry[] = characters.map(
-      ({ id, name, baseName, description, rarity, path, pathName, element, elementName }) => ({
+      ({
         id,
         name,
         baseName,
@@ -773,7 +793,25 @@ export async function syncData(): Promise<DataManifest> {
         path,
         pathName,
         element,
-        elementName
+        elementName,
+        trailblazerText
+      }) => ({
+        id,
+        name,
+        baseName,
+        description,
+        rarity,
+        path,
+        pathName,
+        element,
+        elementName,
+        ...catalogTrailblazerText({ trailblazerText }, [
+          'name',
+          'baseName',
+          'description',
+          'pathName',
+          'elementName'
+        ])
       })
     );
     const characterNames = await deriveCharacterNames(root, commit, runtime.text);
@@ -870,7 +908,12 @@ export async function syncData(): Promise<DataManifest> {
       config,
       runtime,
       materials: projectMaterials(training.materials, config.locale, runtime.text),
-      materialDetails: projectMaterialDetails(training.materials, config.locale, runtime.text),
+      materialDetails: projectMaterialDetails(
+        training.materials,
+        config.locale,
+        runtime.text,
+        variantResolver
+      ),
       catalogs: {
         characters: characterCatalog,
         'light-cones': lightConeCatalog,

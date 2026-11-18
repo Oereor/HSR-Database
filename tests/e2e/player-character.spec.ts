@@ -117,6 +117,23 @@ const heroStats = [
   { field: 'unknown_stat', percent: false, total: '42' }
 ];
 
+test('player Trailblazer retains actual avatar, build and progression over the static preference', async ({
+  page
+}) => {
+  const uid = '100000001';
+  const profile = playerProfile(uid);
+  const character = profile.characters[0];
+  character.characterId = '8001';
+  character.skillTree = [];
+  await page.route('**/api/player/**', (route) => route.fulfill({ json: profile }));
+  const location = `/characters/8001/?uid=${uid}&build=${encodeURIComponent(character.buildId)}#equipment`;
+  await page.goto(location);
+  await expect(page.locator('.player-context-notice')).toContainText(uid);
+  await expect(page.locator('[data-character-portrait="8001"]')).toBeVisible();
+  await expect(page.locator('#equipment')).toBeVisible();
+  await expect(page).toHaveURL(location);
+});
+
 const heroProfile = (uid: string, stats = heroStats) => {
   const profile = playerProfile(uid);
   profile.characters[0].stats = stats;

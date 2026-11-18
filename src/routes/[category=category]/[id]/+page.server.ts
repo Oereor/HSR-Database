@@ -10,6 +10,7 @@ import { getEnemyDetail } from '$lib/server/enemies';
 import { resolveEquipmentRecommendation } from '$lib/domain/equipment-recommendation-view';
 import type { Character, CharacterSpecialEffectEntry } from '$lib/domain/types';
 import { error } from '@sveltejs/kit';
+import { withTrailblazerGender } from '$lib/domain/trailblazer';
 
 export const prerender = true;
 export async function entries() {
@@ -85,5 +86,9 @@ async function resolveSpecialEffectTargets(
     }
   }
   if (!ids.size) return [];
+  for (const id of [...ids]) {
+    ids.add(withTrailblazerGender(id, 'female'));
+    ids.add(withTrailblazerGender(id, 'male'));
+  }
   return (await getCatalog(locale, 'characters')).filter((entry) => ids.has(entry.id));
 }

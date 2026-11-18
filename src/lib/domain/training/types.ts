@@ -1,4 +1,5 @@
 import type { CharacterDetailIconKey } from '../character-detail-icons.js';
+import type { WithTrailblazerText } from '../trailblazer.js';
 
 export type ItemId = string;
 export type Cost = Record<ItemId, number>;
@@ -80,7 +81,7 @@ export interface MaterialCatalog {
   materials: MaterialView[];
 }
 
-export interface MaterialDetail {
+export interface MaterialDetail extends WithTrailblazerText {
   id: ItemId;
   description?: string;
   backgroundDescription?: string;

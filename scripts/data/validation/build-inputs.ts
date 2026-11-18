@@ -58,6 +58,7 @@ import {
   type PreparedSourceMetadata
 } from '../source-metadata.js';
 import { buildGeneratedRouteInventory } from '../routes.js';
+import { assertTrailblazerTextVariants } from '../projection/trailblazer-text.js';
 
 const ROUTE_CATEGORIES = ['characters', 'light-cones', 'relics', 'enemies'] as const;
 type RouteCategory = (typeof ROUTE_CATEGORIES)[number];
@@ -92,6 +93,7 @@ function assertNoSourceMacros(value: unknown, location: string): void {
   } else if (Array.isArray(value)) {
     value.forEach((item, index) => assertNoSourceMacros(item, `${location}[${index}]`));
   } else if (isRecord(value)) {
+    assertTrailblazerTextVariants(value, location);
     for (const [key, item] of Object.entries(value))
       assertNoSourceMacros(item, `${location}.${key}`);
   }

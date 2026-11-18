@@ -31,6 +31,8 @@ export type RuntimeTextSource =
 export interface TextProjectionContext {
   gender?: 'female' | 'male';
   nickname?: string;
+  /** Static presentation context takes precedence over the owning entity's gender. */
+  trailblazerGender?: 'female' | 'male';
   provenance?: BuildTextProvenance;
   diagnosticDisposition?: TextDiagnosticDisposition;
 }
@@ -130,11 +132,13 @@ export interface TextResolverConfig {
 export interface TextResolver {
   readonly locale: Locale;
   readonly textMapCode: TextMapCode;
+  readonly trailblazerGender?: TextProjectionContext['trailblazerGender'];
   resolve(source: RuntimeTextSource, context?: TextProjectionContext): LocalizationResult<string>;
   projectGameText(
     source: RuntimeTextSource,
     context?: GameTextProjectionContext
   ): LocalizationResult<GameTextProjection>;
+  usesTrailblazerText(source: RuntimeTextSource): boolean;
   recordAbsent(source: BuildTextProvenance, disposition: TextDiagnosticDisposition): void;
   getDiagnostics(): TextDiagnosticSummary;
   getLocalizationHealth(): LocalizationHealthSummary;
@@ -144,6 +148,7 @@ const MAX_DIAGNOSTIC_SAMPLES = 20;
 const genderBranch = /\{([FM])#((?:[^{}]|\{[^{}]*\})*)\}/g;
 const textIdPattern = /\{TextID#([^{}]*)\}/g;
 const defaultNickname = { 'zh-CN': '开拓者', en: 'Trailblazer' } as const;
+export const trailblazerMacro = /\{(?:[FM]#|NICKNAME\})/u;
 
 /** Load a TextMap using an explicit configured upstream code. */
 export async function loadTextMap(
@@ -191,6 +196,25 @@ export async function createTextResolver(
 ): Promise<TextResolver> {
   const resolverConfig = config;
   const hasher = await xxhash();
+  const sourceHash = (ref: RuntimeTextRef) =>
+    ref.kind === 'hash' ? ref.hash : (ref.hash ?? hasher.h64(ref.key, 0n).toString());
+  const trailblazerSources = new Map<string, boolean>();
+  function usesTrailblazerText(source: RuntimeTextSource, ancestors = new Set<string>()): boolean {
+    const hash = sourceHash(source.ref);
+    const known = trailblazerSources.get(hash);
+    if (known !== undefined) return known;
+    if (ancestors.has(hash)) return false;
+    const value = textMap[hash] ?? '';
+    ancestors.add(hash);
+    const usesContext =
+      trailblazerMacro.test(value) ||
+      [...value.matchAll(textIdPattern)].some(([, key]) =>
+        usesTrailblazerText({ kind: 'direct', ref: { kind: 'symbolic', key } }, ancestors)
+      );
+    ancestors.delete(hash);
+    trailblazerSources.set(hash, usesContext);
+    return usesContext;
+  }
   const diagnostics: TextDiagnosticSummary = {
     'invalid-reference': { count: 0, samples: [], entries: [] },
     'unresolved-hash': { count: 0, samples: [], entries: [] },
@@ -340,10 +364,15 @@ export async function createTextResolver(
         );
       return result;
     }
-    const gender = context.gender === 'male' ? 'M' : 'F';
-    const selected = value.replace(genderBranch, (_macro, branch, text) =>
-      branch === gender ? text : ''
-    );
+    const gender = (context.trailblazerGender ?? context.gender) === 'male' ? 'M' : 'F';
+    let selected = value;
+    let last: string;
+    do {
+      last = selected;
+      selected = selected.replace(genderBranch, (_macro, branch, text) =>
+        branch === gender ? text : ''
+      );
+    } while (selected !== last && /\{[FM]#/.test(selected));
     let unresolvedTextId: string | undefined;
     const expanded = selected.replace(textIdPattern, (_macro, key: string) => {
       const nested = resolveInternal(
@@ -509,6 +538,7 @@ export async function createTextResolver(
     textMapCode: resolverConfig.textMapCode,
     resolve,
     projectGameText,
+    usesTrailblazerText,
     recordAbsent: (source, disposition) => recordHealth('absent', '', source, disposition),
     getDiagnostics: () => structuredClone(diagnostics),
     getLocalizationHealth: () => structuredClone(health)

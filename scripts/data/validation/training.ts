@@ -38,17 +38,16 @@ export async function validateTrainingSemantics(
       compare(`training/light-cones/${data.equipmentId}.json`, data)
     ),
     ...(['zh-CN', 'en'] as const).map(async (locale) => {
-      const resolver = await createTextResolver(
-        { locale, textMapCode: locale === 'en' ? 'EN' : 'CHS' },
-        textMaps[locale]
-      );
+      const config = { locale, textMapCode: locale === 'en' ? 'EN' : 'CHS' } as const;
+      const resolver = await createTextResolver(config, textMaps[locale]);
+      const variants = await createTextResolver(config, textMaps[locale]);
       await compare(
         `${locale}/materials.json`,
         projectMaterials(build.materials, locale, resolver)
       );
       await compare(
         `${locale}/material-details.json`,
-        projectMaterialDetails(build.materials, locale, resolver)
+        projectMaterialDetails(build.materials, locale, resolver, variants)
       );
     })
   ]);

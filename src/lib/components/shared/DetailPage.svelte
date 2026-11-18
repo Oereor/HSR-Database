@@ -56,6 +56,11 @@
   } from '$lib/player/resolve';
   import TrainingSection from '$lib/components/training/TrainingSection.svelte';
   import ItemDetailModal from '$lib/components/training/ItemDetailModal.svelte';
+  import {
+    staticTrailblazerText,
+    withTrailblazerGender,
+    type TrailblazerGender
+  } from '$lib/domain/trailblazer';
   import { createTrainingLoader } from '$lib/data/training';
   import { getLocale } from '$lib/paraglide/runtime.js';
   import {
@@ -93,6 +98,7 @@
   export let singular: string;
   export let specialEffectTargets: CatalogEntry[] = [];
   export let equipmentRecommendation: EquipmentRecommendationView | undefined = undefined;
+  export let trailblazerPreference: TrailblazerGender | undefined = undefined;
   export let relicProperties: RelicProperty[] = [];
   const trainingLoader = createTrainingLoader();
   const traceNoticeId = 'training-trace-notice';
@@ -164,9 +170,23 @@
     (entry: import('$lib/domain/types').CharacterSpecialEffectEntry) =>
       entry.kind !== 'series-skill-link'
   );
-  $: seriesSpecialEffects = specialEffects.filter(
+  $: linkedSeriesEffects = specialEffects.filter(
     (entry: import('$lib/domain/types').CharacterSpecialEffectEntry) =>
-      entry.kind === 'series-skill-link' && entry.linkedAvatarId !== '8009'
+      entry.kind === 'series-skill-link'
+  );
+  $: seriesSpecialEffects = linkedSeriesEffects.filter(
+    (entry: (typeof linkedSeriesEffects)[number]) => {
+      const preferred = withTrailblazerGender(
+        entry.linkedAvatarId,
+        trailblazerPreference ?? 'female'
+      );
+      return (
+        preferred === entry.linkedAvatarId ||
+        !linkedSeriesEffects.some(
+          (candidate: typeof entry) => candidate.linkedAvatarId === preferred
+        )
+      );
+    }
   );
   $: dialogSpecialEffects =
     specialEffectMode === 'series' ? seriesSpecialEffects : ordinarySpecialEffects;
@@ -918,6 +938,7 @@
       targets={specialEffectTargets}
       characterAccent={getElementColor(detail.element)}
       ownerCharacterId={detail.id}
+      {trailblazerPreference}
       locale={getLocale()}
       selectedLevel={specialEffectLevel}
       mode={specialEffectMode}
@@ -947,7 +968,9 @@
 {#if staticTrainingEnabled}
   <ItemDetailModal
     material={selectedMaterial}
-    detail={selectedMaterialDetail}
+    detail={selectedMaterialDetail && trailblazerPreference
+      ? staticTrailblazerText(selectedMaterialDetail, trailblazerPreference)
+      : selectedMaterialDetail}
     locale={getLocale()}
     state={materialDetailState}
     onRequestClose={closeMaterialDetails}

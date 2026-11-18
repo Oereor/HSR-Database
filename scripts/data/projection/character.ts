@@ -14,6 +14,7 @@ import type {
   SkillCategory
 } from '../../../src/lib/domain/types.js';
 import type { TextResolver } from '../localization.js';
+import { isTrailblazer } from '../../../src/lib/domain/trailblazer.js';
 import {
   buildSkillCards,
   buildSkillVariant,
@@ -638,7 +639,10 @@ export function projectCharacterView(
         characterText
       )
     : undefined;
-  const resolvedBaseName = sourceBaseName || rawName;
+  const resolvedBaseName =
+    context.resolver.trailblazerGender && isTrailblazer(domain.id)
+      ? rawName
+      : sourceBaseName || rawName;
   const baseName = isMultiplePath
     ? (context.normalizeBaseName?.(resolvedBaseName) ?? resolvedBaseName)
     : rawName;
@@ -684,6 +688,7 @@ export function projectCharacterView(
       characterText
     ),
     kind: 'character',
+    ...(domain.gender ? { gender: domain.gender } : {}),
     path: domain.pathCode,
     pathName,
     element: normalizeElementType(domain.elementCode),

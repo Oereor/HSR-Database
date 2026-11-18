@@ -26,8 +26,11 @@
   import { getEndgameModeCopy } from '$lib/i18n/endgame';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import type { PageData } from './$types';
+  import { useTrailblazerPreference } from '$lib/client/trailblazer-preference';
+  import { staticCharacterEntries } from '$lib/domain/trailblazer';
 
   export let data: PageData;
+  const trailblazer = useTrailblazerPreference().state;
 
   const searchService = createGlobalSearchService(data.searchIndex, {
     characters: data.characters,
@@ -53,6 +56,7 @@
     aa: 100
   });
   let limits = initialLimits();
+  $: characters = staticCharacterEntries(results.characters, $trailblazer.gender);
   $: endgameModes = ENDGAME_MODES.map((mode) => {
     const seasons = endgameSearchSeasonsForMode(results.endgame, mode);
     return {
@@ -63,7 +67,7 @@
     };
   }).filter(({ total }) => total);
   $: resultCount =
-    results.characters.length +
+    characters.length +
     results.lightCones.length +
     results.relics.length +
     results.enemies.length +
@@ -127,13 +131,13 @@
 
 {#if appliedQuery && (resultCount || endgameUnavailable || searchUnavailable)}
   <div class="search-result-groups grid gap-12" aria-live="polite">
-    {#if results.characters.length}
+    {#if characters.length}
       <section class="search-result-section" aria-labelledby="search-results-characters">
         <SectionHeading level={1} id="search-results-characters"
           >{m.search_results_characters()}</SectionHeading
         >
         <OverviewGrid variant="character">
-          {#each results.characters.slice(0, limits.characters) as result (result.id)}
+          {#each characters.slice(0, limits.characters) as result (result.id)}
             <CharacterOverviewCard
               entry={result}
               href={localizedHref(`/characters/${result.id}`)}
@@ -144,7 +148,7 @@
         </OverviewGrid>
         <SearchResultWindow
           shown={limits.characters}
-          total={results.characters.length}
+          total={characters.length}
           onLoadMore={() => (limits.characters += SEARCH_DISPLAY_BATCH)}
         />
       </section>

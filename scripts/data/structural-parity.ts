@@ -47,6 +47,7 @@ const neutralFieldsByDomain = {
 };
 const localizedContainers = new Set([
   'descriptionTokens',
+  'trailblazerText',
   'diagnostics',
   'canonicalSource',
   'officialAliases',

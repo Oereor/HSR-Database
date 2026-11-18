@@ -24,10 +24,13 @@
   } from '$lib/domain/character-filters';
   import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
   import { formatDocumentTitle } from '$lib/site';
+  import { useTrailblazerPreference } from '$lib/client/trailblazer-preference';
+  import { isVisibleStaticCharacter, staticTrailblazerText } from '$lib/domain/trailblazer';
 
   export let entries: CatalogEntry[] = [];
   export let title: string = m.characters_title();
   export let description: string = m.characters_description();
+  const trailblazer = useTrailblazerPreference().state;
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -39,13 +42,18 @@
   $: synchronizeDraft(appliedQuery);
   $: filterState = readCharacterFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
-  $: heroArtwork = entries
+  $: visibleEntries = entries.filter(({ id }) => isVisibleStaticCharacter(id, $trailblazer.gender));
+  $: heroArtwork = visibleEntries
     .slice(0, 3)
     .map((entry) => ({ id: entry.id, url: getCharacterPreviewUrl(entry.id) }))
     .filter((entry): entry is { id: string; url: string } => Boolean(entry.url));
   $: search = overviewSearch(appliedQuery);
-  $: filtered = entries
-    .filter((entry) => search.matches(entry) && matchesCharacterFilters(entry, filterState))
+  $: filtered = visibleEntries
+    .flatMap((entry) => {
+      if (!matchesCharacterFilters(entry, filterState)) return [];
+      const display = staticTrailblazerText(entry, $trailblazer.gender);
+      return search.matches(entry) || search.matches(display) ? [display] : [];
+    })
     .sort((a, b) => {
       const byIdMatch = search.compareId(a, b);
       if (byIdMatch) return byIdMatch;

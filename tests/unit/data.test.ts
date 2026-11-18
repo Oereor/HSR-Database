@@ -1399,47 +1399,46 @@ describe('真实数据管线', () => {
     expect(latestAudit.specialEffectAudit.diagnostics).toEqual([]);
   });
 
-  it('Special Effect relation presentation override 只改变指定弹窗上下文', () => {
+  it('separates the actual relation Avatar ID from the localized static display identity', () => {
+    const targets = new Map([
+      ['8007', { id: '8007', name: 'Trailblazer · Remembrance' }],
+      [
+        '8008',
+        {
+          id: '8008',
+          name: 'Trailblazer · Remembrance',
+          trailblazerText: { female: [{ path: ['name'], value: 'Stelle · Remembrance' }] }
+        }
+      ],
+      ['1001', { id: '1001', name: 'March 7th · Preservation', baseName: 'March 7th' }]
+    ]);
+    const input = {
+      ownerCharacterId: '1415',
+      entryKind: 'servant-skill-link' as const,
+      sourceAvatarId: '8007',
+      targets
+    };
     expect(
-      resolveSpecialEffectLinkedAvatarPresentation({
-        ownerCharacterId: '1415',
-        entryKind: 'servant-skill-link',
-        sourceAvatarId: '8007',
-        sourceTarget: { id: '8007', name: '开拓者·记忆' }
-      })
+      resolveSpecialEffectLinkedAvatarPresentation({ ...input, trailblazerPreference: 'female' })
     ).toEqual({
       sourceAvatarId: '8007',
       displayAvatarId: '8008',
-      displayName: '开拓者·记忆'
+      displayName: 'Stelle · Remembrance'
     });
-    expect(
-      resolveSpecialEffectLinkedAvatarPresentation({
-        ownerCharacterId: '1510',
-        entryKind: 'avatar-skill-link',
-        sourceAvatarId: '8001',
-        sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
-      })
-    ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者·毁灭' });
+    expect(resolveSpecialEffectLinkedAvatarPresentation(input)).toEqual({
+      sourceAvatarId: '8007',
+      displayAvatarId: '8007',
+      displayName: 'Trailblazer · Remembrance'
+    });
     expect(
       resolveSpecialEffectLinkedAvatarPresentation({
         ownerCharacterId: '1510',
         entryKind: 'avatar-skill-link',
         sourceAvatarId: '1001',
-        sourceTarget: { id: '1001', name: '三月七·存护', baseName: '三月七' }
+        targets,
+        trailblazerPreference: 'male'
       })
-    ).toEqual({ sourceAvatarId: '1001', displayAvatarId: '1001', displayName: '三月七' });
-    expect(
-      resolveSpecialEffectLinkedAvatarPresentation({
-        ownerCharacterId: '1000',
-        entryKind: 'avatar-skill-link',
-        sourceAvatarId: '8001',
-        sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
-      })
-    ).toEqual({
-      sourceAvatarId: '8001',
-      displayAvatarId: '8001',
-      displayName: '开拓者·毁灭'
-    });
+    ).toEqual({ sourceAvatarId: '1001', displayAvatarId: '1001', displayName: 'March 7th' });
   });
 
   it('使用真实晋阶数据计算 1–80 级基础属性与突破边界', async () => {

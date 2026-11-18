@@ -20,13 +20,17 @@
   import { localizedHref } from '$lib/i18n/routing';
   import { siteName } from '$lib/site';
   import type { PageData } from './$types';
+  import { useTrailblazerPreference } from '$lib/client/trailblazer-preference';
+  import { staticCharacterEntries } from '$lib/domain/trailblazer';
 
   export let data: PageData;
+  const trailblazer = useTrailblazerPreference().state;
+  $: newCharacters = staticCharacterEntries(data.newCharacters, $trailblazer.gender);
   $: directoryItems = localizedNavigationItems(data.locale).filter(
     (item) => item.id === 'player' || item.id === 'endgame'
   );
   $: characterArt = selectHomepageArtwork(
-    data.newCharacters,
+    newCharacters,
     (id) => getCharacterPortraitUrl(id) ?? getCharacterPreviewUrl(id)
   );
   $: lightConeArt = selectHomepageArtwork(
@@ -109,22 +113,22 @@
     {/each}
   </nav>
 
-  {#if data.newCharacters.length || data.newLightCones.length || data.newRelics.length}
+  {#if newCharacters.length || data.newLightCones.length || data.newRelics.length}
     <div class="home-additions mt-12 space-y-12">
-      {#if data.newCharacters.length || data.newLightCones.length}
+      {#if newCharacters.length || data.newLightCones.length}
         <div
           class={'home-primary-additions grid grid-cols-1 items-start gap-12 lg:gap-6 ' +
-            (data.newCharacters.length && data.newLightCones.length ? 'lg:grid-cols-2' : '')}
+            (newCharacters.length && data.newLightCones.length ? 'lg:grid-cols-2' : '')}
         >
           <HomepageSection
             compact
             id="new-characters"
             title={m.home_new_characters({ version })}
             href={localizedHref('/characters')}
-            total={data.newCharacters.length}
-            shown={Math.min(data.newCharacters.length, 6)}
+            total={newCharacters.length}
+            shown={Math.min(newCharacters.length, 6)}
           >
-            {#each data.newCharacters.slice(0, 6) as entry}
+            {#each newCharacters.slice(0, 6) as entry}
               <CharacterOverviewCard
                 {entry}
                 href={localizedHref(`/characters/${entry.id}`)}

@@ -2,6 +2,7 @@
   import { browser } from '$app/environment';
   import * as Select from '$lib/components/ui/select';
   import LanguagesIcon from '@lucide/svelte/icons/languages';
+  import UserRoundIcon from '@lucide/svelte/icons/user-round';
   import type { Locale } from '$lib/paraglide/runtime.js';
   import { onDestroy } from 'svelte';
   import { afterNavigate } from '$app/navigation';
@@ -19,6 +20,8 @@
   import { siteName } from '$lib/site';
   import PrimaryNavigation from './PrimaryNavigation.svelte';
   import SearchBar from '../search/SearchBar.svelte';
+  import { useTrailblazerPreference } from '$lib/client/trailblazer-preference';
+  import { trailblazerNickname } from '$lib/domain/trailblazer';
 
   let {
     siteVersion,
@@ -30,6 +33,9 @@
     onOpenChangelog?: () => void;
   } = $props();
   const sidebar = Sidebar.useSidebar();
+  const preference = useTrailblazerPreference();
+  const trailblazer = preference.state;
+  const trailblazerGenders = ['female', 'male'] as const;
   let focusSearch = $state(false);
   let focusFrame: number | undefined;
   const trainPartyIconUrl = getBrandIconUrl('train-party');
@@ -204,6 +210,25 @@
       <Select.Content side="top" align="start" class="z-60" data-language-options>
         <Select.Item value="zh-CN" label="简体中文" data-locale="zh-CN">简体中文</Select.Item>
         <Select.Item value="en" label="English" data-locale="en">English</Select.Item>
+      </Select.Content>
+    </Select.Root>
+    <Select.Root type="single" value={$trailblazer.gender} onValueChange={preference.select}>
+      <Select.Trigger
+        data-trailblazer-select
+        aria-label={m.settings_trailblazer_gender({}, { locale })}
+        class="border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-11 w-full bg-transparent px-2 shadow-none group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:border-transparent group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:[&>svg:last-child]:hidden"
+      >
+        <UserRoundIcon class="size-4 shrink-0" aria-hidden="true" />
+        <span class="min-w-0 flex-1 truncate text-left group-data-[collapsible=icon]:hidden"
+          >{trailblazerNickname(locale, $trailblazer.gender)}</span
+        >
+      </Select.Trigger>
+      <Select.Content side="top" align="start" class="z-60">
+        {#each trailblazerGenders as gender (gender)}
+          <Select.Item value={gender} label={trailblazerNickname(locale, gender)}
+            >{trailblazerNickname(locale, gender)}</Select.Item
+          >
+        {/each}
       </Select.Content>
     </Select.Root>
     <Tooltip.Root disabled={sidebar.open || sidebar.isMobile}>
