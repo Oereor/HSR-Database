@@ -1,4 +1,4 @@
-import type { EndgameMode } from '../domain/endgame.js';
+import type { EndgameEncounter, EndgameMode } from '../domain/endgame.js';
 import type { EndgamePeriodPresentation } from '../domain/endgame-view.js';
 import { m } from '../paraglide/messages.js';
 import type { Locale } from '../paraglide/runtime.js';
@@ -45,6 +45,27 @@ const fallbackLabels = {
 } as const;
 
 export const getEndgameModeCopy = (mode: EndgameMode, locale?: Locale) => copy[mode](locale);
+
+export function getEndgameSearchEncounterLabel(
+  mode: EndgameMode,
+  { id, name, ordinal, variant }: EndgameEncounter,
+  locale: Locale,
+  useName = true
+): string {
+  const options = { locale };
+  const number = ordinal ?? id;
+  if (mode === 'moc')
+    return ordinal === undefined && name && useName
+      ? name
+      : m.endgame_local_stage_current({ label: number }, options);
+  if (mode === 'pf') return m.endgame_local_difficulty_label({ number }, options);
+  if (name && useName) return name;
+  if (mode === 'as') return m.endgame_local_difficulty_label({ number }, options);
+  if (variant === 'preliminary') return m.endgame_search_knight({ number }, options);
+  if (variant === 'boss-normal') return m.endgame_search_king({}, options);
+  if (variant === 'boss-hard') return m.endgame_search_ruinous_king({}, options);
+  return m.endgame_local_stage_current({ label: number }, options);
+}
 
 export function getEndgamePeriodFallbackName(
   mode: EndgameMode,

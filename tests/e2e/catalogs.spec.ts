@@ -406,7 +406,7 @@ test('筛选状态写入 URL、分页响应客户端导航并进入详情', asyn
   await expect(page).toHaveURL(/rarity=5/);
   await expect(page).not.toHaveURL(/page=/);
   await page.goto('/characters/1001/');
-  await expect(page.getByRole('heading', { name: '三月七·存护' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '三月七', level: 1, exact: true })).toBeVisible();
 });
 
 test('Overview 分页保留实时筛选、重复参数与排序状态', async ({ page }) => {

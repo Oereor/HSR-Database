@@ -750,7 +750,7 @@ describe('真实数据管线', () => {
     ) as LightCone;
     expect(manifest.schemaVersion).toBe(DATA_MANIFEST_SCHEMA_VERSION);
     expect(manifest).toMatchObject(parseGameVersion(manifest.sourceVersion));
-    expect(character.name).toBe('三月七·存护');
+    expect(character.name).toBe('三月七');
     expect(character.baseStats.iconKeys).toEqual({
       hp: 'property--MaxHP',
       attack: 'property--Attack',
@@ -1052,9 +1052,9 @@ describe('真实数据管线', () => {
       JSON.parse(
         await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
-    expect((await readCharacter('1001')).name).toBe('三月七·存护');
-    expect((await readCharacter('1224')).name).toBe('三月七·巡猎');
-    expect((await readCharacter('8005')).name).toBe('开拓者·同谐');
+    expect((await readCharacter('1001')).name).toBe('三月七');
+    expect((await readCharacter('1224')).name).toBe('三月七');
+    expect((await readCharacter('8005')).name).toBe('穹');
     expect((await readCharacter('1309')).name).toBe('知更鸟');
   });
 
@@ -1399,47 +1399,41 @@ describe('真实数据管线', () => {
     expect(latestAudit.specialEffectAudit.diagnostics).toEqual([]);
   });
 
-  it('Special Effect relation presentation override 只改变指定弹窗上下文', () => {
+  it('separates the actual relation Avatar ID from the localized static display identity', () => {
+    const targets = new Map([
+      ['8007', { id: '8007', name: 'Caelus' }],
+      [
+        '8008',
+        {
+          id: '8008',
+          name: 'Stelle'
+        }
+      ],
+      ['1001', { id: '1001', name: 'March 7th' }]
+    ]);
+    const input = {
+      sourceAvatarId: '8007',
+      targets
+    };
     expect(
-      resolveSpecialEffectLinkedAvatarPresentation({
-        ownerCharacterId: '1415',
-        entryKind: 'servant-skill-link',
-        sourceAvatarId: '8007',
-        sourceTarget: { id: '8007', name: '开拓者·记忆' }
-      })
+      resolveSpecialEffectLinkedAvatarPresentation({ ...input, trailblazerPreference: 'female' })
     ).toEqual({
       sourceAvatarId: '8007',
       displayAvatarId: '8008',
-      displayName: '开拓者·记忆'
+      displayName: 'Stelle'
+    });
+    expect(resolveSpecialEffectLinkedAvatarPresentation(input)).toEqual({
+      sourceAvatarId: '8007',
+      displayAvatarId: '8007',
+      displayName: 'Caelus'
     });
     expect(
       resolveSpecialEffectLinkedAvatarPresentation({
-        ownerCharacterId: '1510',
-        entryKind: 'avatar-skill-link',
-        sourceAvatarId: '8001',
-        sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
-      })
-    ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者·毁灭' });
-    expect(
-      resolveSpecialEffectLinkedAvatarPresentation({
-        ownerCharacterId: '1510',
-        entryKind: 'avatar-skill-link',
         sourceAvatarId: '1001',
-        sourceTarget: { id: '1001', name: '三月七·存护', baseName: '三月七' }
+        targets,
+        trailblazerPreference: 'male'
       })
-    ).toEqual({ sourceAvatarId: '1001', displayAvatarId: '1001', displayName: '三月七' });
-    expect(
-      resolveSpecialEffectLinkedAvatarPresentation({
-        ownerCharacterId: '1000',
-        entryKind: 'avatar-skill-link',
-        sourceAvatarId: '8001',
-        sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
-      })
-    ).toEqual({
-      sourceAvatarId: '8001',
-      displayAvatarId: '8001',
-      displayName: '开拓者·毁灭'
-    });
+    ).toEqual({ sourceAvatarId: '1001', displayAvatarId: '1001', displayName: 'March 7th' });
   });
 
   it('使用真实晋阶数据计算 1–80 级基础属性与突破边界', async () => {

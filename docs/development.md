@@ -57,6 +57,20 @@ V2 校验不会自动修复旧 manifest 或 Profile；若开发命令已将产�
 联网操作先确认代理端口，再配置进程代理变量；本地通常使用 7890，以 [AGENTS.md](../AGENTS.md#internet-connectivity) 为准。
 不要把代理、私有路径、token 或本地 `.vercel/` 状态提交到仓库。
 
+## Windows 上游准备诊断
+
+`pnpm run prebuild` 可单独复现正式构建的数据源准备。观察 `[upstream:git]` 中最后启动的操作及其 PID。`fetch` 下载锁定提交和树对象，`checkout` 会继续下载 sparse 工作树需要的 blob。长操作每 30 秒报告耗时和最近一次 Git 输出。HTTPS 传输默认在连续 120 秒低于 1 B/s 时交由 Git 结束，可通过 `GIT_HTTP_LOW_SPEED_LIMIT` 和 `GIT_HTTP_LOW_SPEED_TIME` 调整。代理沿用当前环境，凭据管理器在非交互模式运行。
+
+如需定位慢操作的子进程，可在 PowerShell 将 Trace2 写入仓库内的忽略目录。Trace2 可能包含调用参数，分享前只提取命令名、耗时和退出码。
+
+```powershell
+New-Item -ItemType Directory -Force .upstream | Out-Null
+$env:GIT_TRACE2_EVENT = (Join-Path (Resolve-Path .upstream) 'git-trace.jsonl').Replace('\', '/')
+try { pnpm run prebuild } finally { Remove-Item Env:GIT_TRACE2_EVENT }
+```
+
+每个 checkout 有独立的 `.upstream/.lock-<名称>`。遇到占用时先等进程退出再重试。进程意外终止后，确认锁内 PID 和相关 Git 子进程均已退出，再移除对应锁文件。若发布中断后目标目录缺失，在对应的 `.tmp-<名称>-*` 暂存目录内查找 `previous`，保留该目录用于恢复。生成数据和站点输出共用目录，同一工作树一次运行一个完整构建。
+
 ## 字体与主题维护
 
 全站无衬线字体由根布局引入锁定版本的 `@fontsource-variable/inter` 和 `@fontsource-variable/noto-sans-sc`，经 Vite 打包为同源 WOFF2 资源。两者使用 100–900 可变字重和 `font-display: swap`；Noto Sans SC 保留供应方的 `unicode-range` 分片，浏览器只请求页面字符需要的文件，不预加载完整中文字库。包的自托管方式见 Fontsource[^fontsource]。

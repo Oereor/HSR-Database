@@ -1,5 +1,6 @@
 import type { DATA_MANIFEST_SCHEMA_VERSION } from './data-manifest.js';
 import type { GameTextRuby } from './game-text.js';
+import type { WithTrailblazerText } from './trailblazer.js';
 
 export type EntityKind = 'character' | 'light-cone' | 'relic' | 'enemy';
 
@@ -294,9 +295,11 @@ export interface ElementLabel {
   name: string;
 }
 
-export interface CatalogEntry {
-  /** Localized base identity supplied by the naming service for character catalogs. */
+export interface CatalogEntry extends WithTrailblazerText {
+  /** Localized base display name supplied for character catalogs. */
   baseName?: string;
+  /** Localized official terms for directory search. */
+  searchAliases?: string[];
   id: string;
   name: string;
   description?: string;
@@ -317,6 +320,8 @@ export interface EnemyCatalogEntry extends CatalogEntry {
 
 export interface Character extends CatalogEntry {
   kind: 'character';
+  gender?: import('./trailblazer.js').TrailblazerGender;
+  /** Localized AvatarFullName, falling back to the display name. */
   fullName?: string;
   profiles: {
     base: CharacterProfile;

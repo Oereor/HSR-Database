@@ -94,7 +94,11 @@ export async function validateSiteMessageFiles() {
 }
 export async function compileSiteMessages() {
   const catalogs = await validateSiteMessageFiles();
-  await compile(options);
+  const { outputHashes } = await compile(options);
+  if (!outputHashes || !Object.hasOwn(outputHashes, 'messages/_index.js'))
+    throw new Error(
+      'Paraglide generated no message modules. Check that the project and local message-format plugin are readable.'
+    );
   console.log(
     `Site messages: ${Object.keys(catalogs['zh-CN']).length} messages across ${Object.keys(catalogs).length} locales validated and compiled`
   );

@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import type { Character, CatalogEntry } from '../../src/lib/domain/types';
 import type { PlayerProfile } from '../../src/lib/player/contract';
+import { staticTrailblazerText } from '../../src/lib/domain/trailblazer';
 import { gameTextToPlain } from '../../src/lib/domain/game-text';
 
 for (const locale of ['zh-CN', 'en'] as const) {
@@ -84,7 +85,12 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await expect(dialog.locator(`a[href="${prefix}/characters/8010/"]`)).toHaveCount(1);
     const trailblazer = dialog.locator(`a[href="${prefix}/characters/8010/"]`);
     await expect(trailblazer.locator('strong')).toHaveText(
-      gameTextToPlain(catalog.find((entry) => entry.id === '8010')!.name)
+      gameTextToPlain(
+        staticTrailblazerText(
+          catalog.find((entry) => entry.id === '8010')!,
+          'female'
+        ).name
+      )
     );
     await expect(trailblazer.locator('img')).toHaveAttribute(
       'src',

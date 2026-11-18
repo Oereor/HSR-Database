@@ -1,35 +1,19 @@
 {
   "schemaVersion": 1,
   "normalizationVersion": 1,
-  "namingPolicyVersion": 1,
-  "sourceCommit": "dad9155eb00fdeda31fb8456507c53590d49071f",
+  "namingPolicyVersion": 2,
+  "sourceCommit": "e1c8d45e51c3065db73fbca0b9be6c7410b5dd6e",
   "characters": {
     "1001": {
-      "canonicalName": "三月七·存护",
+      "canonicalName": "三月七",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "1001",
         "field": "AvatarName",
         "textHash": "6186714091647966180",
-        "policy": "multiple-path",
-        "baseAvatarId": "1001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Knight",
-          "field": "BaseTypeText",
-          "textHash": "4258030345548324088"
-        }
+        "policy": "avatar-name"
       },
-      "officialAliases": [
-        {
-          "value": "三月七",
-          "sourceKind": "official-base-name",
-          "table": "AvatarConfig",
-          "recordId": "1001",
-          "field": "AvatarName",
-          "textHash": "6186714091647966180"
-        }
-      ]
+      "officialAliases": []
     },
     "1002": {
       "canonicalName": "丹恒",
@@ -505,31 +489,15 @@
       "officialAliases": []
     },
     "1224": {
-      "canonicalName": "三月七·巡猎",
+      "canonicalName": "三月七",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "1224",
         "field": "AvatarName",
         "textHash": "16417870574330506928",
-        "policy": "multiple-path",
-        "baseAvatarId": "1001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Rogue",
-          "field": "BaseTypeText",
-          "textHash": "4367365179576232430"
-        }
+        "policy": "avatar-name"
       },
-      "officialAliases": [
-        {
-          "value": "三月七",
-          "sourceKind": "official-base-name",
-          "table": "AvatarConfig",
-          "recordId": "1224",
-          "field": "AvatarName",
-          "textHash": "16417870574330506928"
-        }
-      ]
+      "officialAliases": []
     },
     "1225": {
       "canonicalName": "忘归人",
@@ -1016,184 +984,204 @@
       "officialAliases": []
     },
     "8001": {
-      "canonicalName": "开拓者·毁灭",
+      "canonicalName": "穹",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8001",
         "field": "AvatarName",
         "textHash": "15351791685587679468",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Warrior",
-          "field": "BaseTypeText",
-          "textHash": "10116566940563878966"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8002": {
-      "canonicalName": "开拓者·毁灭",
+      "canonicalName": "星",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8002",
         "field": "AvatarName",
         "textHash": "915414112326692585",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Warrior",
-          "field": "BaseTypeText",
-          "textHash": "10116566940563878966"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8003": {
-      "canonicalName": "开拓者·存护",
+      "canonicalName": "穹",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8003",
         "field": "AvatarName",
         "textHash": "1401066943349888144",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Knight",
-          "field": "BaseTypeText",
-          "textHash": "4258030345548324088"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8004": {
-      "canonicalName": "开拓者·存护",
+      "canonicalName": "星",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8004",
         "field": "AvatarName",
         "textHash": "12002536695852490847",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Knight",
-          "field": "BaseTypeText",
-          "textHash": "4258030345548324088"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8005": {
-      "canonicalName": "开拓者·同谐",
+      "canonicalName": "穹",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8005",
         "field": "AvatarName",
         "textHash": "10447948767909792082",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Shaman",
-          "field": "BaseTypeText",
-          "textHash": "232967775503330328"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8006": {
-      "canonicalName": "开拓者·同谐",
+      "canonicalName": "星",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8006",
         "field": "AvatarName",
         "textHash": "10393121115260878389",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Shaman",
-          "field": "BaseTypeText",
-          "textHash": "232967775503330328"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8007": {
-      "canonicalName": "开拓者·记忆",
+      "canonicalName": "穹",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8007",
         "field": "AvatarName",
         "textHash": "16176654588635246657",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Memory",
-          "field": "BaseTypeText",
-          "textHash": "119435972213994950"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8008": {
-      "canonicalName": "开拓者·记忆",
+      "canonicalName": "星",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8008",
         "field": "AvatarName",
         "textHash": "4088185837206355760",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Memory",
-          "field": "BaseTypeText",
-          "textHash": "119435972213994950"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8009": {
-      "canonicalName": "开拓者·欢愉",
+      "canonicalName": "穹",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8009",
         "field": "AvatarName",
         "textHash": "7663307095624772319",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Elation",
-          "field": "BaseTypeText",
-          "textHash": "224536443460975011"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     },
     "8010": {
-      "canonicalName": "开拓者·欢愉",
+      "canonicalName": "星",
       "canonicalSource": {
         "table": "AvatarConfig",
         "recordId": "8010",
         "field": "AvatarName",
         "textHash": "11669351296701672101",
-        "policy": "multiple-path",
-        "baseAvatarId": "8001",
-        "path": {
-          "table": "AvatarBaseType",
-          "recordId": "Elation",
-          "field": "BaseTypeText",
-          "textHash": "224536443460975011"
-        }
+        "policy": "trailblazer-nickname"
       },
-      "officialAliases": []
+      "officialAliases": [
+        {
+          "value": "开拓者",
+          "sourceKind": "official-group-name",
+          "table": "FateRinOwner",
+          "recordId": "Trailblazer",
+          "field": "OENAMINOLLF",
+          "textHash": "4036035618718239522"
+        }
+      ]
     }
   }
 }

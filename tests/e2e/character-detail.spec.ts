@@ -1,6 +1,8 @@
 import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
+import { staticTrailblazerText } from '../../src/lib/domain/trailblazer';
+import type { CatalogEntry } from '../../src/lib/domain/types';
 
 test('角色目录与详情接入属性、命途图标和优化立绘', async ({ page }) => {
   const failedImages: string[] = [];
@@ -138,9 +140,10 @@ test('角色 Detail Hero 在桌面 3:2 分栏并于 1180px 断点纵向堆叠', 
 
 test('多命途角色名称由统一规则生成', async ({ page }) => {
   await page.goto('/characters/1224/');
-  await expect(page.getByRole('heading', { name: '三月七·巡猎' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '三月七', level: 1, exact: true })).toBeVisible();
   await page.goto('/characters/8005/');
-  await expect(page.getByRole('heading', { name: '开拓者·同谐' })).toBeVisible();
+  await expect(page).toHaveURL('/characters/8006/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('星');
 });
 
 test('技能卡按语义类别合并变体并使用真实默认等级', async ({ page }) => {
@@ -440,6 +443,12 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
 });
 
 test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用', async ({ page }) => {
+  await page.addInitScript(() => {
+    if (location.pathname === '/characters/8007/')
+      localStorage.setItem('hsrarchive:trailblazer-gender', 'male');
+    if (location.pathname === '/characters/8008/')
+      localStorage.setItem('hsrarchive:trailblazer-gender', 'female');
+  });
   await page.goto('/characters/8007/');
   const remembranceBasic = page.locator('[data-skill-category="basic"]');
   await expect(remembranceBasic.locator('.skill-variant')).toHaveCount(2);
@@ -559,7 +568,8 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
     'src',
     /generated-assets\/characters\/icons\/8008\.png/
   );
-  await expect(cyreneTrailblazer.locator('strong')).toHaveText('开拓者·记忆');
+  await expect(cyreneTrailblazer).toHaveAttribute('href', '/characters/8008/');
+  await expect(cyreneTrailblazer.locator('strong')).toContainText('星');
   const body = dialog.locator('[data-slot="dialog-body"]');
   expect(await body.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(true);
   await body.evaluate((element) => {
@@ -625,9 +635,12 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   );
   const trailblazerCatalog = JSON.parse(
     readFileSync('src/lib/generated/views/zh-CN/catalogs/characters.json', 'utf8')
-  ) as Array<{ id: string; name: string }>;
+  ) as CatalogEntry[];
   await expect(himekoTrailblazer.locator('strong')).toHaveText(
-    trailblazerCatalog.find((entry) => entry.id === '8001')!.name
+    staticTrailblazerText(
+      trailblazerCatalog.find((entry) => entry.id === '8002')!,
+      'female'
+    ).name
   );
   await expect(himekoDialog.locator('[data-linked-avatar-id="1001"] strong')).toHaveText('三月七');
   await expect(himekoDialog.locator('[data-linked-avatar-id="1003"]')).toContainText('姬子');
@@ -635,10 +648,11 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
 
   await page.goto('/characters/8007/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('开拓者·记忆');
+  await expect(page).toHaveURL('/characters/8008/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('星');
   await page.goto('/characters/1001/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('三月七·存护');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('三月七');
 
   await page.goto('/characters/1509/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
@@ -649,7 +663,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
 test('trace summaries retain node breakdown and eidolons retain source ordering', async ({
   page
 }) => {
-  for (const id of ['1001', '8007']) {
+  for (const id of ['1001', '8008']) {
     const character = JSON.parse(
       readFileSync(`src/lib/generated/views/zh-CN/details/characters/${id}.json`, 'utf8')
     );

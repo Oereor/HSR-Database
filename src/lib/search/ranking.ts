@@ -1,11 +1,17 @@
-import type { MatchEvidence, MatchKind, NameKind, NormalizedSearchDocument } from './documents.js';
+import type {
+  MatchEvidence,
+  MatchKind,
+  NameKind,
+  NameMatchEvidence,
+  NormalizedSearchDocument
+} from './documents.js';
 import { compareSearchText } from './normalization.js';
 
 const AUTHORITY: Record<NameKind, number> = { canonical: 0, official: 1, player: 2 };
 const QUALITY: Record<MatchKind, number> = { exact: 0, prefix: 1, contains: 2 };
 const KINDS = ['character', 'light-cone', 'relic', 'enemy', 'endgame'];
 export const searchRankClass = (evidence: MatchEvidence): number =>
-  QUALITY[evidence.matchKind] * 3 + AUTHORITY[evidence.nameKind];
+  evidence.matchKind === 'id' ? -1 : QUALITY[evidence.matchKind] * 3 + AUTHORITY[evidence.nameKind];
 export interface RankedSearchMatch {
   normalized: NormalizedSearchDocument;
   evidence: MatchEvidence;
@@ -14,9 +20,9 @@ export interface RankedSearchMatch {
 export function bestSearchEvidence(
   entry: NormalizedSearchDocument,
   query: string
-): MatchEvidence | undefined {
+): NameMatchEvidence | undefined {
   if (!query) return;
-  let best: MatchEvidence | undefined;
+  let best: NameMatchEvidence | undefined;
   for (const label of entry.labels) {
     const matchKind =
       label.normalized === query
@@ -27,7 +33,7 @@ export function bestSearchEvidence(
             ? 'contains'
             : undefined;
     if (!matchKind) continue;
-    const candidate: MatchEvidence = {
+    const candidate: NameMatchEvidence = {
       documentKey: entry.document.key,
       nameKind: label.nameKind,
       matchKind,

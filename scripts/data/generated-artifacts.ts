@@ -3,6 +3,7 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/domain/types.js';
 import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
+import { TEAM_RECOMMENDATIONS_ARTIFACT } from '../../src/lib/domain/team-recommendation.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
@@ -93,6 +94,7 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
         )
       ),
       'runtime/player.json',
+      TEAM_RECOMMENDATIONS_ARTIFACT,
       'runtime/relic-score-recommendations.json',
       'runtime/relic-rating-v2.json',
       `views/${locale}/catalogs/characters.json`,

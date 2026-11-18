@@ -1,34 +1,62 @@
+import { selectTrailblazer } from '../helpers/trailblazer';
 import { openLanguageSelect, switchLanguage } from '../helpers/language';
 import { readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 
-for (const [prefix, male, female, nickname] of [
-  ['', '少年', '少女', '开拓者'],
-  ['/en', 'boy', 'girl', 'Trailblazer']
+for (const [prefix, male, female, maleNickname, femaleNickname] of [
+  ['', '少年', '少女', '穹', '星'],
+  ['/en', 'boy', 'girl', 'Caelus', 'Stelle']
 ] as const) {
   test(`public game text resolves character and story macros (${prefix || 'zh-CN'})`, async ({
     page
   }) => {
-    for (const [id, term] of [
-      ['8001', male],
-      ['8002', female]
-    ] as const) {
-      await page.goto(`${prefix}/characters/${id}/`);
-      await expect(page.locator('.hero-description')).toContainText(term);
-      await expect(page.locator('meta[name="description"]')).toHaveAttribute(
-        'content',
-        new RegExp(term)
-      );
-      await expect(page.locator('.hero-description')).not.toContainText(/\{[FM]#/);
-    }
-    await page.goto(`${prefix}/light-cones/21046/`);
-    await expect(page.locator('#story')).toContainText(prefix ? 'woman' : female);
-    await expect(page.locator('#story')).not.toContainText(/\{[FM]#/);
+    await page.goto(`${prefix}/characters/8001/?enhanced=0#skills`);
+    await expect(page).toHaveURL(`${prefix}/characters/8002/?enhanced=0#skills`);
+    await expect(page.locator('.hero-description')).toContainText(female);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(femaleNickname);
+    await selectTrailblazer(page, maleNickname);
+    await expect(page).toHaveURL(`${prefix}/characters/8001/?enhanced=0#skills`);
+    await expect(page.locator('.hero-description')).toContainText(male);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(maleNickname);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      'content',
+      new RegExp(male)
+    );
+
     await page.goto(`${prefix}/light-cones/21002/`);
-    await expect(page.locator('#story')).toContainText(nickname);
+    await expect(page.locator('#story')).toContainText(maleNickname);
+    await page.evaluate(() => {
+      document.documentElement.dataset.genderTest = 'retained';
+    });
+    await selectTrailblazer(page, femaleNickname);
+    await expect(page.locator('#story')).toContainText(femaleNickname);
     await expect(page.locator('#story')).not.toContainText('{NICKNAME}');
+    await expect(page.locator('html')).toHaveAttribute('data-gender-test', 'retained');
   });
 }
+
+test('Trailblazer selection survives locale navigation and filters search and directory IDs', async ({
+  page
+}) => {
+  const card = (id: string) => page.locator(`.entity-overview-card[href$="/characters/${id}/"]`);
+  await page.goto('/characters/?q=8002&page=3');
+  await expect(card('8002')).toBeVisible();
+  await selectTrailblazer(page, '穹');
+  await expect(card('8002')).toBeVisible();
+  await expect(card('8001')).toHaveCount(0);
+
+  await page.goto('/characters/?q=星');
+  await expect(card('8001')).toBeVisible();
+  await switchLanguage(page, 'en', '/en/characters/?q=%E6%98%9F');
+  await page.goto('/en/search/?q=Stelle');
+  await expect(card('8001')).toBeVisible();
+  await expect(card('8002')).toHaveCount(0);
+  await page.reload();
+  await expect(card('8001')).toBeVisible();
+  await page.goto('/en/search/?q=8002');
+  await expect(card('8002')).toContainText('Stelle');
+  await expect(card('8001')).toHaveCount(0);
+});
 
 test('sidebar language Select supports keyboard, focus return and outside dismissal', async ({
   page,

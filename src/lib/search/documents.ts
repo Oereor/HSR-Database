@@ -23,12 +23,14 @@ export interface SearchDocumentBundle {
 
 export type NameKind = 'canonical' | 'official' | 'player';
 export type MatchKind = 'exact' | 'prefix' | 'contains';
-export interface MatchEvidence {
+export interface NameMatchEvidence {
   documentKey: string;
   nameKind: NameKind;
   matchKind: MatchKind;
   matchedLabel: string;
 }
+export type MatchEvidence =
+  NameMatchEvidence | { documentKey: string; matchKind: 'id'; matchedLabel: string };
 export interface NormalizedSearchDocument {
   document: SearchDocument;
   canonical: string;

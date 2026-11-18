@@ -1,6 +1,6 @@
 import { compareSearchText, hasNamePlaceholder, normalizeSearchLabel } from './normalization.js';
 
-export const CHARACTER_NAMING_POLICY_VERSION = 1 as const;
+export const CHARACTER_NAMING_POLICY_VERSION = 2 as const;
 export interface NameTextSource {
   table: string;
   recordId: string;
@@ -10,11 +10,9 @@ export interface NameTextSource {
 export interface OfficialCharacterNames {
   canonicalName: string;
   canonicalSource: NameTextSource & {
-    policy: 'avatar-name' | 'multiple-path';
-    baseAvatarId?: string;
-    path?: NameTextSource;
+    policy: 'avatar-name' | 'trailblazer-nickname';
   };
-  officialAliases: Array<NameTextSource & { value: string; sourceKind: 'official-base-name' }>;
+  officialAliases: Array<NameTextSource & { value: string; sourceKind: 'official-group-name' }>;
 }
 export interface CharacterNameSnapshot {
   schemaVersion: 1;

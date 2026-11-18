@@ -14,7 +14,7 @@
   import OverviewSearch from '../shared/OverviewSearch.svelte';
   import OverviewToolbar from '../shared/OverviewToolbar.svelte';
   import type { CatalogEntry } from '$lib/domain/types';
-  import { gameTextToPlain } from '$lib/domain/game-text';
+  import { characterOverviewSearch } from '$lib/search/overview';
   import {
     hasCharacterFilters,
     matchesCharacterFilters,
@@ -24,10 +24,13 @@
   } from '$lib/domain/character-filters';
   import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
   import { formatDocumentTitle } from '$lib/site';
+  import { useTrailblazerPreference } from '$lib/client/trailblazer-preference';
+  import { isVisibleStaticCharacter } from '$lib/domain/trailblazer';
 
   export let entries: CatalogEntry[] = [];
   export let title: string = m.characters_title();
   export let description: string = m.characters_description();
+  const trailblazer = useTrailblazerPreference().state;
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -39,22 +42,18 @@
   $: synchronizeDraft(appliedQuery);
   $: filterState = readCharacterFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
-  $: heroArtwork = entries
+  $: visibleEntries = entries.filter(({ id }) => isVisibleStaticCharacter(id, $trailblazer.gender));
+  $: heroArtwork = visibleEntries
     .slice(0, 3)
     .map((entry) => ({ id: entry.id, url: getCharacterPreviewUrl(entry.id) }))
     .filter((entry): entry is { id: string; url: string } => Boolean(entry.url));
+  $: search = characterOverviewSearch(appliedQuery, $trailblazer.gender);
   $: filtered = entries
-    .filter((entry) => {
-      const query = appliedQuery.trim().toLocaleLowerCase();
-      return (
-        (!query ||
-          gameTextToPlain(`${entry.name} ${entry.description ?? ''}`)
-            .toLocaleLowerCase()
-            .includes(query)) &&
-        matchesCharacterFilters(entry, filterState)
-      );
-    })
+    .filter((entry) => matchesCharacterFilters(entry, filterState))
+    .flatMap(search.match)
     .sort((a, b) => {
+      const byIdMatch = search.compareId(a, b);
+      if (byIdMatch) return byIdMatch;
       if (sort === 'name') return a.name.localeCompare(b.name, 'zh-CN');
       if (sort === 'id') return Number(a.id) - Number(b.id);
       return (b.rarity ?? 0) - (a.rarity ?? 0) || a.name.localeCompare(b.name, 'zh-CN');

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { render } from 'svelte/server';
 import { afterEach, expect, it } from 'vitest';
-import EquipmentRecommendationSection from '../../src/lib/components/character/EquipmentRecommendationSection.svelte';
+import BuildGuideSection from '../../src/lib/components/character/BuildGuideSection.svelte';
 import { resolveEquipmentRecommendation } from '../../src/lib/domain/equipment-recommendation-view';
 import type {
   Character,
@@ -30,7 +30,9 @@ for (const locale of ['zh-CN', 'en'] as const) {
         readView<RelicCatalogEntry[]>(locale, 'catalogs/relics'),
         readView<RelicProperty[]>(locale, 'catalogs/relic-properties')
       );
-      const body = render(EquipmentRecommendationSection, { props: { recommendation } }).body;
+      const body = render(BuildGuideSection, { props: { recommendation } }).body;
+      expect(body).toContain('id="build-guide"');
+      expect(body).not.toContain('data-team-id');
       const prefix = locale === 'en' ? '/en' : '';
       expect([...body.matchAll(/href="([^"]+)"/g)].map((match) => match[1])).toEqual([
         ...recommendation.lightCones.map((entry) => `${prefix}/light-cones/${entry.id}/`),

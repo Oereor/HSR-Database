@@ -16,6 +16,11 @@ import {
 } from '../../src/lib/search/name-metadata';
 import { createTextResolver } from '../../scripts/data/localization';
 import { getPublicLocale } from '../../scripts/data/locale-registry';
+import { trailblazerGender, trailblazerNickname } from '../../src/lib/domain/trailblazer';
+import { staticCharacterSearchEntry } from '../../src/lib/search/character-search';
+import { characterOverviewSearch } from '../../src/lib/search/overview';
+import type { CatalogEntry } from '../../src/lib/domain/types';
+import type { GlobalSearchIndex } from '../../src/lib/domain/search-index';
 import { createGlobalSearchService } from '../../src/lib/search/search';
 import { serializePlayerAliases, syncPlayerAliasSkeleton } from '../../scripts/data/player-aliases';
 import { normalizeSearchDocument } from '../../src/lib/search/documents';
@@ -56,8 +61,8 @@ describe('Character search metadata', () => {
     const root = path.resolve(process.env.HSR_DATA_ROOT ?? '../TurnBasedGameData');
     const derived = await deriveCharacterNames(root, snapshot.sourceCommit);
     expect(serializeCharacterNames(derived.snapshot)).toBe(serializeCharacterNames(snapshot));
-    expect(snapshot.characters['1001'].canonicalName).toBe('三月七·存护');
-    expect(snapshot.characters['1224'].canonicalName).toBe('三月七·巡猎');
+    expect(snapshot.characters['1001'].canonicalName).toBe('三月七');
+    expect(snapshot.characters['1224'].canonicalName).toBe('三月七');
     expect(snapshot.characters['1213'].canonicalName).toBe('丹恒•饮月');
     expect(snapshot.characters['1002'].canonicalName).toBe('丹恒');
     expect(snapshot.characters['1506'].canonicalName).toBe('银狼LV.999');
@@ -66,19 +71,27 @@ describe('Character search metadata', () => {
       expect(snapshot.characters[id].canonicalSource.table).toBe('AvatarConfigLD');
     expect(snapshot.characters['1014'].canonicalName).toBe('Saber');
     expect(snapshot.characters['1015'].canonicalName).toBe('Archer');
-    expect(snapshot.characters['8005'].canonicalName).toBe(
-      snapshot.characters['8006'].canonicalName
-    );
-    for (let id = 8001; id <= 8010; id++)
-      expect(snapshot.characters[String(id)].canonicalName).toMatch(/^开拓者·/);
-    const aliases = Object.entries(snapshot.characters).flatMap(([id, names]) =>
-      names.officialAliases.map((alias) => ({ id, ...alias }))
-    );
-    expect(aliases.map(({ id, value, sourceKind }) => ({ id, value, sourceKind }))).toEqual([
-      { id: '1001', value: '三月七', sourceKind: 'official-base-name' },
-      { id: '1224', value: '三月七', sourceKind: 'official-base-name' }
-    ]);
-    expect(aliases[0].textHash).toBe('6186714091647966180');
+    for (let id = 8001; id <= 8010; id++) {
+      const names = snapshot.characters[String(id)];
+      expect(names.canonicalName).toBe(
+        trailblazerNickname('zh-CN', trailblazerGender(String(id))!)
+      );
+      expect(names.canonicalSource.policy).toBe('trailblazer-nickname');
+      expect(names.officialAliases).toEqual([
+        {
+          value: '开拓者',
+          sourceKind: 'official-group-name',
+          table: 'FateRinOwner',
+          recordId: 'Trailblazer',
+          field: 'OENAMINOLLF',
+          textHash: '4036035618718239522'
+        }
+      ]);
+    }
+    for (const id of ['1001', '1224']) {
+      expect(snapshot.characters[id].canonicalSource.recordId).toBe(id);
+      expect(snapshot.characters[id].officialAliases).toEqual([]);
+    }
     expect(JSON.stringify(snapshot)).not.toContain('{NICKNAME}');
     expect(snapshot.characters['7213']).toBeUndefined();
     expect(snapshot.characters['1100101']).toBeUndefined();
@@ -98,20 +111,13 @@ describe('Character search metadata', () => {
       AvatarFullName: { Hash: '3' },
       AvatarVOTag: 'resource-tag'
     };
-    const names = buildCharacterNames(
-      [a],
-      [],
-      [{ ID: 'Rogue', BaseTypeText: { Hash: '2' } }],
-      [],
-      text,
-      'fixture'
-    );
+    const names = buildCharacterNames([a], [], text, 'fixture');
     expect(names.snapshot.characters['10'].officialAliases).toEqual([]);
     expect(() =>
-      buildCharacterNames([a], [{ ...a, AvatarName: { Hash: '3' } }], [], [], text, 'fixture')
+      buildCharacterNames([a], [{ ...a, AvatarName: { Hash: '3' } }], text, 'fixture')
     ).toThrow('冲突');
     expect(() =>
-      buildCharacterNames([{ ...a, AvatarName: { Hash: '999' } }], [], [], [], text, 'fixture')
+      buildCharacterNames([{ ...a, AvatarName: { Hash: '999' } }], [], text, 'fixture')
     ).toThrow('localization');
   });
 
@@ -124,7 +130,7 @@ describe('Character search metadata', () => {
     manual({ '1001': { playerAliases: ['测试', '测试'] } }),
     manual({ '1001': { playerAliases: ['测试甲', '测试-甲'] } }),
     manual({ '1001': { playerAliases: ['三月七'] } }),
-    manual({ '1001': { playerAliases: ['三月七存护'] } }),
+    manual({ '8001': { playerAliases: ['穹'] } }),
     manual({ '1001': { playerAliases: [1] } })
   ])('rejects invalid/duplicate metadata without silently dropping entries', (value) => {
     expect(() => validatePlayerAliases(value, snapshot)).toThrow();
@@ -147,6 +153,56 @@ describe('Character search metadata', () => {
         expect.arrayContaining(['1001', '1224'])
       );
   });
+
+  it.each([
+    ['zh-CN', '三月七', '开拓者', '星', '穹'],
+    ['en', 'March 7th', 'Trailblazer', 'Stelle', 'Caelus']
+  ] as const)(
+    'searches both nicknames and the group name in %s',
+    (locale, march, group, female, male) => {
+      const characters = JSON.parse(
+        readFileSync(`src/lib/generated/views/${locale}/catalogs/characters.json`, 'utf8')
+      ) as CatalogEntry[];
+      const index = JSON.parse(
+        readFileSync(`static/generated/${locale}/search.json`, 'utf8')
+      ) as GlobalSearchIndex;
+      const service = createGlobalSearchService(index, {
+        characters,
+        lightCones: [],
+        relics: [],
+        enemies: []
+      });
+      const ids = (entries: CatalogEntry[]) => entries.map(({ id }) => id).sort();
+      const trailblazers = (entries: CatalogEntry[]) =>
+        entries.filter(({ id }) => trailblazerGender(id));
+      for (const [gender, name] of [
+        ['female', female],
+        ['male', male]
+      ] as const) {
+        const expected = characters.filter(({ id }) => trailblazerGender(id) === gender);
+        for (const query of [female, male, group]) {
+          const global = service
+            .search(query)
+            .results.characters.flatMap((entry) =>
+              staticCharacterSearchEntry(entry, gender, query)
+            );
+          const directory = characters.flatMap(characterOverviewSearch(query, gender).match);
+          for (const matches of [global, directory]) {
+            expect(ids(trailblazers(matches))).toEqual(ids(expected));
+            expect(new Set(trailblazers(matches).map((entry) => entry.name))).toEqual(
+              new Set([name])
+            );
+          }
+        }
+      }
+      expect(service.search(march).results.characters.map(({ id }) => id)).toEqual(
+        expect.arrayContaining(['1001', '1224'])
+      );
+      expect(
+        service.search('8001').results.characters.map(({ id, name }) => ({ id, name }))
+      ).toEqual([{ id: '8001', name: male }]);
+    }
+  );
 
   it('detects snapshot mismatch without rewriting it', async () => {
     const dir = await mkdtemp(path.resolve('data/audit/hsr-search-snapshot-'));

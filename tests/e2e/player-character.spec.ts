@@ -117,6 +117,25 @@ const heroStats = [
   { field: 'unknown_stat', percent: false, total: '42' }
 ];
 
+test('player Trailblazer retains actual avatar, build and progression over the static preference', async ({
+  page
+}) => {
+  const uid = '100000001';
+  const profile = playerProfile(uid);
+  const character = profile.characters[0];
+  character.characterId = '8001';
+  character.skillTree = [];
+  await page.route('**/api/player/**', (route) => route.fulfill({ json: profile }));
+  const location = `/characters/8001/?uid=${uid}&build=${encodeURIComponent(character.buildId)}#equipment`;
+  await page.goto(location);
+  await expect(page.locator('.player-context-notice')).toContainText(uid);
+  await expect(page.locator('[data-character-portrait="8001"]')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('穹');
+  await expect(page.locator('#equipment')).toBeVisible();
+  await expect(page.locator('#build-guide, [data-team-id]')).toHaveCount(0);
+  await expect(page).toHaveURL(location);
+});
+
 const heroProfile = (uid: string, stats = heroStats) => {
   const profile = playerProfile(uid);
   profile.characters[0].stats = stats;
@@ -801,7 +820,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('.base-stats-panel .skill-effect-tag')).toHaveCount(1);
   await expect(page.locator('[data-player-stats-panel]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
-  await expect(page.locator('#equipment-recommendation')).toBeVisible();
+  await expect(page.locator('#build-guide')).toBeVisible();
   await expect(page.locator('#equipment')).toHaveCount(0);
 });
 

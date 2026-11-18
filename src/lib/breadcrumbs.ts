@@ -4,6 +4,7 @@ import { canonicalHref, localizedHref } from './i18n/routing';
 import { siteName } from './site';
 import { m } from './paraglide/messages.js';
 import type { Locale } from './paraglide/runtime.js';
+import type { WithTrailblazerText } from './domain/trailblazer';
 
 export interface BreadcrumbItem {
   label: string;
@@ -11,7 +12,7 @@ export interface BreadcrumbItem {
 }
 
 export interface BreadcrumbData {
-  detail?: { id: string; name: string; template?: { name: string } };
+  detail?: WithTrailblazerText & { id: string; name: string; template?: { name: string } };
   mode?: { mode: string; label: string };
   group?: { mode: string; modeLabel: string; period: { groupId: number; name: string } };
 }

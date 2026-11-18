@@ -1,128 +1,183 @@
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
-import os from 'node:os';
+import { execFileSync } from 'node:child_process';
+import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { afterEach, describe, expect, it } from 'vitest';
+import { pathToFileURL } from 'node:url';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   assertCheckout,
-  inspectCheckout,
-  setSparseCheckout,
+  prepareCheckout,
+  publishCheckout,
+  runGit,
   type GitCommandRunner
 } from '../../scripts/deployment/git';
 import { readRaw } from '../../scripts/data/raw';
 
-const pin = {
-  repository: 'https://github.com/DimbreathBot/TurnBasedGameData.git',
-  commit: '014e33e2404f8cd668bf06fc2ea6db53b6bc3992'
-};
+const git = (cwd: string, ...args: string[]) =>
+  execFileSync('git', args, { cwd, encoding: 'utf8', windowsHide: true }).trim();
 
 const temporaryDirectories: string[] = [];
+const requiredPaths = ['required.json', 'nested/'];
 
-async function checkoutFixture(): Promise<string> {
-  const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-deployment-git-'));
+async function fixtureRoot() {
+  const root = await mkdtemp(path.resolve('data/audit/hsr-checkout-'));
   temporaryDirectories.push(root);
-  await mkdir(path.join(root, '.git'));
-  await writeFile(path.join(root, 'required.json'), '{}');
   return root;
 }
 
-const runner =
-  (
-    remote = pin.repository,
-    head = pin.commit,
-    sparse = true,
-    sparsePaths = ['/required.json']
-  ): GitCommandRunner =>
-  async (args) => {
-    if (args.includes('remote.origin.url')) return remote;
-    if (args.includes('core.sparseCheckout')) return sparse ? 'true' : 'false';
-    if (args[0] === 'sparse-checkout' && args[1] === 'list') return sparsePaths.join('\n');
-    if (args[0] === 'rev-parse') return head;
-    throw new Error(`unexpected git command: ${args.join(' ')}`);
-  };
+async function upstreamFixture() {
+  const root = await fixtureRoot();
+  const source = path.join(root, 'upstream with spaces');
+  await mkdir(path.join(source, 'nested'), { recursive: true });
+  await writeFile(path.join(source, 'required.json'), '{}');
+  await writeFile(path.join(source, 'nested', 'child file.json'), '{}');
+  await writeFile(path.join(source, 'excluded.json'), '{}');
+  git(source, 'init', '--quiet');
+  git(source, 'config', 'uploadpack.allowFilter', 'true');
+  git(source, 'add', '.');
+  git(
+    source,
+    '-c',
+    'user.name=Fixture',
+    '-c',
+    'user.email=fixture@example.invalid',
+    'commit',
+    '--quiet',
+    '-m',
+    'fixture'
+  );
+  const commit = git(source, 'rev-parse', 'HEAD');
+  const pin = { repository: pathToFileURL(source).href, commit };
+  const cache = path.join(root, 'cache');
+  const checkout = path.join(cache, 'source');
+  return { pin, cache, checkout };
+}
 
 afterEach(async () => {
   await Promise.all(
-    temporaryDirectories.splice(0).map((directory) => rm(directory, { recursive: true }))
+    temporaryDirectories
+      .splice(0)
+      .map((directory) => rm(directory, { recursive: true, force: true }))
   );
 });
 
-describe('deployment checkout validation', () => {
-  it('accepts exact remote, HEAD and required paths', async () => {
-    const directory = await checkoutFixture();
-    await expect(
-      assertCheckout(directory, pin, ['required.json'], runner())
-    ).resolves.toBeUndefined();
+describe('deployment checkout preparation', () => {
+  it('prepares and reuses a pinned sparse checkout, including file paths with spaces', async () => {
+    const { pin, cache, checkout } = await upstreamFixture();
+    expect(await prepareCheckout(checkout, pin, requiredPaths, cache)).toBe('materialized');
+    expect((await readdir(checkout)).sort()).toEqual(['.git', 'nested', 'required.json']);
+    expect(await readFile(path.join(checkout, 'nested', 'child file.json'), 'utf8')).toBe('{}');
+    const runner = vi.fn(runGit);
+    expect(await prepareCheckout(checkout, pin, requiredPaths, cache, runner)).toBe('reused');
+    expect(runner.mock.calls.some(([args]) => args[0] === 'fetch')).toBe(false);
+    expect(await readdir(cache)).toEqual(['source']);
   });
 
-  it('rejects source URL and HEAD mismatches', async () => {
-    const directory = await checkoutFixture();
+  it('requires the matching remote, HEAD, and sparse spec', async () => {
+    const { pin, cache, checkout } = await upstreamFixture();
+    await prepareCheckout(checkout, pin, requiredPaths, cache);
     await expect(
-      inspectCheckout(directory, pin, runner('https://example.invalid/repo.git'))
-    ).resolves.toBe(false);
-    await expect(
-      inspectCheckout(directory, pin, runner(pin.repository, '0'.repeat(40)))
-    ).resolves.toBe(false);
-  });
-
-  it('rejects missing sparse paths loudly', async () => {
-    const directory = await checkoutFixture();
+      assertCheckout(checkout, { ...pin, commit: '0'.repeat(40) }, requiredPaths)
+    ).rejects.toThrow('remote or HEAD');
     await expect(
       assertCheckout(
-        directory,
-        pin,
-        ['missing.json'],
-        runner(pin.repository, pin.commit, true, ['/missing.json'])
+        checkout,
+        { ...pin, repository: 'https://example.invalid/repo.git' },
+        requiredPaths
       )
-    ).rejects.toThrow(/缺少必需路径/);
-  });
-
-  it('rejects a checkout without sparse configuration', async () => {
-    const directory = await checkoutFixture();
-    await expect(
-      assertCheckout(directory, pin, ['required.json'], runner(pin.repository, pin.commit, false))
-    ).rejects.toThrow(/sparse checkout 配置缺失/);
-  });
-
-  it('rejects a stale sparse specification even when required files are present', async () => {
-    const directory = await checkoutFixture();
-    await expect(
-      assertCheckout(
-        directory,
-        pin,
-        ['required.json'],
-        runner(pin.repository, pin.commit, true, ['/whole-directory/'])
-      )
-    ).rejects.toThrow(/specification mismatch/);
-  });
-
-  it('passes anchored sparse paths as an argument array', async () => {
-    const calls: string[][] = [];
-    await setSparseCheckout(
-      'checkout',
-      ['index_new/cn/characters.json', '/image/icon.png'],
-      async (args) => {
-        calls.push(args);
-        return '';
-      }
+    ).rejects.toThrow('remote or HEAD');
+    await expect(assertCheckout(checkout, pin, ['required.json'])).rejects.toThrow(
+      'sparse checkout specification mismatch'
     );
-    expect(calls).toEqual([
-      ['sparse-checkout', 'set', '--no-cone', '/index_new/cn/characters.json', '/image/icon.png']
-    ]);
+    await writeFile(path.join(checkout, 'required.json'), '{"changed":true}');
+    await expect(assertCheckout(checkout, pin, requiredPaths)).rejects.toThrow(
+      'working tree contains local changes'
+    );
   });
 
-  it('preserves the Git failure after three retries', async () => {
-    let attempts = 0;
+  it('detects and replaces a checkout with a missing nested file hidden from Git status', async () => {
+    const { pin, cache, checkout } = await upstreamFixture();
+    await prepareCheckout(checkout, pin, requiredPaths, cache);
+    git(checkout, 'update-index', '--skip-worktree', 'nested/child file.json');
+    await rm(path.join(checkout, 'nested', 'child file.json'));
+    expect(git(checkout, 'status', '--porcelain')).toBe('');
+    await expect(assertCheckout(checkout, pin, requiredPaths)).rejects.toThrow(
+      'required file is not materialized: nested/child file.json'
+    );
+    expect(await prepareCheckout(checkout, pin, requiredPaths, cache)).toBe('materialized');
+    expect(await readFile(path.join(checkout, 'nested', 'child file.json'), 'utf8')).toBe('{}');
+  });
+
+  it('preserves the old checkout and another operation’s temporary directory after fetch fails', async () => {
+    const { pin, cache, checkout } = await upstreamFixture();
+    await prepareCheckout(checkout, pin, requiredPaths, cache);
+    await mkdir(path.join(cache, '.tmp-other-active'));
+    const runner: GitCommandRunner = (args, cwd) =>
+      args[0] === 'fetch' ? Promise.reject(new Error('network disconnected')) : runGit(args, cwd);
     await expect(
-      setSparseCheckout('checkout', ['required.json'], async () => {
-        attempts += 1;
-        throw new Error('network disconnected');
-      })
-    ).rejects.toThrow(/network disconnected/);
-    expect(attempts).toBe(3);
+      prepareCheckout(checkout, { ...pin, commit: '0'.repeat(40) }, requiredPaths, cache, runner)
+    ).rejects.toThrow('network disconnected');
+    await expect(assertCheckout(checkout, pin, requiredPaths)).resolves.toBeUndefined();
+    expect((await readdir(cache)).sort()).toEqual(['.tmp-other-active', 'source']);
+  }, 10_000);
+
+  it('leaves a concurrent preparation’s staging directory alone', async () => {
+    const { pin, cache, checkout } = await upstreamFixture();
+    const ready = Promise.withResolvers<void>();
+    const release = Promise.withResolvers<void>();
+    const runner: GitCommandRunner = async (args, cwd) => {
+      if (args[0] === 'fetch') {
+        ready.resolve();
+        await release.promise;
+      }
+      return runGit(args, cwd);
+    };
+    const first = prepareCheckout(checkout, pin, requiredPaths, cache, runner);
+    try {
+      await Promise.race([ready.promise, first]);
+      await expect(prepareCheckout(checkout, pin, requiredPaths, cache)).rejects.toThrow(
+        'preparation is locked'
+      );
+      expect((await readdir(cache)).filter((entry) => entry.startsWith('.tmp-'))).toHaveLength(1);
+    } finally {
+      release.resolve();
+      await first;
+    }
+    expect(await prepareCheckout(checkout, pin, requiredPaths, cache)).toBe('reused');
+  });
+
+  it('restores the previous directory if publishing the candidate fails', async () => {
+    const root = await fixtureRoot();
+    const checkout = path.join(root, 'checkout');
+    const backup = path.join(root, 'previous');
+    await mkdir(checkout);
+    await writeFile(path.join(checkout, 'required.json'), '{}');
+    await expect(
+      publishCheckout(path.join(root, 'candidate'), checkout, backup)
+    ).rejects.toMatchObject({ code: 'ENOENT' });
+    expect(await readFile(path.join(checkout, 'required.json'), 'utf8')).toBe('{}');
+    expect(await readdir(root)).toEqual(['checkout']);
+  });
+
+  it('reports subprocess status without printing URL arguments or raw stderr', async () => {
+    const root = await fixtureRoot();
+    const marker = 'fixture-secret-proxy-password';
+    const location = pathToFileURL(path.join(root, marker)).href;
+    const log = vi.spyOn(console, 'log');
+    try {
+      const failure = await runGit(['ls-remote', location, 'HEAD'], root).catch(
+        (error: Error) => error
+      );
+      expect(failure).toBeInstanceOf(Error);
+      expect(String(failure)).toMatch(/ls-remote failed.*exit=128/);
+      expect(String(failure)).not.toContain(marker);
+      expect(JSON.stringify(log.mock.calls)).not.toContain(marker);
+    } finally {
+      log.mockRestore();
+    }
   });
 
   it('reports a missing materialized TurnBased source explicitly', async () => {
-    const directory = await checkoutFixture();
+    const directory = await fixtureRoot();
     await expect(readRaw(directory, 'ExcelOutput/MissingTable.json')).rejects.toThrow(
       'Required TurnBased source file is not materialized: ExcelOutput/MissingTable.json'
     );

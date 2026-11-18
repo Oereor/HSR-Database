@@ -1,6 +1,7 @@
 import { CATEGORY_CONFIG, isCategory } from '$lib/domain/constants';
 import {
   getCatalog,
+  getCharacterTeamRecommendations,
   getDetail,
   getManifest,
   getRelicCatalog,
@@ -8,8 +9,10 @@ import {
 } from '$lib/server/generated';
 import { getEnemyDetail } from '$lib/server/enemies';
 import { resolveEquipmentRecommendation } from '$lib/domain/equipment-recommendation-view';
-import type { Character, CharacterSpecialEffectEntry } from '$lib/domain/types';
+import type { CatalogEntry, Character } from '$lib/domain/types';
 import { error } from '@sveltejs/kit';
+import { withTrailblazerGender } from '$lib/domain/trailblazer';
+import { teamRecommendationPageData } from '$lib/domain/team-recommendation';
 
 export const prerender = true;
 export async function entries() {
@@ -28,11 +31,7 @@ export async function load({ params, locals }) {
         : await getDetail(locals.locale, params.category, params.id);
     const characterResources =
       params.category === 'characters'
-        ? await resolveCharacterResources(
-            locals.locale,
-            detail as Record<string, unknown>,
-            detail as unknown as Character
-          )
+        ? await resolveCharacterResources(locals.locale, detail as unknown as Character)
         : undefined;
     return {
       category: params.category,
@@ -40,6 +39,7 @@ export async function load({ params, locals }) {
       detail,
       specialEffectTargets: characterResources?.specialEffectTargets ?? [],
       equipmentRecommendation: characterResources?.equipmentRecommendation,
+      teamRecommendations: characterResources?.teamRecommendations,
       relicProperties: characterResources?.relicProperties ?? []
     };
   } catch {
@@ -47,19 +47,17 @@ export async function load({ params, locals }) {
   }
 }
 
-async function resolveCharacterResources(
-  locale: App.Locals['locale'],
-  detail: Record<string, unknown>,
-  character: Character
-) {
-  const [specialEffectTargets, lightCones, relicSets, relicProperties] = await Promise.all([
-    resolveSpecialEffectTargets(locale, detail),
+async function resolveCharacterResources(locale: App.Locals['locale'], character: Character) {
+  const [characters, teams, lightCones, relicSets, relicProperties] = await Promise.all([
+    getCatalog(locale, 'characters'),
+    getCharacterTeamRecommendations(),
     getCatalog(locale, 'light-cones'),
     getRelicCatalog(locale),
     getRelicProperties(locale)
   ]);
   return {
-    specialEffectTargets,
+    specialEffectTargets: resolveSpecialEffectTargets(characters, character.profiles),
+    teamRecommendations: teamRecommendationPageData(teams, character.id, characters),
     relicProperties,
     equipmentRecommendation: resolveEquipmentRecommendation(
       character.equipmentRecommendation,
@@ -70,14 +68,9 @@ async function resolveCharacterResources(
   };
 }
 
-async function resolveSpecialEffectTargets(
-  locale: App.Locals['locale'],
-  detail: Record<string, unknown>
-) {
-  const profiles = detail.profiles as
-    Record<string, { specialEffects?: CharacterSpecialEffectEntry[] } | undefined> | undefined;
+function resolveSpecialEffectTargets(catalog: CatalogEntry[], profiles: Character['profiles']) {
   const ids = new Set<string>();
-  for (const profile of Object.values(profiles ?? {})) {
+  for (const profile of Object.values(profiles)) {
     for (const entry of profile?.specialEffects ?? []) {
       if (entry.kind === 'servant-skill-link' || entry.kind === 'series-skill-link')
         ids.add(entry.linkedAvatarId);
@@ -85,5 +78,9 @@ async function resolveSpecialEffectTargets(
     }
   }
   if (!ids.size) return [];
-  return (await getCatalog(locale, 'characters')).filter((entry) => ids.has(entry.id));
+  for (const id of [...ids]) {
+    ids.add(withTrailblazerGender(id, 'female'));
+    ids.add(withTrailblazerGender(id, 'male'));
+  }
+  return catalog.filter((entry) => ids.has(entry.id));
 }

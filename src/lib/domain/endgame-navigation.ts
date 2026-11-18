@@ -26,7 +26,7 @@ export interface EndgameLocalNavigationModel {
   sections: EndgameLocalNavigationSection[];
 }
 
-function encounterHref(id: string): string {
+export function endgameEncounterHref(id: string): string {
   return `?encounter=${encodeURIComponent(id)}`;
 }
 
@@ -47,7 +47,7 @@ export function buildMocLocalNavigation(
       items: encounters.map((encounter) => ({
         id: encounter.id,
         label: String(encounter.ordinal ?? encounter.id).padStart(2, '0'),
-        href: encounterHref(encounter.id),
+        href: endgameEncounterHref(encounter.id),
         current: encounter.id === selectedId,
         title: encounter.label
       }))
@@ -75,7 +75,7 @@ function buildDifficultyLocalNavigation(
       items: encounters.map((encounter) => ({
         id: encounter.id,
         label: m.endgame_local_difficulty_label({ number: encounter.ordinal ?? encounter.id }),
-        href: encounterHref(encounter.id),
+        href: endgameEncounterHref(encounter.id),
         current: encounter.id === selectedId,
         title: encounter.label
       }))
@@ -115,7 +115,7 @@ export function buildAnomalyArbitrationLocalNavigation(
         .map((encounter) => ({
           id: encounter.id,
           label: encounter.label,
-          href: encounterHref(encounter.id),
+          href: endgameEncounterHref(encounter.id),
           current: encounter.id === selectedId
         }))
     },
@@ -126,7 +126,7 @@ export function buildAnomalyArbitrationLocalNavigation(
         .map((encounter) => ({
           id: encounter.id,
           label: encounter.label,
-          href: encounterHref(encounter.id),
+          href: endgameEncounterHref(encounter.id),
           current: encounter.id === selectedId
         }))
     }

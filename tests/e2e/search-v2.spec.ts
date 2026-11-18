@@ -6,6 +6,10 @@ import {
   type GlobalSearchIndex
 } from '../../src/lib/domain/search-index';
 import { normalizeSearchLabel } from '../../src/lib/search/normalization';
+import {
+  DEFAULT_TRAILBLAZER_GENDER,
+  isVisibleStaticCharacter
+} from '../../src/lib/domain/trailblazer';
 
 const index = JSON.parse(
   readFileSync('static/generated/zh-CN/search.json', 'utf8')
@@ -35,6 +39,35 @@ const marchMatches = index.documents.flatMap((doc) =>
     : []
 );
 
+test('公开 ID 在全局和四类目录可用，目录筛选和排序继续生效', async ({ page }) => {
+  for (const [kind, path] of [
+    ['character', 'characters'],
+    ['light-cone', 'light-cones'],
+    ['relic', 'relics'],
+    ['enemy', 'enemies']
+  ] as const) {
+    const id = index.documents.find(({ target }) => target.kind === kind)!.target.id;
+    const href = `/${path}/${id}/`;
+    for (const url of [`/search/?q=${id}`, `/${path}/?q=${id}&sort=name`]) {
+      await page.goto(url);
+      await expect(page.locator(`a.entity-overview-card[href="${href}"]`)).toBeVisible();
+    }
+  }
+
+  const characters = JSON.parse(
+    readFileSync('src/lib/generated/views/zh-CN/catalogs/characters.json', 'utf8')
+  ) as Array<{ id: string; path: string }>;
+  const selected = characters[0];
+  const otherPath = characters.find(({ path }) => path !== selected.path)!.path;
+  await page.goto(`/characters/?q=${selected.id}&path=${otherPath}&sort=id`);
+  const input = page.locator('#character-search-input');
+  await expect(input).toHaveValue(selected.id);
+  const target = page.locator(`a.entity-overview-card[href="/characters/${selected.id}/"]`);
+  await expect(target).toHaveCount(0);
+  await page.goto(`/characters/?q=${selected.id}&path=${selected.path}&sort=id`);
+  await expect(target).toBeVisible();
+});
+
 test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可重新搜索', async ({ page }) => {
   await page.goto('/search/?q=丹恒');
   const cards = page.locator('a.entity-overview-card');
@@ -45,7 +78,6 @@ test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可�
   await input.fill('三月七');
   await input.press('Enter');
   await expect(cards).toHaveCount(marchMatches.length);
-  await expect(cards).toContainText(['三月七·存护', '三月七·巡猎']);
   for (const match of marchMatches) {
     const card = page.locator(`a.entity-overview-card[href="/characters/${match.id}/"]`);
     await expect(card).toContainText(match.name);
@@ -111,6 +143,8 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
   const ordinary = index.documents.filter(
     (doc) =>
       doc.target.kind !== 'endgame' &&
+      (doc.target.kind !== 'character' ||
+        isVisibleStaticCharacter(doc.target.id, DEFAULT_TRAILBLAZER_GENDER)) &&
       [doc.canonicalName, ...doc.officialAliases, ...doc.playerAliases].some((name) =>
         normalizeSearchLabel(name).includes(query)
       )
