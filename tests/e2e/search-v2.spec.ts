@@ -35,6 +35,35 @@ const marchMatches = index.documents.flatMap((doc) =>
     : []
 );
 
+test('公开 ID 在全局和四类目录可用，目录筛选和排序继续生效', async ({ page }) => {
+  for (const [kind, path] of [
+    ['character', 'characters'],
+    ['light-cone', 'light-cones'],
+    ['relic', 'relics'],
+    ['enemy', 'enemies']
+  ] as const) {
+    const id = index.documents.find(({ target }) => target.kind === kind)!.target.id;
+    const href = `/${path}/${id}/`;
+    for (const url of [`/search/?q=${id}`, `/${path}/?q=${id}&sort=name`]) {
+      await page.goto(url);
+      await expect(page.locator(`a.entity-overview-card[href="${href}"]`)).toBeVisible();
+    }
+  }
+
+  const characters = JSON.parse(
+    readFileSync('src/lib/generated/views/zh-CN/catalogs/characters.json', 'utf8')
+  ) as Array<{ id: string; path: string }>;
+  const selected = characters[0];
+  const otherPath = characters.find(({ path }) => path !== selected.path)!.path;
+  await page.goto(`/characters/?q=${selected.id}&path=${otherPath}&sort=id`);
+  const input = page.locator('#character-search-input');
+  await expect(input).toHaveValue(selected.id);
+  const target = page.locator(`a.entity-overview-card[href="/characters/${selected.id}/"]`);
+  await expect(target).toHaveCount(0);
+  await page.goto(`/characters/?q=${selected.id}&path=${selected.path}&sort=id`);
+  await expect(target).toBeVisible();
+});
+
 test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可重新搜索', async ({ page }) => {
   await page.goto('/search/?q=丹恒');
   const cards = page.locator('a.entity-overview-card');

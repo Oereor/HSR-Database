@@ -66,14 +66,16 @@ Development 与完整 CI profile 在输入准备后执行名称 check；Producti
 生成数据 manifest 版本由源码与架构契约决定，历史报告中的版本不能用于当前排障。
 有效缓存下的 alias-only 变更复用输入并增量刷新中文搜索产物；非法 metadata 不进入离线 fallback。
 
-[createGlobalSearchService](../src/lib/search/search.ts)是生产查询入口：
+[搜索服务](../src/lib/search/search.ts)供全局搜索与 Endgame 总览复用。
 
 1. label 经 GameText → plain text → NFKC → lowercase → 删除空白与 `·•・—_-/`；query 不解析 GameText，其余标点保留。
 2. FlexSearch `Document` 使用 `tokenize: 'full'`、`Charset.Exact` 加显式空白分词，索引 canonical、official aliases、player aliases；三个字段按完整 document 数量召回并去重。
-3. 排名依次为 canonical/official/player 的 exact、prefix、contains，共九级；同级按归一 canonical、固定领域顺序与 stable key 的 Unicode 码点顺序比较。
-4. 普通与 Endgame exact/partial 同时保留，每个 document 只产生最佳 evidence；普通目标返回原 catalog model。
+3. ID 只去除首尾空白，按公开目标的字符串 ID 精确查找，保留前导零。ID 与名称的召回并行，按 `kind:id` 合并；精确 ID 优先，其后依次为 canonical/official/player 的 exact、prefix、contains。同级按归一 canonical、固定领域顺序与 stable key 的 Unicode 码点顺序比较。
+4. 普通目标返回原 catalog model。角色、光锥、遗器套装和敌方单位目录也使用同一精确 ID 规则，原有文本匹配、筛选与分页继续生效，目录排序用于同优先级结果。
 5. 命中 Endgame 目标后按 locale 与 targetId 加载 shard，Promise 缓存合并并发，失败移除缓存供重试；按 locator 去重并保持赛期及出场顺序。
 6. 页面丢弃迟到请求结果，单个目标加载失败保留其他可用结果并显示不可用状态；每个普通类别及 Endgame 模式首批 100 张，每次增加 100 张，service 保留完整结果。
+
+在中英文 `/endgame/` 总览提交查询时，`?q=` 记录已提交的值。赛期搜索直接使用四个模式的现有元数据，支持名称子串与完整 `groupId`；赛期状态由客户端时钟更新。敌方出场搜索按需读取当前语言的现有 bundle，按敌方名称或完整 `MonsterTemplateID` 召回，使用同一 shard 加载机制。每张卡片保留自身出场数据，按模式、赛期、关卡、节点和阶段或波次归组。关卡链接通过 `?encounter=` 选中关卡，敌方卡片仍可打开对应百科页面。搜索 bundle 与 shard 保持原有数据版本。
 
 当前实现没有 Worker、数据库、模糊检索或 suggestions。
 对应模块见 [search/](../src/lib/search/)与 [search-index.ts](../src/lib/domain/search-index.ts)；不把历史 173 名称桶或 8,167 locators 当作当前上限。

@@ -3,7 +3,10 @@ import type { CatalogEntry, EnemyCatalogEntry, RelicCatalogEntry } from '../doma
 import {
   normalizeSearchDocument,
   SEARCH_DOCUMENT_SCHEMA_VERSION,
-  type MatchEvidence
+  searchTargetKey,
+  type MatchEvidence,
+  type NormalizedSearchDocument,
+  type SearchTarget
 } from './documents.js';
 import {
   createEndgameSearchExpander,
@@ -13,7 +16,11 @@ import {
 } from './endgame.js';
 import { createFlexSearchAdapter } from './flexsearch-adapter.js';
 import { CHARACTER_NAMING_POLICY_VERSION } from './name-metadata.js';
-import { normalizeSearch, SEARCH_NORMALIZATION_VERSION } from './normalization.js';
+import {
+  normalizeSearch,
+  normalizeSearchIdQuery,
+  SEARCH_NORMALIZATION_VERSION
+} from './normalization.js';
 import { bestSearchEvidence, compareSearchMatches, type RankedSearchMatch } from './ranking.js';
 
 export { endgameSearchSeasonsForMode } from './endgame.js';
@@ -41,7 +48,65 @@ const emptyResults = (): GlobalSearchResults => ({
   endgame: emptyEndgameSearchResults()
 });
 
-/** The only production query path. Cards continue to receive their original catalog models. */
+function createSearchMatcher(index: GlobalSearchIndex, kind?: SearchTarget['kind']) {
+  const documents = new Map<string, NormalizedSearchDocument>();
+  const targetsById = new Map<string, NormalizedSearchDocument[]>();
+  let engine: ReturnType<typeof createFlexSearchAdapter> | undefined;
+  try {
+    if (
+      index.schemaVersion !== SEARCH_DOCUMENT_SCHEMA_VERSION ||
+      index.normalizationVersion !== SEARCH_NORMALIZATION_VERSION ||
+      index.namingPolicyVersion !== CHARACTER_NAMING_POLICY_VERSION
+    )
+      throw new Error('SearchDocument bundle 版本不兼容');
+    for (const doc of index.documents) {
+      if (kind && doc.target.kind !== kind) continue;
+      if (documents.has(doc.key)) throw new Error(`重复搜索 key：${doc.key}`);
+      const normalized = normalizeSearchDocument(doc);
+      documents.set(doc.key, normalized);
+      const exactTargets = targetsById.get(doc.target.id) ?? [];
+      exactTargets.push(normalized);
+      targetsById.set(doc.target.id, exactTargets);
+    }
+    engine = createFlexSearchAdapter([...documents.values()]);
+  } catch (error) {
+    console.error('搜索索引初始化失败', error);
+  }
+  return function matchSearch(query: string) {
+    if (!engine) return { matches: [], unavailable: true };
+    const id = normalizeSearchIdQuery(query);
+    if (!id) return { matches: [], unavailable: false };
+    const matches = new Map<string, RankedSearchMatch>();
+    for (const normalized of targetsById.get(id) ?? []) {
+      const { key, target } = normalized.document;
+      matches.set(searchTargetKey(target), {
+        normalized,
+        evidence: { documentKey: key, matchKind: 'id', matchedLabel: target.id }
+      });
+    }
+    let unavailable = false;
+    const needle = normalizeSearch(query);
+    try {
+      for (const key of engine.search(needle)) {
+        const normalized = documents.get(key);
+        if (!normalized) throw new Error(`搜索索引返回未知 key：${key}`);
+        const targetKey = searchTargetKey(normalized.document.target);
+        if (matches.get(targetKey)?.evidence.matchKind === 'id') continue;
+        const evidence = bestSearchEvidence(normalized, needle);
+        if (!evidence) continue;
+        const candidate = { normalized, evidence };
+        const previous = matches.get(targetKey);
+        if (!previous || compareSearchMatches(candidate, previous) < 0)
+          matches.set(targetKey, candidate);
+      }
+    } catch (error) {
+      console.error('搜索召回失败', error);
+      unavailable = true;
+    }
+    return { matches: [...matches.values()].sort(compareSearchMatches), unavailable };
+  };
+}
+
 export function createGlobalSearchService(
   index: GlobalSearchIndex,
   catalogs: GlobalSearchCatalogs,
@@ -54,49 +119,20 @@ export function createGlobalSearchService(
     enemy: new Map(catalogs.enemies.map((entry) => [entry.id, entry]))
   };
   const endgame = new Map(index.endgameTargets.map((entry) => [entry.id, entry]));
-  const documents = new Map<string, ReturnType<typeof normalizeSearchDocument>>();
-  let engine: ReturnType<typeof createFlexSearchAdapter> | undefined;
-  try {
-    if (
-      index.schemaVersion !== SEARCH_DOCUMENT_SCHEMA_VERSION ||
-      index.normalizationVersion !== SEARCH_NORMALIZATION_VERSION ||
-      index.namingPolicyVersion !== CHARACTER_NAMING_POLICY_VERSION
-    )
-      throw new Error('SearchDocument bundle 版本不兼容');
-    for (const doc of index.documents) {
-      if (documents.has(doc.key)) throw new Error(`重复搜索 key：${doc.key}`);
-      documents.set(doc.key, normalizeSearchDocument(doc));
-    }
-    engine = createFlexSearchAdapter([...documents.values()]);
-  } catch (error) {
-    console.error('搜索索引初始化失败', error);
-  }
+  const matchSearch = createSearchMatcher(index);
   const reportedMissing = new Set<string>();
   function search(query: string): GlobalSearchSnapshot {
+    const { matches, unavailable } = matchSearch(query);
     const snapshot: GlobalSearchSnapshot = {
       results: emptyResults(),
       endgameMatches: [],
       evidence: [],
-      unavailable: !engine
+      unavailable
     };
-    const needle = normalizeSearch(query);
-    if (!needle || !engine) return snapshot;
-    const matches: RankedSearchMatch[] = [];
-    try {
-      for (const key of engine.search(needle)) {
-        const normalized = documents.get(key);
-        if (!normalized) throw new Error(`搜索索引返回未知 key：${key}`);
-        const evidence = bestSearchEvidence(normalized, needle);
-        if (evidence) matches.push({ normalized, evidence });
-      }
-    } catch (error) {
-      console.error('搜索召回失败', error);
-      snapshot.unavailable = true;
-    }
     for (const {
       normalized: { document },
       evidence
-    } of matches.sort(compareSearchMatches)) {
+    } of matches) {
       const target = document.target;
       let found = false;
       if (target.kind === 'endgame') {
@@ -142,4 +178,22 @@ export function createGlobalSearchService(
     return snapshot;
   }
   return { search, expandEndgame: createEndgameSearchExpander(fetchShard, index.locale) };
+}
+
+export function createEndgameOccurrenceSearch(index: GlobalSearchIndex, fetchShard?: ShardFetcher) {
+  const matchSearch = createSearchMatcher(index, 'endgame');
+  const targets = new Map(index.endgameTargets.map((entry) => [entry.id, entry]));
+  const expandEndgame = createEndgameSearchExpander(fetchShard, index.locale);
+  return async (query: string) => {
+    const { matches, unavailable } = matchSearch(query);
+    const entries = matches.flatMap(({ normalized }) => {
+      const target = targets.get(normalized.document.target.id);
+      return target ? [target] : [];
+    });
+    const expanded = await expandEndgame(entries);
+    return {
+      results: expanded.results,
+      unavailable: unavailable || expanded.unavailable || entries.length !== matches.length
+    };
+  };
 }

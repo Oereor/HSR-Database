@@ -15,7 +15,7 @@
     writeEnemyOverviewFilterState,
     type EnemyOverviewFilterState
   } from '$lib/domain/enemy-overview';
-  import { gameTextToPlain } from '$lib/domain/game-text';
+  import { overviewSearch } from '$lib/search/overview';
   import type { CatalogEntry, EnemyCatalogEntry } from '$lib/domain/types';
   import { formatDocumentTitle } from '$lib/site';
   import EnemyOverviewCard from './EnemyOverviewCard.svelte';
@@ -48,18 +48,13 @@
   $: heroArtwork = heroEnemyIds.flatMap((id) =>
     enemyPortraits[id] ? [{ id, url: enemyPortraits[id] }] : []
   );
+  $: search = overviewSearch(appliedQuery);
   $: filtered = enemies
-    .filter((entry) => {
-      const query = appliedQuery.trim().toLocaleLowerCase();
-      return (
-        (!query ||
-          gameTextToPlain(`${entry.name} ${entry.description ?? ''}`)
-            .toLocaleLowerCase()
-            .includes(query)) &&
-        matchesEnemyOverviewFilters(entry, filterState)
-      );
-    })
-    .sort((a, b) => compareEnemyOverviewEntries(a, b, sort, filterState.weaknesses));
+    .filter((entry) => search.matches(entry) && matchesEnemyOverviewFilters(entry, filterState))
+    .sort(
+      (a, b) =>
+        search.compareId(a, b) || compareEnemyOverviewEntries(a, b, sort, filterState.weaknesses)
+    );
   const pagination = createOverviewPagination(48, (url) =>
     goto(url, { replaceState: true, noScroll: true, keepFocus: true })
   );

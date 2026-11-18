@@ -8,12 +8,19 @@ import {
   type EndgameOccurrenceShard,
   type GlobalSearchIndex
 } from '../../src/lib/domain/search-index';
+import { ENDGAME_MODES } from '../../src/lib/domain/endgame-view';
 import type { SearchDocument } from '../../src/lib/search/documents';
 import { normalizeSearchDocument } from '../../src/lib/search/documents';
 import { createFlexSearchAdapter } from '../../src/lib/search/flexsearch-adapter';
 import { normalizeSearch, normalizeSearchLabel } from '../../src/lib/search/normalization';
-import { createGlobalSearchService, type GlobalSearchCatalogs } from '../../src/lib/search/search';
-import { createEndgameSearchExpander } from '../../src/lib/search/endgame';
+import {
+  createEndgameOccurrenceSearch,
+  createGlobalSearchService,
+  type GlobalSearchCatalogs
+} from '../../src/lib/search/search';
+import { createEndgameSearchExpander, matchEndgamePeriods } from '../../src/lib/search/endgame';
+import { overviewSearch } from '../../src/lib/search/overview';
+import { groupEndgameSearchEncounters } from '../../src/lib/search/presentation';
 import { bestSearchEvidence, searchRankClass } from '../../src/lib/search/ranking';
 
 const generated = path.resolve('src/lib/generated/views/zh-CN/catalogs');
@@ -95,6 +102,70 @@ const reference = (
 });
 
 describe('Search V2', () => {
+  it('ranks an exact string ID first while retaining numeric name hits and shared IDs', () => {
+    const exact = document('0012', 'Zeta 0012');
+    const docs = [
+      document('1', 'Alpha 0012'),
+      document('2', 'Alpha 0012'),
+      document('0042', 'Other'),
+      exact,
+      { ...exact, key: 'enemy:0012', target: { kind: 'enemy', id: '0012' } } as const
+    ];
+    const characters = docs.slice(0, -1).map(({ target, canonicalName }) => ({
+      id: target.id,
+      name: canonicalName
+    }));
+    const enemy = { ...catalogs.enemies[0], id: '0012' };
+    const service = createGlobalSearchService(bundle(docs), {
+      ...emptyCatalogs(),
+      characters,
+      enemies: [enemy]
+    });
+    const result = service.search(' 0012 ');
+    expect(result.results.characters.map(({ id }) => id)).toEqual(['0012', '1', '2']);
+    expect(result.results.enemies).toEqual([enemy]);
+    expect(result.evidence.map(({ matchKind }) => matchKind)).toEqual([
+      'id',
+      'id',
+      'contains',
+      'contains'
+    ]);
+    expect(service.search('0042').results.characters).toEqual([characters[2]]);
+    for (const query of ['42', '00042', '00-42', '００４２'])
+      expect(service.search(query).evidence).toEqual([]);
+
+    const overview = overviewSearch(' 0012 ');
+    expect(
+      characters
+        .filter(overview.matches)
+        .sort(overview.compareId)
+        .map(({ id }) => id)
+    ).toEqual(['0012', '1', '2']);
+    expect(characters.filter(overviewSearch('42').matches)).toEqual([]);
+    expect(characters.filter(overviewSearch('other').matches)).toEqual([characters[2]]);
+  });
+
+  it('matches period names and exact group IDs across all four modes', () => {
+    const modes = ENDGAME_MODES.map((mode, index) => ({
+      mode,
+      label: mode,
+      description: '',
+      periods: [
+        {
+          groupId: 123,
+          name: 'Silver · <unbreak>Storm</unbreak>',
+          dateLabel: '',
+          encounterCount: 2,
+          status: (['current', 'historical', 'upcoming', 'unknown'] as const)[index]
+        }
+      ]
+    }));
+    for (const query of ['Silver Storm', ' 123 '])
+      expect(matchEndgamePeriods(modes, query).map(({ mode }) => mode)).toEqual(ENDGAME_MODES);
+    for (const query of ['', '12', '0123', '1-23'])
+      expect(matchEndgamePeriods(modes, query)).toEqual([]);
+  });
+
   it('normalizes only explicit separators and preserves significant punctuation', () => {
     for (const separator of [' ', '·', '•', '・', '—', '_', '-', '/'])
       expect(normalizeSearch(`丹恒${separator}饮月`)).toBe('丹恒饮月');
@@ -323,6 +394,83 @@ describe('Search V2', () => {
     expect(a.unavailable).toBe(false);
     expect(a.results.memoryOfChaos[0].enemies).toHaveLength(2);
     expect(b.results).toEqual(a.results);
+  });
+
+  it('retains successful occurrence groups when a matched template shard fails', async () => {
+    const positions = [
+      reference(locator({ encounterId: 'knight:one', mode: 'aa', monsterId: 777 })),
+      reference(locator({ encounterId: 'knight:one', mode: 'aa', monsterId: 778 }), { card: 1 }),
+      reference(
+        locator({
+          encounterId: 'knight:one',
+          mode: 'aa',
+          monsterId: 777,
+          wave: { kind: 'spawn-sequence', infiniteWaveId: 542 }
+        }),
+        { wave: 1 }
+      ),
+      reference(locator({ encounterId: 'king:hard', mode: 'aa', monsterId: 777 }), { encounter: 1 })
+    ];
+    const targets = [
+      { id: '700', name: 'Fixture 700', occurrences: positions },
+      { id: '701', name: 'Fixture 700 variant', occurrences: [] },
+      { id: '702', name: 'Unmatched', occurrences: [] }
+    ];
+    const docs = targets.map(({ id, name }) => ({
+      ...document(id, name),
+      key: `endgame:${id}`,
+      target: { kind: 'endgame', id } as const
+    }));
+    const shard: EndgameOccurrenceShard = {
+      schemaVersion: 4,
+      locale: 'zh-CN',
+      target: { kind: 'endgame', id: '700' },
+      periods: [
+        {
+          mode: 'aa',
+          period: { groupId: 1, name: 'Fixture period', dateLabel: '', encounterCount: 2 }
+        }
+      ],
+      occurrences: Object.fromEntries(
+        positions.map(({ locator }) => {
+          const key = endgameOccurrenceLocatorKey(locator);
+          return [key, { key, occurrence: occurrence('Fixture 700'), level: 80 }];
+        })
+      )
+    };
+    const fetchShard = vi.fn(async (id: string) => {
+      if (id === '700') return shard;
+      throw new Error('unavailable');
+    });
+    const search = createEndgameOccurrenceSearch(
+      { ...bundle(docs), endgameTargets: targets },
+      fetchShard
+    );
+    const log = vi.spyOn(console, 'error').mockImplementation(() => {});
+    try {
+      const result = await search('700');
+      expect(result.unavailable).toBe(true);
+      const enemies = result.results.anomalyArbitration[0].enemies;
+      expect(enemies.map(({ locator }) => locator)).toEqual(
+        positions.map(({ locator }) => locator)
+      );
+      const encounters = groupEndgameSearchEncounters(enemies);
+      expect(encounters.map(({ id }) => id)).toEqual(['knight:one', 'king:hard']);
+      expect(encounters[0].positions.map(({ wave, enemies }) => [wave, enemies.length])).toEqual([
+        [1, 2],
+        [2, 1]
+      ]);
+      expect(fetchShard.mock.calls).toEqual([
+        ['700', 'zh-CN'],
+        ['701', 'zh-CN']
+      ]);
+      expect(Object.values((await search('777')).results).flat()).toEqual([]);
+      await search('Fixture 700');
+      expect(fetchShard.mock.calls.filter(([id]) => id === '700')).toHaveLength(1);
+      expect(fetchShard.mock.calls.filter(([id]) => id === '701')).toHaveLength(2);
+    } finally {
+      log.mockRestore();
+    }
   });
 
   it('rejects the obsolete temporal shard contract', async () => {

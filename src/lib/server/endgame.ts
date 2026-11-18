@@ -27,7 +27,11 @@ import {
   type SearchLocale
 } from '$lib/domain/search-index';
 import { getManifest, getSearchIndex } from '$lib/server/generated';
-import { getEndgameModeCopy, getEndgamePeriodPresentation } from '$lib/i18n/endgame';
+import {
+  getEndgameModeCopy,
+  getEndgamePeriodPresentation,
+  getEndgameSearchEncounterLabel
+} from '$lib/i18n/endgame';
 
 const generatedRoot = path.resolve('src', 'lib', 'generated', 'views');
 const datasetCache = new Map<string, Promise<EndgameModeDataset>>();
@@ -133,16 +137,29 @@ async function getEnemyReference(
   return pending;
 }
 
-export async function getEndgameLanding(locale: SearchLocale): Promise<EndgameModeView[]> {
+export async function getEndgameLanding(locale: SearchLocale) {
   const presentation = getEndgamePeriodPresentation(locale);
-  return Promise.all(
-    ENDGAME_MODES.map(async (mode) =>
-      Object.assign(
-        buildModeView(mode, (await getEndgameDataset(mode, locale)).groups, presentation),
-        getEndgameModeCopy(mode, locale)
+  const datasets = await Promise.all(ENDGAME_MODES.map((mode) => getEndgameDataset(mode, locale)));
+  const modes = datasets.map(({ mode, groups }) =>
+    Object.assign(buildModeView(mode, groups, presentation), getEndgameModeCopy(mode, locale))
+  );
+  const encounterLabels = Object.fromEntries(
+    datasets.flatMap(({ mode, groups }) =>
+      groups.map(
+        ({ groupId, encounters }) =>
+          [
+            `${mode}:${groupId}`,
+            Object.fromEntries(
+              encounters.map((encounter) => [
+                encounter.id,
+                getEndgameSearchEncounterLabel(mode, encounter, locale)
+              ])
+            )
+          ] as const
       )
     )
   );
+  return { modes, encounterLabels };
 }
 
 export async function getEndgameMode(

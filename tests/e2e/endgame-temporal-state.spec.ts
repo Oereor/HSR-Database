@@ -22,7 +22,7 @@ async function openReady(page: Page, url: string) {
 }
 
 for (const prefix of ['', '/en']) {
-  for (const route of ['overview', 'mode', 'detail'] as const) {
+  for (const route of ['overview', 'mode', 'detail', 'search'] as const) {
     test(`${prefix || 'zh-CN'} ${route} crosses the AS boundary on the same static page`, async ({
       page,
       request
@@ -33,7 +33,13 @@ for (const prefix of ['', '/en']) {
         if (/hydration/i.test(message.text())) errors.push(message.text());
       });
       await installClock(page);
-      const url = `${prefix}/endgame/${route === 'overview' ? '' : route === 'mode' ? 'as/' : 'as/3021/'}`;
+      const suffix = {
+        overview: '',
+        mode: 'as/',
+        detail: 'as/3021/',
+        search: '?q=3021'
+      }[route];
+      const url = `${prefix}/endgame/${suffix}`;
       const staticBefore = await (await request.get(url)).text();
       await openReady(page, url);
       const oldHref = `${prefix}/endgame/as/3020/`;
@@ -46,6 +52,8 @@ for (const prefix of ['', '/en']) {
       if (route === 'overview') await expect(card).toHaveAttribute('href', oldHref);
       else if (route === 'mode') {
         await expect(oldPeriod).toHaveAttribute('data-endgame-season-card', 'current');
+        await expect(newPeriod).toHaveAttribute('data-endgame-season-card', 'upcoming');
+      } else if (route === 'search') {
         await expect(newPeriod).toHaveAttribute('data-endgame-season-card', 'upcoming');
       } else {
         await expect(heroStatus).toHaveClass(/endgame-inline-status--upcoming/);
@@ -60,6 +68,8 @@ for (const prefix of ['', '/en']) {
       if (route === 'overview') await expect(card).toHaveAttribute('href', newHref);
       else if (route === 'mode') {
         await expect(oldPeriod).toHaveAttribute('data-endgame-season-card', 'historical');
+        await expect(newPeriod).toHaveAttribute('data-endgame-season-card', 'current');
+      } else if (route === 'search') {
         await expect(newPeriod).toHaveAttribute('data-endgame-season-card', 'current');
       } else {
         await expect(heroStatus).toHaveCount(1);

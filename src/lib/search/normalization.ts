@@ -1,6 +1,8 @@
 import { gameTextToPlain } from '../domain/game-text.js';
 
 export const SEARCH_NORMALIZATION_VERSION = 1 as const;
+export const normalizeSearchIdQuery = (value: string): string => value.trim();
+
 export const normalizeSearch = (value: string): string =>
   value
     .normalize('NFKC')

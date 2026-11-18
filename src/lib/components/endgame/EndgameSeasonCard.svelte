@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as Card from '$lib/components/ui/card';
+  import { Badge } from '$lib/components/ui/badge';
   import { Separator } from '$lib/components/ui/separator';
   import type { EndgameMode } from '$lib/domain/endgame';
   import {
@@ -14,6 +15,14 @@
   export let mode: EndgameMode;
   export let period: EndgamePeriodView;
   export let variant: EndgamePeriodStatus;
+  export let showStatus = false;
+
+  const statusLabel = {
+    current: m.endgame_period_current,
+    upcoming: m.endgame_period_upcoming,
+    historical: m.endgame_period_historical,
+    unknown: m.endgame_period_unknown
+  };
 
   $: metadata = ENDGAME_MODE_META[mode];
 </script>
@@ -49,6 +58,9 @@
         class="endgame-season-card__date text-muted-foreground text-sm wrap-anywhere tabular-nums"
         >{period.dateLabel}</span
       >
+      {#if showStatus}
+        <Badge variant="outline">{statusLabel[variant]()}</Badge>
+      {/if}
     </Card.Header>
     <Card.Content class="mt-auto grid gap-3">
       <Separator />

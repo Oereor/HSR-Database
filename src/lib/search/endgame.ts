@@ -2,19 +2,27 @@ import type { EndgameMode } from '../domain/endgame.js';
 import {
   ENDGAME_MODES,
   type EndgameEnemyGridItem,
+  type EndgameModeView,
   type EndgamePeriodMetadata
 } from '../domain/endgame-view.js';
 import {
   endgameOccurrenceLocatorKey,
+  type EndgameOccurrenceLocator,
   type EndgameOccurrenceOrder,
   type EndgameOccurrenceShard,
   type EndgameSearchTargetEntry,
   type SearchLocale
 } from '../domain/search-index.js';
+import { normalizeSearch, normalizeSearchIdQuery, normalizeSearchLabel } from './normalization.js';
+
+export interface EndgameSearchOccurrence extends EndgameEnemyGridItem {
+  locator: EndgameOccurrenceLocator;
+  order: EndgameOccurrenceOrder;
+}
 
 export interface EndgameSearchSeasonResult {
   period: EndgamePeriodMetadata;
-  enemies: EndgameEnemyGridItem[];
+  enemies: EndgameSearchOccurrence[];
 }
 
 export interface EndgameSearchResults {
@@ -40,6 +48,22 @@ export const emptyEndgameSearchResults = (): EndgameSearchResults => ({
 
 export function endgameSearchSeasonsForMode(results: EndgameSearchResults, mode: EndgameMode) {
   return results[ENDGAME_RESULT_KEY_BY_MODE[mode]];
+}
+
+export function matchEndgamePeriods(modes: EndgameModeView[], query: string) {
+  const id = normalizeSearchIdQuery(query);
+  const name = normalizeSearch(query);
+  return modes.flatMap(({ mode, label, periods }) => {
+    const exact = periods.filter(({ groupId }) => String(groupId) === id);
+    const byName = name
+      ? periods.filter(
+          (period) =>
+            String(period.groupId) !== id && normalizeSearchLabel(period.name).includes(name)
+        )
+      : [];
+    const matches = [...exact, ...byName];
+    return matches.length ? [{ mode, label, periods: matches }] : [];
+  });
 }
 
 export interface ExpandedEndgameResults {
@@ -113,7 +137,7 @@ export function createEndgameSearchExpander(
       {
         mode: EndgameMode;
         period: EndgamePeriodMetadata;
-        enemies: Array<{ order: EndgameOccurrenceOrder; item: EndgameEnemyGridItem }>;
+        enemies: EndgameSearchOccurrence[];
       }
     >();
     let unavailable = false;
@@ -131,7 +155,7 @@ export function createEndgameSearchExpander(
         if (seenLocators.has(locatorKey)) continue;
         const key = `${locator.mode}:${locator.groupId}`;
         const period = periods.get(key);
-        const item = shard.occurrences[endgameOccurrenceLocatorKey(locator)];
+        const item = shard.occurrences[locatorKey];
         if (!period || !item) {
           console.error(`Endgame 搜索引用缺失：${entry.id} / ${locatorKey}`);
           unavailable = true;
@@ -139,7 +163,7 @@ export function createEndgameSearchExpander(
         }
         const season = grouped.get(key) ?? { mode: locator.mode, period, enemies: [] };
         seenLocators.add(locatorKey);
-        season.enemies.push({ order, item });
+        season.enemies.push({ ...item, locator, order });
         grouped.set(key, season);
       }
     }
@@ -150,7 +174,7 @@ export function createEndgameSearchExpander(
         .sort((a, b) => b.period.groupId - a.period.groupId)
         .map(({ period, enemies }) => ({
           period,
-          enemies: enemies.sort((a, b) => occurrenceOrder(a.order, b.order)).map(({ item }) => item)
+          enemies: enemies.sort((a, b) => occurrenceOrder(a.order, b.order))
         }));
     }
     return { results, unavailable };

@@ -1,4 +1,4 @@
-import type { EndgameSearchSeasonResult } from './endgame.js';
+import type { EndgameSearchOccurrence, EndgameSearchSeasonResult } from './endgame.js';
 
 export const SEARCH_DISPLAY_BATCH = 100;
 
@@ -16,4 +16,41 @@ export function windowEndgameSeasons(
     remaining -= enemies.length;
   }
   return visible;
+}
+
+interface SearchEncounterPosition {
+  key: string;
+  node: number;
+  stage: number;
+  wave: number;
+  enemies: EndgameSearchOccurrence[];
+}
+
+interface SearchEncounter {
+  id: string;
+  positions: Map<string, SearchEncounterPosition>;
+}
+
+/** Group an already ordered, windowed season by the same identity used by its detail page. */
+export function groupEndgameSearchEncounters(enemies: EndgameSearchOccurrence[]) {
+  const encounters = new Map<string, SearchEncounter>();
+  for (const enemy of enemies) {
+    const { encounterId, battleSlot, stageId, wave } = enemy.locator;
+    const encounter = encounters.get(encounterId) ?? { id: encounterId, positions: new Map() };
+    encounters.set(encounterId, encounter);
+    const key = JSON.stringify([battleSlot, stageId, wave]);
+    const position = encounter.positions.get(key) ?? {
+      key,
+      node: battleSlot,
+      stage: enemy.order.stage + 1,
+      wave: enemy.order.wave + 1,
+      enemies: []
+    };
+    position.enemies.push(enemy);
+    encounter.positions.set(key, position);
+  }
+  return [...encounters.values()].map(({ id, positions }) => ({
+    id,
+    positions: [...positions.values()]
+  }));
 }
