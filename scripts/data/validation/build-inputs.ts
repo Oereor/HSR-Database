@@ -59,6 +59,11 @@ import {
 } from '../source-metadata.js';
 import { buildGeneratedRouteInventory } from '../routes.js';
 import { assertTrailblazerTextVariants } from '../projection/trailblazer-text.js';
+import {
+  TEAM_RECOMMENDATIONS_ARTIFACT,
+  TEAM_RECOMMENDATIONS_SCHEMA_VERSION
+} from '../../../src/lib/domain/team-recommendation.js';
+import { assertCharacterTeamRecommendations } from '../team-recommendations.js';
 
 const ROUTE_CATEGORIES = ['characters', 'light-cones', 'relics', 'enemies'] as const;
 type RouteCategory = (typeof ROUTE_CATEGORIES)[number];
@@ -224,6 +229,7 @@ export async function validateBuildInputs(
   const trainingLightCones: LightConeTrainingData[] = [];
   const materials: MaterialCatalog[] = [];
   const materialDetails: MaterialDetailCatalog[] = [];
+  const characterIds = new Set(manifest.routes.characters);
   const artifacts = await validateGeneratedArtifacts(
     manifest,
     { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
@@ -231,6 +237,15 @@ export async function validateBuildInputs(
       async onArtifact(logicalPath, value, metadata) {
         if (/^(?:views|static\/generated)\/(?:zh-CN|en)\//.test(logicalPath))
           assertNoSourceMacros(value, logicalPath);
+        if (logicalPath === TEAM_RECOMMENDATIONS_ARTIFACT) {
+          if (
+            metadata.locale !== undefined ||
+            metadata.schemaVersion !== TEAM_RECOMMENDATIONS_SCHEMA_VERSION
+          )
+            throw new Error('[TeamBuild] Invalid recommendation artifact metadata');
+          assertCharacterTeamRecommendations(value, characterIds);
+          return;
+        }
         if (/^views\/(zh-CN|en)\/homepage\.json$/.test(logicalPath)) {
           assertArtifactLocale(logicalPath, metadata);
           const homepage = value as HomepageVersionData;

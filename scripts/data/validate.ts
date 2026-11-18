@@ -12,6 +12,7 @@ import {
   type SearchBuildInputs
 } from './search-documents.js';
 import { access, readFile } from 'node:fs/promises';
+import { isDeepStrictEqual } from 'node:util';
 import path from 'node:path';
 import type {
   CatalogEntry,
@@ -52,6 +53,8 @@ import {
 } from './avatar-special-skills.js';
 import { auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readTable } from './raw.js';
+import { loadCharacterTeamRecommendations } from './team-recommendations.js';
+import { TEAM_RECOMMENDATIONS_ARTIFACT } from '../../src/lib/domain/team-recommendation.js';
 import {
   buildEnemySkillPhases,
   enemySpecialResistanceLabels,
@@ -93,6 +96,15 @@ import { buildRatingV2Profiles, loadRatingV2Tables } from './relic-rating-v2.js'
 import { stableBenchmarkSerialize } from '../../src/lib/relic-score/benchmark/identity.js';
 
 const { manifest, rawRoot, textMaps: currentTextMaps } = await validateBuildInputs();
+const publishedTeams = JSON.parse(
+  await readFile(path.join(generatedRoot, TEAM_RECOMMENDATIONS_ARTIFACT), 'utf8')
+);
+const expectedTeams = await loadCharacterTeamRecommendations(
+  rawRoot,
+  new Set(manifest.routes.characters)
+);
+if (!isDeepStrictEqual(publishedTeams, expectedTeams))
+  throw new Error('[TeamBuild] Published recommendations differ from pinned source semantics');
 const ratingV2Profiles = JSON.parse(
   await readFile(path.join(generatedRoot, 'runtime/relic-rating-v2.json'), 'utf8')
 );

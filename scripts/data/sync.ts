@@ -12,6 +12,8 @@ import type {
 } from '../../src/lib/domain/types.js';
 import { parseTextHash } from '../../src/lib/domain/types.js';
 import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
+import { TEAM_RECOMMENDATIONS_ARTIFACT } from '../../src/lib/domain/team-recommendation.js';
+import { buildCharacterTeamRecommendations } from './team-recommendations.js';
 import {
   catalogTrailblazerText,
   projectWithTrailblazerText
@@ -655,6 +657,11 @@ export async function syncData(): Promise<DataManifest> {
   ]);
   const characterBuild = buildCharacterDomain({ tables: characterDomainSource });
   const characterDomains = characterBuild.characters;
+  const teamRecommendations = buildCharacterTeamRecommendations(
+    tables.TeamBuildConfig,
+    tables.TeamBuildGroupConfig,
+    new Set(characterDomains.map(({ id }) => id))
+  );
   const ratingV2Profiles = await buildRatingV2Profiles(root, tables, commit);
   const training = buildTrainingDomain(tables, characterDomains);
   const extraEffectsById = new Map(
@@ -1058,6 +1065,7 @@ export async function syncData(): Promise<DataManifest> {
         );
   };
   await writeArtifact(nextGeneratedRoot, 'runtime/player.json', playerRuntimeData);
+  await writeArtifact(nextGeneratedRoot, TEAM_RECOMMENDATIONS_ARTIFACT, teamRecommendations);
   await writeArtifact(nextGeneratedRoot, 'runtime/relic-rating-v2.json', ratingV2Profiles);
   await writeArtifact(
     nextGeneratedRoot,

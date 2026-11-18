@@ -269,6 +269,11 @@ async function createFixture(): Promise<Fixture> {
     },
     'en'
   );
+  await writeArtifact('runtime/character-team-recommendations.json', {
+    schemaVersion: 1,
+    teamsByAvatar: {},
+    groups: {}
+  });
   await writeArtifact('runtime/player.json', {
     schemaVersion: 2,
     propertyTypes: Object.keys(PLAYER_PROPERTY_SEMANTICS).sort(),

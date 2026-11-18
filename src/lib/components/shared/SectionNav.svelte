@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { m } from '$lib/paraglide/messages.js';
 
-  export let items: readonly { id: string; label: string }[] = [];
+  export let items: readonly { id: string; label: string; aliases?: string[] }[] = [];
   export let ariaLabel = m.section_nav_aria();
 
   let navElement: HTMLElement;
@@ -81,7 +81,8 @@
 
   function syncHash(): void {
     const id = decodeURIComponent(window.location.hash.slice(1));
-    if (items.some((item) => item.id === id)) activeId = id;
+    const item = items.find((item) => item.id === id || item.aliases?.includes(id));
+    if (item) activeId = item.id;
   }
 
   onMount(() => {

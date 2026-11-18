@@ -39,6 +39,7 @@
   singular={categorySingular(data.category)}
   specialEffectTargets={data.specialEffectTargets}
   equipmentRecommendation={data.equipmentRecommendation}
+  teamRecommendations={data.teamRecommendations}
   relicProperties={data.relicProperties}
   trailblazerPreference={staticGender}
 />

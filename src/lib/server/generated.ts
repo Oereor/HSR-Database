@@ -11,6 +11,10 @@ import type {
 } from '$lib/domain/types';
 import type { GlobalSearchIndex, SearchLocale } from '$lib/domain/search-index';
 import type { CategorySlug } from '$lib/domain/constants';
+import {
+  TEAM_RECOMMENDATIONS_ARTIFACT,
+  type CharacterTeamRecommendations
+} from '$lib/domain/team-recommendation';
 
 const root = path.resolve('src', 'lib', 'generated');
 const staticGeneratedRoot = path.resolve('static', 'generated');
@@ -25,6 +29,11 @@ async function readRootJson<T>(...segments: string[]): Promise<T> {
 }
 
 export const getManifest = () => readRootJson<DataManifest>('manifest.json');
+let teamRecommendations: Promise<CharacterTeamRecommendations> | undefined;
+export const getCharacterTeamRecommendations = () =>
+  (teamRecommendations ??= readRootJson<CharacterTeamRecommendations>(
+    TEAM_RECOMMENDATIONS_ARTIFACT
+  ));
 export const getPublicSiteVersion = async (): Promise<PublicSiteVersion> => {
   const manifest = await getManifest();
   return { gameVersion: manifest.gameVersion, dataRevision: manifest.dataRevision.slice(0, 8) };

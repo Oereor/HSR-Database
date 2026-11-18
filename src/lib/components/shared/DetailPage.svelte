@@ -21,7 +21,8 @@
   import SectionNav from '$lib/components/shared/SectionNav.svelte';
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
   import RelicDetailPage from '$lib/components/relic/RelicDetailPage.svelte';
-  import EquipmentRecommendationSection from '$lib/components/character/EquipmentRecommendationSection.svelte';
+  import BuildGuideSection from '$lib/components/character/BuildGuideSection.svelte';
+  import type { TeamRecommendationPageData } from '$lib/domain/team-recommendation';
   import EidolonCard from '$lib/components/character/EidolonCard.svelte';
   import PlayerStatsPanel from '$lib/components/player/PlayerStatsPanel.svelte';
   import PlayerCharacterContextNotice from '$lib/components/player/PlayerCharacterContextNotice.svelte';
@@ -98,6 +99,7 @@
   export let singular: string;
   export let specialEffectTargets: CatalogEntry[] = [];
   export let equipmentRecommendation: EquipmentRecommendationView | undefined = undefined;
+  export let teamRecommendations: TeamRecommendationPageData | undefined = undefined;
   export let trailblazerPreference: TrailblazerGender | undefined = undefined;
   export let relicProperties: RelicProperty[] = [];
   const trainingLoader = createTrainingLoader();
@@ -233,13 +235,19 @@
     { id: 'skills', label: m.detail_skills() },
     { id: 'traces', label: m.detail_traces() },
     { id: 'eidolons', label: m.detail_eidolons() },
-    ...(equipmentRecommendation
-      ? [
-          activePlayerCharacter
-            ? { id: 'equipment', label: m.player_equipment_title() }
-            : { id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }
-        ]
-      : []),
+    ...(activePlayerCharacter
+      ? [{ id: 'equipment', label: m.player_equipment_title() }]
+      : trailblazerPreference && (equipmentRecommendation || teamRecommendations)
+        ? [
+            {
+              id: 'build-guide',
+              aliases: ['equipment-recommendation'],
+              label: m.detail_build_guide()
+            }
+          ]
+        : equipmentRecommendation
+          ? [{ id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }]
+          : []),
     ...(staticTrainingEnabled ? [{ id: 'training', label: m.training_title() }] : [])
   ];
   $: playerQueryState =
@@ -906,8 +914,13 @@
       recommendation={equipmentRecommendation}
       {relicProperties}
     />
-  {:else if equipmentRecommendation}
-    <EquipmentRecommendationSection recommendation={equipmentRecommendation} />
+  {:else if equipmentRecommendation || (trailblazerPreference && teamRecommendations)}
+    <BuildGuideSection
+      recommendation={equipmentRecommendation}
+      {teamRecommendations}
+      gender={trailblazerPreference}
+      legacyEquipmentView={!trailblazerPreference}
+    />
   {/if}
   {#if staticTrainingEnabled}
     <TrainingSection

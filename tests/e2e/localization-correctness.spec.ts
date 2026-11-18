@@ -1,16 +1,7 @@
+import { selectTrailblazer } from '../helpers/trailblazer';
 import { openLanguageSelect, switchLanguage } from '../helpers/language';
 import { readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-
-async function selectTrailblazer(page: Page, nickname: string) {
-  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  const control = page.locator('[data-trailblazer-select]');
-  const mobile = !(await control.isVisible());
-  if (mobile) await page.locator('[data-slot="sidebar-trigger"]').click();
-  await control.click();
-  await page.getByRole('option', { name: nickname, exact: true }).click();
-  if (mobile) await page.keyboard.press('Escape');
-}
 
 for (const [prefix, male, female, maleNickname, femaleNickname] of [
   ['', '少年', '少女', '穹', '星'],

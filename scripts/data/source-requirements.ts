@@ -42,6 +42,8 @@ export const DATA_GENERATION_TABLE_NAMES = [
   'RelicSubAffixConfig',
   'AvatarEquipRecommend',
   'AvatarRelicRecommend',
+  'TeamBuildConfig',
+  'TeamBuildGroupConfig',
   'ItemComefrom',
   'MonsterTemplateConfig',
   'MonsterConfig',

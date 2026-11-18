@@ -131,6 +131,7 @@ test('player Trailblazer retains actual avatar, build and progression over the s
   await expect(page.locator('.player-context-notice')).toContainText(uid);
   await expect(page.locator('[data-character-portrait="8001"]')).toBeVisible();
   await expect(page.locator('#equipment')).toBeVisible();
+  await expect(page.locator('#build-guide, [data-team-id]')).toHaveCount(0);
   await expect(page).toHaveURL(location);
 });
 
@@ -818,7 +819,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('.base-stats-panel .skill-effect-tag')).toHaveCount(1);
   await expect(page.locator('[data-player-stats-panel]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
-  await expect(page.locator('#equipment-recommendation')).toBeVisible();
+  await expect(page.locator('#build-guide')).toBeVisible();
   await expect(page.locator('#equipment')).toHaveCount(0);
 });
 

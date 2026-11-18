@@ -48,6 +48,12 @@ AvatarExRankConfig projects to an independent exEidolons collection with namespa
 
 The verified Aha E2 series_ref_skill_desc macro becomes a structured DescriptionToken interaction carrying the root skill and fixed E2 state. DescriptionText renders a button and opens the shared effects dialog; it preserves surrounding rich text and does not change the skill card's selected condition. Unsupported macros receive explicit localization diagnostics. Aha's Point23 is visually and semantically a skill node, with a separate free/default training classification, fixed level 1 and no player trace-state inference. Only AvatarID 1511 selects the dedicated elation-aha layout.
 
+## Character Build Guide
+
+Manifest schema 70 includes the locale-neutral schema 1 `runtime/character-team-recommendations.json` artifact. `TeamBuildConfig` owns team IDs, positions, primary members and backup references. `TeamBuildGroupConfig` supplies ordered candidate IDs through a single shared group index. Sync verifies the published avatar and group references before replacing artifacts. Full validation rebuilds the team data from the locked tables and compares it with the artifact.
+
+Both locales use the same team structure and resolve avatar labels from their own character catalogs. Trailblazer pages prefer their own official records and use their same-Path counterpart's records when needed. The client applies the selected gender before filtering starter IDs and duplicate alternatives within each backup list or group. The Build Guide sets `#build-guide` as the section anchor and accepts `#equipment-recommendation` as an alias. Player equipment continues to use its actual build context.
+
 ## Ownership rules
 
 Site-owned prose, navigation, controls, metadata, errors, accessible labels, and footer text belong in paired Paraglide message keys. Game-owned names, descriptions, effects, and mechanics remain in localized generated views. Locale-neutral IDs, dates, ordering, and route identities must not depend on translated strings.

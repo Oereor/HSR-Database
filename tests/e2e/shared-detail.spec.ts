@@ -7,22 +7,8 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
   await expect(characterLinks).toHaveCount(6);
   expect(
     await characterLinks.evaluateAll((links) => links.map((link) => link.getAttribute('href')))
-  ).toEqual([
-    '#stats',
-    '#skills',
-    '#traces',
-    '#eidolons',
-    '#equipment-recommendation',
-    '#training'
-  ]);
-  for (const id of [
-    'stats',
-    'skills',
-    'traces',
-    'eidolons',
-    'equipment-recommendation',
-    'training'
-  ])
+  ).toEqual(['#stats', '#skills', '#traces', '#eidolons', '#build-guide', '#training']);
+  for (const id of ['stats', 'skills', 'traces', 'eidolons', 'build-guide', 'training'])
     await expect(page.locator(`#${id}`)).toHaveCount(1);
 
   await expect(characterNav.locator('a[href="#stats"]')).toHaveAttribute(
@@ -67,6 +53,12 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
     expect(stickyGeometry.linkRows).toBe(1);
   }
 
+  await page.goto('/characters/1001/#equipment-recommendation');
+  await expect(characterNav.locator('a[href="#build-guide"]')).toHaveAttribute(
+    'aria-current',
+    'location'
+  );
+
   await page.goto('/enemies/1003010/');
   const enemyNav = page.locator('.section-nav');
   expect(
@@ -84,9 +76,9 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
 test('四类详情页消费同一标题视觉层级并保持语义 heading hierarchy', async ({ page }) => {
   await page.goto('/characters/1001/');
   await expect(page.locator('#skills h2')).toBeVisible();
-  await expect(page.locator('#equipment-recommendation h2').first()).toBeVisible();
+  await expect(page.locator('#build-guide h2').first()).toBeVisible();
   await expect(
-    page.locator('#equipment-recommendation').getByRole('heading', { level: 3 }).first()
+    page.locator('#build-guide').getByRole('heading', { level: 3 }).first()
   ).toBeVisible();
 
   await page.goto('/light-cones/20000/');
