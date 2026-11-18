@@ -14,8 +14,6 @@ export interface LocaleProjectionPolicy {
   specialResistanceLabels: Record<string, string>;
   enemyName: (id: string) => string;
   skillName: (id: string) => string;
-  composeCharacterPathName: (baseName: string, pathName: string) => string;
-  normalizeCharacterBaseName: (name: string) => string;
   endgameView: EndgameViewPresentation;
 }
 
@@ -77,8 +75,6 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
     },
     enemyName: (id) => `敌人 ${id}`,
     skillName: (id) => `技能 ${id}`,
-    composeCharacterPathName: (baseName, pathName) => `${baseName}·${pathName}`,
-    normalizeCharacterBaseName: (name) => name.replace(/·.*$/, ''),
     endgameView: {
       unknownEnemy: '未知敌方单位',
       unavailable: ENDGAME_MISSING_VALUE,
@@ -122,8 +118,6 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
     },
     enemyName: (id) => `Enemy ${id}`,
     skillName: (id) => `Skill ${id}`,
-    composeCharacterPathName: (baseName, pathName) => `${baseName} - ${pathName}`,
-    normalizeCharacterBaseName: (name) => name,
     endgameView: {
       unknownEnemy: 'Unknown enemy',
       unavailable: ENDGAME_MISSING_VALUE,

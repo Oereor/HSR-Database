@@ -185,7 +185,6 @@ export interface NeutralEquipmentRecommendation {
 export interface CharacterNamingEvidence {
   avatarName?: NeutralTextSource;
   fullName?: NeutralTextSource;
-  baseNameSource?: NeutralTextSource;
 }
 
 export interface CharacterDomain {

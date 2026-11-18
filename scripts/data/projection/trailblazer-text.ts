@@ -167,7 +167,6 @@ export function projectWithTrailblazerText<T extends object>(
     };
     const result = project({
       ...variants,
-      trailblazerGender: gender,
       resolve: (source, options) => variants.resolve(source, { ...options, ...context }),
       projectGameText: (source, options) =>
         variants.projectGameText(source, { ...options, ...context })

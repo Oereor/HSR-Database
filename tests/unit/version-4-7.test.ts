@@ -34,9 +34,7 @@ beforeAll(async () => {
       extraEffectsById: new Map(build.extraEffects.map((effect) => [effect.id, effect])),
       charactersById: new Map(build.characters.map((character) => [character.id, character])),
       skillCategoryLabels: policy.skillCategoryLabels,
-      skillEffectLabels: policy.skillEffectLabels,
-      composePathName: policy.composeCharacterPathName,
-      normalizeBaseName: policy.normalizeCharacterBaseName
+      skillEffectLabels: policy.skillEffectLabels
     };
     views.set(
       locale,

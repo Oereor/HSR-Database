@@ -78,7 +78,6 @@ test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可�
   await input.fill('三月七');
   await input.press('Enter');
   await expect(cards).toHaveCount(marchMatches.length);
-  await expect(cards).toContainText(['三月七·存护', '三月七·巡猎']);
   for (const match of marchMatches) {
     const card = page.locator(`a.entity-overview-card[href="/characters/${match.id}/"]`);
     await expect(card).toContainText(match.name);

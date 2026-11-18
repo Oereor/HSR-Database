@@ -140,10 +140,10 @@ test('角色 Detail Hero 在桌面 3:2 分栏并于 1180px 断点纵向堆叠', 
 
 test('多命途角色名称由统一规则生成', async ({ page }) => {
   await page.goto('/characters/1224/');
-  await expect(page.getByRole('heading', { name: '三月七·巡猎' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '三月七', level: 1, exact: true })).toBeVisible();
   await page.goto('/characters/8005/');
   await expect(page).toHaveURL('/characters/8006/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('星');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('星');
 });
 
 test('技能卡按语义类别合并变体并使用真实默认等级', async ({ page }) => {
@@ -649,10 +649,10 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await page.goto('/characters/8007/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(page).toHaveURL('/characters/8008/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('星');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('星');
   await page.goto('/characters/1001/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('三月七·存护');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('三月七');
 
   await page.goto('/characters/1509/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');

@@ -10,7 +10,6 @@
 
   export let entry: CharacterSpecialEffectEntry;
   export let targets: CatalogEntry[] = [];
-  export let ownerCharacterId: string;
   export let trailblazerPreference: TrailblazerGender | undefined = undefined;
 
   $: targetById = new Map(targets.map((target) => [target.id, target]));
@@ -20,8 +19,6 @@
   {@const servant = kind === 'servant-skill-link'}
   {@const series = kind === 'series-skill-link'}
   {@const presentation = resolveSpecialEffectLinkedAvatarPresentation({
-    ownerCharacterId,
-    entryKind: kind,
     sourceAvatarId: avatarId,
     targets: targetById,
     trailblazerPreference

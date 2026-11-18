@@ -1,6 +1,6 @@
 import type { EndgameSearchTargetEntry, GlobalSearchIndex } from '../domain/search-index.js';
 import type { CatalogEntry, EnemyCatalogEntry, RelicCatalogEntry } from '../domain/types.js';
-import { staticTrailblazerText, trailblazerGender } from '../domain/trailblazer.js';
+import { alternateTrailblazerSearchName } from './character-search.js';
 import {
   normalizeSearchDocument,
   SEARCH_DOCUMENT_SCHEMA_VERSION,
@@ -52,7 +52,7 @@ const emptyResults = (): GlobalSearchResults => ({
 function createSearchMatcher(
   index: GlobalSearchIndex,
   kind?: SearchTarget['kind'],
-  characterDisplayNames?: ReadonlyMap<string, string>
+  alternateCharacterNames?: ReadonlyMap<string, string>
 ) {
   const documents = new Map<string, NormalizedSearchDocument>();
   const targetsById = new Map<string, NormalizedSearchDocument[]>();
@@ -68,7 +68,7 @@ function createSearchMatcher(
       if (kind && doc.target.kind !== kind) continue;
       if (documents.has(doc.key)) throw new Error(`重复搜索 key：${doc.key}`);
       const displayName =
-        doc.target.kind === 'character' ? characterDisplayNames?.get(doc.target.id) : undefined;
+        doc.target.kind === 'character' ? alternateCharacterNames?.get(doc.target.id) : undefined;
       const normalized = normalizeSearchDocument(
         displayName ? { ...doc, officialAliases: [...doc.officialAliases, displayName] } : doc
       );
@@ -130,10 +130,8 @@ export function createGlobalSearchService(
   const endgame = new Map(index.endgameTargets.map((entry) => [entry.id, entry]));
   const displayNames = new Map<string, string>();
   for (const entry of catalogs.characters) {
-    const gender = trailblazerGender(entry.id);
-    if (!gender) continue;
-    const display = staticTrailblazerText(entry, gender);
-    if (display.name !== entry.name) displayNames.set(entry.id, display.name);
+    const alternate = alternateTrailblazerSearchName(entry);
+    if (alternate) displayNames.set(entry.id, alternate);
   }
   const matchSearch = createSearchMatcher(index, undefined, displayNames);
   const reportedMissing = new Set<string>();

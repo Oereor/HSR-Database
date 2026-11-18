@@ -14,7 +14,7 @@ import type {
   SkillCategory
 } from '../../../src/lib/domain/types.js';
 import type { TextResolver } from '../localization.js';
-import { isTrailblazer } from '../../../src/lib/domain/trailblazer.js';
+import { avatarNameTextContext, resolveAvatarName } from '../character-names.js';
 import {
   buildSkillCards,
   buildSkillVariant,
@@ -84,8 +84,6 @@ export interface CharacterProjectionContext {
   nickname?: string;
   skillCategoryLabels?: Partial<typeof SKILL_CATEGORY_LABELS>;
   skillEffectLabels?: Parameters<typeof normalizeSkillCombatMeta>[1];
-  composePathName?: (baseName: string, pathName: string) => string;
-  normalizeBaseName?: (name: string) => string;
 }
 
 const textContext = (domain: CharacterDomain, context: CharacterProjectionContext) => ({
@@ -606,14 +604,10 @@ export function projectCharacterView(
   context: CharacterProjectionContext
 ): CharacterView {
   const characterText = textContext(domain, context);
-  const rawName = requiredText(
+  const name = resolveAvatarName(
+    domain.id,
     context.resolver,
     domain.naming.avatarName,
-    {
-      domain: 'character',
-      entityId: domain.id,
-      field: 'name'
-    },
     characterText
   );
   const pathName = requiredText(
@@ -626,29 +620,6 @@ export function projectCharacterView(
     },
     characterText
   );
-  const isMultiplePath = domain.baseAvatarId === '1001' || domain.baseAvatarId === '8001';
-  const sourceBaseName = domain.naming.baseNameSource
-    ? optionalText(
-        context.resolver,
-        domain.naming.baseNameSource,
-        {
-          domain: 'character',
-          entityId: domain.id,
-          field: 'baseName'
-        },
-        characterText
-      )
-    : undefined;
-  const resolvedBaseName =
-    context.resolver.trailblazerGender && isTrailblazer(domain.id)
-      ? rawName
-      : sourceBaseName || rawName;
-  const baseName = isMultiplePath
-    ? (context.normalizeBaseName?.(resolvedBaseName) ?? resolvedBaseName)
-    : rawName;
-  const name = isMultiplePath
-    ? (context.composePathName?.(baseName, pathName) ?? `${baseName}·${pathName}`)
-    : rawName;
   const fullNameDisposition = {
     requirement: 'optional' as const,
     visibility: 'hidden' as const,
@@ -662,7 +633,7 @@ export function projectCharacterView(
     );
   const fullNameResult = domain.naming.fullName
     ? context.resolver.resolve(domain.naming.fullName, {
-        ...characterText,
+        ...avatarNameTextContext(domain.id, context.resolver, characterText),
         provenance: { entity: 'character', id: domain.id, field: 'fullName' },
         diagnosticDisposition: fullNameDisposition
       })
@@ -675,7 +646,7 @@ export function projectCharacterView(
   return {
     id: domain.id,
     name,
-    baseName: isMultiplePath ? baseName : name,
+    baseName: name,
     fullName,
     description: optionalText(
       context.resolver,

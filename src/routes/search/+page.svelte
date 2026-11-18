@@ -27,7 +27,8 @@
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import type { PageData } from './$types';
   import { useTrailblazerPreference } from '$lib/client/trailblazer-preference';
-  import { staticCharacterEntries } from '$lib/domain/trailblazer';
+  import { staticCharacterSearchEntry } from '$lib/search/character-search';
+  import { normalizeSearchIdQuery } from '$lib/search/normalization';
 
   export let data: PageData;
   const trailblazer = useTrailblazerPreference().state;
@@ -56,7 +57,9 @@
     aa: 100
   });
   let limits = initialLimits();
-  $: characters = staticCharacterEntries(results.characters, $trailblazer.gender);
+  $: characters = results.characters.flatMap((entry) =>
+    staticCharacterSearchEntry(entry, $trailblazer.gender, normalizeSearchIdQuery(appliedQuery))
+  );
   $: endgameModes = ENDGAME_MODES.map((mode) => {
     const seasons = endgameSearchSeasonsForMode(results.endgame, mode);
     return {

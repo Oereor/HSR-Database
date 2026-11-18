@@ -784,12 +784,11 @@ export async function syncData(): Promise<DataManifest> {
           resolver,
           extraEffectsById,
           skillCategoryLabels: projectionPolicy.skillCategoryLabels,
-          skillEffectLabels: projectionPolicy.skillEffectLabels,
-          composePathName: projectionPolicy.composeCharacterPathName,
-          normalizeBaseName: projectionPolicy.normalizeCharacterBaseName
+          skillEffectLabels: projectionPolicy.skillEffectLabels
         })
       )
     );
+    const characterNames = await deriveCharacterNames(root, commit, runtime.text);
     const characterCatalog: CatalogEntry[] = characters.map(
       ({
         id,
@@ -812,6 +811,13 @@ export async function syncData(): Promise<DataManifest> {
         pathName,
         element,
         elementName,
+        ...(characterNames.snapshot.characters[id]?.officialAliases.length
+          ? {
+              searchAliases: characterNames.snapshot.characters[id].officialAliases.map(
+                ({ value }) => value
+              )
+            }
+          : {}),
         ...catalogTrailblazerText({ trailblazerText }, [
           'name',
           'baseName',
@@ -821,7 +827,6 @@ export async function syncData(): Promise<DataManifest> {
         ])
       })
     );
-    const characterNames = await deriveCharacterNames(root, commit, runtime.text);
     const projectedCharacterNames = new Map(
       characters.map((character) => [character.id, character])
     );

@@ -8,7 +8,8 @@
 
 [scripts/data/character-names.ts](../scripts/data/character-names.ts)是角色 catalog/detail 与官方搜索名称的共享 builder。
 身份使用 `String(AvatarID)`，普通与 LD 表保持冲突检查；显示名称经 GameText 转 plain text 后成为搜索 canonical，卡片仍使用 catalog model。
-多命途与官方别名由审阅过的结构化来源确定，不扫描任意 TextMap hash 猜别名。
+角色 canonical 来自 `AvatarName`。三月七的两个 Avatar ID 共用名称。开拓者的 `{NICKNAME}` 按各 Avatar ID 的性别解析，命途由独立字段提供。
+「开拓者」和 `Trailblazer` 来自审阅过的 `FateRinOwner` 记录，只用于检索。全局搜索和角色目录接受本语言的两个昵称，并按静态性别偏好展示五个相应命途。精确 ID 查询展示对应实体。
 
 | 维护输入                                                                                          | 所有权                                                                                   |
 | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |

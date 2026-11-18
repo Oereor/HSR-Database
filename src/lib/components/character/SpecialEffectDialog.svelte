@@ -85,7 +85,6 @@
                 ><SpecialEffectRelation
                   {entry}
                   {targets}
-                  {ownerCharacterId}
                   {trailblazerPreference}
                 /></svelte:fragment
               >

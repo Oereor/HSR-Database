@@ -1,3 +1,4 @@
+import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
@@ -57,7 +58,7 @@ const document = (
 const bundle = (documents: SearchDocument[]): GlobalSearchIndex => ({
   schemaVersion: 3,
   normalizationVersion: 1,
-  namingPolicyVersion: 1,
+  namingPolicyVersion: CHARACTER_NAMING_POLICY_VERSION,
   sourceCommit: 'fixture',
   metadataDigest: 'fixture',
   documents,
@@ -250,10 +251,12 @@ describe('Search V2', () => {
     expect(service.search('march').results.characters).toEqual([]);
     expect(service.search('锋镝').results.lightCones[0].id).toBe('20000');
     expect(service.search('银鬃尉官').results.enemies).toHaveLength(4);
-    expect(service.search('开拓者同谐').results.characters.map(({ id }) => id)).toEqual([
-      '8005',
-      '8006'
-    ]);
+    expect(
+      service
+        .search('同谐主')
+        .results.characters.map(({ id }) => id)
+        .sort()
+    ).toEqual(['8005', '8006']);
     expect(service.search('{NICKNAME}').results.characters).toEqual([]);
   });
 

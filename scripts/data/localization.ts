@@ -132,7 +132,6 @@ export interface TextResolverConfig {
 export interface TextResolver {
   readonly locale: Locale;
   readonly textMapCode: TextMapCode;
-  readonly trailblazerGender?: TextProjectionContext['trailblazerGender'];
   resolve(source: RuntimeTextSource, context?: TextProjectionContext): LocalizationResult<string>;
   projectGameText(
     source: RuntimeTextSource,

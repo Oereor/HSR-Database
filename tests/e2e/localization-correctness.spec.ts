@@ -13,10 +13,11 @@ for (const [prefix, male, female, maleNickname, femaleNickname] of [
     await page.goto(`${prefix}/characters/8001/?enhanced=0#skills`);
     await expect(page).toHaveURL(`${prefix}/characters/8002/?enhanced=0#skills`);
     await expect(page.locator('.hero-description')).toContainText(female);
-    await expect(page.getByRole('heading', { level: 1 })).toContainText(femaleNickname);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(femaleNickname);
     await selectTrailblazer(page, maleNickname);
     await expect(page).toHaveURL(`${prefix}/characters/8001/?enhanced=0#skills`);
     await expect(page.locator('.hero-description')).toContainText(male);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(maleNickname);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
       'content',
       new RegExp(male)
@@ -41,19 +42,19 @@ test('Trailblazer selection survives locale navigation and filters search and di
   await page.goto('/characters/?q=8002&page=3');
   await expect(card('8002')).toBeVisible();
   await selectTrailblazer(page, '穹');
-  await expect(card('8002')).toHaveCount(0);
+  await expect(card('8002')).toBeVisible();
   await expect(card('8001')).toHaveCount(0);
 
-  await page.goto('/characters/?q=穹');
+  await page.goto('/characters/?q=星');
   await expect(card('8001')).toBeVisible();
-  await switchLanguage(page, 'en', '/en/characters/?q=%E7%A9%B9');
-  await page.goto('/en/search/?q=Caelus');
+  await switchLanguage(page, 'en', '/en/characters/?q=%E6%98%9F');
+  await page.goto('/en/search/?q=Stelle');
   await expect(card('8001')).toBeVisible();
   await expect(card('8002')).toHaveCount(0);
   await page.reload();
   await expect(card('8001')).toBeVisible();
   await page.goto('/en/search/?q=8002');
-  await expect(card('8002')).toHaveCount(0);
+  await expect(card('8002')).toContainText('Stelle');
   await expect(card('8001')).toHaveCount(0);
 });
 

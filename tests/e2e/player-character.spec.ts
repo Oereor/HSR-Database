@@ -130,6 +130,7 @@ test('player Trailblazer retains actual avatar, build and progression over the s
   await page.goto(location);
   await expect(page.locator('.player-context-notice')).toContainText(uid);
   await expect(page.locator('[data-character-portrait="8001"]')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('穹');
   await expect(page.locator('#equipment')).toBeVisible();
   await expect(page.locator('#build-guide, [data-team-id]')).toHaveCount(0);
   await expect(page).toHaveURL(location);

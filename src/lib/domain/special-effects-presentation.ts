@@ -1,4 +1,4 @@
-import type { CatalogEntry, CharacterSpecialEffectEntry, DescriptionToken } from './types.js';
+import type { CatalogEntry, DescriptionToken } from './types.js';
 import {
   staticTrailblazerText,
   withTrailblazerGender,
@@ -52,35 +52,18 @@ export function segmentSpecialEffectTriggers(
 }
 
 export function resolveSpecialEffectLinkedAvatarPresentation(input: {
-  ownerCharacterId: string;
-  entryKind: CharacterSpecialEffectEntry['kind'];
   sourceAvatarId: string;
   targets: ReadonlyMap<string, CatalogEntry>;
   trailblazerPreference?: TrailblazerGender;
 }): SpecialEffectLinkedAvatarPresentation {
-  const { ownerCharacterId, entryKind, sourceAvatarId, targets, trailblazerPreference } = input;
+  const { sourceAvatarId, targets, trailblazerPreference } = input;
   const displayAvatarId = trailblazerPreference
     ? withTrailblazerGender(sourceAvatarId, trailblazerPreference)
     : sourceAvatarId;
   const target = targets.get(displayAvatarId);
-  const useBaseName =
-    ownerCharacterId === '1510' &&
-    entryKind === 'avatar-skill-link' &&
-    (sourceAvatarId === '1001' || sourceAvatarId === '1224');
-  return {
-    sourceAvatarId,
-    displayAvatarId,
-    displayName: requireName(
-      target && trailblazerPreference
-        ? staticTrailblazerText(target, trailblazerPreference)
-        : target,
-      useBaseName
-    )
-  };
-}
-
-function requireName(target: CatalogEntry | undefined, base: boolean): string {
-  const name = base ? target?.baseName : target?.name;
-  if (!name) throw new Error('Special effect linked avatar naming projection is missing');
-  return name;
+  const displayName =
+    target &&
+    (trailblazerPreference ? staticTrailblazerText(target, trailblazerPreference) : target).name;
+  if (!displayName) throw new Error('Special effect linked avatar naming projection is missing');
+  return { sourceAvatarId, displayAvatarId, displayName };
 }

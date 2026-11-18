@@ -14,7 +14,7 @@
   import OverviewSearch from '../shared/OverviewSearch.svelte';
   import OverviewToolbar from '../shared/OverviewToolbar.svelte';
   import type { CatalogEntry } from '$lib/domain/types';
-  import { overviewSearch } from '$lib/search/overview';
+  import { characterOverviewSearch } from '$lib/search/overview';
   import {
     hasCharacterFilters,
     matchesCharacterFilters,
@@ -25,7 +25,7 @@
   import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
   import { formatDocumentTitle } from '$lib/site';
   import { useTrailblazerPreference } from '$lib/client/trailblazer-preference';
-  import { isVisibleStaticCharacter, staticTrailblazerText } from '$lib/domain/trailblazer';
+  import { isVisibleStaticCharacter } from '$lib/domain/trailblazer';
 
   export let entries: CatalogEntry[] = [];
   export let title: string = m.characters_title();
@@ -47,13 +47,10 @@
     .slice(0, 3)
     .map((entry) => ({ id: entry.id, url: getCharacterPreviewUrl(entry.id) }))
     .filter((entry): entry is { id: string; url: string } => Boolean(entry.url));
-  $: search = overviewSearch(appliedQuery);
-  $: filtered = visibleEntries
-    .flatMap((entry) => {
-      if (!matchesCharacterFilters(entry, filterState)) return [];
-      const display = staticTrailblazerText(entry, $trailblazer.gender);
-      return search.matches(entry) || search.matches(display) ? [display] : [];
-    })
+  $: search = characterOverviewSearch(appliedQuery, $trailblazer.gender);
+  $: filtered = entries
+    .filter((entry) => matchesCharacterFilters(entry, filterState))
+    .flatMap(search.match)
     .sort((a, b) => {
       const byIdMatch = search.compareId(a, b);
       if (byIdMatch) return byIdMatch;

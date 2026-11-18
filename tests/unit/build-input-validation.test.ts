@@ -1,3 +1,4 @@
+import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata';
 import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { createHash } from 'node:crypto';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
@@ -223,7 +224,7 @@ async function createFixture(): Promise<Fixture> {
       {
         schemaVersion: 3,
         normalizationVersion: 1,
-        namingPolicyVersion: 1,
+        namingPolicyVersion: CHARACTER_NAMING_POLICY_VERSION,
         sourceCommit: commit,
         metadataDigest: 'fixture',
         documents: [],

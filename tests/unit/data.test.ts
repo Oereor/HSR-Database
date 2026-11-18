@@ -750,7 +750,7 @@ describe('真实数据管线', () => {
     ) as LightCone;
     expect(manifest.schemaVersion).toBe(DATA_MANIFEST_SCHEMA_VERSION);
     expect(manifest).toMatchObject(parseGameVersion(manifest.sourceVersion));
-    expect(character.name).toBe('三月七·存护');
+    expect(character.name).toBe('三月七');
     expect(character.baseStats.iconKeys).toEqual({
       hp: 'property--MaxHP',
       attack: 'property--Attack',
@@ -1052,9 +1052,9 @@ describe('真实数据管线', () => {
       JSON.parse(
         await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
-    expect((await readCharacter('1001')).name).toBe('三月七·存护');
-    expect((await readCharacter('1224')).name).toBe('三月七·巡猎');
-    expect((await readCharacter('8005')).name).toBe('开拓者·同谐');
+    expect((await readCharacter('1001')).name).toBe('三月七');
+    expect((await readCharacter('1224')).name).toBe('三月七');
+    expect((await readCharacter('8005')).name).toBe('穹');
     expect((await readCharacter('1309')).name).toBe('知更鸟');
   });
 
@@ -1401,20 +1401,17 @@ describe('真实数据管线', () => {
 
   it('separates the actual relation Avatar ID from the localized static display identity', () => {
     const targets = new Map([
-      ['8007', { id: '8007', name: 'Trailblazer · Remembrance' }],
+      ['8007', { id: '8007', name: 'Caelus' }],
       [
         '8008',
         {
           id: '8008',
-          name: 'Trailblazer · Remembrance',
-          trailblazerText: { female: [{ path: ['name'], value: 'Stelle · Remembrance' }] }
+          name: 'Stelle'
         }
       ],
-      ['1001', { id: '1001', name: 'March 7th · Preservation', baseName: 'March 7th' }]
+      ['1001', { id: '1001', name: 'March 7th' }]
     ]);
     const input = {
-      ownerCharacterId: '1415',
-      entryKind: 'servant-skill-link' as const,
       sourceAvatarId: '8007',
       targets
     };
@@ -1423,17 +1420,15 @@ describe('真实数据管线', () => {
     ).toEqual({
       sourceAvatarId: '8007',
       displayAvatarId: '8008',
-      displayName: 'Stelle · Remembrance'
+      displayName: 'Stelle'
     });
     expect(resolveSpecialEffectLinkedAvatarPresentation(input)).toEqual({
       sourceAvatarId: '8007',
       displayAvatarId: '8007',
-      displayName: 'Trailblazer · Remembrance'
+      displayName: 'Caelus'
     });
     expect(
       resolveSpecialEffectLinkedAvatarPresentation({
-        ownerCharacterId: '1510',
-        entryKind: 'avatar-skill-link',
         sourceAvatarId: '1001',
         targets,
         trailblazerPreference: 'male'

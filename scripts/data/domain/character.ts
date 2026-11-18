@@ -8,7 +8,6 @@ import type {
   NeutralTrace
 } from '../../../src/lib/domain/neutral.js';
 import { rarityFromCode } from '../../../src/lib/domain/constants.js';
-import { parseTextHash } from '../../../src/lib/domain/types.js';
 import { configuredCharacterDetailIconKey } from '../character-detail-icons.js';
 import { characterStatFields, normalizeStatProgression } from '../stats.js';
 import { classifyAvatarSkill, classifyProductSkill, isPlayerFacingSkillConfig } from '../skills.js';
@@ -558,17 +557,7 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
       },
       naming: {
         avatarName: textSource(avatar.AvatarName),
-        fullName: textSource(avatar.AvatarFullName),
-        ...(baseAvatarId === '8001'
-          ? {
-              baseNameSource: {
-                kind: 'direct',
-                ref: { kind: 'hash', hash: parseTextHash('4036035618718239522')! }
-              }
-            }
-          : baseAvatarId && baseAvatarId !== id
-            ? { baseNameSource: textSource(avatarsById.get(baseAvatarId)?.AvatarName) }
-            : {})
+        fullName: textSource(avatar.AvatarFullName)
       },
       assetKeys: { avatarId: id },
       descriptionSource: textSource(items.get(id)?.ItemBGDesc),
