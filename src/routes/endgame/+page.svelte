@@ -166,7 +166,7 @@
     {#if occurrenceMatches && expanded}
       <EndgameSearchResults
         results={expanded.results}
-        encounterLabels={data.encounterLabels}
+        encounterMetadata={data.encounterMetadata}
         locale={data.locale}
       />
     {/if}

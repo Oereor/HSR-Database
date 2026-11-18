@@ -77,6 +77,8 @@ Development 与完整 CI profile 在输入准备后执行名称 check；Producti
 
 在中英文 `/endgame/` 总览提交查询时，`?q=` 记录已提交的值。赛期搜索直接使用四个模式的现有元数据，支持名称子串与完整 `groupId`；赛期状态由客户端时钟更新。敌方出场搜索按需读取当前语言的现有 bundle，按敌方名称或完整 `MonsterTemplateID` 召回，使用同一 shard 加载机制。每张卡片保留自身出场数据，按模式、赛期、关卡、节点和阶段或波次归组。关卡链接通过 `?encounter=` 选中关卡，敌方卡片仍可打开对应百科页面。搜索 bundle 与 shard 保持原有数据版本。
 
+Endgame 总览用赛期和关卡链接组织出场卡片。定位标签依据完整关卡的槽位和波次数决定，与查询命中数量无关。MoC、PF 和 AA 使用详情页中的连续波次编号，AS 按阶段和阶段内波次定位。
+
 当前实现没有 Worker、数据库、模糊检索或 suggestions。
 对应模块见 [search/](../src/lib/search/)与 [search-index.ts](../src/lib/domain/search-index.ts)；不把历史 173 名称桶或 8,167 locators 当作当前上限。
 

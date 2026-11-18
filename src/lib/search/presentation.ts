@@ -2,6 +2,13 @@ import type { EndgameSearchOccurrence, EndgameSearchSeasonResult } from './endga
 
 export const SEARCH_DISPLAY_BATCH = 100;
 
+export interface EndgameSearchEncounterMetadata {
+  label: string;
+  waveCountsBySlot: Partial<Record<number, readonly number[]>>;
+}
+
+export type EndgameSearchSeasonMetadata = Record<string, EndgameSearchEncounterMetadata>;
+
 /** A single mode-wide window in the existing season/locator order. */
 export function windowEndgameSeasons(
   seasons: EndgameSearchSeasonResult[],
@@ -20,9 +27,9 @@ export function windowEndgameSeasons(
 
 interface SearchEncounterPosition {
   key: string;
-  node: number;
-  stage: number;
-  wave: number;
+  node?: number;
+  stage?: number;
+  wave?: number;
   enemies: EndgameSearchOccurrence[];
 }
 
@@ -31,8 +38,38 @@ interface SearchEncounter {
   positions: Map<string, SearchEncounterPosition>;
 }
 
+function searchPosition(
+  { locator, order }: EndgameSearchOccurrence,
+  info: EndgameSearchEncounterMetadata | undefined
+): Pick<SearchEncounterPosition, 'node' | 'stage' | 'wave'> {
+  const { battleSlot, mode } = locator;
+  const stageCounts = info?.waveCountsBySlot[battleSlot];
+  const waveCount = stageCounts?.[order.stage];
+  if (!info || !stageCounts || waveCount === undefined || order.wave >= waveCount)
+    return { node: battleSlot, stage: order.stage + 1, wave: order.wave + 1 };
+
+  const node = Object.keys(info.waveCountsBySlot).length > 1 ? battleSlot : undefined;
+  if (mode === 'as') {
+    return {
+      node,
+      stage: stageCounts.length > 1 ? order.stage + 1 : undefined,
+      wave: waveCount > 1 ? order.wave + 1 : undefined
+    };
+  }
+
+  // The detail page numbers the waves continuously across all stages in a node.
+  const totalWaves = stageCounts.reduce((total, count) => total + count, 0);
+  const precedingWaves = stageCounts
+    .slice(0, order.stage)
+    .reduce((total, count) => total + count, 0);
+  return { node, wave: totalWaves > 1 ? precedingWaves + order.wave + 1 : undefined };
+}
+
 /** Group an already ordered, windowed season by the same identity used by its detail page. */
-export function groupEndgameSearchEncounters(enemies: EndgameSearchOccurrence[]) {
+export function groupEndgameSearchEncounters(
+  enemies: EndgameSearchOccurrence[],
+  metadata?: EndgameSearchSeasonMetadata
+) {
   const encounters = new Map<string, SearchEncounter>();
   for (const enemy of enemies) {
     const { encounterId, battleSlot, stageId, wave } = enemy.locator;
@@ -41,9 +78,7 @@ export function groupEndgameSearchEncounters(enemies: EndgameSearchOccurrence[])
     const key = JSON.stringify([battleSlot, stageId, wave]);
     const position = encounter.positions.get(key) ?? {
       key,
-      node: battleSlot,
-      stage: enemy.order.stage + 1,
-      wave: enemy.order.wave + 1,
+      ...searchPosition(enemy, metadata?.[encounterId]),
       enemies: []
     };
     position.enemies.push(enemy);

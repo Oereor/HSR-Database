@@ -6,6 +6,10 @@ import {
   type GlobalSearchIndex
 } from '../../src/lib/domain/search-index';
 import { normalizeSearchLabel } from '../../src/lib/search/normalization';
+import {
+  DEFAULT_TRAILBLAZER_GENDER,
+  isVisibleStaticCharacter
+} from '../../src/lib/domain/trailblazer';
 
 const index = JSON.parse(
   readFileSync('static/generated/zh-CN/search.json', 'utf8')
@@ -140,6 +144,8 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
   const ordinary = index.documents.filter(
     (doc) =>
       doc.target.kind !== 'endgame' &&
+      (doc.target.kind !== 'character' ||
+        isVisibleStaticCharacter(doc.target.id, DEFAULT_TRAILBLAZER_GENDER)) &&
       [doc.canonicalName, ...doc.officialAliases, ...doc.playerAliases].some((name) =>
         normalizeSearchLabel(name).includes(query)
       )

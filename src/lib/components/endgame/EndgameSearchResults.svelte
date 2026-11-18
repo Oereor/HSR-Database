@@ -14,12 +14,13 @@
   import {
     groupEndgameSearchEncounters,
     SEARCH_DISPLAY_BATCH,
-    windowEndgameSeasons
+    windowEndgameSeasons,
+    type EndgameSearchSeasonMetadata
   } from '$lib/search/presentation';
   import EndgameEnemyGrid from './EndgameEnemyGrid.svelte';
 
   export let results: EndgameSearchResults;
-  export let encounterLabels: Record<string, Record<string, string>>;
+  export let encounterMetadata: Record<string, EndgameSearchSeasonMetadata>;
   export let locale: SearchLocale;
 
   let limits: Partial<Record<EndgameMode, number>> = {};
@@ -32,13 +33,27 @@
       total: seasons.reduce((count, { enemies }) => count + enemies.length, 0),
       seasons: windowEndgameSeasons(seasons, limit).map(({ period, enemies }) => ({
         period,
-        encounters: groupEndgameSearchEncounters(enemies)
+        encounters: groupEndgameSearchEncounters(
+          enemies,
+          encounterMetadata[`${mode}:${period.groupId}`]
+        )
       }))
     };
   }).filter(({ total }) => total > 0);
+
+  function positionLabels(
+    { node, stage, wave }: { node?: number; stage?: number; wave?: number },
+    locale: SearchLocale
+  ): string[] {
+    const labels: string[] = [];
+    if (node !== undefined) labels.push(m.endgame_node({ number: node }, { locale }));
+    if (stage !== undefined) labels.push(m.endgame_search_phase({ number: stage }, { locale }));
+    if (wave !== undefined) labels.push(m.endgame_wave({ number: wave }, { locale }));
+    return labels;
+  }
 </script>
 
-<section aria-labelledby="endgame-search-occurrences" class="grid min-w-0 gap-6">
+<section aria-labelledby="endgame-search-occurrences" class="grid min-w-0 gap-3">
   <SectionHeading id="endgame-search-occurrences">
     {m.endgame_search_occurrences({}, { locale })}
   </SectionHeading>
@@ -49,41 +64,34 @@
       </SectionHeading>
       {#each seasons as { period, encounters } (period.groupId)}
         {@const seasonKey = `${mode}:${period.groupId}`}
-        <section
-          aria-labelledby={`endgame-search-occurrences-${mode}-${period.groupId}`}
-          class="border-border grid min-w-0 gap-4 rounded-lg border p-4"
-        >
-          <SectionHeading level={3} id={`endgame-search-occurrences-${mode}-${period.groupId}`}>
-            <GameText text={period.name} />
-          </SectionHeading>
+        {@const seasonPath = `/endgame/${mode}/${period.groupId}/`}
+        {@const seasonHeading = `endgame-search-occurrences-${mode}-${period.groupId}`}
+        <section aria-labelledby={seasonHeading} class="grid min-w-0 gap-3">
+          <h4 class="text-foreground m-0 text-base font-semibold wrap-anywhere" id={seasonHeading}>
+            <a class="hover:text-primary hover:underline" href={localizedHref(seasonPath, locale)}>
+              <GameText text={period.name} />
+            </a>
+          </h4>
           {#each encounters as { id, positions } (id)}
-            <div class="grid min-w-0 gap-3" data-endgame-search-encounter>
-              <Button
-                variant="link"
-                class="h-auto justify-self-start p-0 text-start whitespace-normal"
-                href={localizedHref(
-                  `/endgame/${mode}/${period.groupId}${endgameEncounterHref(id)}`,
-                  locale
-                )}
-              >
-                <GameText
-                  text={encounterLabels[seasonKey]?.[id] ??
-                    m.endgame_local_stage_current({ label: id }, { locale })}
-                />
-              </Button>
+            <div class="grid min-w-0 gap-2" data-endgame-search-encounter>
+              <h5 class="m-0">
+                <Button
+                  variant="link"
+                  class="h-auto max-w-full p-0 text-start wrap-anywhere whitespace-normal"
+                  href={localizedHref(`${seasonPath}${endgameEncounterHref(id)}`, locale)}
+                >
+                  <GameText
+                    text={encounterMetadata[seasonKey]?.[id]?.label ??
+                      m.endgame_local_stage_current({ label: id }, { locale })}
+                  />
+                </Button>
+              </h5>
               {#each positions as position (position.key)}
+                {@const labels = positionLabels(position, locale)}
                 <div class="grid min-w-0 gap-2">
-                  <p class="text-muted-foreground m-0 text-sm">
-                    {m.endgame_node({ number: position.node }, { locale })}
-                    ·
-                    {m.endgame_stage_wave(
-                      {
-                        stage: position.stage,
-                        wave: m.endgame_wave({ number: position.wave }, { locale })
-                      },
-                      { locale }
-                    )}
-                  </p>
+                  {#if labels.length}
+                    <p class="text-muted-foreground m-0 text-sm">{labels.join(' · ')}</p>
+                  {/if}
                   <EndgameEnemyGrid items={position.enemies} />
                 </div>
               {/each}

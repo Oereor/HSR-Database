@@ -49,17 +49,22 @@ export const getEndgameModeCopy = (mode: EndgameMode, locale?: Locale) => copy[m
 export function getEndgameSearchEncounterLabel(
   mode: EndgameMode,
   { id, name, ordinal, variant }: EndgameEncounter,
-  locale: Locale
+  locale: Locale,
+  useName = true
 ): string {
   const options = { locale };
   const number = ordinal ?? id;
-  let label: string;
-  if (mode === 'pf' || mode === 'as') label = m.endgame_local_difficulty_label({ number }, options);
-  else if (variant === 'preliminary') label = m.endgame_search_knight({ number }, options);
-  else if (variant === 'boss-normal') label = m.endgame_search_king({}, options);
-  else if (variant === 'boss-hard') label = m.endgame_search_ruinous_king({}, options);
-  else label = m.endgame_local_stage_current({ label: number }, options);
-  return name && name !== label ? `${label} · ${name}` : label;
+  if (mode === 'moc')
+    return ordinal === undefined && name && useName
+      ? name
+      : m.endgame_local_stage_current({ label: number }, options);
+  if (mode === 'pf') return m.endgame_local_difficulty_label({ number }, options);
+  if (name && useName) return name;
+  if (mode === 'as') return m.endgame_local_difficulty_label({ number }, options);
+  if (variant === 'preliminary') return m.endgame_search_knight({ number }, options);
+  if (variant === 'boss-normal') return m.endgame_search_king({}, options);
+  if (variant === 'boss-hard') return m.endgame_search_ruinous_king({}, options);
+  return m.endgame_local_stage_current({ label: number }, options);
 }
 
 export function getEndgamePeriodFallbackName(

@@ -22,6 +22,9 @@ import { createEndgameSearchExpander, matchEndgamePeriods } from '../../src/lib/
 import { overviewSearch } from '../../src/lib/search/overview';
 import { groupEndgameSearchEncounters } from '../../src/lib/search/presentation';
 import { bestSearchEvidence, searchRankClass } from '../../src/lib/search/ranking';
+import type { EndgameEncounter, EndgameMode } from '../../src/lib/domain/endgame';
+import { getEndgameSearchEncounterLabel } from '../../src/lib/i18n/endgame';
+import { m } from '../../src/lib/paraglide/messages.js';
 
 const generated = path.resolve('src/lib/generated/views/zh-CN/catalogs');
 const index = JSON.parse(
@@ -99,6 +102,65 @@ const reference = (
 ) => ({
   locator: value,
   order: { encounter: 0, battle: 0, stage: 0, wave: 0, card: 0, ...order }
+});
+
+it.each([
+  { mode: 'moc', waves: [2, 1], stage: 1, wave: 0, otherSlot: true, labels: [2, undefined, 3] },
+  { mode: 'pf', waves: [3], stage: 0, wave: 1, otherSlot: true, labels: [2, undefined, 2] },
+  { mode: 'as', waves: [1], stage: 0, wave: 0, otherSlot: true, labels: [2, undefined, undefined] },
+  { mode: 'as', waves: [2, 2], stage: 1, wave: 1, otherSlot: true, labels: [2, 2, 2] },
+  {
+    mode: 'aa',
+    waves: [1],
+    stage: 0,
+    wave: 0,
+    otherSlot: false,
+    labels: [undefined, undefined, undefined]
+  },
+  { mode: 'aa', waves: [3], stage: 0, wave: 1, otherSlot: false, labels: [undefined, undefined, 2] }
+] as const)(
+  'derives $mode positioning labels from the whole encounter for a single match (%#)',
+  ({ mode, waves, stage, wave, otherSlot, labels }) => {
+    const enemy = {
+      ...reference(locator({ mode, battleSlot: 2 }), { stage, wave }),
+      key: 'only-match',
+      occurrence: occurrence('Only match')
+    };
+    const [encounter] = groupEndgameSearchEncounters([enemy], {
+      '1': {
+        label: 'Encounter',
+        waveCountsBySlot: otherSlot ? { 1: [1], 2: waves } : { 2: waves }
+      }
+    });
+    const [position] = encounter.positions;
+    expect([position.node, position.stage, position.wave]).toEqual(labels);
+    expect(position.enemies).toEqual([enemy]);
+  }
+);
+
+it.each(['zh-CN', 'en'] as const)('chooses one encounter title per mode (%s)', (locale) => {
+  const options = { locale };
+  const floor: EndgameEncounter = {
+    id: '777',
+    configId: 777,
+    ordinal: 12,
+    name: 'Localized floor',
+    variant: 'floor',
+    battles: []
+  };
+  const title = (mode: EndgameMode, encounter = floor, useName = true) =>
+    getEndgameSearchEncounterLabel(mode, encounter, locale, useName);
+  expect(title('moc')).toBe(m.endgame_local_stage_current({ label: 12 }, options));
+  expect(title('moc', { ...floor, ordinal: undefined })).toBe(floor.name);
+  expect(title('pf')).toBe(m.endgame_local_difficulty_label({ number: 12 }, options));
+  expect(title('as')).toBe(floor.name);
+  expect(title('as', { ...floor, name: undefined })).toBe(title('pf'));
+  const king = { ...floor, variant: 'boss-normal' as const, name: 'Localized King' };
+  expect(title('aa', king)).toBe(king.name);
+  expect(title('aa', king, false)).toBe(m.endgame_search_king({}, options));
+  expect(title('aa', { ...king, variant: 'boss-hard' }, false)).toBe(
+    m.endgame_search_ruinous_king({}, options)
+  );
 });
 
 describe('Search V2', () => {

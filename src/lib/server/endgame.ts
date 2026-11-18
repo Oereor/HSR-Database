@@ -32,6 +32,7 @@ import {
   getEndgamePeriodPresentation,
   getEndgameSearchEncounterLabel
 } from '$lib/i18n/endgame';
+import type { EndgameSearchSeasonMetadata } from '$lib/search/presentation';
 
 const generatedRoot = path.resolve('src', 'lib', 'generated', 'views');
 const datasetCache = new Map<string, Promise<EndgameModeDataset>>();
@@ -143,7 +144,7 @@ export async function getEndgameLanding(locale: SearchLocale) {
   const modes = datasets.map(({ mode, groups }) =>
     Object.assign(buildModeView(mode, groups, presentation), getEndgameModeCopy(mode, locale))
   );
-  const encounterLabels = Object.fromEntries(
+  const encounterMetadata: Record<string, EndgameSearchSeasonMetadata> = Object.fromEntries(
     datasets.flatMap(({ mode, groups }) =>
       groups.map(
         ({ groupId, encounters }) =>
@@ -152,14 +153,29 @@ export async function getEndgameLanding(locale: SearchLocale) {
             Object.fromEntries(
               encounters.map((encounter) => [
                 encounter.id,
-                getEndgameSearchEncounterLabel(mode, encounter, locale)
+                {
+                  label: getEndgameSearchEncounterLabel(
+                    mode,
+                    encounter,
+                    locale,
+                    !encounters.some(
+                      (other) => other !== encounter && other.name === encounter.name
+                    )
+                  ),
+                  waveCountsBySlot: Object.fromEntries(
+                    encounter.battles.map(({ slot, stages }) => [
+                      slot,
+                      stages.map(({ waveModel }) => waveModel.waves.length)
+                    ])
+                  )
+                }
               ])
             )
           ] as const
       )
     )
   );
-  return { modes, encounterLabels };
+  return { modes, encounterMetadata };
 }
 
 export async function getEndgameMode(

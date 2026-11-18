@@ -69,6 +69,16 @@ test('Endgame 搜索复用赛期卡片，敌方卡片和关卡分别提供链接
   const encounter = page.locator('[data-endgame-search-encounter]').filter({
     has: page.locator(`a[href="${seasonHref}${encounterParam}"]`)
   });
+  const seasonResults = page.locator(
+    `section[aria-labelledby="endgame-search-occurrences-${mode}-${groupId}"]`
+  );
+  await expect(seasonResults.getByRole('heading', { level: 4 }).getByRole('link')).toHaveAttribute(
+    'href',
+    seasonHref
+  );
+  await expect(
+    encounter.getByRole('heading', { level: 5 }).locator('a[href*="?encounter="]')
+  ).toHaveAttribute('href', `${seasonHref}${encounterParam}`);
   await expect(
     encounter.locator(`a[data-endgame-enemy-link][href="/en/enemies/${target.id}/"]`).first()
   ).toBeVisible();
@@ -79,6 +89,56 @@ test('Endgame 搜索复用赛期卡片，敌方卡片和关卡分别提供链接
   await expect(
     page.locator(`a[href="${encounterParam}"][aria-current="page"]`).first()
   ).toBeAttached();
+});
+
+test('Endgame 搜索单个命中直接靠左排列并保留实际波次', async ({ page }) => {
+  const index = JSON.parse(
+    readFileSync('static/generated/zh-CN/search.json', 'utf8')
+  ) as GlobalSearchIndex;
+  const target = index.endgameTargets.find(
+    ({ occurrences }) =>
+      occurrences.length === 1 &&
+      occurrences[0].locator.mode === 'pf' &&
+      occurrences[0].order.wave > 0
+  )!;
+  const { locator, order } = target.occurrences[0];
+  const copy = JSON.parse(readFileSync('messages/zh-CN.json', 'utf8')) as Record<string, string>;
+  await page.goto(`/endgame/?q=${target.id}`);
+  const season = page.locator(
+    `section[aria-labelledby="endgame-search-occurrences-pf-${locator.groupId}"]`
+  );
+  const card = season.locator('[data-endgame-enemy-card]');
+  await expect(card).toBeVisible();
+  await expect(
+    season.getByRole('heading', { level: 5 }).locator('a[href*="?encounter="]')
+  ).toHaveCount(1);
+  await expect(season).toContainText(copy.endgame_wave.replace('{number}', String(order.wave + 1)));
+  await expect(season).not.toContainText(copy.endgame_search_phase.replace('{number}', '1'));
+  const [seasonBox, cardBox] = await Promise.all([season.boundingBox(), card.boundingBox()]);
+  expect(Math.abs(seasonBox!.x - cardBox!.x)).toBeLessThanOrEqual(1);
+});
+
+test('Endgame 搜索展开下一批结果时关卡上下文保持唯一', async ({ page }) => {
+  const index = JSON.parse(
+    readFileSync('static/generated/zh-CN/search.json', 'utf8')
+  ) as GlobalSearchIndex;
+  const target = index.endgameTargets.find(
+    ({ occurrences }) => occurrences.filter(({ locator }) => locator.mode === 'moc').length > 100
+  )!;
+  const total = target.occurrences.filter(({ locator }) => locator.mode === 'moc').length;
+  await page.goto(`/endgame/?q=${target.id}`);
+  const mode = page.locator('section[aria-labelledby="endgame-search-occurrences-moc"]');
+  const cards = mode.locator('[data-endgame-enemy-card]');
+  await expect(cards).toHaveCount(100);
+  const window = mode.locator('[data-search-total]');
+  await expect(window).toHaveAttribute('data-search-total', String(total));
+  await window.getByRole('button').click();
+  await expect(cards).toHaveCount(Math.min(200, total));
+  const headings = await mode
+    .getByRole('heading', { level: 5 })
+    .locator('a[href*="?encounter="]')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+  expect(new Set(headings).size).toBe(headings.length);
 });
 
 test('Endgame 搜索恢复 URL，丢弃迟到结果并共享已请求的分片', async ({ page }) => {
