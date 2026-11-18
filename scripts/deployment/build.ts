@@ -162,12 +162,11 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
     }
     if (!('value' in turnBasedResult)) throw turnBasedResult.error;
 
+    const starRailDirectory = path.join(siteRoot, '.upstream', 'StarRailRes');
     const env = {
       ...initialEnv,
       HSR_DATA_ROOT: path.relative(siteRoot, turnBasedResult.value.directory).replaceAll('\\', '/'),
-      HSR_ASSET_ROOT: path
-        .relative(siteRoot, path.join(siteRoot, '.upstream', 'StarRailRes'))
-        .replaceAll('\\', '/')
+      HSR_ASSET_ROOT: path.relative(siteRoot, starRailDirectory).replaceAll('\\', '/')
     };
     console.log(`[data] HSR_DATA_ROOT=${env.HSR_DATA_ROOT}`);
     await timed('data-ensure', () => runPnpm(['data:ensure'], env));
@@ -184,9 +183,6 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
 
     const starRailResult = await starRailPreparation;
     if (!('value' in starRailResult)) throw starRailResult.error;
-    env.HSR_ASSET_ROOT = path
-      .relative(siteRoot, starRailResult.value.directory)
-      .replaceAll('\\', '/');
     console.log(`[assets] HSR_ASSET_ROOT=${env.HSR_ASSET_ROOT}`);
     console.log(
       `[deploy:cache] turnbased-checkout result=${turnBasedResult.value.result} reason=pinned-source`
@@ -194,8 +190,13 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
     console.log(
       `[deploy:cache] starrailres-checkout result=${starRailResult.value.result} reason=pinned-source`
     );
-    logFileSummary('turnbased-input', turnBasedResult.value.summary);
-    logFileSummary('starrailres-input', starRailResult.value.summary);
+    const ignoredCheckoutEntries = new Set(['.git']);
+    const [turnBasedSummary, starRailSummary] = await Promise.all([
+      summarizeDirectory(turnBasedResult.value.directory, ignoredCheckoutEntries),
+      summarizeDirectory(starRailResult.value.directory, ignoredCheckoutEntries)
+    ]);
+    logFileSummary('turnbased-input', turnBasedSummary);
+    logFileSummary('starrailres-input', starRailSummary);
 
     const [enemyResult, generalResult] = await Promise.allSettled([
       timed('enemy-assets-validate', () => runPnpm(['validate:enemy-assets'], env)),

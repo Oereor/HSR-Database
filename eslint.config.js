@@ -8,6 +8,7 @@ export default ts.config(
   {
     ignores: [
       '.svelte-kit/**',
+      '.upstream/**',
       '.vercel/**',
       'build/**',
       'node_modules/**',

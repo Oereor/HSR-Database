@@ -21,8 +21,7 @@ describe('runPnpm', () => {
     { entrypoint: 'C:\\pnpm install\\pnpm.exe', useNode: false },
     { entrypoint: '/pnpm install/pnpm.js', useNode: true },
     { entrypoint: '/pnpm install/pnpm.cjs', useNode: true },
-    { entrypoint: '/pnpm install/pnpm.mjs', useNode: true },
-    { entrypoint: undefined, useNode: false }
+    { entrypoint: '/pnpm install/pnpm.mjs', useNode: true }
   ])('starts pnpm from $entrypoint', async ({ entrypoint, useNode }) => {
     const env = { npm_execpath: entrypoint, HSR_DATA_ROOT: '/pinned/data' };
     const args = ['exec', 'vite', 'build'];
@@ -36,6 +35,30 @@ describe('runPnpm', () => {
     child.emit('close', 0, null);
     await expect(result).resolves.toBeUndefined();
   });
+
+  it('resolves pnpm through the platform PATH when no lifecycle entrypoint is provided', async () => {
+    const env = { HSR_DATA_ROOT: '/pinned/data' };
+    const args = ['exec', 'vite', 'build'];
+    const result = runPnpm(args, env);
+    const win = process.platform === 'win32';
+    expect(spawn).toHaveBeenCalledExactlyOnceWith(
+      win ? 'cmd.exe' : 'pnpm',
+      win ? ['/d', '/s', '/c', 'pnpm', ...args] : args,
+      { cwd: siteRoot, env, shell: false, stdio: 'inherit', windowsHide: true }
+    );
+    child.emit('close', 0, null);
+    await expect(result).resolves.toBeUndefined();
+  });
+
+  it.skipIf(process.platform !== 'win32')(
+    'rejects Windows shim arguments with shell syntax',
+    async () => {
+      await expect(runPnpm(['test', '&other'], {})).rejects.toThrow(
+        'requires literal script arguments'
+      );
+      expect(spawn).not.toHaveBeenCalled();
+    }
+  );
 
   it('propagates a launch error', async () => {
     const result = runPnpm(['messages:compile'], {});

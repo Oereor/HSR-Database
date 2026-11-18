@@ -1,38 +1,126 @@
 import { spawn } from 'node:child_process';
-import { access, cp, mkdir, rename, rm } from 'node:fs/promises';
+import { lstat, mkdir, mkdtemp, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { UpstreamPin } from './lock.js';
 
 export type GitCommandRunner = (args: string[], cwd?: string) => Promise<string>;
-export type CheckoutPreparationResult = 'reused' | 'sparse-updated' | 'materialized';
+export type CheckoutPreparationResult = 'reused' | 'materialized';
 
 const gitExecutable = process.platform === 'win32' ? 'git.exe' : 'git';
+const GIT_HEARTBEAT_MS = 30_000;
+const secondsSince = (start: number): string => ((performance.now() - start) / 1000).toFixed(2);
+const errorCode = (error: unknown) => (error as NodeJS.ErrnoException | undefined)?.code;
+const errorMessage = (error: unknown) => (error instanceof Error ? error.message : String(error));
+
+function gitFailureReason(stderr: string): string {
+  if (/could not resolve proxy/i.test(stderr)) return 'proxy DNS lookup failed';
+  if (/could not resolve host/i.test(stderr)) return 'remote DNS lookup failed';
+  if (/operation too slow|timed out|timeout was reached/i.test(stderr))
+    return 'network transfer stalled or timed out';
+  if (/failed to connect|could not connect|reset by peer/i.test(stderr))
+    return 'connection to remote or proxy failed';
+  if (
+    /authentication failed|terminal prompts disabled|could not read (username|password)|\b407\b/i.test(
+      stderr
+    )
+  )
+    return 'remote or proxy authentication failed';
+  if (/schannel|ssl|tls|certificate/i.test(stderr))
+    return 'TLS negotiation or certificate validation failed';
+  if (/index\.lock|unable to create.*lock/i.test(stderr)) return 'checkout files are locked';
+  if (/permission denied|access is denied/i.test(stderr)) return 'access denied';
+  if (/not our ref|couldn.t find remote ref/i.test(stderr)) return 'pinned ref is unavailable';
+  return 'Git reported an error';
+}
+
+function operationName(args: string[]): string {
+  const command = args.find((arg) => !arg.startsWith('-'));
+  switch (command) {
+    case 'sparse-checkout':
+      return args.includes('set') ? 'sparse-checkout set' : 'sparse-checkout list';
+    case 'checkout':
+    case 'fetch':
+    case 'ls-remote':
+    case 'init':
+    case 'remote':
+    case 'config':
+    case 'rev-parse':
+    case 'ls-tree':
+    case 'status':
+      return command;
+    default:
+      return 'command';
+  }
+}
 
 export const runGit: GitCommandRunner = (args, cwd) =>
   new Promise((resolve, reject) => {
-    const child = spawn(gitExecutable, args, { cwd, shell: false, windowsHide: true });
+    const operation = operationName(args);
+    const needsProgress = ['checkout', 'fetch', 'ls-remote', 'sparse-checkout set'].includes(
+      operation
+    );
+    const started = performance.now();
+    const label = `[upstream:git] ${cwd ? `${path.basename(cwd)} ` : ''}${operation}`;
+    const env = needsProgress
+      ? {
+          ...process.env,
+          GIT_TERMINAL_PROMPT: '0',
+          GCM_INTERACTIVE: 'never',
+          GIT_HTTP_LOW_SPEED_LIMIT: process.env.GIT_HTTP_LOW_SPEED_LIMIT ?? '1',
+          GIT_HTTP_LOW_SPEED_TIME: process.env.GIT_HTTP_LOW_SPEED_TIME ?? '120'
+        }
+      : process.env;
+    const child = spawn(gitExecutable, args, {
+      cwd,
+      env,
+      shell: false,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      windowsHide: true
+    });
+    if (needsProgress) console.log(`${label} started (pid=${child.pid ?? 'unavailable'})`);
+    let lastOutput = started;
+    const heartbeat = needsProgress
+      ? setInterval(() => {
+          console.log(
+            `${label} still running after ${secondsSince(started)}s (last Git output ${secondsSince(lastOutput)}s ago)`
+          );
+        }, GIT_HEARTBEAT_MS).unref()
+      : undefined;
     let stdout = '';
     let stderr = '';
-    child.stdout.on('data', (chunk: Buffer) => (stdout += chunk.toString()));
-    child.stderr.on('data', (chunk: Buffer) => (stderr += chunk.toString()));
-    child.on('error', reject);
-    child.on('close', (code) => {
-      if (code === 0) return resolve(stdout.trim());
-      const command =
-        args.length > 20
-          ? `${args.slice(0, 4).join(' ')} …（${args.length - 4} paths）`
-          : args.join(' ');
-      const detail = (stderr.trim() || stdout.trim()).slice(-4000);
-      reject(new Error(`git ${command} 失败（${code}）：${detail}`));
+    let settled = false;
+    child.stdout.setEncoding('utf8').on('data', (chunk: string) => {
+      lastOutput = performance.now();
+      stdout += chunk;
     });
+    child.stderr.setEncoding('utf8').on('data', (chunk: string) => {
+      lastOutput = performance.now();
+      stderr = (stderr + chunk).slice(-8192);
+    });
+    const finish = (failure?: string) => {
+      if (settled) return;
+      settled = true;
+      clearInterval(heartbeat);
+      if (failure) {
+        reject(new Error(`${label} failed after ${secondsSince(started)}s: ${failure}`));
+      } else {
+        if (needsProgress) console.log(`${label} completed in ${secondsSince(started)}s`);
+        resolve(stdout.trim());
+      }
+    };
+    child.once('error', (error) =>
+      finish(`could not start Git (${errorCode(error) ?? 'unknown'})`)
+    );
+    child.once('close', (code, signal) =>
+      finish(code === 0 ? undefined : `${gitFailureReason(stderr)} (exit=${signal ?? code})`)
+    );
   });
 
-async function exists(target: string): Promise<boolean> {
+async function statIfPresent(target: string) {
   try {
-    await access(target);
-    return true;
-  } catch {
-    return false;
+    return await lstat(target);
+  } catch (error) {
+    if (!['ENOENT', 'ENOTDIR'].includes(errorCode(error) ?? '')) throw error;
   }
 }
 
@@ -43,21 +131,22 @@ function normalizeRemote(value: string): string {
     .toLowerCase();
 }
 
+const normalizeSparsePath = (value: string): string => value.trim().replace(/^\/+/, '');
+const sparsePattern = (value: string): string => `/${normalizeSparsePath(value)}`;
+const localGit = (runner: GitCommandRunner, args: string[], directory: string) =>
+  runner(['--no-lazy-fetch', '--no-optional-locks', ...args], directory);
+
 export async function inspectCheckout(
   directory: string,
   pin: UpstreamPin,
   runner: GitCommandRunner = runGit
 ): Promise<boolean> {
-  if (!(await exists(path.join(directory, '.git')))) return false;
-  try {
-    const [remote, head] = await Promise.all([
-      runner(['config', '--get', 'remote.origin.url'], directory),
-      runner(['rev-parse', 'HEAD'], directory)
-    ]);
-    return normalizeRemote(remote) === normalizeRemote(pin.repository) && head === pin.commit;
-  } catch {
-    return false;
-  }
+  if (!(await statIfPresent(path.join(directory, '.git')))) return false;
+  const [remote, head] = await Promise.all([
+    localGit(runner, ['config', '--get', 'remote.origin.url'], directory),
+    localGit(runner, ['rev-parse', '--verify', 'HEAD^{commit}'], directory)
+  ]);
+  return normalizeRemote(remote) === normalizeRemote(pin.repository) && head === pin.commit;
 }
 
 export async function assertCheckout(
@@ -67,28 +156,66 @@ export async function assertCheckout(
   runner: GitCommandRunner = runGit
 ): Promise<void> {
   if (!(await inspectCheckout(directory, pin, runner)))
-    throw new Error(`[upstream] checkout 未锁定到 ${pin.commit}: ${directory}`);
-  const sparseEnabled = await runner(['config', '--bool', 'core.sparseCheckout'], directory).catch(
-    () => ''
-  );
-  if (sparseEnabled !== 'true')
-    throw new Error(`[upstream] sparse checkout 配置缺失：${directory}`);
-  const normalizeSparsePath = (value: string): string => value.trim().replace(/^\/+/, '');
-  const actualSparsePaths = (await runner(['sparse-checkout', 'list'], directory))
+    throw new Error(`checkout remote or HEAD does not match pin ${pin.commit}`);
+  const sparseEnabled = await localGit(
+    runner,
+    ['config', '--bool', 'core.sparseCheckout'],
+    directory
+  ).catch(() => '');
+  if (sparseEnabled !== 'true') throw new Error('sparse checkout is disabled');
+  const actual = (await localGit(runner, ['sparse-checkout', 'list'], directory))
     .split(/\r?\n/)
     .map(normalizeSparsePath)
     .filter(Boolean)
     .sort();
-  const expectedSparsePaths = [...new Set(requiredPaths.map(normalizeSparsePath))].sort();
-  if (
-    actualSparsePaths.length !== expectedSparsePaths.length ||
-    actualSparsePaths.some((value, index) => value !== expectedSparsePaths[index])
+  const expected = [...new Set(requiredPaths.map(normalizeSparsePath))].sort();
+  if (actual.length !== expected.length || actual.some((value, index) => value !== expected[index]))
+    throw new Error('sparse checkout specification mismatch');
+
+  const trackedFiles = (
+    await localGit(
+      runner,
+      ['--literal-pathspecs', 'ls-tree', '-r', '--name-only', '-z', 'HEAD', '--', ...expected],
+      directory
+    )
   )
-    throw new Error(`[upstream] sparse checkout specification mismatch：${directory}`);
-  for (const relative of requiredPaths) {
-    if (!(await exists(path.join(directory, relative))))
-      throw new Error(`[upstream] sparse checkout 缺少必需路径：${relative}`);
+    .split('\0')
+    .filter(Boolean);
+  const trackedSet = new Set(trackedFiles);
+  for (const relative of expected) {
+    if (
+      relative.endsWith('/')
+        ? !trackedFiles.some((file) => file.startsWith(relative))
+        : !trackedSet.has(relative)
+    )
+      throw new Error(`required path is absent from pinned tree: ${relative}`);
   }
+  // Sparse index flags can hide unmaterialized files from Git status.
+  for (let start = 0; start < trackedFiles.length; start += 64) {
+    const files = trackedFiles.slice(start, start + 64);
+    const stats = await Promise.all(files.map((file) => statIfPresent(path.join(directory, file))));
+    const missing = stats.findIndex(
+      (entry) => !entry || (!entry.isFile() && !entry.isSymbolicLink())
+    );
+    if (missing !== -1) throw new Error(`required file is not materialized: ${files[missing]}`);
+  }
+
+  if (
+    await localGit(
+      runner,
+      [
+        '--literal-pathspecs',
+        'status',
+        '--porcelain=v1',
+        '-z',
+        '--untracked-files=all',
+        '--',
+        ...expected
+      ],
+      directory
+    )
+  )
+    throw new Error('pinned working tree contains local changes');
 }
 
 export async function prepareCheckout(
@@ -98,103 +225,161 @@ export async function prepareCheckout(
   rootDirectory: string,
   runner: GitCommandRunner = runGit
 ): Promise<CheckoutPreparationResult> {
-  if (await inspectCheckout(directory, pin, runner)) {
-    try {
-      await assertCheckout(directory, pin, sparsePaths, runner);
-      console.log(`[upstream] reusing ${path.basename(directory)}`);
-      return 'reused';
-    } catch {
-      await setSparseCheckout(directory, sparsePaths, runner);
-      await assertCheckout(directory, pin, sparsePaths, runner);
-      return 'sparse-updated';
-    }
-  }
-
+  directory = path.resolve(directory);
+  rootDirectory = path.resolve(rootDirectory);
+  if (path.dirname(directory) !== rootDirectory)
+    throw new Error('checkout must be a direct child of the upstream directory');
   await mkdir(rootDirectory, { recursive: true });
-  const temporary = await makeTemporaryDirectory(rootDirectory);
+  const name = path.basename(directory);
+  const label = `[upstream] ${name}`;
+  const lockFile = path.join(rootDirectory, `.lock-${name}`);
   try {
-    await runner(['init', '--initial-branch=main'], temporary);
-    await runner(['remote', 'add', 'origin', pin.repository], temporary);
-    await runWithRetry(
-      () => runner(['fetch', '--filter=blob:none', '--depth=1', 'origin', pin.commit], temporary),
-      `fetch ${pin.commit}`
-    );
-    await runner(['sparse-checkout', 'init', '--no-cone'], temporary);
-    await setSparseCheckout(temporary, sparsePaths, runner);
-    await runner(['checkout', '--detach', pin.commit], temporary);
-    await assertCheckout(temporary, pin, sparsePaths, runner);
-    await rm(directory, { recursive: true, force: true });
-    await publishDirectory(temporary, directory);
-    return 'materialized';
+    await writeFile(lockFile, `${process.pid}\n`, { flag: 'wx' });
   } catch (error) {
-    await rm(temporary, { recursive: true, force: true });
-    throw error;
+    if (errorCode(error) !== 'EEXIST') throw error;
+    const owner = (await readFile(lockFile, 'utf8').catch(() => '')).trim();
+    throw new Error(
+      `${label} preparation is locked (pid=${/^\d+$/.test(owner) ? owner : 'unavailable'}): ${lockFile}`,
+      { cause: error }
+    );
   }
-}
 
-const sparsePattern = (value: string): string => `/${value.replace(/^\/+/, '')}`;
+  return withCleanup<CheckoutPreparationResult>(
+    async () => {
+      const inspectStarted = performance.now();
+      console.log(`${label} inspecting checkout`);
+      try {
+        await assertCheckout(directory, pin, sparsePaths, runner);
+        console.log(`${label} checkout validated in ${secondsSince(inspectStarted)}s (reused)`);
+        return 'reused';
+      } catch (error) {
+        console.log(
+          `${label} checkout requires preparation after ${secondsSince(inspectStarted)}s: ${errorMessage(error)}`
+        );
+      }
 
-export async function setSparseCheckout(
-  directory: string,
-  paths: Iterable<string>,
-  runner: GitCommandRunner = runGit
-): Promise<void> {
-  const patterns = [...paths].map(sparsePattern);
-  await runWithRetry(
-    () => runner(['sparse-checkout', 'set', '--no-cone', ...patterns], directory),
-    `sparse checkout ${path.basename(directory)}`
+      const scratch = await mkdtemp(path.join(rootDirectory, `.tmp-${name}-`));
+      const candidate = path.join(scratch, name);
+      const previous = path.join(scratch, 'previous');
+      return withCleanup<CheckoutPreparationResult>(
+        async () => {
+          await mkdir(candidate);
+          await runner(['init', '--initial-branch=main'], candidate);
+          await runner(['remote', 'add', 'origin', pin.repository], candidate);
+          await runWithRetry(
+            () =>
+              runner(
+                [
+                  'fetch',
+                  '--progress',
+                  '--no-auto-maintenance',
+                  '--filter=blob:none',
+                  '--depth=1',
+                  'origin',
+                  pin.commit
+                ],
+                candidate
+              ),
+            `${name} fetch`
+          );
+          await runner(
+            ['sparse-checkout', 'set', '--no-cone', ...sparsePaths.map(sparsePattern)],
+            candidate
+          );
+          await runner(['checkout', '--detach', pin.commit], candidate);
+          const validationStarted = performance.now();
+          await assertCheckout(candidate, pin, sparsePaths, runner);
+          console.log(`${label} checkout validated in ${secondsSince(validationStarted)}s`);
+          const publishStarted = performance.now();
+          console.log(`${label} publishing checkout`);
+          await publishCheckout(candidate, directory, previous);
+          console.log(`${label} checkout published in ${secondsSince(publishStarted)}s`);
+          return 'materialized';
+        },
+        async (error) => {
+          if (!(error instanceof CheckoutRecoveryError))
+            await rm(scratch, { recursive: true, force: true, maxRetries: 3, retryDelay: 250 });
+        }
+      );
+    },
+    () => rm(lockFile, { force: true })
   );
 }
 
 async function runWithRetry(operation: () => Promise<string>, label: string): Promise<string> {
-  let lastError: unknown;
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
+  for (let attempt = 1; ; attempt++) {
     try {
       return await operation();
     } catch (error) {
-      lastError = error;
-      if (attempt < 3) {
-        console.warn(`[upstream] ${label} 失败，准备重试（${attempt}/3）`);
-        await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
-      }
+      if (attempt === 3) throw error;
+      console.warn(`[upstream] ${label} failed (attempt ${attempt}/3): ${errorMessage(error)}`);
+      await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
     }
   }
-  throw lastError;
+}
+
+async function withCleanup<T>(
+  operation: () => Promise<T>,
+  cleanup: (error?: unknown) => Promise<void>
+): Promise<T> {
+  let result: T;
+  try {
+    result = await operation();
+  } catch (error) {
+    try {
+      await cleanup(error);
+    } catch (cleanupError) {
+      throw new AggregateError(
+        [error, cleanupError],
+        `${errorMessage(error)}; cleanup failed: ${errorMessage(cleanupError)}`,
+        { cause: cleanupError }
+      );
+    }
+    throw error;
+  }
+  await cleanup();
+  return result;
 }
 
 async function renameWithRetry(source: string, destination: string): Promise<void> {
-  for (let attempt = 1; attempt <= 10; attempt += 1) {
+  for (let attempt = 1; ; attempt++) {
     try {
       await rename(source, destination);
       return;
     } catch (error) {
-      const code = (error as NodeJS.ErrnoException).code;
-      if (!['EPERM', 'EACCES', 'EBUSY'].includes(code ?? '') || attempt === 10) throw error;
+      if (
+        process.platform !== 'win32' ||
+        attempt === 10 ||
+        !['EPERM', 'EACCES', 'EBUSY'].includes(errorCode(error) ?? '')
+      )
+        throw error;
       await new Promise((resolve) => setTimeout(resolve, attempt * 250));
     }
   }
 }
 
-async function publishDirectory(source: string, destination: string): Promise<void> {
-  try {
-    await renameWithRetry(source, destination);
-  } catch (error) {
-    if (process.platform !== 'win32') throw error;
-    console.warn('[upstream] Windows 无法原子重命名 checkout，使用已验证目录复制回退');
-    await rm(destination, { recursive: true, force: true });
-    try {
-      await cp(source, destination, { recursive: true, force: false, errorOnExist: true });
-      await rm(source, { recursive: true, force: true });
-    } catch (copyError) {
-      await rm(destination, { recursive: true, force: true });
-      throw copyError;
-    }
-  }
-}
+class CheckoutRecoveryError extends AggregateError {}
 
-async function makeTemporaryDirectory(rootDirectory: string): Promise<string> {
-  const name = `.tmp-${process.pid}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  const directory = path.join(rootDirectory, name);
-  await mkdir(directory, { recursive: true });
-  return directory;
+export async function publishCheckout(
+  candidate: string,
+  destination: string,
+  backup: string
+): Promise<void> {
+  const hadPrevious = Boolean(await statIfPresent(destination));
+  if (hadPrevious) await renameWithRetry(destination, backup);
+  try {
+    await renameWithRetry(candidate, destination);
+  } catch (error) {
+    if (hadPrevious) {
+      try {
+        await renameWithRetry(backup, destination);
+      } catch (rollbackError) {
+        throw new CheckoutRecoveryError(
+          [error, rollbackError],
+          `upstream checkout publication failed: ${errorMessage(error)}; rollback failed: ${errorMessage(rollbackError)}; previous checkout retained at ${backup}`
+        );
+      }
+    }
+    throw error;
+  }
 }
