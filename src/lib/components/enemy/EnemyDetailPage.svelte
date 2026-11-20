@@ -2,8 +2,9 @@
   import * as Card from '$lib/components/ui/card';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import EnemyVariantSelector from './EnemyVariantSelector.svelte';
+  import EnemyVariantIdentity from './EnemyVariantIdentity.svelte';
   import EnemySkillBrowser from './EnemySkillBrowser.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
   import EnemyTemplateBaseStatsPanel from './EnemyTemplateBaseStatsPanel.svelte';
@@ -27,12 +28,16 @@
     type EnemyDetailPageData
   } from '$lib/domain/enemy-view';
   import * as m from '$lib/paraglide/messages.js';
+  import { getLocale } from '$lib/paraglide/runtime.js';
 
   export let detail: EnemyDetailPageData;
 
   const emptyParams = new URLSearchParams();
   let clientReady = false;
-  onMount(() => (clientReady = true));
+  onMount(() => {
+    clientReady = true;
+    void tick().then(() => document.documentElement.removeAttribute('data-enemy-variant-pending'));
+  });
 
   let level = getEnemyMonsterStatProgression(
     detail,
@@ -52,10 +57,14 @@
     level = selectedProgression.defaultLevel;
 
   function selectMonster(monsterId: string) {
-    if (monsterId === selectedMonster.monsterId) return;
     const next = new URL($page.url);
-    if (monsterId === detail.defaultMonsterId) next.searchParams.delete('monster');
-    else next.searchParams.set('monster', monsterId);
+    if (monsterId === detail.defaultMonsterId) {
+      if (!next.searchParams.has('monster')) return;
+      next.searchParams.delete('monster');
+    } else {
+      if (monsterId === selectedMonster.monsterId) return;
+      next.searchParams.set('monster', monsterId);
+    }
     void goto(next, { noScroll: true, keepFocus: true });
   }
 
@@ -65,6 +74,27 @@
     { id: 'skills', label: m.detail_skills() }
   ] as const;
 </script>
+
+<svelte:head>
+  {#if detail.monsters.length > 1}
+    <script>
+      {
+        // The static HTML contains the default variant until the router can read the query.
+        const requested = new URLSearchParams(window.location.search).getAll('monster');
+        if (
+          document.readyState === 'loading' &&
+          requested.length === 1 &&
+          /^[0-9]+$/.test(requested[0])
+        ) {
+          const root = document.documentElement;
+          const attribute = 'data-enemy-variant-pending';
+          root.setAttribute(attribute, '');
+          window.setTimeout(() => root.removeAttribute(attribute), 3000);
+        }
+      }
+    </script>
+  {/if}
+</svelte:head>
 
 <Card.Root class="gap-0 overflow-hidden p-0 shadow-none">
   <header class="detail-profile-hero detail-profile-hero--enemy" data-enemy-hero>
@@ -97,29 +127,31 @@
 
 <SectionNav items={sectionNavItems} />
 
-<section id="monsters" class="detail-section enemy-detail-section section-nav-target">
-  <SectionHeading level={1}>{m.enemy_variants_section()}</SectionHeading>
+<section
+  id="monsters"
+  class="detail-section enemy-detail-section section-nav-target"
+  data-enemy-variant-content
+>
+  <SectionHeading level={1}>{m.enemy_specific_units({}, { locale: getLocale() })}</SectionHeading>
 
-  {#if detail.monsters.length > 1}
-    <EnemyVariantSelector
-      variants={detail.monsters}
-      selected={selectedMonster}
-      onSelect={selectMonster}
-    />
-  {/if}
-  <header class="mt-4 grid gap-2" data-selected-monster={selectedMonster.monsterId}>
-    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-      <h3 class="text-lg font-semibold" data-monster-name>
-        <GameText text={selectedMonster.name} />
-      </h3>
-      <span class="text-muted-foreground text-sm tabular-nums">#{selectedMonster.monsterId}</span>
-    </div>
+  <div class="mt-4 grid gap-3" data-selected-monster={selectedMonster.monsterId}>
+    {#if detail.monsters.length > 1}
+      <EnemyVariantSelector
+        variants={detail.monsters}
+        selected={selectedMonster}
+        onSelect={selectMonster}
+      />
+    {:else}
+      <div class="w-full sm:max-w-xl">
+        <EnemyVariantIdentity variant={selectedMonster} />
+      </div>
+    {/if}
     {#if selectedMonster.introduction}
       <p class="text-muted-foreground max-w-prose whitespace-pre-line" data-monster-introduction>
         <GameText text={selectedMonster.introduction} />
       </p>
     {/if}
-  </header>
+  </div>
   <div
     class:enemy-battle-panel--two-column={!selectedMonster.specialResistances.length}
     class="enemy-battle-panel"
@@ -211,7 +243,17 @@
     </section>{/if}
 </section>
 
-<section id="skills" class="detail-section enemy-detail-section section-nav-target">
+<section
+  id="skills"
+  class="detail-section enemy-detail-section section-nav-target"
+  data-enemy-variant-content
+>
   <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
   <EnemySkillBrowser {detail} monsterId={selectedMonster.monsterId} />
 </section>
+
+<style>
+  :global(html[data-enemy-variant-pending]) [data-enemy-variant-content] {
+    visibility: hidden;
+  }
+</style>

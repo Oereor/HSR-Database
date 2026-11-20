@@ -2,9 +2,8 @@ import { setSliderValue } from '../helpers/slider';
 import { expect, test, type Page } from '@playwright/test';
 
 async function selectMonster(page: Page, id: string) {
-  const picker = page.locator('#monsters').getByRole('combobox');
-  await picker.click();
-  await picker.fill(id);
+  await page.locator('[data-monster-trigger]').click();
+  await page.getByRole('dialog').getByRole('combobox').fill(id);
   await page.locator(`[data-monster-option="${id}"]`).click();
   await expect(page.locator('[data-selected-monster]')).toHaveAttribute(
     'data-selected-monster',
@@ -129,17 +128,47 @@ test('Variant selection keeps text, combat data and history in sync', async ({
   const name = await selected.locator('[data-monster-name]').textContent();
   const introduction = await selected.locator('[data-monster-introduction]').textContent();
   const hp = await page.locator('[data-enemy-stat="hp"] strong').textContent();
-  const picker = page.locator('#monsters').getByRole('combobox');
-  await picker.click();
-  await picker.fill('100201506');
-  const option = page.getByRole('option').filter({ hasText: '#100201506' });
+  const trigger = page.locator('[data-monster-trigger]');
+  const weaknesses = '[role="group"] [data-icon-kind="element"]';
+  const iconSources = (scope: typeof trigger) =>
+    scope
+      .locator(`${weaknesses} img`)
+      .evaluateAll((icons) => icons.map((icon) => icon.getAttribute('src')));
+  await expect(trigger).toContainText('#100201501');
+  await expect(trigger).toHaveAccessibleDescription(/\S/);
+  const initialWeaknesses = await iconSources(trigger);
+  await trigger.click();
+  const popup = page.getByRole('dialog');
+  const picker = popup.getByRole('combobox');
+  const listbox = popup.getByRole('listbox');
+  await expect(picker).toBeFocused();
+  await expect(picker).toHaveAttribute('aria-controls', (await listbox.getAttribute('id'))!);
+  const previousOption = listbox.getByRole('option', { name: /#100201501$/ });
+  const nextOption = listbox.getByRole('option', { name: /#100201506$/ });
+  await expect(previousOption).toHaveAttribute('aria-current', 'true');
+  const nextName = await nextOption.locator('[data-monster-name]').innerText();
+  await picker.fill(nextName);
+  await expect(previousOption).toHaveCount(0);
+  await expect(nextOption).toBeAttached();
+  await picker.fill('#100201506');
+  const option = listbox.getByRole('option');
   await expect(option).toHaveCount(1);
-  await expect(option).not.toHaveText('#100201506');
+  await expect(option).toHaveAccessibleName(/\S.+#100201506$/);
+  await expect(option).toHaveAccessibleDescription(/\S/);
+  const optionName = await option.locator('[data-monster-name]').textContent();
+  const optionWeaknesses = await iconSources(option);
+  expect(optionWeaknesses).not.toEqual(initialWeaknesses);
+  const scrollY = await page.evaluate(() => window.scrollY);
   await picker.press('ArrowDown');
   await picker.press('Enter');
+  await expect(picker).toBeHidden();
+  await expect(trigger).toBeFocused();
+  expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollY)).toBeLessThanOrEqual(1);
   await expect(selected).toHaveAttribute('data-selected-monster', '100201506');
   await expect(page).toHaveURL(/keep=1&monster=100201506#monsters$/);
-  await expect(selected.locator('[data-monster-name]')).not.toHaveText(name!);
+  expect(optionName).not.toBe(name);
+  await expect(selected.locator('[data-monster-name]')).toHaveText(optionName!);
+  expect(await iconSources(trigger)).toEqual(optionWeaknesses);
   await expect(selected.locator('[data-monster-introduction]')).not.toHaveText(introduction!);
   await expect(hero.getByRole('heading', { level: 1 })).toHaveText(heroName!);
   await expect(slider).toHaveAttribute('data-value', '60');
@@ -168,13 +197,68 @@ test('Variant selection keeps text, combat data and history in sync', async ({
   }
   await expect(selected).toHaveAttribute('data-selected-monster', '100201506');
   await expect(selected.locator('[data-monster-introduction]')).not.toHaveText(introduction!);
-  await page.goto('/en/enemies/1002015/?monster=100204004');
+  await selectMonster(page, '1002015');
+  expect(new URL(page.url()).searchParams.has('monster')).toBe(false);
+  await page.goto('/en/enemies/1002015/?monster=100204004&keep=1#monsters');
   await expect(selected).toHaveAttribute('data-selected-monster', '1002015');
+  await selectMonster(page, '1002015');
+  await expect(page).toHaveURL(/\?keep=1#monsters$/);
+  await page.goto('/en/enemies/1002015/?monster=100201501&monster=100201506');
+  await expect(selected).toHaveAttribute('data-selected-monster', '1002015');
+});
+
+test('a direct Variant link hides the static default while hydration is pending', async ({
+  page,
+  browser,
+  baseURL
+}) => {
+  let releaseClient!: () => void;
+  const clientReady = new Promise<void>((resolve) => {
+    releaseClient = resolve;
+  });
+  await page.route('**/_app/immutable/entry/start.*.js', async (route) => {
+    await clientReady;
+    await route.continue();
+  });
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  page.on('console', (message) => {
+    if (message.type() === 'warning' && /hydration/i.test(message.text()))
+      errors.push(message.text());
+  });
+
+  try {
+    await page.goto('/en/enemies/1002015/?monster=100201506', { waitUntil: 'commit' });
+    await expect(page.locator('[data-enemy-hero]')).toBeVisible();
+    const selected = page.locator('[data-selected-monster]');
+    await expect(selected).toHaveAttribute('data-selected-monster', '1002015');
+    await expect(selected).toBeHidden();
+    await expect(page.locator('#skills')).toBeHidden();
+    releaseClient();
+    await expect(selected).toHaveAttribute('data-selected-monster', '100201506');
+    await expect(selected).toBeVisible();
+    await expect(page.locator('#skills')).toBeVisible();
+    expect(errors).toEqual([]);
+  } finally {
+    releaseClient();
+  }
+
+  const staticPage = await browser.newPage({ baseURL, javaScriptEnabled: false });
+  try {
+    await staticPage.goto('/en/enemies/1002015/?monster=100201506');
+    await expect(staticPage.locator('[data-selected-monster="1002015"]')).toBeVisible();
+  } finally {
+    await staticPage.close();
+  }
 });
 
 test('a single Monster shows its identity and stats directly', async ({ page }) => {
   await page.goto('/enemies/1004011/');
-  await expect(page.locator('[data-selected-monster="1004011"] [data-monster-name]')).toBeVisible();
+  const identity = page.locator('[data-selected-monster="1004011"]');
+  await expect(identity.locator('[data-monster-name]')).toBeVisible();
+  await expect(identity).toContainText('#1004011');
+  await expect(identity.locator('[role="group"]')).toBeVisible();
+  await expect(page.locator('[data-monster-trigger]')).toHaveCount(0);
   await expect(page.locator('#monsters').getByRole('combobox')).toHaveCount(0);
   await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
   await expect(page.locator('#enemy-level-1004011')).toHaveAttribute('data-value', '95');
@@ -505,7 +589,7 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     );
     expect(overflow).toBeLessThanOrEqual(1);
-    const selector = page.locator('#monsters').getByRole('combobox');
+    const selector = page.locator('[data-monster-trigger]');
     await expect(selector).toBeVisible();
     await expect(page.locator('[data-enemy-portrait]')).toBeVisible();
     const browserGrid = page.locator('.enemy-skill-browser__grid');
@@ -525,24 +609,52 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 });
 
-test('a long variant list scrolls and supports filtering on narrow screens', async ({ page }) => {
+test('a long variant list scrolls and supports filtering on narrow screens', async ({
+  page,
+  isMobile
+}) => {
   await page.setViewportSize({ width: 320, height: 740 });
   await page.goto('/en/enemies/8002050/');
-  const picker = page.locator('#monsters').getByRole('combobox');
-  await picker.click();
-  const options = page.getByRole('listbox');
+  const trigger = page.locator('[data-monster-trigger]');
+  await trigger.focus();
+  await trigger.press('Enter');
+  const popup = page.getByRole('dialog');
+  const picker = popup.getByRole('combobox');
+  await expect(picker).toBeFocused();
+  const options = popup.getByRole('listbox');
   await expect(options).toBeVisible();
-  const viewport = options.locator('[data-combobox-viewport]');
-  await expect(viewport).toBeVisible();
-  expect(await viewport.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(
+  await expect(picker).toHaveAccessibleName(/\S/);
+  await expect(picker).toHaveAttribute('aria-activedescendant', /\S/);
+  const firstActive = (await picker.getAttribute('aria-activedescendant'))!;
+  await picker.press('ArrowDown');
+  await expect(picker).not.toHaveAttribute('aria-activedescendant', firstActive);
+  await picker.press('ArrowUp');
+  await expect(picker).toHaveAttribute('aria-activedescendant', firstActive);
+  expect(await options.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(
     true
   );
+  const fullCount = await options.getByRole('option').count();
   await picker.fill('no match 0123456789');
   await expect(options.getByRole('option')).toHaveCount(0);
-  await expect(options.getByRole('status')).toBeVisible();
-  await picker.fill('800205073');
+  await expect(popup.getByRole('status')).toBeVisible();
+  await picker.press('Escape');
+  await expect(trigger).toBeFocused();
+  await trigger.click();
+  await expect(picker).toHaveValue('');
+  await expect(options.getByRole('option')).toHaveCount(fullCount);
+  await picker.fill('#800205073');
   await expect(options.getByRole('option')).toHaveCount(1);
-  await options.getByRole('option').click();
+  await expect
+    .poll(() =>
+      popup.evaluate((element) => {
+        const { left, right, top, bottom } = element.getBoundingClientRect();
+        return left >= 0 && right <= innerWidth && top >= 0 && bottom <= innerHeight;
+      })
+    )
+    .toBe(true);
+  const match = options.getByRole('option');
+  if (isMobile) await match.tap();
+  else await match.click();
   await expect(page.locator('[data-selected-monster="800205073"]')).toBeVisible();
   expect(
     await page.evaluate(

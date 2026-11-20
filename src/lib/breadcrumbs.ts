@@ -5,6 +5,7 @@ import { siteName } from './site';
 import { m } from './paraglide/messages.js';
 import type { Locale } from './paraglide/runtime.js';
 import type { WithTrailblazerText } from './domain/trailblazer';
+import type { Enemy } from './domain/types';
 
 export interface BreadcrumbItem {
   label: string;
@@ -12,7 +13,9 @@ export interface BreadcrumbItem {
 }
 
 export interface BreadcrumbData {
-  detail?: WithTrailblazerText & { id: string; name: string; template?: { name: string } };
+  detail?:
+    | (WithTrailblazerText & { id: string; name: string })
+    | { template: Pick<Enemy['template'], 'monsterTemplateId' | 'name'> };
   mode?: { mode: string; label: string };
   group?: { mode: string; modeLabel: string; period: { groupId: number; name: string } };
 }
@@ -50,12 +53,14 @@ export function resolveBreadcrumbs({
     const category = localizedNavigationItems(locale).find((item) => item.id === params.category);
     if (category) {
       add(category.label, category.href);
-      if (routeId.endsWith('/[id]') && data.detail && data.detail.id === params.id) {
-        add(
-          params.category === 'enemies'
-            ? (data.detail.template?.name ?? data.detail.name)
-            : data.detail.name
-        );
+      const { detail } = data;
+      if (routeId.endsWith('/[id]') && detail) {
+        if (category.id === 'enemies') {
+          if ('template' in detail && detail.template.monsterTemplateId === params.id)
+            add(detail.template.name);
+        } else if ('id' in detail && detail.id === params.id) {
+          add(detail.name);
+        }
       }
     }
   } else if (routeId === '/endgame' || routeId.startsWith('/endgame/')) {
