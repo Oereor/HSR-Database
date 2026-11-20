@@ -74,8 +74,6 @@ export async function validateSiteMessageFiles() {
     const targetKeys = Object.keys(target).sort();
     const missingInTarget = baseKeys.filter((key) => !(key in target));
     const extraInTarget = targetKeys.filter((key) => !(key in base));
-    if (extraInTarget.length) differences.push(`missing in zh-CN: ${extraInTarget.join(', ')}`);
-    if (missingInTarget.length) differences.push(`extra in zh-CN: ${missingInTarget.join(', ')}`);
     if (missingInTarget.length)
       differences.push(`missing in ${locale}: ${missingInTarget.join(', ')}`);
     if (extraInTarget.length) differences.push(`extra in ${locale}: ${extraInTarget.join(', ')}`);
