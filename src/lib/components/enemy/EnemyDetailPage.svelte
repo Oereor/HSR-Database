@@ -129,12 +129,18 @@
 
 <section
   id="monsters"
-  class="detail-section enemy-detail-section section-nav-target"
+  class="detail-section enemy-detail-section section-nav-target @container"
   data-enemy-variant-content
 >
   <SectionHeading level={1}>{m.enemy_specific_units({}, { locale: getLocale() })}</SectionHeading>
 
-  <div class="mt-4 grid gap-3" data-selected-monster={selectedMonster.monsterId}>
+  <div
+    class={[
+      'mt-4 grid min-w-0 items-start gap-x-6 gap-y-3',
+      selectedMonster.introduction && '@min-[56rem]:grid-cols-[36rem_minmax(0,1fr)]'
+    ]}
+    data-selected-monster={selectedMonster.monsterId}
+  >
     {#if detail.monsters.length > 1}
       <EnemyVariantSelector
         variants={detail.monsters}
@@ -147,7 +153,10 @@
       </div>
     {/if}
     {#if selectedMonster.introduction}
-      <p class="text-muted-foreground max-w-prose whitespace-pre-line" data-monster-introduction>
+      <p
+        class="text-muted-foreground max-w-prose min-w-0 whitespace-pre-line @min-[56rem]:max-w-none"
+        data-monster-introduction
+      >
         <GameText text={selectedMonster.introduction} />
       </p>
     {/if}

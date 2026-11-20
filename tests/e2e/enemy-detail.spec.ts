@@ -609,6 +609,61 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 });
 
+test('Variant identity and introduction follow the available content width', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/en/enemies/5014024/?monster=501402404');
+  const selected = page.locator('[data-selected-monster]');
+  const trigger = selected.locator('[data-monster-trigger]');
+  const introduction = selected.locator('[data-monster-introduction]');
+  await expect(selected).toHaveAttribute('data-selected-monster', '501402404');
+
+  async function expectAdjacentWeaknesses(scope: typeof trigger) {
+    const id = (await scope.getByText(/^#501402404$/).boundingBox())!;
+    const icons = (await scope.getByRole('group').boundingBox())!;
+    expect(icons.x - id.x - id.width).toBeGreaterThan(0);
+    expect(icons.x - id.x - id.width).toBeLessThan(24);
+    expect(icons.y).toBeLessThan(id.y + id.height);
+    expect(id.y).toBeLessThan(icons.y + icons.height);
+  }
+
+  for (const width of [1440, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    const identityBox = (await trigger.boundingBox())!;
+    const introBox = (await introduction.boundingBox())!;
+    if (width === 1440) {
+      expect(Math.abs(introBox.y - identityBox.y)).toBeLessThan(2);
+      expect(introBox.x).toBeGreaterThan(identityBox.x + identityBox.width);
+    } else {
+      expect(Math.abs(introBox.x - identityBox.x)).toBeLessThan(2);
+      expect(introBox.y).toBeGreaterThan(identityBox.y + identityBox.height);
+    }
+    await expectAdjacentWeaknesses(trigger);
+    expect(
+      await selected.evaluate((element) => element.scrollWidth - element.clientWidth)
+    ).toBeLessThanOrEqual(1);
+  }
+
+  await trigger.click();
+  const option = page.getByRole('option', { name: /#501402404$/ });
+  await expect(option).toBeVisible();
+  await expectAdjacentWeaknesses(option);
+  await page.keyboard.press('Escape');
+  await expect(trigger).toBeFocused();
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/en/enemies/1004011/');
+  const staticName = (await selected.locator('[data-monster-name]').boundingBox())!;
+  const staticIntro = (await introduction.boundingBox())!;
+  expect(Math.abs(staticName.y - staticIntro.y)).toBeLessThan(2);
+  expect(staticIntro.x).toBeGreaterThan(staticName.x);
+  await expect(trigger).toHaveCount(0);
+
+  await page.goto('/en/enemies/5013090/');
+  await expect(selected).toContainText('#5013090');
+  await expect(introduction).toHaveCount(0);
+  await expect(selected.getByRole('group')).toHaveCount(0);
+});
+
 test('a long variant list scrolls and supports filtering on narrow screens', async ({
   page,
   isMobile

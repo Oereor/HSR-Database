@@ -22,7 +22,7 @@
     </span>
     {@render children?.()}
   </span>
-  <span class="flex min-w-0 flex-wrap items-center justify-between gap-x-3 gap-y-1">
+  <span class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
     <span class="text-muted-foreground text-sm tabular-nums">#{variant.monsterId}</span>
     <EnemyWeaknessGroup weaknesses={variant.weaknesses} id={weaknessId} />
   </span>
