@@ -1,4 +1,7 @@
-import { enhancementComparisonArtifact } from '../../src/lib/domain/enhancement-comparison.js';
+import {
+  enhancementComparisonArtifact,
+  enhancementComparisonPath
+} from '../../src/lib/domain/enhancement-comparison.js';
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -65,6 +68,16 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
   const characterIds = new Set(value.routes.characters);
   if (value.enhancementComparisonIds.some((id) => !characterIds.has(id)))
     throw new Error('Generated data manifest references an unknown enhanced character');
+  const comparisonRoutes = value.routePaths.filter((route) =>
+    /^\/characters\/\d+\/enhancement-comparison$/.test(route)
+  );
+  if (
+    comparisonRoutes.length !== value.enhancementComparisonIds.length ||
+    value.enhancementComparisonIds.some(
+      (id) => !comparisonRoutes.includes(enhancementComparisonPath(id))
+    )
+  )
+    throw new Error('Generated data manifest enhancement comparison routes are incomplete');
   for (const [locale, textMapCode] of [
     ['zh-CN', 'CHS'],
     ['en', 'EN']

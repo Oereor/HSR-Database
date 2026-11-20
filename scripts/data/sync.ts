@@ -1208,7 +1208,11 @@ export async function syncData(): Promise<DataManifest> {
     relics: baseProjection.details.relics.map((item) => item.id),
     enemies: baseProjection.details.enemies.map(({ template }) => template.monsterTemplateId)
   };
-  const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
+  const { routePaths } = buildGeneratedRouteInventory(
+    routes,
+    baseProjection.endgame.datasets,
+    enhancementComparisonIds
+  );
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
     schemaVersion: DATA_MANIFEST_SCHEMA_VERSION,
     ratingV2PolicyInput: (await readRatingV2PolicyInput()).metadata,

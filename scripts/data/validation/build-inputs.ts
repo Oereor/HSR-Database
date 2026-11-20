@@ -643,7 +643,8 @@ export async function validateBuildInputs(
       throw new Error(`${locale} Endgame build inputs are incomplete`);
     const inventory = buildGeneratedRouteInventory(
       manifest.routes,
-      datasets as EndgameDatasetByMode
+      datasets as EndgameDatasetByMode,
+      manifest.enhancementComparisonIds
     );
     if (JSON.stringify(inventory.routePaths) !== JSON.stringify(manifest.routePaths))
       throw new Error(`${locale} generated route inventory does not match manifest.routePaths`);

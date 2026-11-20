@@ -1,3 +1,4 @@
+import type { EnhancementComparison } from '$lib/domain/enhancement-comparison';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type {
@@ -30,6 +31,8 @@ async function readRootJson<T>(...segments: string[]): Promise<T> {
 }
 
 export const getManifest = () => readRootJson<DataManifest>('manifest.json');
+export const getEnhancementComparison = (locale: SearchLocale, id: string) =>
+  readJson<EnhancementComparison>(locale, 'enhancement-comparisons', `${id}.json`);
 let teamRecommendations: Promise<CharacterTeamRecommendations> | undefined;
 export const getCharacterTeamRecommendations = () =>
   (teamRecommendations ??= readRootJson<CharacterTeamRecommendations>(

@@ -323,6 +323,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
     publicLocale: 'zh-CN',
     publicLocales: ['zh-CN', 'en'],
     routes,
+    enhancementComparisonIds: [],
     counts: { characters: 0, lightCones: 0, relics: 0, relicProperties: 0, enemies: 1 },
     routePaths: inventory.routePaths
   } as unknown as DataManifest;
