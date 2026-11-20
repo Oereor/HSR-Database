@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { parse } from 'lossless-json';
@@ -92,13 +92,36 @@ export async function validateSiteMessageFiles() {
     throw new Error(`Site-message locale parity failed:\n${differences.join('\n')}`);
   return catalogs;
 }
-export async function compileSiteMessages() {
-  const catalogs = await validateSiteMessageFiles();
-  const { outputHashes } = await compile(options);
+export async function verifyCompiledMessageFiles(
+  outdir: string,
+  outputHashes: Record<string, string> | undefined
+) {
   if (!outputHashes || !Object.hasOwn(outputHashes, 'messages/_index.js'))
     throw new Error(
       'Paraglide generated no message modules. Check that the project and local message-format plugin are readable.'
     );
+
+  const outputRoot = path.resolve(outdir);
+  const outputFiles = await readdir(outputRoot, { recursive: true, withFileTypes: true });
+  const written = new Set(
+    outputFiles
+      .filter((entry) => entry.isFile())
+      .map((entry) =>
+        path.relative(outputRoot, path.join(entry.parentPath, entry.name)).replaceAll(path.sep, '/')
+      )
+  );
+  const missing = Object.keys(outputHashes).filter((file) => !written.has(file));
+  if (missing.length)
+    throw new Error(
+      `Paraglide is missing ${missing.length} compiled file(s) in ${outputRoot}: ${missing.slice(0, 5).join(', ')}`
+    );
+}
+
+export async function compileSiteMessages() {
+  const catalogs = await validateSiteMessageFiles();
+  // Reuse the directory so a failed removal or recreation cannot discard the previous output.
+  const { outputHashes } = await compile({ ...options, cleanOutdir: false });
+  await verifyCompiledMessageFiles(options.outdir, outputHashes);
   console.log(
     `Site messages: ${Object.keys(catalogs['zh-CN']).length} messages across ${Object.keys(catalogs).length} locales validated and compiled`
   );
