@@ -257,7 +257,6 @@ export interface EnemySkillDomain {
   id: string;
   nameSource?: NeutralTextSource;
   descriptionSource?: NeutralTextSource;
-  kindSource?: NeutralTextSource;
   tagSource?: NeutralTextSource;
   kind: 'skill' | 'talent';
   tagCode: string;
@@ -290,8 +289,6 @@ export interface EnemySkillBindingDomain {
 export interface EnemySummonDomain {
   monsterId: string;
   monsterTemplateId: string;
-  rank: string;
-  weaknesses: ElementType[];
 }
 
 export interface EnemySpecialResistanceDomain {
@@ -302,8 +299,10 @@ export interface EnemySpecialResistanceDomain {
 export interface EnemyMonsterDomain {
   monsterId: string;
   monsterTemplateId: string;
+  nameSource?: NeutralTextSource;
+  introductionSource?: NeutralTextSource;
   hardLevelGroup: string;
-  eliteGroup?: string;
+  eliteGroup: string;
   modifiers: {
     hp: { ratio: DecimalString; value?: DecimalString };
     attack: { ratio: DecimalString; value?: DecimalString };
@@ -327,10 +326,6 @@ export interface EnemyTemplateDomain {
 }
 
 export interface EnemyDomain {
-  id: string;
-  nameSource?: NeutralTextSource;
-  descriptionSource?: NeutralTextSource;
-  rank: string;
   elementNameSources: Partial<Record<ElementType, NeutralTextSource>>;
   template: EnemyTemplateDomain;
   skillDefinitions: Record<string, EnemySkillDomain>;

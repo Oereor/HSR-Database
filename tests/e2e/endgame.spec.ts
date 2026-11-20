@@ -80,7 +80,9 @@ test('Endgame 搜索复用赛期卡片，敌方卡片和关卡分别提供链接
     encounter.getByRole('heading', { level: 5 }).locator('a[href*="?encounter="]')
   ).toHaveAttribute('href', `${seasonHref}${encounterParam}`);
   await expect(
-    encounter.locator(`a[data-endgame-enemy-link][href="/en/enemies/${target.id}/"]`).first()
+    encounter
+      .locator(`a[data-endgame-enemy-link][href^="/en/enemies/${target.id}/?monster="]`)
+      .first()
   ).toBeVisible();
   await encounter.locator(`a[href="${seasonHref}${encounterParam}"]`).click();
   await expect(page).toHaveURL(
@@ -1124,7 +1126,9 @@ test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为
   await page.goto(sourceUrl);
   let card = page.locator('[data-endgame-enemy-card]').first();
   const href = await card.locator('[data-endgame-enemy-link]').getAttribute('href');
-  expect(href).toMatch(/^\/enemies\/\d+\/$/);
+  expect(href).toMatch(/^\/enemies\/\d+\/\?monster=\d+$/);
+  const target = new URL(href!, page.url());
+  expect(target.searchParams.get('monster')).toBe(await card.getAttribute('data-monster-id'));
   await expect(card).toHaveCSS('cursor', 'pointer');
   expect(
     await card
@@ -1136,12 +1140,15 @@ test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为
   await expect(card.locator('[data-endgame-enemy-link]')).toBeFocused();
   expect(await card.evaluate((element) => getComputedStyle(element).boxShadow)).not.toBe('none');
   await page.keyboard.press('Enter');
-  await expect(page).toHaveURL(new RegExp(`${href}$`));
+  await expect(page).toHaveURL(target.href);
+  await expect(
+    page.locator(`[data-selected-monster="${target.searchParams.get('monster')}"]`)
+  ).toBeVisible();
 
   await page.goto(sourceUrl);
   card = page.locator('[data-endgame-enemy-card]').first();
   await card.click();
-  await expect(page).toHaveURL(new RegExp(`${href}$`));
+  await expect(page).toHaveURL(target.href);
 
   await page.goto(sourceUrl);
   card = page.locator('[data-endgame-enemy-card]').first();
@@ -1150,7 +1157,7 @@ test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为
   const newPage = await newPagePromise;
   await newPage.bringToFront();
   await newPage.waitForURL(new URL(href!, page.url()).href, { waitUntil: 'domcontentloaded' });
-  await expect(newPage).toHaveURL(new RegExp(`${href}$`));
+  await expect(newPage).toHaveURL(target.href);
   await newPage.close();
 });
 

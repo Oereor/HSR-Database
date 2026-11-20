@@ -151,9 +151,10 @@
     materialDetailTrigger = undefined;
   });
 
-  $: plainName = gameTextToPlain(detail.name);
+  $: plainName = gameTextToPlain(category === 'enemies' ? detail.template.name : detail.name);
   $: metaDescription = gameTextToPlain(
-    detail.description || m.detail_meta_fallback({ name: plainName, category: singular })
+    (category === 'enemies' ? undefined : detail.description) ||
+      m.detail_meta_fallback({ name: plainName, category: singular })
   )
     .replace(/\s+/g, ' ')
     .trim();
@@ -975,7 +976,7 @@
     </p>
   </section>
 {:else if category === 'enemies'}
-  {#key detail.id}<EnemyDetailPage {detail} />{/key}
+  {#key detail.template.monsterTemplateId}<EnemyDetailPage {detail} />{/key}
 {/if}
 
 {#if staticTrainingEnabled}

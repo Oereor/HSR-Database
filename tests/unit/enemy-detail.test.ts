@@ -4,7 +4,8 @@ import { describe, expect, it } from 'vitest';
 import type { Enemy } from '../../src/lib/domain/types';
 import { formatRoundedDecimal } from '../../src/lib/domain/endgame-view';
 import {
-  buildEnemyDetailPageData,
+  compactEnemyStatProgression,
+  selectedEnemyMonster,
   getEnemySkillsForMonster,
   getEnemyMonsterStatProgression,
   getEnemyStatsAtLevel
@@ -15,22 +16,25 @@ import {
   normalizeEnemySkillKind,
   normalizeEnemySkillTag,
   normalizeSpecialResistances,
-  resolveCanonicalEnemyStats
+  resolveEnemyVariantStats
 } from '../../scripts/data/enemy-detail';
 import { generatedRoot, auditRoot, assertDataRoot } from '../../scripts/data/paths';
 
 const wrapped = (value: string) => ({ Value: value });
-const enemy = async (id: string): Promise<Enemy> =>
+const enemy = async (id: string, locale = 'zh-CN'): Promise<Enemy> =>
   JSON.parse(
     await readFile(
-      path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', `${id}.json`),
+      path.join(generatedRoot, 'views', locale, 'details', 'enemies', `${id}.json`),
       'utf8'
     )
   ) as Enemy;
 
+const defaultMonster = (detail: Enemy) => selectedEnemyMonster(detail, new URLSearchParams());
+const defaultSkills = (detail: Enemy) => getEnemySkillsForMonster(detail, detail.defaultMonsterId);
+
 describe('Enemy Detail parser/resolver', () => {
   it('无损生成七项等级属性并对缺失基础字段降级', () => {
-    const stats = resolveCanonicalEnemyStats(
+    const stats = resolveEnemyVariantStats(
       {
         HPBase: wrapped('10'),
         AttackBase: wrapped('20'),
@@ -155,61 +159,59 @@ describe('Enemy Detail 真实数据回归', () => {
     );
   });
 
-  it('显式表达 Template → Monster 关系，并保留 concrete ownership', async () => {
-    const detail = await enemy('1002015');
-    expect(detail.template.monsterTemplateId).toBe('1002015');
-    expect(detail.defaultMonsterId).toBe('1002015');
-    expect(detail.monsters).toHaveLength(11);
-    expect(detail.monsters.filter((monster) => monster.monsterId === '1002015')).toHaveLength(1);
-    expect(detail.monsters.every((monster) => monster.monsterTemplateId === '1002015')).toBe(true);
-
-    const canonical = detail.monsters.find((monster) => monster.monsterId === '1002015')!;
-    const quantumVariant = detail.monsters.find((monster) => monster.monsterId === '100201506')!;
-    expect(canonical.weaknesses.map((item) => item.element)).toEqual(['Fire', 'Lightning']);
-    expect(quantumVariant.weaknesses.map((item) => item.element)).toEqual(['Fire', 'Quantum']);
-    expect(quantumVariant.stats.levels[94].hp).not.toEqual(canonical.stats.levels[94].hp);
-    expect(canonical.modifiers.hp.ratio).toBe('1');
-    expect(quantumVariant.modifiers.hp.ratio).toBe('4');
-    expect(quantumVariant.modifiers.attack.ratio).toBe('0.33333302');
-    expect(quantumVariant.skills).toHaveLength(2);
-    expect(detail.weaknesses).toEqual(canonical.weaknesses);
-    expect(detail.defaultMonster.skills).toEqual(canonical.skills);
-  });
-
-  it('所有生成 Template 均以显式关系连接 concrete Monster，ID 编码仅作 validation', async () => {
-    const files = (
-      await readdir(path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies'))
-    ).filter((file) => file.endsWith('.json'));
-    for (const file of files) {
-      const detail = JSON.parse(
-        await readFile(
-          path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', file),
-          'utf8'
-        )
-      ) as Enemy;
-      expect(detail.template.monsterTemplateId).toBe(detail.id);
-      expect(detail.monsters.length).toBeGreaterThan(0);
-      expect(detail.monsters.every((monster) => monster.monsterTemplateId === detail.id)).toBe(
-        true
+  it.each(['zh-CN', 'en'])(
+    'projects the selected Monster’s own text and stats in %s',
+    async (locale) => {
+      const detail = await enemy('1002015', locale);
+      const illusion = selectedEnemyMonster(detail, new URLSearchParams('monster=100201501'));
+      const security = selectedEnemyMonster(detail, new URLSearchParams('monster=100201506'));
+      expect(detail.template.monsterTemplateId).toBe('1002015');
+      expect(illusion.monsterId).toBe('100201501');
+      expect(security.monsterId).toBe('100201506');
+      expect(new Set([detail.template.name, illusion.name, security.name]).size).toBe(3);
+      expect(illusion.introduction).toBeTruthy();
+      expect(security.introduction).toBeTruthy();
+      expect(illusion.introduction).not.toBe(security.introduction);
+      expect(illusion.weaknesses.map(({ element }) => element)).toEqual(['Fire', 'Lightning']);
+      expect(security.weaknesses.map(({ element }) => element)).toEqual(['Fire', 'Quantum']);
+      expect(security.resistances).not.toEqual(illusion.resistances);
+      expect(getEnemyMonsterStatProgression(detail, security)).not.toEqual(
+        getEnemyMonsterStatProgression(detail, illusion)
       );
-      expect(detail.monsters.some((monster) => monster.monsterId === detail.id)).toBe(true);
-      expect(detail.monsters.every((monster) => [7, 9].includes(monster.monsterId.length))).toBe(
-        true
-      );
+      expect(security.skills.map(({ id }) => id)).toEqual(illusion.skills.map(({ id }) => id));
+      expect(detail).not.toHaveProperty('description');
+      expect(detail).not.toHaveProperty('defaultMonster');
+      for (const params of [
+        'monster=10020150',
+        'monster=100204004',
+        'monster=100201501&monster=100201506'
+      ]) {
+        expect(selectedEnemyMonster(detail, new URLSearchParams(params)).monsterId).toBe(
+          detail.defaultMonsterId
+        );
+      }
+
+      const guard = await enemy('1002040', locale);
+      const missingName = selectedEnemyMonster(guard, new URLSearchParams('monster=100204004'));
+      expect(missingName.name).toBe(guard.template.name);
+      expect(missingName.introduction).toBeTruthy();
+      const missingIntroduction = defaultMonster(await enemy('5013090', locale));
+      expect(missingIntroduction.name).toBeTruthy();
+      expect(missingIntroduction).not.toHaveProperty('introduction');
     }
-  }, 15_000);
+  );
 
   it('8034010 包含 Lv.95 七项属性、弱点抗性、召唤与多阶段技能', async () => {
     const aventurine = await enemy('8034010');
-    const monster = aventurine.defaultMonster;
-    const row = monster.stats.levels.find((candidate) => candidate.level === 95)!;
+    const monster = defaultMonster(aventurine);
+    const row = getEnemyStatsAtLevel(getEnemyMonsterStatProgression(aventurine, monster), 95)!;
     expect(
       [row.hp, row.attack, row.defence, row.speed, row.toughness].map((value) =>
-        value.status === 'resolved' ? formatRoundedDecimal(value.value) : 'unavailable'
+        value ? formatRoundedDecimal(value) : 'unavailable'
       )
     ).toEqual(['657,149', '718', '1,150', '158', '150']);
-    expect(row.effectHit).toEqual({ status: 'resolved', value: '0.36' });
-    expect(row.effectResistance).toEqual({ status: 'resolved', value: '0.4' });
+    expect(row.effectHit).toBe('0.36');
+    expect(row.effectResistance).toBe('0.4');
     expect(monster.weaknesses.map((item) => item.element)).toEqual([
       'Physical',
       'Ice',
@@ -228,7 +230,7 @@ describe('Enemy Detail 真实数据回归', () => {
     expect(monster.summons).toEqual([
       expect.objectContaining({ monsterId: '8032030', monsterTemplateId: '8032030' })
     ]);
-    expect(monster.skills.find((skill) => skill.id === '803401002')).toMatchObject({
+    expect(defaultSkills(aventurine).find((skill) => skill.id === '803401002')).toMatchObject({
       name: '分散投资',
       kind: 'skill',
       tag: { code: 'Bounce', label: '弹射', known: true },
@@ -240,18 +242,18 @@ describe('Enemy Detail 真实数据回归', () => {
   });
 
   it('按原始 PhaseList 生成单阶段、两阶段、三阶段与特殊 2/3 阶段', async () => {
-    expect((await enemy('3002011')).defaultMonster.skillPhases.map((phase) => phase.index)).toEqual(
-      [1]
-    );
+    expect(defaultMonster(await enemy('3002011')).skillPhases.map((phase) => phase.index)).toEqual([
+      1
+    ]);
 
-    const twoPhase = (await enemy('1005010')).defaultMonster;
+    const twoPhase = defaultMonster(await enemy('1005010'));
     expect(twoPhase.skillPhases.map((phase) => phase.index)).toEqual([1, 2]);
     expect(twoPhase.skillPhases[0].skillIds).toContain('100501001');
     expect(twoPhase.skillPhases[0].skillIds).not.toContain('100501005');
     expect(twoPhase.skillPhases[1].skillIds).toContain('100501005');
     expect(twoPhase.skillPhases.every((phase) => phase.skillIds.includes('100501003'))).toBe(true);
 
-    const threePhase = (await enemy('1004011')).defaultMonster;
+    const threePhase = defaultMonster(await enemy('1004011'));
     expect(threePhase.skillPhases.map((phase) => phase.index)).toEqual([1, 2, 3]);
     expect(threePhase.skillPhases.every((phase) => phase.skillIds.includes('100401101'))).toBe(
       true
@@ -260,22 +262,20 @@ describe('Enemy Detail 真实数据回归', () => {
       threePhase.skillPhases.slice(1).every((phase) => phase.skillIds.includes('100401103'))
     ).toBe(true);
 
-    expect((await enemy('4014022')).defaultMonster.skillPhases.map((phase) => phase.index)).toEqual(
-      [2, 3]
-    );
+    expect(defaultMonster(await enemy('4014022')).skillPhases.map((phase) => phase.index)).toEqual([
+      2, 3
+    ]);
   });
 
   it('技能仅发布安全字段，并保持 ExtraEffect 与缺失 DamageType 的边界', async () => {
-    const extra = (await enemy('1004014')).defaultMonster.skills.find(
-      (skill) => skill.id === '100401411'
-    )!;
+    const extra = defaultSkills(await enemy('1004014')).find((skill) => skill.id === '100401411')!;
     expect(extra.extraEffects).toContainEqual(
       expect.objectContaining({ id: '70000304', name: '转移' })
     );
-    expect(
-      (await enemy('1004014')).defaultMonster.skills.some((skill) => skill.id === '100401414')
-    ).toBe(false);
-    const missingDamage = (await enemy('4034013')).defaultMonster.skills.find(
+    expect(defaultSkills(await enemy('1004014')).some((skill) => skill.id === '100401414')).toBe(
+      false
+    );
+    const missingDamage = defaultSkills(await enemy('4034013')).find(
       (skill) => skill.id === '403401302'
     )!;
     expect(missingDamage).not.toHaveProperty('damageType');
@@ -283,7 +283,7 @@ describe('Enemy Detail 真实数据回归', () => {
       ['3002011', '300201102'],
       ['1004010', '100401005']
     ]) {
-      const skill = (await enemy(enemyId)).defaultMonster.skills.find(
+      const skill = defaultSkills(await enemy(enemyId)).find(
         (candidate) => candidate.id === skillId
       )!;
       expect(skill.description.trim().length).toBeGreaterThan(0);
@@ -300,8 +300,12 @@ describe('Enemy Detail 真实数据回归', () => {
       await readFile(path.join(auditRoot, 'latest.json'), 'utf8')
     ).enemyAudit;
     const files = await readdir(path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies'));
-    expect(audit.canonicalJoin).toEqual({ resolved: files.length, missing: [] });
-    expect(audit.weaknessResistanceConflicts).toHaveLength(13);
+    expect(audit.defaultSelection).toEqual({ sameId: files.length, fallback: [] });
+    expect(
+      audit.weaknessResistanceConflicts.some(
+        ({ enemyId }: { enemyId: string }) => enemyId.length > 7
+      )
+    ).toBe(true);
     expect(audit.unknownDebuffResist).toEqual([]);
     expect(audit.unresolvedSummons).toEqual([]);
     expect(audit.unresolvedSkills).toEqual([]);
@@ -310,177 +314,68 @@ describe('Enemy Detail 真实数据回归', () => {
 });
 
 describe('Enemy Detail presentation', () => {
-  it('以 default Monster 初始化轻量阶段引用，并保留结构化属性与召唤路由', async () => {
-    const detail = await enemy('8034010');
-    const view = buildEnemyDetailPageData(detail);
-    const monster = view.monsters.find(
-      (candidate) => candidate.monsterId === view.defaultMonsterId
-    )!;
-    const sharedSkill = monster.skillPhases
-      .flatMap((phase) => phase.skills)
-      .find((skill) => skill.id === '803401002')!;
-
-    expect(view).not.toHaveProperty('stats');
-    expect(view).not.toHaveProperty('weaknesses');
-    expect(monster.summons).toEqual([
-      expect.objectContaining({
-        monsterId: '8032030',
-        monsterTemplateId: '8032030',
-        href: '/enemies/8032030'
-      })
-    ]);
-    expect(sharedSkill).toMatchObject({
-      name: '分散投资',
-      damageType: { element: 'Imaginary', name: '虚数' }
-    });
-    expect(sharedSkill).not.toHaveProperty('href');
-    expect(
-      monster.skillPhases.filter((phase) => phase.skills.some((skill) => skill.id === '803401002'))
-    ).toHaveLength(2);
-    expect(view.skillDefinitions.map((skill) => skill.id)).toEqual(
-      detail.defaultMonster.skills.map((skill) => skill.id)
+  it('keeps separately referenced summons even if they share a Template', async () => {
+    const source = defaultMonster(await enemy('1004015'));
+    const summons = source.summons.filter(
+      ({ monsterTemplateId }) => monsterTemplateId === '1002015'
     );
-    expect(getEnemySkillsForMonster(view, monster.monsterId).map((skill) => skill.id)).toEqual(
-      detail.defaultMonster.skills.map((skill) => skill.id)
-    );
-  });
-
-  it('完整技能按 default-first 稳定去重，各 Monster 绑定按原始顺序解析', async () => {
-    const detail = await enemy('1002015');
-    const canonical = detail.defaultMonster;
-    const variantBase = detail.monsters.find((monster) => monster.monsterId === '100201506')!;
-    const shared = canonical.skills[1];
-    const variantOnly = {
-      ...canonical.skills[0],
-      id: 'variant-only',
-      name: '变体技能',
-      phases: [2]
-    };
-    const variant = {
-      ...variantBase,
-      skills: [shared, variantOnly],
-      skillPhases: [{ index: 2, skillIds: [shared.id, variantOnly.id] }]
-    };
-    const view = buildEnemyDetailPageData({
-      ...detail,
-      monsters: [variant, canonical],
-      defaultMonster: canonical
-    });
-
-    expect(view.monsters.map((monster) => monster.monsterId)).toEqual([
-      variant.monsterId,
-      canonical.monsterId
-    ]);
-    expect(view.skillDefinitions.map((skill) => skill.id)).toEqual([
-      ...canonical.skills.map((skill) => skill.id),
-      'variant-only'
-    ]);
-    expect(getEnemySkillsForMonster(view, variant.monsterId).map((skill) => skill.id)).toEqual([
-      shared.id,
-      variantOnly.id
-    ]);
-    expect(
-      view.monsters.flatMap((monster) => monster.skillPhases.flatMap((phase) => phase.skills))
-    ).not.toContainEqual(expect.objectContaining({ href: expect.any(String) }));
-  });
-
-  it('保留有/无负面抵抗的 selected Monster 条件数据', async () => {
-    const withResistance = buildEnemyDetailPageData(await enemy('8034010')).monsters.find(
-      (monster) => monster.monsterId === '8034010'
-    )!;
-    const withoutResistance = buildEnemyDetailPageData(await enemy('3002011')).monsters.find(
-      (monster) => monster.monsterId === '3002011'
-    )!;
-    expect(withResistance.specialResistances.length).toBeGreaterThan(0);
-    expect(withoutResistance.specialResistances).toEqual([]);
-  });
-
-  it('全量 Enemy compact progression 与 rich domain 保持逐级逐项 parity', async () => {
-    const files = (await readdir(path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies')))
-      .filter((file) => file.endsWith('.json'))
-      .sort();
-    const statNames = [
-      'hp',
-      'attack',
-      'defence',
-      'speed',
-      'toughness',
-      'effectHit',
-      'effectResistance'
-    ] as const;
-
-    expect(files.length).toBeGreaterThan(0);
-    for (const file of files) {
-      const rich = await enemy(file.slice(0, -'.json'.length));
-      const pageData = buildEnemyDetailPageData(rich);
-      expect(pageData.monsters).toHaveLength(rich.monsters.length);
-      for (const [index, richMonster] of rich.monsters.entries()) {
-        const pageMonster = pageData.monsters[index];
-        expect(pageMonster.monsterId).toBe(richMonster.monsterId);
-        expect(Number.isInteger(pageMonster.statsRef)).toBe(true);
-        expect(pageMonster.statsRef).toBeGreaterThanOrEqual(0);
-        expect(pageMonster.statsRef).toBeLessThan(pageData.statProgressions.length);
-        const progression = getEnemyMonsterStatProgression(pageData, pageMonster);
-        expect(progression).toMatchObject({
-          minLevel: richMonster.stats.minLevel,
-          maxLevel: richMonster.stats.maxLevel,
-          defaultLevel: richMonster.stats.defaultLevel
-        });
-        for (const name of statNames)
-          expect(progression[name]).toEqual(
-            richMonster.stats.levels.map((row) =>
-              row[name].status === 'resolved' ? row[name].value : null
-            )
-          );
-      }
+    expect(summons.map(({ monsterId }) => monsterId)).toEqual(['100201508', '100201509']);
+    const target = await enemy('1002015');
+    for (const summon of summons) {
+      const href = new URL(summon.href, 'https://example.test');
+      const variant = selectedEnemyMonster(target, href.searchParams);
+      expect(variant.monsterId).toBe(summon.monsterId);
+      expect(summon.name).toBe(variant.name);
+      expect(summon.weaknesses).toEqual(variant.weaknesses);
     }
-  }, 60_000);
+  });
 
-  it('按值稳定共享 route-local progression 并拒绝无效引用', async () => {
-    const rich = await enemy('8002050');
-    const pageData = buildEnemyDetailPageData(rich);
-    expect(pageData.monsters).toHaveLength(76);
-    expect(pageData.statProgressions).toHaveLength(14);
-    expect(new Set(pageData.monsters.map((monster) => monster.statsRef)).size).toBe(14);
-    expect(buildEnemyDetailPageData(rich)).toEqual(pageData);
+  it('resolves only the selected Monster’s ordered skill bindings and phase references', async () => {
+    const detail = await enemy('5013030');
+    const baseline = defaultSkills(detail);
+    const variant = getEnemySkillsForMonster(detail, '501303001');
+    expect(variant.length).toBeLessThan(baseline.length);
+    const definitionIds = detail.skillDefinitions.map(({ id }) => id);
+    expect(new Set(definitionIds).size).toBe(definitionIds.length);
+    expect(variant.every(({ id }) => definitionIds.includes(id))).toBe(true);
+  });
 
-    const sharedRefs = new Map<number, number>();
-    for (const monster of pageData.monsters)
-      sharedRefs.set(monster.statsRef, (sharedRefs.get(monster.statsRef) ?? 0) + 1);
-    expect([...sharedRefs.values()].some((count) => count > 1)).toBe(true);
+  it('shares identical progression series and rejects invalid references', async () => {
+    const detail = await enemy('8002050');
+    expect(detail.statProgressions.length).toBeLessThan(detail.monsters.length);
+    expect(new Set(detail.monsters.map(({ statsRef }) => statsRef)).size).toBe(
+      detail.statProgressions.length
+    );
     expect(() =>
-      getEnemyMonsterStatProgression(pageData, {
-        ...pageData.monsters[0],
-        statsRef: pageData.statProgressions.length
+      getEnemyMonsterStatProgression(detail, {
+        ...detail.monsters[0],
+        statsRef: detail.statProgressions.length
       })
     ).toThrow('无效属性进度');
   });
 
-  it('代表样本保留缺失值、多阶段、ExtraEffect 与召唤语义', async () => {
-    for (const id of ['5012052', '8032040', '1002016', '8002050']) {
-      const pageData = buildEnemyDetailPageData(await enemy(id));
-      expect(pageData.statProgressions.length).toBeGreaterThan(0);
-    }
-
-    const missingPageData = buildEnemyDetailPageData(await enemy('3004010'));
-    const missingMonster = missingPageData.monsters.find(
-      (monster) => monster.monsterId === missingPageData.defaultMonsterId
-    )!;
-    const missingRow = getEnemyStatsAtLevel(
-      getEnemyMonsterStatProgression(missingPageData, missingMonster),
-      1
-    );
-    expect(missingRow?.speed).toBeNull();
-    expect(missingRow?.toughness).toBeNull();
-
-    const complexPageData = buildEnemyDetailPageData(await enemy('1005014'));
-    expect(complexPageData.monsters.some((monster) => monster.skillPhases.length > 1)).toBe(true);
-    expect(complexPageData.monsters.some((monster) => monster.summons.length > 0)).toBe(true);
-    expect(complexPageData.skillDefinitions.some((skill) => skill.extraEffects.length > 0)).toBe(
-      true
-    );
-    expect(complexPageData.skillDefinitions[0]).toHaveProperty('kind');
-    expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('localizedTextStatus');
-    expect(complexPageData.skillDefinitions[0]).toHaveProperty('phases');
+  it('looks up sparse levels by their real values', () => {
+    const missing = { status: 'unavailable', reason: 'missing-base' } as const;
+    const row = {
+      hp: missing,
+      attack: missing,
+      defence: missing,
+      speed: missing,
+      toughness: missing,
+      effectHit: missing,
+      effectResistance: missing
+    };
+    const compact = compactEnemyStatProgression({
+      minLevel: 1,
+      maxLevel: 5,
+      defaultLevel: 5,
+      levels: [
+        { level: 1, ...row },
+        { level: 5, ...row }
+      ]
+    });
+    expect(compact.availableLevels).toEqual([1, 5]);
+    expect(getEnemyStatsAtLevel(compact, 2)).toBeUndefined();
+    expect(getEnemyStatsAtLevel(compact, 5)?.speed).toBeNull();
   });
 });

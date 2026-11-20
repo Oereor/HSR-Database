@@ -61,7 +61,9 @@ function waveIndexFor(stage: EndgameStage, locator: EndgameOccurrenceLocator): n
 export function buildEndgameOccurrenceShards(
   input: EndgameOccurrenceShardBuildInput
 ): Record<string, EndgameOccurrenceShard> {
-  const enemyByTemplate = new Map(input.enemies.map((enemy) => [enemy.id, enemy]));
+  const enemyByTemplate = new Map(
+    input.enemies.map((enemy) => [enemy.template.monsterTemplateId, enemy])
+  );
   const referenceCache = new Map<string, EndgameEnemyReference>();
   const referenceFor = (monsterId: number, templateId: number): EndgameEnemyReference => {
     const key = endgameEnemyReferenceKey(monsterId, templateId);

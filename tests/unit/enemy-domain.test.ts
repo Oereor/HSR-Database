@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildEnemyDomain } from '../../scripts/data/domain/enemy';
+import { buildEnemyDomain, enemyTextSource } from '../../scripts/data/domain/enemy';
 import { parseDecimal } from '../../scripts/data/decimal';
 import { createTextResolver } from '../../scripts/data/localization';
 import { projectEnemies } from '../../scripts/data/projection/enemy';
@@ -40,6 +40,8 @@ function sourceTables(skill: Record<string, unknown> | Record<string, unknown>[]
     MonsterConfig: [
       {
         MonsterID: 100,
+        MonsterName: undefined as ReturnType<typeof hash> | undefined,
+        MonsterIntroduction: undefined as ReturnType<typeof hash> | undefined,
         MonsterTemplateID: 100,
         HardLevelGroup: 1,
         EliteGroup: 1,
@@ -125,12 +127,9 @@ describe('EnemyDomain', () => {
           '3319273756603801898': 'Bounce'
         }
       ),
-      enemiesById: new Map(domains.map((enemy) => [enemy.id, enemy])),
       extraEffectsById: new Map()
-    }).enemies.find((enemy) => enemy.id === '100')!;
-    expect(projected.defaultMonster.skills[0].detail?.applications).toEqual([
-      { baseChance: '1.2' }
-    ]);
+    }).enemies.find((enemy) => enemy.template.monsterTemplateId === '100')!;
+    expect(projected.monsters[0].skills[0].detail?.applications).toEqual([{ baseChance: '1.2' }]);
   });
 
   it('retains neutral TextRefs, stable IDs, and configured skills without a display snapshot', () => {
@@ -146,14 +145,14 @@ describe('EnemyDomain', () => {
     };
     const tables = sourceTables(skill);
     const result = buildEnemyDomain({ tables });
-    const enemy = result.enemies.find((item) => item.id === '100')!;
+    const enemy = result.enemies.find((item) => item.template.monsterTemplateId === '100')!;
     const binding = enemy.monsters[0].skills[0];
     const domainSkill = enemy.skillDefinitions[binding.skillId];
 
     expect(enemy.template.baseStats.initialDelayRatio).toBe('0.5');
-    expect(result.enemies.find((item) => item.id === '200')!.template.baseStats).not.toHaveProperty(
-      'initialDelayRatio'
-    );
+    expect(
+      result.enemies.find((item) => item.template.monsterTemplateId === '200')!.template.baseStats
+    ).not.toHaveProperty('initialDelayRatio');
 
     expect(domainSkill).toMatchObject({
       id: '1',
@@ -170,7 +169,7 @@ describe('EnemyDomain', () => {
       params: ['2']
     });
     expect(enemy.monsters[0].summons).toEqual([
-      expect.objectContaining({ monsterId: '200', monsterTemplateId: '200', rank: 'Minion' })
+      expect.objectContaining({ monsterId: '200', monsterTemplateId: '200' })
     ]);
     expect(JSON.stringify(result.enemies)).not.toContain('敌人');
     expect(JSON.stringify(result.enemies)).not.toContain('技能 1');
@@ -231,7 +230,6 @@ describe('EnemyDomain', () => {
         )
       })
     ).not.toThrow();
-    const byId = new Map(domain.map((enemy) => [enemy.id, enemy]));
     const text: Record<string, string> = {
       '4000': 'Skill',
       '4001': 'Visible',
@@ -245,9 +243,8 @@ describe('EnemyDomain', () => {
           { locale, textMapCode: locale === 'zh-CN' ? 'CHS' : 'EN' },
           map
         ),
-        enemiesById: byId,
         extraEffectsById: new Map()
-      }).enemies.find((enemy) => enemy.id === '100')!.defaultMonster;
+      }).enemies.find((enemy) => enemy.template.monsterTemplateId === '100')!.monsters[0];
     const chinese = await project('zh-CN', text);
     expect(chinese.skills.map(({ id }) => id)).toEqual(['1', '3']);
     expect(chinese.skillPhases).toEqual([
@@ -260,5 +257,69 @@ describe('EnemyDomain', () => {
       { index: 1, skillIds: ['2'] },
       { index: 3, skillIds: ['3'] }
     ]);
+  });
+  it('uses an explicit foreign key and independent presentation default', () => {
+    const tables = sourceTables([], []);
+    const first = tables.MonsterConfig[0];
+    tables.MonsterConfig[0] = { ...first, MonsterID: 800 };
+    tables.MonsterConfig.push({ ...first, MonsterID: 73 });
+    const { enemies, audit } = buildEnemyDomain({ tables });
+    expect(enemies[0].monsters.map(({ monsterId }) => monsterId)).toEqual(['800', '73']);
+    expect(enemies[0].defaultMonsterId).toBe('73');
+    expect(audit.defaultSelection.fallback).toEqual([{ templateId: '100', monsterId: '73' }]);
+  });
+
+  it('rejects absent or unresolved difficulty instead of borrowing another Monster', () => {
+    const tables = sourceTables([], []);
+    const first = tables.MonsterConfig[0];
+    tables.MonsterConfig.push({ ...first, MonsterID: 73, EliteGroup: 99 });
+    expect(() => buildEnemyDomain({ tables })).toThrow('Monster 73 has invalid EliteGroup=99');
+    const withoutElite: Partial<typeof first> = { ...first };
+    delete withoutElite.EliteGroup;
+    expect(() =>
+      buildEnemyDomain({
+        tables: {
+          ...tables,
+          MonsterConfig: [first, tables.MonsterConfig[1], { ...withoutElite, MonsterID: 73 }]
+        }
+      })
+    ).toThrow('Monster 73 has invalid EliteGroup=undefined');
+    tables.MonsterConfig[2] = { ...first, MonsterID: 73, HardLevelGroup: 99 };
+    expect(() => buildEnemyDomain({ tables })).toThrow('Monster 73 has invalid HardLevelGroup=99');
+  });
+
+  it('distinguishes absent, unresolved and blank text from malformed hash references', async () => {
+    const tables = sourceTables([], []);
+    const first = tables.MonsterConfig[0];
+    tables.MonsterConfig.push({
+      ...first,
+      MonsterID: 73,
+      MonsterName: hash('777'),
+      MonsterIntroduction: hash('888')
+    });
+    const { enemies } = buildEnemyDomain({ tables });
+    const resolver = await createTextResolver(
+      { locale: 'en', textMapCode: 'EN' },
+      { '1000': 'Template', '888': ' ' }
+    );
+    const { monsters } = projectEnemies(enemies, { resolver, extraEffectsById: new Map() })
+      .enemies[0];
+    expect(monsters.map(({ name }) => name)).toEqual(['Template', 'Template']);
+    expect(monsters.every((monster) => !Object.hasOwn(monster, 'introduction'))).toBe(true);
+    expect(
+      resolver.getLocalizationHealth().entries.filter(({ source }) => source.id === '73')
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          status: 'missing',
+          source: expect.objectContaining({ field: 'MonsterName' })
+        }),
+        expect.objectContaining({
+          status: 'empty',
+          source: expect.objectContaining({ field: 'MonsterIntroduction' })
+        })
+      ])
+    );
+    expect(() => enemyTextSource({ Hash: 1 }, '73', 'MonsterName')).toThrow('malformed');
   });
 });

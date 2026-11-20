@@ -284,7 +284,7 @@ describe('荒腔走板可选补充说明投影', () => {
           }
         }
       },
-      { resolver, enemyNamesByTemplateId: new Map(), extraEffectsById: new Map() }
+      { resolver, enemyNamesByMonsterId: new Map(), extraEffectsById: new Map() }
     );
     return { ...result, resolver, buff: result.datasets.pf.groups[0].cacophony!.options[0].buff };
   }

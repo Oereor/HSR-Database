@@ -1,9 +1,12 @@
+import { enemyDetailHref } from '../../src/lib/domain/enemy-view.js';
+import { assertEnemyArtifact, assertEnemyConsumerClosure } from './validation/enemies.js';
 import type {
   BaseStatProgression,
   CatalogEntry,
   Character,
   DataManifest,
   Enemy,
+  EnemyCatalogEntry,
   LightCone,
   RelicCatalogEntry,
   RelicProperty,
@@ -53,7 +56,6 @@ export interface RelationDiagnostic {
 }
 
 export interface EnemyRelationAudit {
-  canonicalJoin: { resolved: number; missing: string[] };
   unknownSkillKinds?: Array<{ enemyId: string; skillId: string; value: string }>;
   unknownSkillTags?: Array<{ enemyId: string; skillId: string; value: string }>;
   unknownElements?: Array<{ enemyId: string; field: string; value: string }>;
@@ -71,7 +73,7 @@ export interface ProductProjectionForValidation {
     characters: CatalogEntry[];
     'light-cones': CatalogEntry[];
     relics: RelicCatalogEntry[];
-    enemies: CatalogEntry[];
+    enemies: EnemyCatalogEntry[];
   };
   details: {
     characters: Character[];
@@ -229,16 +231,6 @@ export function validateRelationAudits(input: {
   }
   const enemy = input.enemies;
   if (enemy) {
-    for (const templateId of enemy.canonicalJoin.missing)
-      issues.push(
-        issue(
-          'error',
-          'enemy',
-          'canonical-fk',
-          `MonsterTemplate references missing canonical MonsterConfig=${templateId}`,
-          { entityId: templateId, path: 'MonsterTemplateConfig.MonsterTemplateID' }
-        )
-      );
     for (const value of enemy.unresolvedSummons)
       issues.push(
         issue(
@@ -854,7 +846,9 @@ export function validateProductProjection(
   const categories = ['characters', 'light-cones', 'relics', 'enemies'] as const;
   for (const category of categories) {
     const catalogIds = projection.catalogs[category].map(({ id }) => id);
-    const detailIds = projection.details[category].map(({ id }) => id);
+    const detailIds = projection.details[category].map((entry) =>
+      'template' in entry ? entry.template.monsterTemplateId : entry.id
+    );
     const routeIds = manifest.routes[category];
     if (!sameSet(catalogIds, detailIds) || !sameSet(catalogIds, routeIds))
       issues.push(
@@ -1058,152 +1052,14 @@ export function validateProductProjection(
   for (const lightCone of projection.details['light-cones'])
     issues.push(...validateBaseStatProgression('light-cone', lightCone.id, lightCone.baseStats));
 
-  const enemyByTemplate = new Map<string, Enemy>();
-  for (const enemy of projection.details.enemies) {
-    if (enemyByTemplate.has(enemy.id))
-      issues.push(
-        issue('error', 'enemy', 'duplicate-template', 'duplicate EnemyTemplate detail', {
-          entityId: enemy.id
-        })
-      );
-    enemyByTemplate.set(enemy.id, enemy);
-    if (enemy.template.monsterTemplateId !== enemy.id)
-      issues.push(
-        issue('error', 'enemy', 'template-owner', 'detail/template identity mismatch', {
-          entityId: enemy.id
-        })
-      );
-    for (const [field, value] of Object.entries(enemy.template.baseStats)) {
-      const numeric = decimalIssue('enemy', enemy.id, `template.baseStats.${field}`, value);
-      if (numeric) issues.push(numeric);
-    }
-    const monsterIds = enemy.monsters.map(({ monsterId }) => monsterId);
-    if (new Set(monsterIds).size !== monsterIds.length)
-      issues.push(
-        issue('error', 'enemy', 'duplicate-monster', 'duplicate MonsterID within template', {
-          entityId: enemy.id
-        })
-      );
-    if (!monsterIds.includes(enemy.defaultMonsterId))
-      issues.push(
-        issue(
-          'error',
-          'enemy',
-          'default-fk',
-          `defaultMonsterId=${enemy.defaultMonsterId} is missing`,
-          { entityId: enemy.id }
-        )
-      );
-    for (const monster of enemy.monsters) {
-      if (monster.monsterTemplateId !== enemy.id)
-        issues.push(
-          issue(
-            'error',
-            'enemy',
-            'monster-owner',
-            `MonsterID=${monster.monsterId} has wrong template=${monster.monsterTemplateId}`,
-            { entityId: enemy.id }
-          )
-        );
-      for (const requiredField of ['hp', 'attack', 'defence', 'speed', 'stance'] as const)
-        if (!monster.modifiers[requiredField])
-          issues.push(
-            issue('error', 'enemy', 'required-field', `missing modifiers.${requiredField}`, {
-              entityId: monster.monsterId
-            })
-          );
-      for (const [field, modifier] of Object.entries(monster.modifiers)) {
-        for (const [part, value] of Object.entries(modifier)) {
-          const numeric = decimalIssue(
-            'enemy',
-            monster.monsterId,
-            `modifiers.${field}.${part}`,
-            value
-          );
-          if (numeric) issues.push(numeric);
-        }
-      }
-      const levels = monster.stats.levels;
-      const levelIds = levels.map(({ level }) => level);
-      if (
-        !levels.length ||
-        new Set(levelIds).size !== levelIds.length ||
-        levelIds.some((level, index) =>
-          !Number.isSafeInteger(level) ? true : index > 0 && level !== levelIds[index - 1] + 1
-        ) ||
-        monster.stats.minLevel !== levelIds[0] ||
-        monster.stats.maxLevel !== levelIds.at(-1) ||
-        !levelIds.includes(monster.stats.defaultLevel)
-      )
-        issues.push(
-          issue(
-            'error',
-            'enemy',
-            'stat-progression',
-            'levels must be non-empty, unique, ordered and contain the default',
-            { entityId: monster.monsterId }
-          )
-        );
-      for (const row of levels) {
-        for (const [field, state] of Object.entries(row).filter(([field]) => field !== 'level')) {
-          const value = state as unknown as {
-            status?: unknown;
-            value?: unknown;
-            reason?: unknown;
-          };
-          if (value.status === 'resolved') {
-            const numeric = decimalIssue(
-              'enemy',
-              monster.monsterId,
-              `stats.levels.${row.level}.${field}`,
-              value.value
-            );
-            if (numeric) issues.push(numeric);
-          } else if (value.status !== 'unavailable' || value.reason !== 'missing-base')
-            issues.push(
-              issue(
-                'error',
-                'enemy',
-                'stat-status',
-                `field=${field} has unsupported status=${JSON.stringify(value.status)} reason=${JSON.stringify(value.reason)}`,
-                { entityId: monster.monsterId, path: `stats.levels.${row.level}` }
-              )
-            );
-        }
-      }
-      for (const resistance of monster.resistances)
-        if (!Number.isFinite(resistance.value))
-          issues.push(
-            issue('error', 'enemy', 'numeric', 'element resistance must be finite', {
-              entityId: monster.monsterId,
-              path: `resistances.${resistance.element}`
-            })
-          );
-      for (const resistance of monster.specialResistances) {
-        const numeric = decimalIssue(
-          'enemy',
-          monster.monsterId,
-          `specialResistances.${resistance.code}`,
-          resistance.value
-        );
-        if (numeric) issues.push(numeric);
-      }
-      for (const summon of monster.summons) {
-        const target =
-          enemyByTemplate.get(summon.monsterTemplateId) ??
-          projection.details.enemies.find(({ id }) => id === summon.monsterTemplateId);
-        if (!target || !target.monsters.some(({ monsterId }) => monsterId === summon.monsterId))
-          issues.push(
-            issue(
-              'error',
-              'enemy',
-              'summon-fk',
-              `summon MonsterID=${summon.monsterId} does not resolve in template=${summon.monsterTemplateId}`,
-              { entityId: monster.monsterId }
-            )
-          );
-      }
-    }
+  const enemyByTemplate = new Map(
+    projection.details.enemies.map((enemy) => [enemy.template.monsterTemplateId, enemy])
+  );
+  try {
+    for (const [id, enemy] of enemyByTemplate) assertEnemyArtifact(enemy, id);
+    assertEnemyConsumerClosure(projection.details.enemies, projection.catalogs.enemies);
+  } catch (error) {
+    issues.push(issue('error', 'enemy', 'artifact', String(error)));
   }
   issues.push(...validateEndgame(projection, enemyByTemplate));
 
@@ -1380,7 +1236,10 @@ export function validateProductProjection(
           )
         );
       const enemyHref = shardItem?.occurrence.enemyHref;
-      if (enemyHref !== `/enemies/${target.id}` || !manifest.routePaths.includes(enemyHref))
+      if (
+        enemyHref !== enemyDetailHref(target.id, locator.monsterId) ||
+        !manifest.routePaths.includes(`/enemies/${target.id}`)
+      )
         issues.push(
           issue(
             'error',

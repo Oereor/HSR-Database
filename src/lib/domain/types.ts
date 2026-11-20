@@ -315,7 +315,13 @@ export interface CatalogEntry extends WithTrailblazerText {
 
 export interface EnemyCatalogEntry extends CatalogEntry {
   type: string;
-  weaknesses: ElementLabel[];
+  representative: { monsterId: string; weaknesses: ElementLabel[] };
+  variants: EnemyVariantIdentity[];
+}
+
+export interface EnemyVariantIdentity {
+  monsterId: string;
+  name: string;
 }
 
 export interface Character extends CatalogEntry {
@@ -354,18 +360,12 @@ export interface RelicSet extends RelicCatalogEntry {
   sources: string[];
 }
 
-export interface Enemy extends CatalogEntry {
-  kind: 'enemy';
-  rank: string;
-  /** Template-owned identity and base configuration. */
+export interface Enemy {
   template: MonsterTemplate;
-  /** All concrete MonsterConfig records for this template. */
-  monsters: Monster[];
-  /** Canonical MonsterID used by the current detail page compatibility view. */
   defaultMonsterId: string;
-  defaultMonster: Monster;
-  /** @deprecated Endgame compatibility projection; use defaultMonster elsewhere. */
-  weaknesses: ElementLabel[];
+  monsters: MonsterVariant[];
+  statProgressions: EnemyStatProgressionCompact[];
+  skillDefinitions: EnemySkill[];
 }
 
 export interface EnemyTemplateBaseStats {
@@ -387,33 +387,41 @@ export interface MonsterTemplate {
   baseStats: EnemyTemplateBaseStats;
 }
 
-export interface EnemyMonsterStatModifier {
-  ratio: import('./endgame.js').DecimalString;
-  value?: import('./endgame.js').DecimalString;
-}
-
-export interface EnemyMonsterStatModifiers {
-  hp: EnemyMonsterStatModifier;
-  attack: EnemyMonsterStatModifier;
-  defence: EnemyMonsterStatModifier;
-  speed: EnemyMonsterStatModifier;
-  stance: EnemyMonsterStatModifier;
-}
-
-/** Data owned by one MonsterConfig, including its behavior and instance modifiers. */
-export interface Monster {
-  monsterId: string;
-  monsterTemplateId: string;
-  hardLevelGroup: string;
-  eliteGroup?: string;
-  modifiers: EnemyMonsterStatModifiers;
-  stats: EnemyStatProgression;
+export interface MonsterVariant extends EnemyVariantIdentity {
+  introduction?: string;
+  statsRef: number;
   weaknesses: ElementLabel[];
   resistances: Array<ElementLabel & { value: number }>;
   specialResistances: EnemySpecialResistance[];
   summons: EnemySummonReference[];
-  skills: EnemySkill[];
+  skills: EnemySkillBinding[];
   skillPhases: EnemySkillPhase[];
+}
+
+export type EnemyStatCompactValue = import('./endgame.js').DecimalString | null;
+
+export interface EnemyStatsAtLevel {
+  hp: EnemyStatCompactValue;
+  attack: EnemyStatCompactValue;
+  defence: EnemyStatCompactValue;
+  speed: EnemyStatCompactValue;
+  toughness: EnemyStatCompactValue;
+  effectHit: EnemyStatCompactValue;
+  effectResistance: EnemyStatCompactValue;
+}
+
+export interface EnemyStatProgressionCompact {
+  minLevel: number;
+  maxLevel: number;
+  defaultLevel: number;
+  availableLevels?: number[];
+  hp: EnemyStatCompactValue[];
+  attack: EnemyStatCompactValue[];
+  defence: EnemyStatCompactValue[];
+  speed: EnemyStatCompactValue[];
+  toughness: EnemyStatCompactValue[];
+  effectHit: EnemyStatCompactValue[];
+  effectResistance: EnemyStatCompactValue[];
 }
 
 export type EnemyStatValue =
@@ -453,8 +461,6 @@ export interface EnemySummonReference {
   href: string;
 }
 
-export type EnemyExtraEffect = SkillExtraEffect;
-
 export interface EnemySkillPhase {
   index: number;
   skillIds: string[];
@@ -487,12 +493,14 @@ export interface EnemySkill {
   name: string;
   description: string;
   kind: 'skill' | 'talent' | 'unknown';
-  kindLabel: string;
-  localizedTextStatus: 'available' | 'missing';
   tag: SemanticTag;
   damageType?: ElementLabel;
   phases: number[];
-  extraEffects: EnemyExtraEffect[];
+  extraEffects: SkillExtraEffect[];
+}
+
+export interface EnemySkillBinding {
+  id: string;
   detail?: EnemySkillDetail;
 }
 

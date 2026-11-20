@@ -1,3 +1,4 @@
+import { matchEnemy } from '../../src/lib/search/enemies';
 import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -186,7 +187,7 @@ describe('Search V2', () => {
     });
     const result = service.search(' 0012 ');
     expect(result.results.characters.map(({ id }) => id)).toEqual(['0012', '1', '2']);
-    expect(result.results.enemies).toEqual([enemy]);
+    expect(result.results.enemies).toEqual([{ entry: enemy, exactId: true }]);
     expect(result.evidence.map(({ matchKind }) => matchKind)).toEqual([
       'id',
       'id',
@@ -361,7 +362,7 @@ describe('Search V2', () => {
     const models = {
       ...emptyCatalogs(),
       characters: ['a', 'b', 'c'].map((id) => ({ id, name: id, rarity: 5 })),
-      enemies: [catalogs.enemies[0]]
+      enemies: [{ ...catalogs.enemies[0], name: '测试' }]
     };
     docs[3] = {
       ...docs[3],
@@ -660,5 +661,46 @@ describe('Search V2', () => {
       'first',
       'second'
     ]);
+  });
+});
+
+describe('Monster search within a Template', () => {
+  const entry = {
+    id: '100',
+    name: 'Ice Edge',
+    type: 'Minion',
+    representative: { monsterId: '100', weaknesses: [] },
+    variants: [
+      { monsterId: '100', name: 'Ice Edge' },
+      { monsterId: '101', name: 'Ice Edge Illusion' },
+      { monsterId: '102', name: 'IPC Guard' },
+      { monsterId: '103', name: 'IPC Guard' },
+      { monsterId: '104', name: 'Security' }
+    ]
+  };
+  it('keeps one result across Template, variant and exact ID matches', () => {
+    const index = bundle([
+      {
+        key: 'enemy:100',
+        target: { kind: 'enemy', id: '100' },
+        canonicalName: entry.name,
+        officialAliases: ['Ice Edge Illusion', 'IPC Guard', 'Security'],
+        playerAliases: []
+      }
+    ]);
+    const search = createGlobalSearchService(index, {
+      ...emptyCatalogs(),
+      enemies: [entry]
+    }).search;
+    for (const query of ['Ice Edge', 'IPC Guard']) {
+      expect(search(query).results.enemies).toMatchObject([{ entry, exactId: false }]);
+      expect(search(query).results.enemies[0].variant).toBeUndefined();
+    }
+    expect(matchEnemy(entry, 'Security')?.variant?.monsterId).toBe('104');
+    expect(search('Security').results.enemies[0].variant?.monsterId).toBe('104');
+    expect(search('103').results.enemies).toEqual([
+      { entry, variant: entry.variants[3], exactId: true }
+    ]);
+    expect(search('10').results.enemies).toEqual([]);
   });
 });

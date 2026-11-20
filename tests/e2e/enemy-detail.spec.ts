@@ -1,5 +1,16 @@
 import { setSliderValue } from '../helpers/slider';
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
+
+async function selectMonster(page: Page, id: string) {
+  const picker = page.locator('#monsters').getByRole('combobox');
+  await picker.click();
+  await picker.fill(id);
+  await page.locator(`[data-monster-option="${id}"]`).click();
+  await expect(page.locator('[data-selected-monster]')).toHaveAttribute(
+    'data-selected-monster',
+    id
+  );
+}
 
 test('Enemy Detail 中英文直达均恢复 compact stats', async ({ page }) => {
   for (const detailPath of ['/enemies/8034010/', '/en/enemies/8034010/'] as const) {
@@ -101,72 +112,72 @@ test('Enemy Detail 将首回合行动值比例格式化为百分比', async ({ p
   );
 });
 
-test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时共享等级不重置', async ({
-  page
+test('Variant selection keeps text, combat data and history in sync', async ({
+  page,
+  isMobile
 }) => {
-  await page.goto('/enemies/1002015/');
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-
-  const options = page.locator('[data-monster-option]');
-  await expect(options).toHaveCount(11);
-  const canonical = page.locator('[data-monster-option="1002015"]');
-  const quantumVariant = page.locator('[data-monster-option="100201506"]');
-  await expect(canonical).toHaveAttribute('aria-checked', 'true');
-  const defaultBadge = canonical.locator('small');
-  await expect(defaultBadge).toBeVisible();
-
+  await page.goto('/enemies/1002015/?keep=1#monsters');
+  const hero = page.locator('[data-enemy-hero]');
+  const selected = page.locator('[data-selected-monster]');
+  await expect(selected).toHaveAttribute('data-selected-monster', '1002015');
+  await expect(hero.locator('.hero-description')).toHaveCount(0);
+  const heroName = await hero.getByRole('heading', { level: 1 }).textContent();
   const slider = page.locator('#enemy-level-1002015');
-  await expect(slider).toHaveAttribute('data-value', '95');
   await setSliderValue(slider, '60');
-  const canonicalHp = await page.locator('[data-enemy-stat="hp"] strong').textContent();
-  await quantumVariant.click();
-  await expect(quantumVariant).toHaveAttribute('aria-checked', 'true');
-  await expect(quantumVariant.locator('strong')).toHaveText('#100201506');
-  await expect(canonical).toHaveAttribute('aria-checked', 'false');
-  await expect(defaultBadge).toBeVisible();
-  await expect(quantumVariant.locator('small')).toHaveCount(0);
+  await selectMonster(page, '100201501');
+
+  const name = await selected.locator('[data-monster-name]').textContent();
+  const introduction = await selected.locator('[data-monster-introduction]').textContent();
+  const hp = await page.locator('[data-enemy-stat="hp"] strong').textContent();
+  const picker = page.locator('#monsters').getByRole('combobox');
+  await picker.click();
+  await picker.fill('100201506');
+  const option = page.getByRole('option').filter({ hasText: '#100201506' });
+  await expect(option).toHaveCount(1);
+  await expect(option).not.toHaveText('#100201506');
+  await picker.press('ArrowDown');
+  await picker.press('Enter');
+  await expect(selected).toHaveAttribute('data-selected-monster', '100201506');
+  await expect(page).toHaveURL(/keep=1&monster=100201506#monsters$/);
+  await expect(selected.locator('[data-monster-name]')).not.toHaveText(name!);
+  await expect(selected.locator('[data-monster-introduction]')).not.toHaveText(introduction!);
+  await expect(hero.getByRole('heading', { level: 1 })).toHaveText(heroName!);
   await expect(slider).toHaveAttribute('data-value', '60');
-  await expect(page.locator('[data-enemy-stat="hp"] strong')).not.toHaveText(canonicalHp ?? '');
-
-  const weaknesses = page.locator(
-    '.enemy-battle-column--attributes .enemy-weakness-list [data-icon-kind="element"]'
+  await expect(page.locator('[data-enemy-stat="hp"] strong')).not.toHaveText(hp!);
+  await expect(page.locator('[data-enemy-resistance="Lightning"]')).toBeVisible();
+  await expect(page.locator('[data-enemy-resistance="Quantum"]')).toHaveCount(0);
+  await expect(page.locator('[data-enemy-skill-browser]')).toHaveAttribute(
+    'data-monster-id',
+    '100201506'
   );
-  expect(
-    await weaknesses
-      .locator('img')
-      .evaluateAll((images) => images.map((image) => image.getAttribute('src')))
-  ).toEqual(['/generated-assets/elements/Fire.png', '/generated-assets/elements/Quantum.png']);
+  await expect(page.locator('[data-summon-monster]')).toHaveCount(0);
 
-  await quantumVariant.focus();
-  await page.keyboard.press('Home');
-  await expect(canonical).toBeFocused();
-  await expect(canonical).toHaveAttribute('aria-checked', 'true');
-  await page.keyboard.press('ArrowRight');
-  await expect(options.nth(1)).toBeFocused();
-  await expect(options.nth(1)).toHaveAttribute('aria-checked', 'true');
-  await page.keyboard.press('End');
-  await expect(options.last()).toBeFocused();
-  await expect(options.last()).toHaveAttribute('aria-checked', 'true');
+  await page.goBack();
+  await expect(selected).toHaveAttribute('data-selected-monster', '100201501');
+  await expect(selected.locator('[data-monster-introduction]')).toHaveText(introduction!);
+  await page.goForward();
+  await expect(selected).toHaveAttribute('data-selected-monster', '100201506');
+  await page.reload();
+  await expect(selected).toHaveAttribute('data-selected-monster', '100201506');
+
+  if (isMobile) await page.goto('/en/enemies/1002015/?monster=100201506');
+  else {
+    await page.locator('[data-language-select]').click();
+    await page.locator('[data-locale="en"]').click();
+    await expect(page).toHaveURL(/\/en\/enemies\/1002015\/\?keep=1&monster=100201506#monsters$/);
+  }
+  await expect(selected).toHaveAttribute('data-selected-monster', '100201506');
+  await expect(selected.locator('[data-monster-introduction]')).not.toHaveText(introduction!);
+  await page.goto('/en/enemies/1002015/?monster=100204004');
+  await expect(selected).toHaveAttribute('data-selected-monster', '1002015');
 });
 
-test('单 Monster 页面保留紧凑单项 selector、默认标记与共享实际属性', async ({ page }) => {
+test('a single Monster shows its identity and stats directly', async ({ page }) => {
   await page.goto('/enemies/1004011/');
-  const option = page.locator('[data-monster-option="1004011"]');
-  await expect(page.locator('[data-monster-option]')).toHaveCount(1);
-  await expect(option.locator('strong')).toHaveText('#1004011');
-  await expect(option.locator('small')).toBeVisible();
-  await expect(option).toHaveAttribute('aria-checked', 'true');
-  await option.focus();
-  await page.keyboard.press('ArrowRight');
-  await expect(option).toBeFocused();
-  await expect(option).toHaveAttribute('aria-checked', 'true');
-  await expect(page.locator('.enemy-selected-monster-heading')).toHaveCount(0);
+  await expect(page.locator('[data-selected-monster="1004011"] [data-monster-name]')).toBeVisible();
+  await expect(page.locator('#monsters').getByRole('combobox')).toHaveCount(0);
   await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
   await expect(page.locator('#enemy-level-1004011')).toHaveAttribute('data-value', '95');
-  await expect(page.locator('.enemy-battle-column--stats .hero-stat-list')).toHaveAttribute(
-    'aria-label',
-    /\S/
-  );
 });
 
 test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两栏', async ({ page }) => {
@@ -196,14 +207,14 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   await expect(page.locator('[data-summon-template="1002040"]')).toHaveCount(1);
   await expect(page.locator('[data-summon-template="1002050"]')).toHaveCount(0);
 
-  await page.locator('[data-monster-option="100301004"]').click();
+  await selectMonster(page, '100301004');
   await expect(page.locator('[data-summon-template="1002040"]')).toHaveAttribute(
     'href',
-    '/enemies/1002040/'
+    '/enemies/1002040/?monster=1002040'
   );
   await expect(page.locator('[data-summon-template="1002050"]')).toHaveAttribute(
     'href',
-    '/enemies/1002050/'
+    '/enemies/1002050/?monster=1002050'
   );
   await expect(page.locator('[data-summon-monster]')).toHaveCount(2);
   const summon = page.locator('[data-summon-template="1002050"]');
@@ -215,11 +226,16 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   await expect(summon.locator('.enemy-weakness-group')).toHaveCount(1);
   await expect(summon).not.toContainText(/Monster #/);
   await summon.click();
-  await expect(page).toHaveURL(/\/enemies\/1002050\/$/);
-  await expect(page.locator('[data-monster-option="1002050"]')).toHaveAttribute(
-    'aria-checked',
-    'true'
-  );
+  await expect(page).toHaveURL(/\/enemies\/1002050\/\?monster=1002050$/);
+  await expect(page.locator('[data-selected-monster="1002050"]')).toBeVisible();
+
+  await page.goto('/en/enemies/1004015/');
+  const sameTemplate = page.locator('[data-summon-template="1002015"]');
+  await expect(sameTemplate).toHaveCount(2);
+  const concreteSummon = sameTemplate.filter({ has: page.locator('img') }).last();
+  await expect(concreteSummon).toHaveAttribute('href', '/en/enemies/1002015/?monster=100201509');
+  await concreteSummon.click();
+  await expect(page.locator('[data-selected-monster="100201509"]')).toBeVisible();
 });
 
 test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', async ({ page }) => {
@@ -280,7 +296,7 @@ test('同一技能跨 Monster 保持选择并更新有效倍率', async ({ page 
   await page.goto('/enemies/4035010/');
   const selected = page.locator('[data-enemy-skill-detail="403501001"]');
   await expect(selected.locator('[data-damage-target="primary"]')).toContainText('450%');
-  await page.locator('[data-monster-option="403501001"]').click();
+  await selectMonster(page, '403501001');
   await expect(page.locator('[data-enemy-skill-option="403501001"]')).toHaveAttribute(
     'aria-checked',
     'true'
@@ -489,13 +505,8 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     );
     expect(overflow).toBeLessThanOrEqual(1);
-    const selector = page.locator('.enemy-monster-selector');
+    const selector = page.locator('#monsters').getByRole('combobox');
     await expect(selector).toBeVisible();
-    await expect(selector).toHaveCSS('overflow-x', 'auto');
-    if (viewport.width <= 900)
-      expect(await selector.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(
-        true
-      );
     await expect(page.locator('[data-enemy-portrait]')).toBeVisible();
     const browserGrid = page.locator('.enemy-skill-browser__grid');
     await expect(browserGrid).toBeVisible();
@@ -512,4 +523,30 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
   );
   await expect(page.locator('[data-enemy-portrait] img')).toHaveCount(0);
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+});
+
+test('a long variant list scrolls and supports filtering on narrow screens', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await page.goto('/en/enemies/8002050/');
+  const picker = page.locator('#monsters').getByRole('combobox');
+  await picker.click();
+  const options = page.getByRole('listbox');
+  await expect(options).toBeVisible();
+  const viewport = options.locator('[data-combobox-viewport]');
+  await expect(viewport).toBeVisible();
+  expect(await viewport.evaluate((element) => element.scrollHeight > element.clientHeight)).toBe(
+    true
+  );
+  await picker.fill('no match 0123456789');
+  await expect(options.getByRole('option')).toHaveCount(0);
+  await expect(options.getByRole('status')).toBeVisible();
+  await picker.fill('800205073');
+  await expect(options.getByRole('option')).toHaveCount(1);
+  await options.getByRole('option').click();
+  await expect(page.locator('[data-selected-monster="800205073"]')).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
 });

@@ -182,12 +182,17 @@ async function createFixture(): Promise<Fixture> {
     )
   );
 
+  const enemyIdentities = [
+    { monsterId: '4', name: 'Enemy' },
+    { monsterId: '41', name: 'Enemy variant' }
+  ];
+  const enemySearchEntry = { id: '4', name: 'Enemy', variants: enemyIdentities };
+
   for (const locale of ['zh-CN', 'en'] as const) {
     for (const [category, id] of [
       ['characters', '1'],
       ['light-cones', '2'],
-      ['relics', '3'],
-      ['enemies', '4']
+      ['relics', '3']
     ] as const) {
       await writeArtifact(`views/${locale}/catalogs/${category}.json`, [{ id }], locale);
       await writeArtifact(
@@ -196,6 +201,49 @@ async function createFixture(): Promise<Fixture> {
         locale
       );
     }
+    await writeArtifact(
+      `views/${locale}/catalogs/enemies.json`,
+      [{ ...enemySearchEntry, type: 'Minion', representative: { monsterId: '4', weaknesses: [] } }],
+      locale
+    );
+    await writeArtifact(
+      `views/${locale}/details/enemies/4.json`,
+      {
+        template: {
+          monsterTemplateId: '4',
+          name: 'Enemy',
+          rank: 'Minion',
+          baseStats: { hp: '1', attack: '1', defence: '1', criticalDamage: '1' }
+        },
+        defaultMonsterId: '4',
+        monsters: enemyIdentities.map((identity) => ({
+          ...identity,
+          statsRef: 0,
+          weaknesses: [],
+          resistances: [],
+          specialResistances: [],
+          summons: [],
+          skills: [],
+          skillPhases: [{ index: 1, skillIds: [] }]
+        })),
+        statProgressions: [
+          {
+            minLevel: 1,
+            maxLevel: 1,
+            defaultLevel: 1,
+            hp: ['1'],
+            attack: ['1'],
+            defence: ['1'],
+            speed: ['1'],
+            toughness: ['1'],
+            effectHit: ['0'],
+            effectResistance: ['0']
+          }
+        ],
+        skillDefinitions: []
+      },
+      locale
+    );
     await writeArtifact(
       `views/${locale}/catalogs/relic-properties.json`,
       [{ propertyType: 'HPDelta' }],
@@ -218,7 +266,11 @@ async function createFixture(): Promise<Fixture> {
       },
       locale
     );
-    await writeArtifact(`views/${locale}/search-inputs.json`, { catalogs: {} }, locale);
+    await writeArtifact(
+      `views/${locale}/search-inputs.json`,
+      { catalogs: { enemy: [enemySearchEntry] } },
+      locale
+    );
     await writeArtifact(
       `static/generated/${locale}/search.json`,
       {
@@ -227,7 +279,15 @@ async function createFixture(): Promise<Fixture> {
         namingPolicyVersion: CHARACTER_NAMING_POLICY_VERSION,
         sourceCommit: commit,
         metadataDigest: 'fixture',
-        documents: [],
+        documents: [
+          {
+            key: 'enemy:4',
+            target: { kind: 'enemy', id: '4' },
+            canonicalName: 'Enemy',
+            officialAliases: ['Enemy variant'],
+            playerAliases: []
+          }
+        ],
         locale,
         endgameTargets: [{ id: '4', name: 'Enemy', occurrences: [] }]
       },
@@ -380,7 +440,7 @@ async function createFixture(): Promise<Fixture> {
       textMapDigest: canonicalJsonDigest(textMaps[locale].value),
       counts: { characters: 1, lightCones: 1, relics: 1, relicProperties: 1, enemies: 1 },
       endgame: {},
-      search: { documents: 0, endgameTargets: 1, occurrenceReferences: 0, occurrenceShards: 1 },
+      search: { documents: 1, endgameTargets: 1, occurrenceReferences: 0, occurrenceShards: 1 },
       localization: {
         total: 0,
         statuses: { available: 0, absent: 0, missing: 0, empty: 0, invalid: 0, unsupported: 0 },
@@ -564,6 +624,16 @@ describe('production build-input validation', () => {
       occurrences: {}
     });
     await expect(shard.validate()).rejects.toThrow('shard identity mismatch');
+  });
+
+  it('rejects stale Enemy search identities even with matching artifact hashes', async () => {
+    const fixture = await createFixture();
+    await fixture.rewrite('views/en/search-inputs.json', {
+      catalogs: {
+        enemy: [{ id: '4', name: 'Enemy', variants: [{ monsterId: '999', name: 'Enemy' }] }]
+      }
+    });
+    await expect(fixture.validate()).rejects.toThrow('Enemy search inventory differs from catalog');
   });
 
   it('accepts schema-valid semantic detail drift after integrity metadata is refreshed', async () => {

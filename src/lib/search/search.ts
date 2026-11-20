@@ -1,5 +1,6 @@
 import type { EndgameSearchTargetEntry, GlobalSearchIndex } from '../domain/search-index.js';
 import type { CatalogEntry, EnemyCatalogEntry, RelicCatalogEntry } from '../domain/types.js';
+import { matchEnemy, type EnemySearchResult } from './enemies.js';
 import { alternateTrailblazerSearchName } from './character-search.js';
 import {
   normalizeSearchDocument,
@@ -32,7 +33,8 @@ export interface GlobalSearchCatalogs {
   relics: RelicCatalogEntry[];
   enemies: EnemyCatalogEntry[];
 }
-export interface GlobalSearchResults extends GlobalSearchCatalogs {
+export interface GlobalSearchResults extends Omit<GlobalSearchCatalogs, 'enemies'> {
+  enemies: EnemySearchResult[];
   endgame: EndgameSearchResults;
 }
 export interface GlobalSearchSnapshot {
@@ -52,7 +54,8 @@ const emptyResults = (): GlobalSearchResults => ({
 function createSearchMatcher(
   index: GlobalSearchIndex,
   kind?: SearchTarget['kind'],
-  alternateCharacterNames?: ReadonlyMap<string, string>
+  alternateCharacterNames?: ReadonlyMap<string, string>,
+  enemyTemplateByMonsterId?: ReadonlyMap<string, string>
 ) {
   const documents = new Map<string, NormalizedSearchDocument>();
   const targetsById = new Map<string, NormalizedSearchDocument[]>();
@@ -77,6 +80,13 @@ function createSearchMatcher(
       exactTargets.push(normalized);
       targetsById.set(doc.target.id, exactTargets);
     }
+    for (const [monsterId, templateId] of enemyTemplateByMonsterId ?? []) {
+      const document = documents.get(searchTargetKey({ kind: 'enemy', id: templateId }));
+      if (!document || monsterId === templateId) continue;
+      const exactTargets = targetsById.get(monsterId) ?? [];
+      exactTargets.push(document);
+      targetsById.set(monsterId, exactTargets);
+    }
     engine = createFlexSearchAdapter([...documents.values()]);
   } catch (error) {
     console.error('搜索索引初始化失败', error);
@@ -90,7 +100,7 @@ function createSearchMatcher(
       const { key, target } = normalized.document;
       matches.set(searchTargetKey(target), {
         normalized,
-        evidence: { documentKey: key, matchKind: 'id', matchedLabel: target.id }
+        evidence: { documentKey: key, matchKind: 'id', matchedLabel: id }
       });
     }
     let unavailable = false;
@@ -133,7 +143,12 @@ export function createGlobalSearchService(
     const alternate = alternateTrailblazerSearchName(entry);
     if (alternate) displayNames.set(entry.id, alternate);
   }
-  const matchSearch = createSearchMatcher(index, undefined, displayNames);
+  const enemyTemplateByMonsterId = new Map(
+    catalogs.enemies.flatMap(({ id, variants }) =>
+      variants.map(({ monsterId }) => [monsterId, id] as const)
+    )
+  );
+  const matchSearch = createSearchMatcher(index, undefined, displayNames, enemyTemplateByMonsterId);
   const reportedMissing = new Set<string>();
   function search(query: string): GlobalSearchSnapshot {
     const { matches, unavailable } = matchSearch(query);
@@ -176,8 +191,11 @@ export function createGlobalSearchService(
       } else {
         const model = models.enemy.get(target.id);
         if (model) {
-          snapshot.results.enemies.push(model);
-          found = true;
+          const result = matchEnemy(model, query);
+          if (result) {
+            snapshot.results.enemies.push(result);
+            found = true;
+          }
         }
       }
       snapshot.evidence.push(evidence);

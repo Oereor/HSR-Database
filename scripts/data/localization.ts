@@ -3,7 +3,7 @@ import path from 'node:path';
 import xxhash from 'xxhash-wasm';
 import { parseTextHash, type TextHash } from '../../src/lib/domain/types.js';
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
-import { normalizeRubyMarkup } from '../../src/lib/domain/game-text.js';
+import { gameTextToPlain, normalizeRubyMarkup } from '../../src/lib/domain/game-text.js';
 import { formatDescription, formatGameMarkup, type FormattedDescription } from './text.js';
 import { getLocaleConfig, type Locale, type TextMapCode } from './locale-registry.js';
 export type { Locale, TextMapCode } from './locale-registry.js';
@@ -38,6 +38,7 @@ export interface TextProjectionContext {
 }
 
 export interface GameTextProjectionContext extends TextProjectionContext {
+  requireVisibleText?: boolean;
   scalingParamIndexes?: ReadonlySet<number>;
   seriesSkillReferences?: ReadonlySet<string>;
   seriesReferenceLabel?: string;
@@ -528,6 +529,12 @@ export async function createTextResolver(
         usedParameterIndexes: markup.usedParameterIndexes
       }
     } as const;
+    if (context.requireVisibleText && !gameTextToPlain(result.value.markup).trim()) {
+      const reason = 'GameText has no visible text';
+      record('empty-locale-value', identifier, provenance, reason, context.diagnosticDisposition);
+      recordHealth('empty', identifier, provenance, context.diagnosticDisposition, reason);
+      return { status: 'empty', ref: resolved.ref ?? source.ref };
+    }
     recordHealth('available', identifier, provenance, context.diagnosticDisposition);
     return result;
   };

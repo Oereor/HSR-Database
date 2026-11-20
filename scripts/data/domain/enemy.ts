@@ -6,6 +6,7 @@ import type {
   EnemySummonDomain,
   EnemyTemplateDomain
 } from '../../../src/lib/domain/neutral.js';
+import { parseTextHash } from '../../../src/lib/domain/types.js';
 import type { ElementType } from '../../../src/lib/domain/elements.js';
 import { isElementType, normalizeElementType } from '../../../src/lib/domain/elements.js';
 import { textSource, parameterized, rows, type Raw } from './shared.js';
@@ -14,7 +15,7 @@ import { numberOf } from '../raw.js';
 import {
   normalizeEnemyPhases,
   normalizeSpecialResistances,
-  resolveCanonicalEnemyStats
+  resolveEnemyVariantStats
 } from '../enemy-detail.js';
 import { classifyEnemySkillSource } from '../enemy-skill-policy.js';
 
@@ -24,7 +25,7 @@ export interface EnemySource {
 }
 
 export interface EnemyDomainAudit {
-  canonicalJoin: { resolved: number; missing: string[] };
+  defaultSelection: { sameId: number; fallback: Array<{ templateId: string; monsterId: string }> };
   unknownSkillKinds: Array<{ enemyId: string; skillId: string; value: string }>;
   unknownSkillTags: Array<{ enemyId: string; skillId: string; value: string }>;
   unknownElements: Array<{ enemyId: string; field: string; value: string }>;
@@ -51,6 +52,27 @@ function ids(value: unknown): string[] {
 
 function unique<T>(values: T[]): T[] {
   return [...new Set(values)];
+}
+
+function indexRows(input: Raw[], field: string): Map<string, Raw> {
+  const index = new Map<string, Raw>();
+  for (const row of input) {
+    const id = String(row[field]);
+    if (!/^[1-9]\d*$/.test(id) || index.has(id)) {
+      throw new Error(`Invalid or duplicate ${field}=${id}`);
+    }
+    index.set(id, row);
+  }
+  return index;
+}
+
+export function enemyTextSource(value: unknown, id: string, field: string) {
+  if (value === undefined || value === null) return undefined;
+  if (typeof value === 'object' && !Array.isArray(value)) {
+    if (!Object.keys(value).length) return undefined;
+    if ('Hash' in value && parseTextHash(value.Hash)) return textSource(value);
+  }
+  throw new Error(`Enemy ${id} has malformed ${field} reference`);
 }
 
 function modifierOf(config: Raw, field: string) {
@@ -95,14 +117,13 @@ function resistances(
   currentWeaknesses: ElementType[],
   audit: EnemyDomainAudit,
   enemyId: string,
-  field: string,
-  recordConflicts = true
+  field: string
 ) {
   return (Array.isArray(value) ? value : []).flatMap((raw: Raw) => {
     const type = element(raw.DamageType, audit, enemyId, field);
     const amount = numberOf(raw.Value);
     if (!type || amount === 0) return [];
-    if (recordConflicts && currentWeaknesses.includes(type))
+    if (currentWeaknesses.includes(type))
       audit.weaknessResistanceConflicts.push({ enemyId, element: type, value: amount });
     return [{ element: type, value: amount }];
   });
@@ -123,7 +144,6 @@ function buildSkill(row: Raw, enemyId: string, audit: EnemyDomainAudit): EnemySk
     id,
     nameSource: textSource(row.SkillName),
     descriptionSource: parameterized(row.SkillDesc, row.ParamList),
-    kindSource: textSource(row.SkillTypeDesc),
     tagSource: textSource(row.SkillTag),
     kind: semantics.kind,
     tagCode: semantics.tag.code,
@@ -137,9 +157,7 @@ function buildSummons(
   value: unknown,
   enemyId: string,
   monsterRows: Map<string, Raw>,
-  monsterTemplates: Map<string, Raw>,
-  audit: EnemyDomainAudit,
-  deduplicateTemplates = false
+  audit: EnemyDomainAudit
 ): EnemySummonDomain[] {
   const seen = new Set<string>();
   return (Array.isArray(value) ? value : []).flatMap((rawId) => {
@@ -148,19 +166,16 @@ function buildSummons(
     const monsterId = String(rawId);
     const config = monsterRows.get(monsterId);
     const templateId = String(config?.MonsterTemplateID ?? '');
-    const template = monsterTemplates.get(templateId);
-    if (!config || !template) {
+    if (!config) {
       audit.unresolvedSummons.push({ enemyId, monsterId });
       return [];
     }
-    if (deduplicateTemplates && seen.has(templateId)) return [];
-    seen.add(templateId);
+    if (seen.has(monsterId)) return [];
+    seen.add(monsterId);
     return [
       {
         monsterId,
-        monsterTemplateId: templateId,
-        rank: String(template.Rank ?? ''),
-        weaknesses: weaknesses(config.StanceWeakList, audit, enemyId, 'summon.StanceWeakList')
+        monsterTemplateId: templateId
       }
     ];
   });
@@ -172,23 +187,31 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
   const skills = new Map(
     rows(source.tables, 'MonsterSkillConfig').map((row) => [String(row.SkillID), row])
   );
-  const monsterRows = new Map(configs.map((row) => [String(row.MonsterID), row]));
-  const monsterTemplates = new Map(templates.map((row) => [String(row.MonsterTemplateID), row]));
+  const monsterRows = indexRows(configs, 'MonsterID');
+  const monsterTemplates = indexRows(templates, 'MonsterTemplateID');
+  const monstersByTemplate = new Map<string, Raw[]>();
+  for (const row of configs) {
+    const templateId = String(row.MonsterTemplateID);
+    if (!monsterTemplates.has(templateId)) {
+      throw new Error(`Monster ${row.MonsterID} has invalid MonsterTemplateID=${templateId}`);
+    }
+    const related = monstersByTemplate.get(templateId) ?? [];
+    related.push(row);
+    monstersByTemplate.set(templateId, related);
+  }
   const hardLevels = new Map<string, Raw[]>();
   for (const row of rows(source.tables, 'HardLevelGroup')) {
     const id = String(row.HardLevelGroup);
     hardLevels.set(id, [...(hardLevels.get(id) ?? []), row]);
   }
-  const eliteGroups = new Map(
-    rows(source.tables, 'EliteGroup').map((row) => [String(row.EliteGroup), row])
-  );
+  const eliteGroups = indexRows(rows(source.tables, 'EliteGroup'), 'EliteGroup');
   const elementNameSources: Partial<Record<ElementType, ReturnType<typeof textSource>>> = {};
   for (const row of rows(source.tables, 'DamageType')) {
     const code = normalizeElementType(String(row.ID));
     if (isElementType(code)) elementNameSources[code] = textSource(row.DamageTypeName);
   }
   const audit: EnemyDomainAudit = {
-    canonicalJoin: { resolved: 0, missing: [] },
+    defaultSelection: { sameId: 0, fallback: [] },
     unknownSkillKinds: [],
     unknownSkillTags: [],
     unknownElements: [],
@@ -202,21 +225,26 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
 
   const buildMonster = (template: Raw, config: Raw, templateId: string): EnemyMonsterDomain => {
     const enemyId = String(config.MonsterID);
-    const levelRows = hardLevels.get(String(config.HardLevelGroup)) ?? [];
-    const elite = eliteGroups.get(String(config.EliteGroup));
-    const defaultConfig = monsterRows.get(templateId);
-    const stats = elite
-      ? resolveCanonicalEnemyStats(template, config, levelRows, elite)
-      : defaultConfig && eliteGroups.get(String(defaultConfig.EliteGroup))
-        ? resolveCanonicalEnemyStats(
-            template,
-            defaultConfig,
-            hardLevels.get(String(defaultConfig.HardLevelGroup)) ?? [],
-            eliteGroups.get(String(defaultConfig.EliteGroup))!
-          )
-        : resolveCanonicalEnemyStats(template, config, levelRows, elite ?? {});
+    const hardLevelGroup = String(config.HardLevelGroup);
+    const eliteGroup = String(config.EliteGroup);
+    const levelRows = hardLevels.get(hardLevelGroup);
+    const elite = eliteGroups.get(eliteGroup);
+    if (!levelRows)
+      throw new Error(`Monster ${enemyId} has invalid HardLevelGroup=${hardLevelGroup}`);
+    if (!elite) throw new Error(`Monster ${enemyId} has invalid EliteGroup=${eliteGroup}`);
+    const stats = resolveEnemyVariantStats(template, config, levelRows, elite);
+    for (const level of stats.levels) {
+      for (const [field, value] of Object.entries(level)) {
+        if (
+          typeof value !== 'number' &&
+          value.status === 'unavailable' &&
+          value.reason === 'invalid-reference'
+        )
+          throw new Error(`Monster ${enemyId} has invalid ${field} at level ${level.level}`);
+      }
+    }
     const weak = weaknesses(config.StanceWeakList, audit, enemyId, 'StanceWeakList');
-    const skillDomains = ids(config.SkillList).flatMap((rawSkillId) => {
+    const skillDomains = unique(ids(config.SkillList)).flatMap((rawSkillId) => {
       const skill = skills.get(rawSkillId);
       if (!skill) {
         audit.unresolvedSkills.push({ enemyId, skillId: rawSkillId });
@@ -227,15 +255,17 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
     });
     const special = normalizeSpecialResistances(config.DebuffResist);
     audit.unknownDebuffResist.push(...special.unknownKeys.map((key) => ({ enemyId, key })));
-    if (template.SpeedBase === undefined) audit.missingAttributes.speedBase.push(templateId);
-    if (template.StanceBase === undefined) audit.missingAttributes.stanceBase.push(templateId);
-    if (template.StatusResistanceBase === undefined)
-      audit.missingAttributes.statusResistanceBase.push(templateId);
     return {
       monsterId: enemyId,
       monsterTemplateId: templateId,
-      hardLevelGroup: String(config.HardLevelGroup ?? ''),
-      ...(config.EliteGroup !== undefined ? { eliteGroup: String(config.EliteGroup) } : {}),
+      nameSource: enemyTextSource(config.MonsterName, enemyId, 'MonsterName'),
+      introductionSource: enemyTextSource(
+        config.MonsterIntroduction,
+        enemyId,
+        'MonsterIntroduction'
+      ),
+      hardLevelGroup,
+      eliteGroup,
       modifiers: {
         hp: modifierOf(config, 'HP'),
         attack: modifierOf(config, 'Attack'),
@@ -250,33 +280,35 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
         weak,
         audit,
         enemyId,
-        'DamageTypeResistance',
-        enemyId === templateId
+        'DamageTypeResistance'
       ),
       specialResistances: special.values.map(({ code, value }) => ({ code, value })),
-      summons: buildSummons(
-        config.SummonIDList,
-        enemyId,
-        monsterRows,
-        monsterTemplates,
-        audit,
-        enemyId === templateId
-      ),
+      summons: buildSummons(config.SummonIDList, enemyId, monsterRows, audit),
       skills: skillDomains
     };
   };
 
   const enemies = templates.map((template): EnemyDomain => {
     const id = String(template.MonsterTemplateID);
-    const canonical = monsterRows.get(id);
-    if (!canonical || String(canonical.MonsterTemplateID) !== id) {
-      audit.canonicalJoin.missing.push(id);
-      throw new Error(`敌人 ${id} 缺少 MonsterID == MonsterTemplateID 的 canonical MonsterConfig`);
-    }
-    audit.canonicalJoin.resolved += 1;
+    const related = monstersByTemplate.get(id);
+    if (!related?.length) throw new Error(`Enemy ${id} has no MonsterConfig records`);
+    const defaultMonsterId = related.some((row) => String(row.MonsterID) === id)
+      ? id
+      : related
+          .map((row) => String(row.MonsterID))
+          .sort(
+            (left, right) =>
+              left.length - right.length || (left < right ? -1 : left > right ? 1 : 0)
+          )[0];
+    if (defaultMonsterId === id) audit.defaultSelection.sameId += 1;
+    else audit.defaultSelection.fallback.push({ templateId: id, monsterId: defaultMonsterId });
+    if (template.SpeedBase === undefined) audit.missingAttributes.speedBase.push(id);
+    if (template.StanceBase === undefined) audit.missingAttributes.stanceBase.push(id);
+    if (template.StatusResistanceBase === undefined)
+      audit.missingAttributes.statusResistanceBase.push(id);
     const templateDomain: EnemyTemplateDomain = {
       monsterTemplateId: id,
-      nameSource: textSource(template.MonsterName),
+      nameSource: enemyTextSource(template.MonsterName, id, 'MonsterTemplateConfig.MonsterName'),
       rank: String(template.Rank ?? ''),
       baseStats: {
         hp: decimalOf(template.HPBase, `MonsterTemplate.${id}.HPBase`),
@@ -310,7 +342,6 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
           : {})
       }
     };
-    const related = configs.filter((row) => String(row.MonsterTemplateID) === id);
     const skillDefinitions: Record<string, EnemySkillDomain> = {};
     for (const config of related)
       for (const skillId of ids(config.SkillList)) {
@@ -319,15 +350,11 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
         if (row) skillDefinitions[skillId] = buildSkill(row, id, audit);
       }
     return {
-      id,
-      nameSource: textSource(template.MonsterName) ?? textSource(canonical.MonsterName),
-      descriptionSource: textSource(canonical.MonsterIntroduction),
-      rank: templateDomain.rank,
       elementNameSources,
       template: templateDomain,
       skillDefinitions,
       monsters: related.map((config) => buildMonster(template, config, id)),
-      defaultMonsterId: id
+      defaultMonsterId
     };
   });
   return { enemies, audit };

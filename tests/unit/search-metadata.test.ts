@@ -48,9 +48,17 @@ const buildZhSearch = (source: SearchBuildInputs, aliases: unknown) =>
   buildSearchDocuments(source, 'zh-CN', { kind: 'maintained', value: aliases });
 
 describe('Character search metadata', () => {
-  it('keeps only identity and name in generated search catalogs without changing the bundle', () => {
-    for (const catalog of Object.values(inputs.catalogs))
-      for (const entry of catalog) expect(Object.keys(entry).sort()).toEqual(['id', 'name']);
+  it('caches minimal catalog names and Monster search identities for alias refresh', () => {
+    for (const [kind, catalog] of Object.entries(inputs.catalogs))
+      for (const entry of catalog) {
+        expect(Object.keys(entry).sort()).toEqual(
+          kind === 'enemy' ? ['id', 'name', 'variants'] : ['id', 'name']
+        );
+      }
+    const variants = inputs.catalogs.enemy.find(({ id }) => id === '1002015')!.variants;
+    expect(
+      variants.some(({ monsterId, name }) => monsterId === '100201506' && name.length > 0)
+    ).toBe(true);
     const aliases = JSON.parse(readFileSync('data/search/character-player-aliases.json', 'utf8'));
     expect(buildZhSearch(inputs, aliases)).toEqual(
       JSON.parse(readFileSync('static/generated/zh-CN/search.json', 'utf8'))

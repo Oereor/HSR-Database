@@ -17,7 +17,7 @@ import type {
 
 export interface EndgameProjectionContext {
   resolver: TextResolver;
-  enemyNamesByTemplateId: ReadonlyMap<string, string>;
+  enemyNamesByMonsterId: ReadonlyMap<string, string>;
   extraEffectsById: ReadonlyMap<string, NeutralExtraEffect>;
 }
 
@@ -280,7 +280,7 @@ function projectOccurrence(
   occurrence: EnemyOccurrence,
   context: EndgameProjectionContext
 ): EnemyOccurrence {
-  const name = context.enemyNamesByTemplateId.get(String(occurrence.monsterTemplateId));
+  const name = context.enemyNamesByMonsterId.get(String(occurrence.monsterId));
   return {
     monsterId: occurrence.monsterId,
     ...(occurrence.voracityLevel !== undefined ? { voracityLevel: occurrence.voracityLevel } : {}),

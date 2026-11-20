@@ -53,7 +53,13 @@ describe('Enemy Overview presentation', () => {
           'utf8'
         )
       ) as Enemy;
-      expect(entry.weaknesses, entry.id).toEqual(detail.defaultMonster.weaknesses);
+      const representative = detail.monsters.find(
+        ({ monsterId }) => monsterId === detail.defaultMonsterId
+      )!;
+      expect(entry.representative, entry.id).toEqual({
+        monsterId: representative.monsterId,
+        weaknesses: representative.weaknesses
+      });
     }
   }, 15_000);
 
@@ -71,10 +77,14 @@ describe('Enemy Overview presentation', () => {
       id: '1',
       name: '测试敌方单位',
       type: 'Elite',
-      weaknesses: [
-        { element: 'Physical', name: '物理' },
-        { element: 'Ice', name: '冰' }
-      ]
+      variants: [],
+      representative: {
+        monsterId: '1',
+        weaknesses: [
+          { element: 'Physical', name: '物理' },
+          { element: 'Ice', name: '冰' }
+        ]
+      }
     };
     expect(
       matchesEnemyOverviewFilters(enemy, {
@@ -104,7 +114,13 @@ describe('Enemy Overview presentation', () => {
       id: string,
       name: string,
       weaknesses: Array<{ element: string; name: string }>
-    ): EnemyCatalogEntry => ({ id, name, type: 'Elite', weaknesses });
+    ): EnemyCatalogEntry => ({
+      id,
+      name,
+      type: 'Elite',
+      variants: [],
+      representative: { monsterId: id, weaknesses }
+    });
     const selected = new Set(['Physical', 'Ice', 'Imaginary']);
     const entries = [
       enemy('4', '丁', [{ element: 'Fire', name: '火' }]),
@@ -138,12 +154,19 @@ describe('Enemy Overview presentation', () => {
 
   it('弱点未启用时完全沿用普通排序', () => {
     const entries: EnemyCatalogEntry[] = [
-      { id: '2', name: '乙', type: 'Elite', weaknesses: [{ element: 'Ice', name: '冰' }] },
+      {
+        id: '2',
+        name: '乙',
+        type: 'Elite',
+        variants: [],
+        representative: { monsterId: '2', weaknesses: [{ element: 'Ice', name: '冰' }] }
+      },
       {
         id: '1',
         name: '甲',
         type: 'Elite',
-        weaknesses: [{ element: 'Physical', name: '物理' }]
+        variants: [],
+        representative: { monsterId: '1', weaknesses: [{ element: 'Physical', name: '物理' }] }
       }
     ];
     expect(

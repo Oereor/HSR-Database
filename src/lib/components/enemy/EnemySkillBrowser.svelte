@@ -10,7 +10,8 @@
   export let monsterId: string;
 
   const initialMonster = detail.monsters.find((monster) => monster.monsterId === monsterId);
-  if (!initialMonster) throw new Error(`Enemy ${detail.id} 缺少 Monster ${monsterId}`);
+  if (!initialMonster)
+    throw new Error(`Enemy ${detail.template.monsterTemplateId} 缺少 Monster ${monsterId}`);
   const initialSelection = resolveEnemySkillSelection(
     getEnemySkillsForMonster(detail, monsterId),
     initialMonster.skillPhases,

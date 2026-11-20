@@ -76,13 +76,13 @@ function projectEnemyTemplateReferences(
 ): ReadonlyMap<string, EndgameEnemyReference> {
   return new Map(
     detail.monsters.map<[string, EndgameEnemyReference]>((monster) => {
-      const weaknesses: EndgameEnemyReference['weaknesses'] = [...(monster.weaknesses ?? [])];
+      const weaknesses: EndgameEnemyReference['weaknesses'] = [...monster.weaknesses];
       Object.freeze(weaknesses);
       return [
         monster.monsterId,
         Object.freeze({
-          name: detail.name,
-          rank: detail.rank,
+          name: monster.name,
+          rank: detail.template.rank,
           weaknesses,
           exists: true
         })

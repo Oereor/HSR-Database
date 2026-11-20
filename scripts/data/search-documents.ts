@@ -7,7 +7,7 @@ import type {
   GlobalSearchIndex
 } from '../../src/lib/domain/search-index.js';
 import { endgameOccurrenceLocatorKey } from '../../src/lib/domain/search-index.js';
-import type { EntityKind } from '../../src/lib/domain/types.js';
+import type { EnemyCatalogEntry, EntityKind } from '../../src/lib/domain/types.js';
 import {
   SEARCH_DOCUMENT_SCHEMA_VERSION,
   searchTargetKey,
@@ -28,7 +28,12 @@ import { assertCompletePlayerAliasSkeleton, playerAliasesPath } from './player-a
 import type { Locale } from './locale-registry.js';
 export { playerAliasesPath } from './player-aliases.js';
 
-export type SearchCatalogs = Record<EntityKind, Array<{ id: string; name: string }>>;
+export type SearchCatalogs = Record<
+  Exclude<EntityKind, 'enemy'>,
+  Array<{ id: string; name: string }>
+> & {
+  enemy: Array<Pick<EnemyCatalogEntry, 'id' | 'name' | 'variants'>>;
+};
 export interface SearchBuildInputs {
   official: CharacterNameSnapshot;
   catalogs: SearchCatalogs;
@@ -41,6 +46,16 @@ export const searchArtifactPaths = (locale: Locale) => ({
 });
 export const searchInputsPath = searchArtifactPaths('zh-CN').inputs;
 export const searchBundlePath = searchArtifactPaths('zh-CN').bundle;
+
+export function enemySearchAliases({ name, variants }: SearchCatalogs['enemy'][number]): string[] {
+  const seen = new Set([normalizeSearchLabel(name)]);
+  return variants.flatMap(({ name: variantName }) => {
+    const key = normalizeSearchLabel(variantName);
+    if (!key || seen.has(key)) return [];
+    seen.add(key);
+    return [gameTextToPlain(variantName)];
+  });
+}
 
 export function buildSearchDocuments(
   inputs: SearchBuildInputs,
@@ -58,6 +73,9 @@ export function buildSearchDocuments(
         };
   if (aliasSource.kind === 'maintained')
     assertCompletePlayerAliasSkeleton(aliases, inputs.official);
+  const enemyAliases = new Map(
+    inputs.catalogs.enemy.map((entry) => [entry.id, enemySearchAliases(entry)])
+  );
   const documents: SearchDocument[] = [];
   for (const kind of ['character', 'light-cone', 'relic', 'enemy'] as const) {
     for (const catalog of inputs.catalogs[kind]) {
@@ -69,7 +87,9 @@ export function buildSearchDocuments(
         key: searchTargetKey(target),
         target,
         canonicalName: names?.canonicalName ?? gameTextToPlain(catalog.name),
-        officialAliases: names?.officialAliases.map(({ value }) => value) ?? [],
+        officialAliases:
+          names?.officialAliases.map(({ value }) => value) ??
+          (kind === 'enemy' ? enemyAliases.get(catalog.id)! : []),
         playerAliases:
           kind === 'character' ? (aliases.characters[catalog.id]?.playerAliases ?? []) : []
       });

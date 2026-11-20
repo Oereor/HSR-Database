@@ -708,7 +708,6 @@ export async function syncData(): Promise<DataManifest> {
       return nameSource ? [[String(row.StatusID), nameSource] as const] : [];
     })
   );
-  const enemyDomainsById = new Map(enemyDomainBuild.enemies.map((enemy) => [enemy.id, enemy]));
   console.log('构建 Endgame 敌方实例与精确 HP…');
   // Normalize and validate every required relation before replacing the last known-good output.
   const endgameDomain = await buildEndgameDomain(root);
@@ -849,7 +848,6 @@ export async function syncData(): Promise<DataManifest> {
     const enemyAudit = structuredClone(enemyDomainBuild.audit);
     const projectedEnemies = projectEnemies(enemyDomainBuild.enemies, {
       resolver: runtime.text,
-      enemiesById: enemyDomainsById,
       extraEffectsById,
       statusNamesById: enemyStatusNamesById,
       elementNameFallbacks: projectionPolicy.elementLabels,
@@ -865,7 +863,9 @@ export async function syncData(): Promise<DataManifest> {
     const enemyCatalog = projectedEnemies.catalog;
     const endgame = projectEndgame(endgameDomain, {
       resolver: runtime.text,
-      enemyNamesByTemplateId: new Map(enemies.map((enemy) => [enemy.id, enemy.name])),
+      enemyNamesByMonsterId: new Map(
+        enemies.flatMap(({ monsters }) => monsters.map(({ monsterId, name }) => [monsterId, name]))
+      ),
       extraEffectsById
     });
     const searchInputs: SearchBuildInputs = {
@@ -874,11 +874,11 @@ export async function syncData(): Promise<DataManifest> {
         character: characterCatalog.map(({ id, name }) => ({ id, name })),
         'light-cone': lightConeCatalog.map(({ id, name }) => ({ id, name })),
         relic: relicCatalog.map(({ id, name }) => ({ id, name })),
-        enemy: enemyCatalog.map(({ id, name }) => ({ id, name }))
+        enemy: enemyCatalog.map(({ id, name, variants }) => ({ id, name, variants }))
       },
       endgameTargets: collectEndgameSearchTargets(
         endgame.datasets,
-        new Map(enemies.map((enemy) => [enemy.id, enemy.name]))
+        new Map(enemyCatalog.map(({ id, name }) => [id, name]))
       )
     };
     const globalSearchIndex = buildSearchDocuments(
@@ -995,13 +995,15 @@ export async function syncData(): Promise<DataManifest> {
           locale: projectedLocale
         }
       );
-      for (const detail of projection.details[category as keyof typeof projection.details])
+      for (const detail of projection.details[category as keyof typeof projection.details]) {
+        const id = 'template' in detail ? detail.template.monsterTemplateId : detail.id;
         await writeArtifact(
           nextGeneratedRoot,
-          `views/${projectedLocale}/details/${category}/${detail.id}.json`,
+          `views/${projectedLocale}/details/${category}/${id}.json`,
           detail,
           { locale: projectedLocale }
         );
+      }
     }
     await writeArtifact(
       nextGeneratedRoot,
@@ -1175,7 +1177,7 @@ export async function syncData(): Promise<DataManifest> {
     characters: baseProjection.details.characters.map((item) => item.id),
     'light-cones': baseProjection.details['light-cones'].map((item) => item.id),
     relics: baseProjection.details.relics.map((item) => item.id),
-    enemies: baseProjection.details.enemies.map((item) => item.id)
+    enemies: baseProjection.details.enemies.map(({ template }) => template.monsterTemplateId)
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {

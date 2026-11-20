@@ -62,6 +62,14 @@ Enemy skill existence and semantic kind/tag come from `MonsterConfig.SkillList` 
 
 Enemy Skill damage details represent parseable ATK multiplier candidates from linked configuration, with optional target roles. `multipliers` replaces `totals` without a compatibility alias. Only proven local linear sequences are summed; branches, callbacks, loops and separate Abilities contribute independent candidates. Unresolved numeric values are omitted individually; uncertain entity ownership removes the target label rather than the number. Chance and action-shift behavior is unchanged, and raw configuration and build diagnostics remain outside browser data.
 
+## Enemy Template and Monster
+
+Manifest schema 71 publishes one Enemy detail per MonsterTemplateID. Template identity, name, Rank and base stats come from MonsterTemplateConfig. Concrete MonsterConfig records join by their explicit MonsterTemplateID and own their name, introduction, combat fields, modifiers, skill bindings and summons. The same-ID Monster is the default selection when available. Otherwise the smallest related MonsterID is selected and audited. Variant names can fall back to the Template name in the same locale. Introductions appear only when the selected Monster has usable text in that locale.
+
+The generated detail contains the template, the default MonsterID, concrete records, deduplicated stat progressions and shared visible skill definitions. Concrete skill bindings carry variant-specific detail and phase references. Stats resolve from the selected Monster's modifiers and its own valid difficulty groups. Missing or invalid groups fail generation. Nanoka portraits continue to resolve by MonsterTemplateID.
+
+The static detail route accepts a browser-side `?monster=<MonsterID>` selection and preserves it during locale navigation. Summons retain the exact target MonsterID in name, weaknesses and href. Endgame occurrence identity, calculation and search grouping continue to use their existing contracts. Display names, weaknesses and outbound detail links resolve the exact concrete Monster. Catalog cards use Template identity and the default Monster's weaknesses. Search inputs include locale-specific Monster labels and stable IDs.
+
 ## Endgame static phase HP
 
 Endgame period schedules resolve explicit `ScheduleDataID` and `GlobalScheduleID` foreign keys. A `GlobalScheduleID` searches only `ScheduleDataGlobal`; declaring both keys is an error. Missing or conflicting global boundaries produce structured audit warnings and leave the period schedule unknown. No date or boundary precedence is inferred from group IDs.

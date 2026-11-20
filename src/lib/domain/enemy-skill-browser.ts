@@ -1,26 +1,27 @@
-import type { EnemySkillPhaseView, EnemySkillView } from './enemy-view';
+import type { EnemySkillView } from './enemy-view';
+import type { EnemySkillPhase } from './types';
 
 /** Keep the concrete Monster's skill order when a phase narrows the browser. */
 export function enemySkillsInPhase(
   skills: EnemySkillView[],
-  phase: EnemySkillPhaseView | undefined
+  phase: EnemySkillPhase | undefined
 ): EnemySkillView[] {
   if (!phase) return skills;
-  const ids = new Set(phase.skills.map((skill) => skill.id));
+  const ids = new Set(phase.skillIds);
   return skills.filter((skill) => ids.has(skill.id));
 }
 
 export function resolveEnemySkillSelection(
   skills: EnemySkillView[],
-  phases: EnemySkillPhaseView[],
+  phases: EnemySkillPhase[],
   previousPhaseIndex: number | undefined,
   previousSkillId: string | undefined
 ): { phaseIndex: number | undefined; skillId: string | undefined } {
   const currentPhase = phases.find((phase) => phase.index === previousPhaseIndex);
   if (previousSkillId && skills.some((skill) => skill.id === previousSkillId)) {
     const containingPhase =
-      (currentPhase?.skills.some((skill) => skill.id === previousSkillId) && currentPhase) ||
-      phases.find((phase) => phase.skills.some((skill) => skill.id === previousSkillId));
+      (currentPhase?.skillIds.includes(previousSkillId) && currentPhase) ||
+      phases.find((phase) => phase.skillIds.includes(previousSkillId));
     if (containingPhase || phases.length === 0)
       return { phaseIndex: containingPhase?.index, skillId: previousSkillId };
   }

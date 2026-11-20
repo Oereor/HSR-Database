@@ -332,22 +332,42 @@ describe('Endgame archive 赛期分组', () => {
 describe('Endgame occurrence 投影', () => {
   it('按具体 MonsterID 解析弱点，且同模板实例使用独立引用键', () => {
     const detail: EndgameEnemyDetailSource = {
-      name: '测试模板',
-      rank: 'Minion',
+      template: { rank: 'Minion' },
       monsters: [
-        { monsterId: '10', weaknesses: [{ element: 'Physical', name: '物理' }] },
-        { monsterId: '101', weaknesses: [{ element: 'Quantum', name: '量子' }] }
+        {
+          monsterId: '10',
+          name: 'Template variant',
+          weaknesses: [{ element: 'Physical', name: '物理' }]
+        },
+        {
+          monsterId: '101',
+          name: 'Encounter variant',
+          weaknesses: [{ element: 'Quantum', name: '量子' }]
+        }
       ]
     };
-    expect(resolveEndgameEnemyReference(detail, 101).weaknesses).toEqual([
-      { element: 'Quantum', name: '量子' }
-    ]);
+    expect(resolveEndgameEnemyReference(detail, 101)).toMatchObject({
+      name: 'Encounter variant',
+      rank: 'Minion',
+      weaknesses: [{ element: 'Quantum', name: '量子' }]
+    });
+    const displayed = buildOccurrenceView(
+      occurrence({ monsterId: 101, monsterTemplateId: 10, name: 'Template variant' }),
+      resolveEndgameEnemyReference(detail, 101)
+    );
+    expect(displayed).toMatchObject({
+      name: 'Encounter variant',
+      enemyHref: '/enemies/10/?monster=101'
+    });
     expect(endgameEnemyReferenceKey(10, 10)).not.toBe(endgameEnemyReferenceKey(101, 10));
   });
 
   it('canonical MonsterID 仍按其自身记录正常解析', () => {
     const detail: EndgameEnemyDetailSource = {
-      monsters: [{ monsterId: '10', weaknesses: [{ element: 'Fire', name: '火' }] }]
+      template: { rank: 'Minion' },
+      monsters: [
+        { monsterId: '10', name: 'Template variant', weaknesses: [{ element: 'Fire', name: '火' }] }
+      ]
     };
     expect(resolveEndgameEnemyReference(detail, 10)).toMatchObject({
       weaknesses: [{ element: 'Fire', name: '火' }],
@@ -357,7 +377,10 @@ describe('Endgame occurrence 投影', () => {
 
   it('具体 MonsterID 无效时显式失败，不回退到 canonical Monster', () => {
     const detail: EndgameEnemyDetailSource = {
-      monsters: [{ monsterId: '10', weaknesses: [{ element: 'Fire', name: '火' }] }]
+      template: { rank: 'Minion' },
+      monsters: [
+        { monsterId: '10', name: 'Template variant', weaknesses: [{ element: 'Fire', name: '火' }] }
+      ]
     };
     expect(() => resolveEndgameEnemyReference(detail, 101)).toThrow(/MonsterID：101/);
   });
