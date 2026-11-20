@@ -32,9 +32,14 @@ test('enemy direct navigation and core interaction remain functional', async ({ 
   const slider = page.locator('#enemy-level-1002015');
   await expect(slider).toHaveAttribute('aria-valuenow', '95');
   await setSliderValue(slider, 60);
+  await page.locator('[data-monster-trigger]').click();
+  await page.getByRole('dialog').getByRole('combobox').fill('100201506');
   const variant = page.locator('[data-monster-option="100201506"]');
   await variant.click();
-  await expect(variant).toHaveAttribute('aria-checked', 'true');
+  await expect(page.locator('[data-selected-monster]')).toHaveAttribute(
+    'data-selected-monster',
+    '100201506'
+  );
   await expect(slider).toHaveAttribute('aria-valuenow', '60');
 });
 

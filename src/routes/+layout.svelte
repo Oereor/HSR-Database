@@ -41,12 +41,13 @@
   $: breadcrumbData = $page.data as BreadcrumbData;
   $: breadcrumbDetail =
     breadcrumbData.detail &&
-    (appReady && ($page.url.searchParams.has('uid') || $page.url.searchParams.has('build'))
-      ? breadcrumbData.detail
-      : staticTrailblazerText(
+    ('id' in breadcrumbData.detail &&
+    !(appReady && ($page.url.searchParams.has('uid') || $page.url.searchParams.has('build')))
+      ? staticTrailblazerText(
           breadcrumbData.detail,
           trailblazerGender(breadcrumbData.detail.id) ?? $trailblazer.gender
-        ));
+        )
+      : breadcrumbData.detail);
   $: breadcrumbs = resolveBreadcrumbs({
     routeId: $page.route.id,
     params: $page.params,

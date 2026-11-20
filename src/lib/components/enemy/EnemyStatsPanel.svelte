@@ -1,11 +1,8 @@
 <script lang="ts">
   import StatList from '$lib/components/shared/StatList.svelte';
   import StatRow from '$lib/components/shared/StatRow.svelte';
-  import {
-    getEnemyStatsAtLevel,
-    type EnemyStatCompactValue,
-    type EnemyStatProgressionCompact
-  } from '$lib/domain/enemy-view';
+  import { getEnemyStatsAtLevel } from '$lib/domain/enemy-view';
+  import type { EnemyStatCompactValue, EnemyStatProgressionCompact } from '$lib/domain/types';
   import { formatRatioPercentage, formatRoundedDecimal } from '$lib/domain/endgame-view';
   import * as m from '$lib/paraglide/messages.js';
 

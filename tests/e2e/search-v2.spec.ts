@@ -318,9 +318,9 @@ test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', asy
   await expect(cards.locator('[data-endgame-speed]')).toHaveCount(endgameCount);
   await expect(cards.locator('[data-endgame-toughness]')).toHaveCount(endgameCount);
   await expect(cards.locator('.endgame-weaknesses')).toHaveCount(endgameCount);
-  await expect(cards.locator('[data-endgame-enemy-link][href="/enemies/4064012/"]')).toHaveCount(
-    endgameCount
-  );
+  await expect(
+    cards.locator('[data-endgame-enemy-link][href^="/enemies/4064012/?monster="]')
+  ).toHaveCount(endgameCount);
   await expect(page.locator('a.entity-overview-card[href="/enemies/4064012/"]')).toBeVisible();
 
   await page.goto(`/search?q=${encodeURIComponent('末日歧途的盗火者')}`);
@@ -432,4 +432,29 @@ test('Endgame 搜索单卡、多卡与不足一行均固定卡宽并从左排列
     rows.set(Math.round(box.y), [...(rows.get(Math.round(box.y)) ?? []), box]);
   for (const row of rows.values())
     expect(row.map(({ x }) => x)).toEqual([...row.map(({ x }) => x)].sort((a, b) => a - b));
+});
+
+test('variant names and exact IDs navigate from aggregated Enemy results', async ({ page }) => {
+  await page.goto(`/en/search/?q=${encodeURIComponent('Ice Edge (Illusion)')}`);
+  const unique = page.locator(
+    'a.entity-overview-card[href="/en/enemies/1002015/?monster=100201501"]'
+  );
+  await expect(unique).toHaveCount(1);
+  await expect(unique.locator('[data-matched-monster="100201501"]')).toBeVisible();
+  await unique.click();
+  await expect(page.locator('[data-selected-monster="100201501"]')).toBeVisible();
+
+  for (const path of ['/enemies/', '/search/']) {
+    await page.goto(`${path}?q=100201506`);
+    const exact = page.locator(
+      'a.entity-overview-card[href="/enemies/1002015/?monster=100201506"]'
+    );
+    await expect(exact).toHaveCount(1);
+    await expect(exact.locator('[data-matched-monster="100201506"]')).toBeVisible();
+  }
+
+  await page.goto(`/enemies/?q=${encodeURIComponent('公司安保幻象')}`);
+  const tied = page.locator('a.entity-overview-card[href="/enemies/1002015/"]');
+  await expect(tied).toHaveCount(1);
+  await expect(tied.locator('[data-matched-monster]')).toHaveCount(0);
 });

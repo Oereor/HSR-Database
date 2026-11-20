@@ -26,7 +26,6 @@ export {
   normalizeEnemySkillKind,
   normalizeEnemySkillTag
 } from './enemy-skill-policy.js';
-export const enemySpecialResistanceLabels = SPECIAL_RESISTANCE_LABELS;
 
 export function normalizeEnemyPhases(value: unknown): number[] {
   if (!Array.isArray(value)) return [];
@@ -120,7 +119,7 @@ function statusValue(value: DecimalString): EnemyStatValue {
   return { status: 'resolved', value };
 }
 
-export function resolveCanonicalEnemyStats(
+export function resolveEnemyVariantStats(
   template: Raw,
   config: Raw,
   hardLevels: Raw[],

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button } from '$lib/components/ui/button';
   import { m } from '$lib/paraglide/messages.js';
-  import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
+  import { trailingSlashHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
   import { page, navigating } from '$app/stores';
   import { onMount } from 'svelte';
@@ -15,7 +15,7 @@
     writeEnemyOverviewFilterState,
     type EnemyOverviewFilterState
   } from '$lib/domain/enemy-overview';
-  import { overviewSearch } from '$lib/search/overview';
+  import { matchEnemy } from '$lib/search/enemies';
   import type { CatalogEntry, EnemyCatalogEntry } from '$lib/domain/types';
   import { formatDocumentTitle } from '$lib/site';
   import EnemyOverviewCard from './EnemyOverviewCard.svelte';
@@ -48,12 +48,16 @@
   $: heroArtwork = heroEnemyIds.flatMap((id) =>
     enemyPortraits[id] ? [{ id, url: enemyPortraits[id] }] : []
   );
-  $: search = overviewSearch(appliedQuery);
   $: filtered = enemies
-    .filter((entry) => search.matches(entry) && matchesEnemyOverviewFilters(entry, filterState))
+    .filter((entry) => matchesEnemyOverviewFilters(entry, filterState))
+    .flatMap((entry) => {
+      const match = matchEnemy(entry, appliedQuery);
+      return match ? [match] : [];
+    })
     .sort(
       (a, b) =>
-        search.compareId(a, b) || compareEnemyOverviewEntries(a, b, sort, filterState.weaknesses)
+        Number(b.exactId) - Number(a.exactId) ||
+        compareEnemyOverviewEntries(a.entry, b.entry, sort, filterState.weaknesses)
     );
   const pagination = createOverviewPagination(48, (url) =>
     goto(url, { replaceState: true, noScroll: true, keepFocus: true })
@@ -68,7 +72,9 @@
   $: weaknessOptions = [
     ...new Map(
       enemies.flatMap((entry) =>
-        entry.weaknesses.map((weakness) => [weakness.element, weakness.name] as const)
+        entry.representative.weaknesses.map(
+          (weakness) => [weakness.element, weakness.name] as const
+        )
       )
     ).entries()
   ]
@@ -192,12 +198,8 @@
 
 {#if visible.length}
   <OverviewGrid onColumnsChange={pagination.setColumns}>
-    {#each visible as entry (entry.id)}
-      <EnemyOverviewCard
-        {entry}
-        href={localizedHref(`/enemies/${entry.id}`)}
-        imageUrl={enemyPortraits[entry.id]}
-      />
+    {#each visible as { entry, variant } (entry.id)}
+      <EnemyOverviewCard {entry} {variant} imageUrl={enemyPortraits[entry.id]} />
     {/each}
   </OverviewGrid>
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />

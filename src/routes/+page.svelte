@@ -181,11 +181,7 @@
     shown={data.newEnemies.length}
   >
     {#each data.newEnemies as entry (entry.id)}
-      <EnemyOverviewCard
-        {entry}
-        href={localizedHref(`/enemies/${entry.id}`)}
-        imageUrl={data.enemyPortraits[entry.id]}
-      />
+      <EnemyOverviewCard {entry} imageUrl={data.enemyPortraits[entry.id]} />
     {/each}
   </HomepageSection>
 </div>

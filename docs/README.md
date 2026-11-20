@@ -27,6 +27,7 @@
 [investigations/](investigations/) 保存配置调查、功能实施、性能测量及修复验收；[audits/](audits/) 保存审计与阶段收敛记录。
 目录中未单独标为维护指南的报告均描述其原阶段；其中“当前”“已通过”“待办”、数量与版本不代表今日状态。
 
+- [v4.7 Enemy Domain 审计与实施](audits/enemy-domain-4-7.md)
 - [2026-11-08 发布前技术债与部署体积审计](audits/2026-11-08-发布前技术债与部署体积审计.md)
 - [v4.7 数据与 UI 适配实施](version-4-7/implementation.md)：SeriesSkill、奇缘星魂、阿哈技能树及版本迁移验收。
 

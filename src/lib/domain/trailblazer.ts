@@ -22,10 +22,6 @@ export function isTrailblazerGender(value: unknown): value is TrailblazerGender 
   return value === 'female' || value === 'male';
 }
 
-export function isTrailblazer(avatarId: string): boolean {
-  return avatarPairsById.has(avatarId);
-}
-
 export function trailblazerGender(avatarId: string): TrailblazerGender | undefined {
   const pair = avatarPairsById.get(avatarId);
   return pair && (pair.male === avatarId ? 'male' : 'female');

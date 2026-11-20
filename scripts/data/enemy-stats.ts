@@ -23,7 +23,7 @@ function wrappedDecimalOr(value: unknown, fallback: '0' | '1', label: string): D
   return decimalOf(value, label);
 }
 
-/** Shared lossless enemy stat resolver used by Endgame occurrences and canonical enemy details. */
+/** Shared lossless enemy stat resolver used by Endgame occurrences and enemy variant details. */
 export function resolveEnemyConfiguredStat(
   label: string,
   sources: EnemyConfiguredStatSources

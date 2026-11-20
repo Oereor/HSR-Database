@@ -1,6 +1,9 @@
 <script lang="ts">
   import * as Card from '$lib/components/ui/card';
-  import * as RadioGroup from '$lib/components/ui/radio-group';
+  import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
+  import { onMount, tick } from 'svelte';
+  import EnemyVariantSelector from './EnemyVariantSelector.svelte';
   import EnemySkillBrowser from './EnemySkillBrowser.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
   import EnemyTemplateBaseStatsPanel from './EnemyTemplateBaseStatsPanel.svelte';
@@ -20,42 +23,49 @@
   import { getEnemyRankLabel } from '$lib/domain/enemy-overview';
   import {
     getEnemyMonsterStatProgression,
-    type EnemyDetailPageData,
-    type EnemyMonsterPageData
+    selectedEnemyMonster,
+    type EnemyDetailPageData
   } from '$lib/domain/enemy-view';
   import * as m from '$lib/paraglide/messages.js';
-  import { formatLocalizedList } from '$lib/i18n/format';
   import { getLocale } from '$lib/paraglide/runtime.js';
 
   export let detail: EnemyDetailPageData;
 
-  function defaultMonsterOf(value: EnemyDetailPageData): EnemyMonsterPageData {
-    const monster = value.monsters.find(
-      (candidate) => candidate.monsterId === value.defaultMonsterId
-    );
-    if (!monster)
-      throw new Error(`Enemy ${value.id} missing default Monster ${value.defaultMonsterId}`);
-    return monster;
-  }
+  const emptyParams = new URLSearchParams();
+  let clientReady = false;
+  onMount(() => {
+    clientReady = true;
+    void tick().then(() => document.documentElement.removeAttribute('data-enemy-variant-pending'));
+  });
 
-  const initialMonster = defaultMonsterOf(detail);
-  const initialProgression = getEnemyMonsterStatProgression(detail, initialMonster);
-  let selectedMonsterId = detail.defaultMonsterId;
-  let level = initialProgression.defaultLevel;
-
-  $: selectedMonster =
-    detail.monsters.find((monster) => monster.monsterId === selectedMonsterId) ?? initialMonster;
+  let level = getEnemyMonsterStatProgression(
+    detail,
+    selectedEnemyMonster(detail, emptyParams)
+  ).defaultLevel;
+  $: selectedMonster = selectedEnemyMonster(
+    detail,
+    clientReady ? $page.url.searchParams : emptyParams
+  );
   $: selectedProgression = getEnemyMonsterStatProgression(detail, selectedMonster);
+  $: availableLevels = selectedProgression.availableLevels;
+  $: if (
+    level < selectedProgression.minLevel ||
+    level > selectedProgression.maxLevel ||
+    (availableLevels && !availableLevels.includes(level))
+  )
+    level = selectedProgression.defaultLevel;
 
-  const monsterWeaknessLabel = (monster: EnemyMonsterPageData): string =>
-    monster.weaknesses.length
-      ? m.weaknesses_aria({
-          weaknesses: formatLocalizedList(
-            monster.weaknesses.map((weakness) => weakness.name),
-            getLocale()
-          )
-        })
-      : m.enemy_no_weaknesses_short();
+  function selectMonster(monsterId: string) {
+    const next = new URL($page.url);
+    if (monsterId === detail.defaultMonsterId) {
+      if (!next.searchParams.has('monster')) return;
+      next.searchParams.delete('monster');
+    } else {
+      if (monsterId === selectedMonster.monsterId) return;
+      next.searchParams.set('monster', monsterId);
+    }
+    void goto(next, { noScroll: true, keepFocus: true });
+  }
 
   const sectionNavItems = [
     { id: 'stats', label: m.enemy_stats_section() },
@@ -63,6 +73,27 @@
     { id: 'skills', label: m.detail_skills() }
   ] as const;
 </script>
+
+<svelte:head>
+  {#if detail.monsters.length > 1}
+    <script>
+      {
+        // The static HTML contains the default variant until the router can read the query.
+        const requested = new URLSearchParams(window.location.search).getAll('monster');
+        if (
+          document.readyState === 'loading' &&
+          requested.length === 1 &&
+          /^[0-9]+$/.test(requested[0])
+        ) {
+          const root = document.documentElement;
+          const attribute = 'data-enemy-variant-pending';
+          root.setAttribute(attribute, '');
+          window.setTimeout(() => root.removeAttribute(attribute), 3000);
+        }
+      }
+    </script>
+  {/if}
+</svelte:head>
 
 <Card.Root class="gap-0 overflow-hidden p-0 shadow-none">
   <header class="detail-profile-hero detail-profile-hero--enemy" data-enemy-hero>
@@ -81,13 +112,6 @@
         <div class="hero-identity-metadata">
           <EnemyRankTag label={getEnemyRankLabel(detail.template.rank)} />
         </div>
-        <div class="hero-description">
-          {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
-              class="muted"
-            >
-              {m.detail_intro_unavailable()}
-            </p>{/if}
-        </div>
       </div>
     </div>
     <aside
@@ -102,39 +126,34 @@
 
 <SectionNav items={sectionNavItems} />
 
-<section id="monsters" class="detail-section enemy-detail-section section-nav-target">
-  <SectionHeading level={1}>{m.enemy_variants_section()}</SectionHeading>
+<section
+  id="monsters"
+  class="detail-section enemy-detail-section section-nav-target @container"
+  data-enemy-variant-content
+>
+  <SectionHeading level={1}>{m.enemy_specific_units({}, { locale: getLocale() })}</SectionHeading>
 
-  <RadioGroup.Root
-    class="enemy-monster-selector"
-    aria-label={m.enemy_specific_units()}
-    orientation="horizontal"
-    bind:value={selectedMonsterId}
+  <div
+    class={[
+      'mt-4 grid min-w-0 items-start gap-x-6 gap-y-3',
+      selectedMonster.introduction && '@min-[56rem]:grid-cols-[36rem_minmax(0,1fr)]'
+    ]}
+    data-selected-monster={selectedMonster.monsterId}
   >
-    {#each detail.monsters as monster (monster.monsterId)}
-      <RadioGroup.Item
-        value={monster.monsterId}
-        class="grid min-h-16 min-w-40 shrink-0 snap-start content-center gap-2 px-3 py-2 text-left leading-tight"
-        data-monster-option={monster.monsterId}
+    <EnemyVariantSelector
+      variants={detail.monsters}
+      selected={selectedMonster}
+      onSelect={selectMonster}
+    />
+    {#if selectedMonster.introduction}
+      <p
+        class="text-muted-foreground max-w-prose min-w-0 whitespace-pre-line @min-[56rem]:max-w-none"
+        data-monster-introduction
       >
-        <span class="enemy-monster-option__identity">
-          <strong>#{monster.monsterId}</strong>
-          {#if monster.monsterId === detail.defaultMonsterId}<small>{m.enemy_default()}</small>{/if}
-        </span>
-        <span class="enemy-monster-option__weaknesses" aria-label={monsterWeaknessLabel(monster)}>
-          {#each monster.weaknesses as weakness (weakness.element)}<span aria-hidden="true"
-              ><SemanticIconLabel
-                kind="element"
-                code={weakness.element}
-                label={weakness.name}
-                color={getElementColor(weakness.element)}
-                showLabel={false}
-              /></span
-            >{/each}
-        </span>
-      </RadioGroup.Item>
-    {/each}
-  </RadioGroup.Root>
+        <GameText text={selectedMonster.introduction} />
+      </p>
+    {/if}
+  </div>
   <div
     class:enemy-battle-panel--two-column={!selectedMonster.specialResistances.length}
     class="enemy-battle-panel"
@@ -144,11 +163,16 @@
       <h3>{m.enemy_base_stats()}</h3>
       <div class="stat-level-control">
         <LevelSlider
-          id={`enemy-level-${detail.id}`}
+          id={`enemy-level-${detail.template.monsterTemplateId}`}
           label={m.enemy_level()}
-          min={initialProgression.minLevel}
-          max={initialProgression.maxLevel}
-          bind:value={level}
+          min={availableLevels ? 0 : selectedProgression.minLevel}
+          max={availableLevels ? availableLevels.length - 1 : selectedProgression.maxLevel}
+          value={availableLevels ? availableLevels.indexOf(level) : level}
+          displayValue={level}
+          ariaValueMin={selectedProgression.minLevel}
+          ariaValueMax={selectedProgression.maxLevel}
+          interactive={selectedProgression.minLevel !== selectedProgression.maxLevel}
+          onValueChange={(next) => (level = availableLevels?.[next] ?? next)}
         />
       </div>
       <EnemyStatsPanel progression={selectedProgression} {level} />
@@ -210,7 +234,9 @@
             data-summon-template={summon.monsterTemplateId}
           >
             <svelte:fragment slot="title"><GameText text={summon.name} /></svelte:fragment>
-            <svelte:fragment slot="secondary">{getEnemyRankLabel(summon.rank)}</svelte:fragment>
+            <svelte:fragment slot="secondary">
+              {getEnemyRankLabel(summon.rank)} · #{summon.monsterId}
+            </svelte:fragment>
             <svelte:fragment slot="tertiary">
               <EnemyWeaknessGroup weaknesses={summon.weaknesses} />
             </svelte:fragment>
@@ -219,7 +245,17 @@
     </section>{/if}
 </section>
 
-<section id="skills" class="detail-section enemy-detail-section section-nav-target">
+<section
+  id="skills"
+  class="detail-section enemy-detail-section section-nav-target"
+  data-enemy-variant-content
+>
   <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
-  <EnemySkillBrowser {detail} monsterId={selectedMonsterId} />
+  <EnemySkillBrowser {detail} monsterId={selectedMonster.monsterId} />
 </section>
+
+<style>
+  :global(html[data-enemy-variant-pending]) [data-enemy-variant-content] {
+    visibility: hidden;
+  }
+</style>

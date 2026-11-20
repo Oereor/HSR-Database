@@ -230,10 +230,7 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
       await timed('test', () => runPnpm(['test'], env));
     }
 
-    await timed('vite-build', async () => {
-      await runPnpm(['exec', 'svelte-kit', 'sync'], env);
-      await runPnpm(['exec', 'vite', 'build'], env);
-    });
+    await timed('vite-build', () => runPnpm(['exec', 'vite', 'build'], env));
     const { localizedHref } = await import('../../src/lib/i18n/routing.js');
     const rootPagePaths = manifest.publicLocales.map((locale) => localizedHref('/', locale));
     await timed('output-smoke', () => verifyBuildSmoke(rootPagePaths));

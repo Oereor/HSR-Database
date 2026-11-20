@@ -19,11 +19,15 @@
     $trailblazer.ready &&
     ($page.url.searchParams.has('uid') || $page.url.searchParams.has('build'));
   $: staticGender = playerRoute ? undefined : $trailblazer.gender;
-  $: detail = staticGender
-    ? staticTrailblazerText(data.detail, trailblazerGender(String(data.detail.id)) ?? staticGender)
-    : data.detail;
+  $: detail =
+    data.category !== 'enemies' && 'id' in data.detail && staticGender
+      ? staticTrailblazerText(
+          data.detail,
+          trailblazerGender(String(data.detail.id)) ?? staticGender
+        )
+      : data.detail;
   $: if ($trailblazer.ready && staticGender && data.category === 'characters') {
-    const id = String(data.detail.id);
+    const id = 'id' in data.detail ? String(data.detail.id) : '';
     const preferred = withTrailblazerGender(id, staticGender);
     if (preferred !== id)
       void goto(

@@ -19,9 +19,6 @@ for (const width of [1440, 1100, 1080, 900, 390, 320]) {
         const sections = panel.locator(':scope > section');
         await expect(sections).toHaveCount(count);
         await expect(panel).toHaveAttribute('data-battle-columns', String(count));
-        await expect(
-          page.locator('.enemy-selected-monster-heading, .enemy-level-control--standalone')
-        ).toHaveCount(0);
         const stats = panel.locator('.enemy-battle-column--stats');
         await expect(stats.getByRole('slider')).toHaveCount(1);
         const rows = panel.locator(

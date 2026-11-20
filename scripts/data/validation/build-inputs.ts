@@ -1,3 +1,8 @@
+import { enemyDetailHref } from '../../../src/lib/domain/enemy-view.js';
+import { gameTextToPlain } from '../../../src/lib/domain/game-text.js';
+import { enemySearchAliases } from '../search-documents.js';
+import type { Enemy, EnemyCatalogEntry } from '../../../src/lib/domain/types.js';
+import { assertEnemyArtifact, assertEnemyConsumerClosure } from './enemies.js';
 import { assertHomepageVersionData, homepageCategories } from '../homepage.js';
 import type { HomepageVersionData } from '../../../src/lib/domain/types.js';
 import {
@@ -220,7 +225,11 @@ export async function validateBuildInputs(
   const endgame = Object.fromEntries(
     manifest.generatedLocales.map((locale) => [locale, {}])
   ) as Record<Locale, Partial<Record<EndgameMode, EndgameDatasetByMode[EndgameMode]>>>;
+  const enemyDetails = new Map<Locale, Enemy[]>();
+  const enemyCatalogs = new Map<Locale, EnemyCatalogEntry[]>();
   const searchTargets = new Map<Locale, string[]>();
+  const enemySearchDocuments = new Map<Locale, Map<string, Record<string, unknown>>>();
+  const enemySearchInputs = new Map<Locale, unknown>();
   const englishShards = new Map<string, EndgameOccurrenceShard>();
   const playerEquipment = new Map<Locale, { lightCones: string[]; relicSets: string[] }>();
 
@@ -336,12 +345,24 @@ export async function validateBuildInputs(
           return;
         }
         assertArtifactLocale(logicalPath, metadata);
+        const enemyDetailMatch = logicalPath.match(
+          /^views\/(zh-CN|en)\/details\/enemies\/(\d+)\.json$/
+        );
+        if (enemyDetailMatch) {
+          const locale = enemyDetailMatch[1] as Locale;
+          assertEnemyArtifact(value, enemyDetailMatch[2]);
+          const details = enemyDetails.get(locale) ?? [];
+          details.push(value);
+          enemyDetails.set(locale, details);
+          return;
+        }
         const catalogMatch = logicalPath.match(
           /^views\/(zh-CN|en)\/catalogs\/(characters|light-cones|relics|enemies)\.json$/
         );
         if (catalogMatch) {
           const [, locale, category] = catalogMatch as [string, Locale, RouteCategory];
           catalogs[locale][category] = decimalIds(value, `${locale} ${category} catalog`);
+          if (category === 'enemies') enemyCatalogs.set(locale, value as EnemyCatalogEntry[]);
           return;
         }
         const propertyMatch = logicalPath.match(
@@ -381,6 +402,13 @@ export async function validateBuildInputs(
           endgame[locale][mode] = value as unknown as EndgameDatasetByMode[EndgameMode];
           return;
         }
+        const searchInputMatch = logicalPath.match(/^views\/(zh-CN|en)\/search-inputs\.json$/);
+        if (searchInputMatch) {
+          if (!isRecord(value) || !isRecord(value.catalogs) || !Array.isArray(value.catalogs.enemy))
+            throw new Error(`Invalid Enemy search inputs: ${logicalPath}`);
+          enemySearchInputs.set(searchInputMatch[1] as Locale, value.catalogs.enemy);
+          return;
+        }
         const searchMatch = logicalPath.match(/^static\/generated\/(zh-CN|en)\/search\.json$/);
         if (searchMatch) {
           const locale = searchMatch[1] as Locale;
@@ -413,6 +441,17 @@ export async function validateBuildInputs(
           )
             throw new Error(`${locale} search build input summary mismatch`);
           searchTargets.set(locale, targets);
+          const documents = new Map<string, Record<string, unknown>>();
+          for (const document of value.documents) {
+            if (!isRecord(document) || !isRecord(document.target))
+              throw new Error(`${locale} search document has an invalid target`);
+            const { kind, id } = document.target;
+            if (kind !== 'enemy') continue;
+            if (typeof id !== 'string' || document.key !== `enemy:${id}` || documents.has(id))
+              throw new Error(`${locale} search has an invalid Enemy target: ${id}`);
+            documents.set(id, document);
+          }
+          enemySearchDocuments.set(locale, documents);
           return;
         }
         const playerMatch = logicalPath.match(
@@ -497,6 +536,35 @@ export async function validateBuildInputs(
       materials.find((catalog) => catalog.locale === details.locale)!
     );
 
+  for (const locale of manifest.generatedLocales) {
+    const details = enemyDetails.get(locale) ?? [];
+    if (
+      !exactSet(
+        details.map(({ template }) => template.monsterTemplateId),
+        manifest.routes.enemies
+      )
+    )
+      throw new Error(`${locale} Enemy detail coverage mismatch`);
+    const catalog = enemyCatalogs.get(locale) ?? [];
+    assertEnemyConsumerClosure(details, catalog);
+    const inputs = catalog.map(({ id, name, variants }) => ({ id, name, variants }));
+    const documents = enemySearchDocuments.get(locale);
+    if (
+      JSON.stringify(enemySearchInputs.get(locale)) !== JSON.stringify(inputs) ||
+      documents?.size !== inputs.length
+    )
+      throw new Error(`${locale} Enemy search inventory differs from catalog`);
+    for (const entry of inputs) {
+      const doc = documents.get(entry.id);
+      if (
+        doc?.canonicalName !== gameTextToPlain(entry.name) ||
+        JSON.stringify(doc?.officialAliases) !== JSON.stringify(enemySearchAliases(entry))
+      ) {
+        throw new Error(`${locale} Enemy search labels differ from catalog: ${entry.id}`);
+      }
+    }
+  }
+
   const routeCountKeys: Record<RouteCategory, keyof DataManifest['counts']> = {
     characters: 'characters',
     'light-cones': 'lightCones',
@@ -549,7 +617,25 @@ export async function validateBuildInputs(
   if (!exactSet([...englishShards.keys()], searchTargets.get('en') ?? []))
     throw new Error('English Endgame occurrence shard inventory does not match search targets');
 
+  const englishEnemies = new Map(
+    (enemyDetails.get('en') ?? []).map((enemy) => [
+      enemy.template.monsterTemplateId,
+      new Map(enemy.monsters.map(({ monsterId, name }) => [monsterId, name]))
+    ])
+  );
   for (const [targetId, shard] of englishShards) {
+    if (!isRecord(shard.occurrences)) throw new Error(`Invalid English Endgame shard ${targetId}`);
+    for (const { occurrence } of Object.values(shard.occurrences)) {
+      const name = englishEnemies.get(targetId)?.get(String(occurrence.monsterId));
+      if (
+        !name ||
+        occurrence.name !== name ||
+        String(occurrence.monsterTemplateId) !== targetId ||
+        occurrence.enemyHref !== enemyDetailHref(targetId, occurrence.monsterId)
+      ) {
+        throw new Error(`English Endgame shard ${targetId} does not identify the concrete Monster`);
+      }
+    }
     for (const { mode, period } of shard.periods) {
       const group = endgame.en[mode]!.groups.find(({ groupId }) => groupId === period.groupId);
       if (

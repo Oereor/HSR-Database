@@ -1,126 +1,49 @@
-import type { DecimalString } from './endgame.js';
 import type {
-  ElementLabel,
   Enemy,
   EnemySkill,
   EnemySkillDetail,
+  EnemyStatCompactValue,
   EnemyStatProgression,
+  EnemyStatProgressionCompact,
+  EnemyStatsAtLevel,
   EnemyStatValue,
   EnemySummonReference,
-  Monster
+  MonsterVariant
 } from './types.js';
 
 export interface EnemySummonView extends EnemySummonReference {
   portraitUrl?: string;
 }
 
-export interface EnemySkillReferenceView {
-  id: string;
-  name: string;
-  damageType?: ElementLabel;
-}
-
-export interface EnemySkillPhaseView {
-  index: number;
-  skills: EnemySkillReferenceView[];
-}
-
-export interface EnemySkillDefinitionView {
-  id: string;
-  name: string;
-  description: string;
-  kind: EnemySkill['kind'];
-  tag: EnemySkill['tag'];
-  damageType?: ElementLabel;
-  phases: EnemySkill['phases'];
-  extraEffects: EnemySkill['extraEffects'];
-}
-
-export interface EnemySkillBindingView {
-  id: string;
-  detail?: EnemySkillDetail;
-}
-
-export interface EnemySkillView extends EnemySkillDefinitionView {
-  detail?: EnemySkillDetail;
-}
-
-export type EnemyStatCompactValue = DecimalString | null;
-
-export interface EnemyStatProgressionCompact {
-  minLevel: number;
-  maxLevel: number;
-  defaultLevel: number;
-  hp: EnemyStatCompactValue[];
-  attack: EnemyStatCompactValue[];
-  defence: EnemyStatCompactValue[];
-  speed: EnemyStatCompactValue[];
-  toughness: EnemyStatCompactValue[];
-  effectHit: EnemyStatCompactValue[];
-  effectResistance: EnemyStatCompactValue[];
-}
-
-export interface EnemyStatsAtLevel {
-  hp: EnemyStatCompactValue;
-  attack: EnemyStatCompactValue;
-  defence: EnemyStatCompactValue;
-  speed: EnemyStatCompactValue;
-  toughness: EnemyStatCompactValue;
-  effectHit: EnemyStatCompactValue;
-  effectResistance: EnemyStatCompactValue;
-}
-
-export interface EnemyMonsterPageData {
-  monsterId: string;
-  statsRef: number;
-  weaknesses: Monster['weaknesses'];
-  resistances: Monster['resistances'];
-  specialResistances: Monster['specialResistances'];
+export interface EnemyMonsterPageData extends MonsterVariant {
   summons: EnemySummonView[];
-  skills: EnemySkillBindingView[];
-  skillPhases: EnemySkillPhaseView[];
 }
 
-export interface EnemyDetailPageData {
-  id: string;
-  name: string;
-  description?: string;
-  template: Enemy['template'];
+export interface EnemyDetailPageData extends Enemy {
   portraitUrl?: string;
-  defaultMonsterId: string;
   monsters: EnemyMonsterPageData[];
-  statProgressions: EnemyStatProgressionCompact[];
-  skillDefinitions: EnemySkillDefinitionView[];
 }
 
-function buildEnemySkillDefinitions(enemy: Enemy): EnemySkillDefinitionView[] {
-  const defaultMonster = enemy.monsters.find(
-    (monster) => monster.monsterId === enemy.defaultMonsterId
-  );
-  if (!defaultMonster)
-    throw new Error(`Enemy ${enemy.id} 缺少 default Monster ${enemy.defaultMonsterId}`);
+export interface EnemySkillView extends EnemySkill {
+  detail?: EnemySkillDetail;
+}
 
-  const definitions: EnemySkillDefinitionView[] = [];
-  const seen = new Set<string>();
-  for (const monster of [
-    defaultMonster,
-    ...enemy.monsters.filter((candidate) => candidate.monsterId !== enemy.defaultMonsterId)
-  ])
-    for (const skill of monster.skills) {
-      if (seen.has(skill.id)) continue;
-      seen.add(skill.id);
-      definitions.push({
-        id: skill.id,
-        name: skill.name,
-        description: skill.description,
-        kind: skill.kind,
-        tag: skill.tag,
-        ...(skill.damageType ? { damageType: skill.damageType } : {}),
-        phases: skill.phases,
-        extraEffects: skill.extraEffects
-      });
-    }
-  return definitions;
+export function enemyDetailHref(templateId: string | number, monsterId?: string | number): string {
+  const path = `/enemies/${templateId}`;
+  return monsterId === undefined ? path : `${path}/?monster=${monsterId}`;
+}
+
+export function selectedEnemyMonster<Variant extends MonsterVariant>(
+  enemy: Pick<Enemy, 'template' | 'defaultMonsterId'> & { monsters: Variant[] },
+  params: URLSearchParams
+): Variant {
+  const requested = params.getAll('monster');
+  const monster =
+    (requested.length === 1 &&
+      enemy.monsters.find(({ monsterId }) => monsterId === requested[0])) ||
+    enemy.monsters.find(({ monsterId }) => monsterId === enemy.defaultMonsterId);
+  if (!monster) throw new Error(`Enemy ${enemy.template.monsterTemplateId} has no default Monster`);
+  return monster;
 }
 
 const compactStatValue = (value: EnemyStatValue): EnemyStatCompactValue =>
@@ -133,6 +56,9 @@ export function compactEnemyStatProgression(
     minLevel: progression.minLevel,
     maxLevel: progression.maxLevel,
     defaultLevel: progression.defaultLevel,
+    ...(progression.levels.some(({ level }, index) => level !== progression.minLevel + index)
+      ? { availableLevels: progression.levels.map(({ level }) => level) }
+      : {}),
     hp: progression.levels.map((row) => compactStatValue(row.hp)),
     attack: progression.levels.map((row) => compactStatValue(row.attack)),
     defence: progression.levels.map((row) => compactStatValue(row.defence)),
@@ -143,95 +69,22 @@ export function compactEnemyStatProgression(
   };
 }
 
-function buildEnemyMonsterPageData(monster: Monster, statsRef: number): EnemyMonsterPageData {
-  const skillsById = new Map(monster.skills.map((skill) => [skill.id, skill]));
-  const seenSummons = new Set<string>();
-  const summons = monster.summons.filter((summon) => {
-    if (seenSummons.has(summon.monsterId)) return false;
-    seenSummons.add(summon.monsterId);
-    return true;
-  });
-  const skillPhases = monster.skillPhases.map((phase) => ({
-    index: phase.index,
-    skills: phase.skillIds.map((skillId) => {
-      const skill = skillsById.get(skillId);
-      if (!skill)
-        throw new Error(
-          `Monster ${monster.monsterId} 阶段 ${phase.index} 引用了未知技能 ${skillId}`
-        );
-      return {
-        id: skill.id,
-        name: skill.name,
-        ...(skill.damageType ? { damageType: skill.damageType } : {})
-      };
-    })
-  }));
-  return {
-    monsterId: monster.monsterId,
-    statsRef,
-    weaknesses: monster.weaknesses,
-    resistances: monster.resistances,
-    specialResistances: monster.specialResistances,
-    summons,
-    skills: monster.skills.map((skill) => ({
-      id: skill.id,
-      ...(skill.detail ? { detail: skill.detail } : {})
-    })),
-    skillPhases
-  };
-}
-
 /** Resolve ordered, locale-ready skills for one concrete Monster without parser data. */
-export function getEnemySkillsForMonster(
-  page: EnemyDetailPageData,
-  monsterId: string
-): EnemySkillView[] {
+export function getEnemySkillsForMonster(page: Enemy, monsterId: string): EnemySkillView[] {
   const monster = page.monsters.find((candidate) => candidate.monsterId === monsterId);
-  if (!monster) throw new Error(`Enemy ${page.id} 缺少 Monster ${monsterId}`);
+  if (!monster)
+    throw new Error(`Enemy ${page.template.monsterTemplateId} 缺少 Monster ${monsterId}`);
   const definitions = new Map(page.skillDefinitions.map((skill) => [skill.id, skill]));
   return monster.skills.map((binding) => {
     const definition = definitions.get(binding.id);
     if (!definition) throw new Error(`Monster ${monsterId} 引用了未知技能定义 ${binding.id}`);
-    return {
-      ...definition,
-      ...(binding.detail ? { detail: binding.detail } : {})
-    };
+    return { ...definition, ...binding };
   });
-}
-
-export function buildEnemyDetailPageData(enemy: Enemy): EnemyDetailPageData {
-  if (!enemy.monsters.some((monster) => monster.monsterId === enemy.defaultMonsterId))
-    throw new Error(`Enemy ${enemy.id} 缺少 default Monster ${enemy.defaultMonsterId}`);
-
-  const statProgressions: EnemyStatProgressionCompact[] = [];
-  const progressionRefs = new Map<string, number>();
-  const monsters = enemy.monsters.map((monster) => {
-    const progression = compactEnemyStatProgression(monster.stats);
-    const key = JSON.stringify(progression);
-    let statsRef = progressionRefs.get(key);
-    if (statsRef === undefined) {
-      statsRef = statProgressions.length;
-      progressionRefs.set(key, statsRef);
-      statProgressions.push(progression);
-    }
-    return buildEnemyMonsterPageData(monster, statsRef);
-  });
-
-  return {
-    id: enemy.id,
-    name: enemy.name,
-    template: enemy.template,
-    defaultMonsterId: enemy.defaultMonsterId,
-    ...(enemy.description !== undefined ? { description: enemy.description } : {}),
-    monsters,
-    statProgressions,
-    skillDefinitions: buildEnemySkillDefinitions(enemy)
-  };
 }
 
 export function getEnemyMonsterStatProgression(
-  detail: EnemyDetailPageData,
-  monster: EnemyMonsterPageData
+  detail: Enemy,
+  monster: MonsterVariant
 ): EnemyStatProgressionCompact {
   const progression = detail.statProgressions[monster.statsRef];
   if (!progression)
@@ -245,7 +98,9 @@ export function getEnemyStatsAtLevel(
 ): EnemyStatsAtLevel | undefined {
   const numericLevel = Number(level);
   if (!Number.isInteger(numericLevel)) return undefined;
-  const index = numericLevel - progression.minLevel;
+  const index = progression.availableLevels
+    ? progression.availableLevels.indexOf(numericLevel)
+    : numericLevel - progression.minLevel;
   if (index < 0 || numericLevel > progression.maxLevel) return undefined;
   return {
     hp: progression.hp[index] ?? null,

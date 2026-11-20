@@ -3,6 +3,7 @@ import path from 'node:path';
 import type {
   CatalogEntry,
   DataManifest,
+  Enemy,
   EnemyCatalogEntry,
   HomepageVersionData,
   PublicSiteVersion,
@@ -44,6 +45,8 @@ export const getCatalog = (locale: SearchLocale, category: CategorySlug) =>
   readJson<CatalogEntry[]>(locale, 'catalogs', `${category}.json`);
 export const getEnemyCatalog = (locale: SearchLocale) =>
   readJson<EnemyCatalogEntry[]>(locale, 'catalogs', 'enemies.json');
+export const getEnemyDetailArtifact = (locale: SearchLocale, templateId: string) =>
+  readJson<Enemy>(locale, 'details', 'enemies', `${templateId}.json`);
 export const getRelicCatalog = (locale: SearchLocale) =>
   readJson<RelicCatalogEntry[]>(locale, 'catalogs', 'relics.json');
 export const getRelicProperties = (locale: SearchLocale) =>

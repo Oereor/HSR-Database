@@ -1,3 +1,4 @@
+import { enemyDetailHref } from './enemy-view.js';
 import type {
   DecimalString,
   EndgameEncounter,
@@ -104,11 +105,11 @@ export interface EndgameEnemyReference {
 }
 
 export interface EndgameEnemyDetailSource {
-  name?: string;
-  rank?: string;
+  template: { rank: string };
   monsters: Array<{
     monsterId: string;
-    weaknesses?: EndgameWeaknessView[];
+    name: string;
+    weaknesses: EndgameWeaknessView[];
   }>;
 }
 
@@ -123,9 +124,9 @@ export function resolveEndgameEnemyReference(
   const monster = detail.monsters.find((candidate) => candidate.monsterId === String(monsterId));
   if (!monster) throw new Error(`敌方百科缺少 Endgame 引用的具体 MonsterID：${monsterId}`);
   return {
-    name: detail.name,
-    rank: detail.rank,
-    weaknesses: monster.weaknesses ?? [],
+    name: monster.name,
+    rank: detail.template.rank,
+    weaknesses: monster.weaknesses,
     exists: true
   };
 }
@@ -453,8 +454,10 @@ export function buildOccurrenceView(
     ...(occurrence.voracityLevel !== undefined ? { voracityLevel: occurrence.voracityLevel } : {}),
     monsterId: occurrence.monsterId,
     monsterTemplateId: occurrence.monsterTemplateId,
-    name: occurrence.name || reference?.name || presentation.unknownEnemy,
-    ...(reference?.exists ? { enemyHref: `/enemies/${occurrence.monsterTemplateId}` } : {}),
+    name: reference?.name || occurrence.name || presentation.unknownEnemy,
+    ...(reference?.exists
+      ? { enemyHref: enemyDetailHref(occurrence.monsterTemplateId, occurrence.monsterId) }
+      : {}),
     ...(reference?.rank ? { rank: reference.rank } : {}),
     weaknesses: reference?.weaknesses ?? [],
     ...(reference?.portraitUrl ? { portraitUrl: reference.portraitUrl } : {}),

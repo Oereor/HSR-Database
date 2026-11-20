@@ -23,7 +23,7 @@ tarotFigurePath tarotIconPath pathCode elementCode releaseVersion categoryCode t
 combatLevels combatMetaLevels combatMeta effect code known tag damageType stanceDisplay`;
 const equipmentFields = `pieces effects effectRequirements required allowedMainSlots canBeSubStat releaseVersion
 equipmentRecommendation sourceLabelSources slotCode pathCode categoryCode typeCode`;
-const enemyFields = `template monsters defaultMonsterId defaultMonster modifiers stats weaknesses resistances
+const enemyFields = `template monsters defaultMonsterId representative variants statsRef statProgressions availableLevels weaknesses resistances
 specialResistances summons skills skillPhases phaseList tag damageType visible
 hardLevelGroup eliteGroup baseStats criticalDamage`;
 const endgameFields = `groups encounters battles stages schedule waveModel waves enemies orderedEnemies monsterGroups
@@ -66,7 +66,11 @@ function project(
 ): unknown {
   if (localizedContainers.has(key)) return undefined;
   // Public Enemy skills and their phase memberships depend on each locale's SkillDesc.
-  if (domain === 'enemies' && (key === 'skills' || key === 'skillPhases')) return undefined;
+  if (
+    domain === 'enemies' &&
+    (key === 'skills' || key === 'skillPhases' || key === 'skillDefinitions')
+  )
+    return undefined;
   if (Array.isArray(value))
     return value
       .map((item) => project(item, key, parent, admitted, domain))

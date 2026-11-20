@@ -4,7 +4,9 @@ import { validatePhaseHpSemantics } from './validation/phase-hp.js';
 import { normalizeEnemySkillKind, normalizeEnemySkillTag } from './enemy-skill-policy.js';
 import { createTextResolver } from './localization.js';
 import { parameterized } from './domain/shared.js';
-import { projectEnemySkillDescription } from './projection/enemy.js';
+import { projectEnemyIdentityText, projectEnemySkillDescription } from './projection/enemy.js';
+import { enemyTextSource, type EnemyDomainAudit } from './domain/enemy.js';
+import { compactEnemyStatProgression } from '../../src/lib/domain/enemy-view.js';
 import {
   buildSearchDocuments,
   loadPlayerAliases,
@@ -23,7 +25,6 @@ import type {
   LightCone
 } from '../../src/lib/domain/types.js';
 import {
-  collectEndgameSearchOccurrences,
   collectEndgameSearchTargets,
   endgameOccurrenceLocatorKey,
   GLOBAL_SEARCH_SCHEMA_VERSION,
@@ -36,7 +37,7 @@ import type {
   EndgameStage,
   EnemyOccurrence
 } from '../../src/lib/domain/endgame.js';
-import { isElementType } from '../../src/lib/domain/elements.js';
+import { isElementType, normalizeElementType } from '../../src/lib/domain/elements.js';
 import { gameTextToPlain } from '../../src/lib/domain/game-text.js';
 import { SKILL_EFFECT_LABELS } from './skill-combat.js';
 import { isPlayerFacingSkillConfig } from './skills.js';
@@ -52,13 +53,14 @@ import {
   type AvatarSpecialSkillTreeAudit
 } from './avatar-special-skills.js';
 import { auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
-import { readTable } from './raw.js';
+import { numberOf, readTable } from './raw.js';
 import { loadCharacterTeamRecommendations } from './team-recommendations.js';
 import { TEAM_RECOMMENDATIONS_ARTIFACT } from '../../src/lib/domain/team-recommendation.js';
 import {
   buildEnemySkillPhases,
-  enemySpecialResistanceLabels,
-  resolveCanonicalEnemyStats
+  normalizeEnemyPhases,
+  normalizeSpecialResistances,
+  resolveEnemyVariantStats
 } from './enemy-detail.js';
 import {
   addDecimals,
@@ -163,15 +165,7 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
   skillCombatAudit: { unknownEffects: string[]; unsupportedHiddenDiscriminants?: string[] };
   avatarSpecialSkillTreeAudit: AvatarSpecialSkillTreeAudit;
   specialEffectAudit: SpecialEffectAudit;
-  enemyAudit: {
-    canonicalJoin: { resolved: number; missing: string[] };
-    weaknessResistanceConflicts: Array<{ enemyId: string; element: string; value: number }>;
-    unknownDebuffResist: unknown[];
-    unresolvedSummons: unknown[];
-    unresolvedSkills: unknown[];
-    unresolvedExtraEffects: unknown[];
-    missingAttributes: Record<string, string[]>;
-  };
+  enemyAudit: EnemyDomainAudit;
   endgameAudit: EndgameAudit;
   localeAudits: Record<
     Locale,
@@ -429,14 +423,6 @@ for (const [category, count] of Object.entries(expected)) {
     await access(path.join(categoryRoot, 'details', category, `${item.id}.json`));
 }
 
-const enemyDetails = await Promise.all(
-  manifest.routes.enemies.map(
-    async (id) =>
-      JSON.parse(
-        await readFile(path.join(productRoot, 'details', 'enemies', `${id}.json`), 'utf8')
-      ) as Enemy
-  )
-);
 const [rawTemplates, rawConfigs, rawHardLevels, rawElites, rawEnemySkills] = await Promise.all([
   readTable<Record<string, any>>(rawRoot, 'MonsterTemplateConfig'),
   readTable<Record<string, any>>(rawRoot, 'MonsterConfig'),
@@ -488,173 +474,26 @@ for (const row of rawHardLevels) {
   rawHardLevelsByGroup.set(key, [...(rawHardLevelsByGroup.get(key) ?? []), row]);
 }
 const rawEliteById = new Map(rawElites.map((row) => [String(row.EliteGroup), row] as const));
-let weaknessResistanceConflictCount = 0;
-for (const enemy of enemyDetails) {
-  if ('stages' in enemy) throw new Error(`敌人 ${enemy.id} 仍包含已删除的 stages 字段`);
-  const template = rawTemplateById.get(enemy.id);
-  const config = rawConfigByMonsterId.get(enemy.id);
-  if (!template || !config || String(config.MonsterTemplateID) !== enemy.id)
-    throw new Error(`敌人 ${enemy.id} canonical join 失败`);
-  const expectedCriticalDamage = decimalOf(
-    template.CriticalDamageBase,
-    `MonsterTemplate.${enemy.id}.CriticalDamageBase`
-  );
-  if (enemy.template.baseStats.criticalDamage !== expectedCriticalDamage)
-    throw new Error(`敌人 ${enemy.id} Template 暴击伤害未从 raw config 正确透传`);
-  const expectedInitialDelayRatio =
-    template.InitialDelayRatio === undefined
-      ? undefined
-      : decimalOf(template.InitialDelayRatio, `MonsterTemplate.${enemy.id}.InitialDelayRatio`);
-  if (enemy.template.baseStats.initialDelayRatio !== expectedInitialDelayRatio)
-    throw new Error(`敌人 ${enemy.id} Template 首回合行动值未从 raw config 正确透传`);
-  if (enemy.defaultMonsterId !== enemy.id)
-    throw new Error(`敌人 ${enemy.id} 默认 MonsterID 必须是 canonical ID`);
-  if (enemy.defaultMonster.monsterId !== enemy.defaultMonsterId)
-    throw new Error(`敌人 ${enemy.id} defaultMonster 与 defaultMonsterId 不一致`);
-  const defaultMonster = enemy.monsters.find(
-    (monster) => monster.monsterId === enemy.defaultMonsterId
-  );
-  if (!defaultMonster) throw new Error(`敌人 ${enemy.id} 缺少 default MonsterConfig`);
-  if (JSON.stringify(defaultMonster) !== JSON.stringify(enemy.defaultMonster))
-    throw new Error(`敌人 ${enemy.id} defaultMonster 未引用 canonical Monster 数据`);
-  if (JSON.stringify(enemy.weaknesses) !== JSON.stringify(defaultMonster.weaknesses))
-    throw new Error(`敌人 ${enemy.id} Endgame 弱点兼容投影与 defaultMonster 不一致`);
-  for (const monster of enemy.monsters) {
-    if (monster.monsterTemplateId !== enemy.id)
-      throw new Error(`敌人 ${enemy.id} 的 Monster ${monster.monsterId} template reference 错误`);
-    const rawMonster = rawConfigByMonsterId.get(monster.monsterId);
-    if (!rawMonster || String(rawMonster.MonsterTemplateID) !== enemy.id)
-      throw new Error(`敌人 ${enemy.id} 的 Monster ${monster.monsterId} raw reference 无效`);
-    const rawHardLevelsForMonster =
-      rawHardLevelsByGroup.get(String(rawMonster.HardLevelGroup)) ?? [];
-    const rawEliteForMonster = rawEliteById.get(String(rawMonster.EliteGroup));
-    if (!rawEliteForMonster) throw new Error(`Monster ${monster.monsterId} 缺少 EliteGroup`);
-    const expectedMonsterStats = resolveCanonicalEnemyStats(
-      template,
-      rawMonster,
-      rawHardLevelsForMonster,
-      rawEliteForMonster
-    );
-    if (JSON.stringify(monster.stats) !== JSON.stringify(expectedMonsterStats))
-      throw new Error(`Monster ${monster.monsterId} 等级属性未通过共享 resolver 重算`);
-    if (
-      monster.resistances.some(
-        (resistance) => !isElementType(resistance.element) || !resistance.value
-      )
-    )
-      throw new Error(`Monster ${monster.monsterId} 包含零值或未知元素抗性`);
-    if (monster.monsterId === enemy.defaultMonsterId) {
-      weaknessResistanceConflictCount += monster.resistances.filter((resistance) =>
-        monster.weaknesses.some((weakness) => weakness.element === resistance.element)
-      ).length;
-      if (
-        new Set(monster.summons.map((summon) => summon.monsterTemplateId)).size !==
-        monster.summons.length
-      )
-        throw new Error(`敌人 ${enemy.id} canonical 召唤目标未按模板去重`);
-    }
-    for (const resistance of monster.specialResistances)
-      if (enemySpecialResistanceLabels[resistance.code] !== resistance.label)
-        throw new Error(`Monster ${monster.monsterId} 特殊状态抗性映射异常：${resistance.code}`);
-    for (const summon of monster.summons)
-      if (
-        !rawConfigByMonsterId.has(summon.monsterId) ||
-        !rawTemplateById.has(summon.monsterTemplateId) ||
-        summon.href !== `/enemies/${summon.monsterTemplateId}`
-      )
-        throw new Error(`Monster ${monster.monsterId} 召唤引用无效：${summon.monsterId}`);
+const rawMonstersByTemplate = new Map<string, string[]>();
+const expectedProgressions = new Map(
+  rawConfigs.map((raw) => {
+    const id = String(raw.MonsterID);
+    const templateId = String(raw.MonsterTemplateID);
+    const ids = rawMonstersByTemplate.get(templateId) ?? [];
+    ids.push(id);
+    rawMonstersByTemplate.set(templateId, ids);
+    const template = rawTemplateById.get(templateId);
+    const hard = rawHardLevelsByGroup.get(String(raw.HardLevelGroup));
+    const elite = rawEliteById.get(String(raw.EliteGroup));
+    if (!template || !hard || !elite)
+      throw new Error(`Monster ${id} has an invalid Template or difficulty reference`);
+    return [
+      id,
+      compactEnemyStatProgression(resolveEnemyVariantStats(template, raw, hard, elite))
+    ] as const;
+  })
+);
 
-    const rawSkillIds = (rawMonster.SkillList ?? []).map(String);
-    const generatedSkillIds = monster.skills.map((skill) => skill.id);
-    let generatedIndex = 0;
-    for (const rawSkillId of rawSkillIds)
-      if (rawSkillId === generatedSkillIds[generatedIndex]) generatedIndex += 1;
-    if (generatedIndex !== generatedSkillIds.length)
-      throw new Error(`Monster ${monster.monsterId} 技能链或顺序异常`);
-    for (const skill of monster.skills) {
-      if (skill.localizedTextStatus !== 'available' || !gameTextToPlain(skill.description).trim())
-        throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} 缺少公开描述`);
-      const rawSkill = rawSkillById.get(skill.id);
-      const context = { enemyId: enemy.id, skillId: skill.id };
-      if (
-        !rawSkill ||
-        normalizeEnemySkillKind(rawSkill.SkillTypeDesc, skill.kindLabel, context) !== skill.kind ||
-        normalizeEnemySkillTag(rawSkill.SkillTag, skill.tag.label, context).code !==
-          skill.tag.code ||
-        !skill.tag.known
-      )
-        throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} tag 映射异常`);
-      if (skill.phases.some((phase) => !Number.isSafeInteger(phase) || phase <= 0))
-        throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} PhaseList 无效`);
-      for (const forbidden of [
-        'SPHitBase',
-        'DelayRatio',
-        'ParamList',
-        'ModifierList',
-        'AttackType',
-        'SkillTriggerKey',
-        'AI'
-      ])
-        if (forbidden in skill)
-          throw new Error(
-            `Monster ${monster.monsterId} 技能 ${skill.id} 暴露构建期字段 ${forbidden}`
-          );
-    }
-    const phaseIndexes = monster.skillPhases.map((phase) => phase.index);
-    if (
-      !phaseIndexes.length ||
-      new Set(phaseIndexes).size !== phaseIndexes.length ||
-      phaseIndexes.some((phase) => !Number.isSafeInteger(phase) || phase <= 0) ||
-      phaseIndexes.some((phase, index) => index > 0 && phase <= phaseIndexes[index - 1])
-    )
-      throw new Error(`Monster ${monster.monsterId} 阶段索引无效或未升序`);
-    const publicSkillIds = new Set(generatedSkillIds);
-    const phaseSkillIds = new Set<string>();
-    for (const phase of monster.skillPhases) {
-      if (new Set(phase.skillIds).size !== phase.skillIds.length)
-        throw new Error(`Monster ${monster.monsterId} 阶段 ${phase.index} 包含重复技能`);
-      let previousRawIndex = -1;
-      for (const skillId of phase.skillIds) {
-        if (!publicSkillIds.has(skillId))
-          throw new Error(
-            `Monster ${monster.monsterId} 阶段 ${phase.index} 引用了非公开技能 ${skillId}`
-          );
-        const rawIndex = rawSkillIds.indexOf(skillId);
-        if (rawIndex <= previousRawIndex)
-          throw new Error(`Monster ${monster.monsterId} 阶段 ${phase.index} 技能顺序异常`);
-        previousRawIndex = rawIndex;
-        phaseSkillIds.add(skillId);
-      }
-    }
-    for (const skillId of generatedSkillIds)
-      if (!phaseSkillIds.has(skillId))
-        throw new Error(`Monster ${monster.monsterId} 公开技能 ${skillId} 未归入任何阶段`);
-
-    for (const [field, rawField] of [
-      ['hp', 'HP'],
-      ['attack', 'Attack'],
-      ['defence', 'Defence'],
-      ['speed', 'Speed'],
-      ['stance', 'Stance']
-    ] as const) {
-      const ratio = monster.modifiers[field].ratio;
-      const rawRatio = rawMonster[`${rawField}ModifyRatio`];
-      if (rawRatio !== undefined && ratio !== String(rawRatio.Value))
-        throw new Error(`Monster ${monster.monsterId} ${rawField} modifier provenance 不一致`);
-    }
-  }
-}
-if (
-  audit.enemyAudit.canonicalJoin.resolved !== enemyDetails.length ||
-  audit.enemyAudit.canonicalJoin.missing.length
-)
-  throw new Error('Enemy canonical join 审计摘要异常');
-if (audit.enemyAudit.weaknessResistanceConflicts.length !== weaknessResistanceConflictCount)
-  throw new Error('Enemy 弱点/抗性冲突审计摘要异常');
-if (audit.enemyAudit.unknownDebuffResist.length)
-  console.warn(
-    `Enemy 警告：${audit.enemyAudit.unknownDebuffResist.length} 个已分类 DebuffResist fallback`
-  );
 const search = JSON.parse(
   await readFile(path.join(staticGeneratedRoot, 'zh-CN', 'search.json'), 'utf8')
 ) as GlobalSearchIndex;
@@ -672,10 +511,7 @@ if (
 )
   throw new Error('搜索文档数量与目录数量不一致');
 const projectedEndgameNames = new Map(
-  collectEndgameSearchOccurrences(endgame).map(({ occurrence }) => [
-    String(occurrence.monsterTemplateId),
-    occurrence.name ?? ''
-  ])
+  searchInputs.catalogs.enemy.map(({ id, name }) => [id, name])
 );
 const expectedEndgameSearch = collectEndgameSearchTargets(endgame, projectedEndgameNames);
 if (search.locale !== 'zh-CN') throw new Error('搜索索引 locale 异常');
@@ -1052,31 +888,6 @@ for (const lightCone of lightCones) {
   }
 }
 
-const enemies = await Promise.all(
-  manifest.routes.enemies.map(
-    async (id) =>
-      JSON.parse(
-        await readFile(path.join(productRoot, 'details', 'enemies', `${id}.json`), 'utf8')
-      ) as Enemy
-  )
-);
-const enemyCatalog = JSON.parse(
-  await readFile(path.join(productRoot, 'catalogs', 'enemies.json'), 'utf8')
-) as import('../../src/lib/domain/types.js').EnemyCatalogEntry[];
-for (const enemy of enemies) {
-  const catalogEntry = enemyCatalog.find((entry) => entry.id === enemy.id);
-  if (!catalogEntry) throw new Error(`敌人 ${enemy.id} 缺少目录记录`);
-  if (JSON.stringify(catalogEntry.weaknesses) !== JSON.stringify(enemy.defaultMonster.weaknesses))
-    throw new Error(`敌人 ${enemy.id} 的 Overview 弱点与 defaultMonster 不一致`);
-  for (const weakness of enemy.weaknesses)
-    if (!isElementType(weakness.element))
-      throw new Error(`敌人 ${enemy.id} 使用未知弱点属性：${weakness.element}`);
-  for (const monster of enemy.monsters)
-    for (const resistance of monster.resistances)
-      if (!isElementType(resistance.element))
-        throw new Error(`Monster ${monster.monsterId} 使用未知抗性属性：${resistance.element}`);
-}
-
 async function readLocaleProjection(locale: Locale) {
   const root = path.join(generatedRoot, 'views', locale);
   const [catalogs, details, properties, datasets, localeHomepage, localeSearch] = await Promise.all(
@@ -1154,32 +965,197 @@ for (const { locale, projection } of [
   { locale: 'en' as const, projection: enProjection }
 ]) {
   const visibleById = displayableSkillIds.get(locale)!;
-  for (const enemy of (projection.details as { enemies: Enemy[] }).enemies) {
+  const resolver = skillDescriptionResolvers.find((entry) => entry.locale === locale)!.resolver;
+  const policy = getLocaleProjectionPolicy(locale);
+  const published = (projection.details as { enemies: Enemy[] }).enemies;
+  const namesByMonster = new Map<string, string>();
+  const selectionAudit: EnemyDomainAudit['defaultSelection'] = { sameId: 0, fallback: [] };
+  let conflictCount = 0;
+  for (const enemy of published) {
+    const { monsterTemplateId: templateId } = enemy.template;
+    const rawTemplate = rawTemplateById.get(templateId);
+    const rawMonsterIds = rawMonstersByTemplate.get(templateId);
+    if (!rawTemplate || !rawMonsterIds?.length)
+      throw new Error(`Enemy ${templateId} has an invalid raw identity`);
+    if (
+      !isDeepStrictEqual(
+        enemy.monsters.map(({ monsterId }) => monsterId),
+        rawMonsterIds
+      )
+    )
+      throw new Error(`Enemy ${templateId} Monster inventory differs from MonsterConfig`);
+    const defaultId = rawMonsterIds.includes(templateId)
+      ? templateId
+      : [...rawMonsterIds].sort((a, b) => a.length - b.length || (a < b ? -1 : a > b ? 1 : 0))[0];
+    if (enemy.defaultMonsterId !== defaultId)
+      throw new Error(`Enemy ${templateId} has the wrong default Monster`);
+    if (defaultId === templateId) selectionAudit.sameId += 1;
+    else selectionAudit.fallback.push({ templateId, monsterId: defaultId });
+
+    const templateName = projectEnemyIdentityText(
+      resolver,
+      enemyTextSource(rawTemplate.MonsterName, templateId, 'MonsterTemplateConfig.MonsterName'),
+      templateId,
+      'MonsterTemplateConfig.MonsterName',
+      policy.enemyName(templateId)
+    );
+    if (templateName !== enemy.template.name || rawTemplate.Rank !== enemy.template.rank)
+      throw new Error(
+        `Enemy ${templateId} ${locale} Template identity differs from MonsterTemplateConfig`
+      );
+    const baseFields = {
+      hp: 'HPBase',
+      attack: 'AttackBase',
+      defence: 'DefenceBase',
+      speed: 'SpeedBase',
+      stance: 'StanceBase',
+      criticalDamage: 'CriticalDamageBase',
+      effectResistance: 'StatusResistanceBase',
+      initialDelayRatio: 'InitialDelayRatio'
+    } as const;
+    for (const [field, rawField] of Object.entries(baseFields)) {
+      const value = rawTemplate[rawField];
+      const expected =
+        value === undefined
+          ? undefined
+          : decimalOf(value, `MonsterTemplate.${templateId}.${rawField}`);
+      if (enemy.template.baseStats[field as keyof typeof baseFields] !== expected)
+        throw new Error(
+          `Enemy ${templateId} Template attribute ${rawField} differs from raw config`
+        );
+    }
+
+    const skillsById = new Map(enemy.skillDefinitions.map((skill) => [skill.id, skill]));
+    for (const skill of skillsById.values()) {
+      const raw = rawSkillById.get(skill.id);
+      const context = { enemyId: templateId, skillId: skill.id };
+      if (
+        !raw ||
+        !gameTextToPlain(skill.description).trim() ||
+        normalizeEnemySkillKind(raw.SkillTypeDesc, '', context) !== skill.kind ||
+        normalizeEnemySkillTag(raw.SkillTag, skill.tag.label, context).code !== skill.tag.code ||
+        !skill.tag.known ||
+        !isDeepStrictEqual(skill.phases, normalizeEnemyPhases(raw.PhaseList)) ||
+        [
+          'SPHitBase',
+          'DelayRatio',
+          'ParamList',
+          'ModifierList',
+          'AttackType',
+          'SkillTriggerKey',
+          'AI'
+        ].some((key) => key in skill)
+      ) {
+        throw new Error(
+          `Enemy ${templateId} skill ${skill.id} differs from its definition or exposes raw fields`
+        );
+      }
+    }
     for (const monster of enemy.monsters) {
-      const rawMonster = rawConfigByMonsterId.get(monster.monsterId);
-      if (!rawMonster) throw new Error(`Monster ${monster.monsterId} 缺少 raw config`);
+      const id = monster.monsterId;
+      const rawMonster = rawConfigByMonsterId.get(id)!;
+      const expectedName = projectEnemyIdentityText(
+        resolver,
+        enemyTextSource(rawMonster.MonsterName, id, 'MonsterName'),
+        id,
+        'MonsterName',
+        templateName
+      );
+      const expectedIntroduction = projectEnemyIdentityText(
+        resolver,
+        enemyTextSource(rawMonster.MonsterIntroduction, id, 'MonsterIntroduction'),
+        id,
+        'MonsterIntroduction'
+      );
+      if (monster.name !== expectedName || monster.introduction !== expectedIntroduction)
+        throw new Error(`Monster ${id} ${locale} name or introduction differs from MonsterConfig`);
+      namesByMonster.set(id, monster.name);
+      if (
+        !isDeepStrictEqual(enemy.statProgressions[monster.statsRef], expectedProgressions.get(id))
+      )
+        throw new Error(`Monster ${id} stats differ from its own difficulty and modifiers`);
+      const rawWeaknesses = [
+        ...new Set((rawMonster.StanceWeakList as string[]).map(normalizeElementType))
+      ];
+      const rawResistances = (
+        rawMonster.DamageTypeResistance as Array<{ DamageType: string; Value: unknown }>
+      ).flatMap(({ DamageType, Value }) => {
+        const value = numberOf(Value);
+        return value ? [{ element: normalizeElementType(DamageType), value }] : [];
+      });
+      if (
+        !isDeepStrictEqual(
+          monster.weaknesses.map(({ element }) => element),
+          rawWeaknesses
+        ) ||
+        !isDeepStrictEqual(
+          monster.resistances.map(({ element, value }) => ({ element, value })),
+          rawResistances
+        ) ||
+        !isDeepStrictEqual(
+          monster.specialResistances,
+          normalizeSpecialResistances(rawMonster.DebuffResist).values.map(({ code, value }) => ({
+            code,
+            value,
+            label: policy.specialResistanceLabels[code] ?? code
+          }))
+        )
+      )
+        throw new Error(`Monster ${id} resistances or weaknesses differ from raw config`);
+      conflictCount += monster.resistances.filter(({ element }) =>
+        rawWeaknesses.includes(element)
+      ).length;
+      const summonIds = [
+        ...new Set<string>(
+          (rawMonster.SummonIDList ?? []).map(String).filter((id: string) => id && id !== '0')
+        )
+      ];
+      if (
+        !isDeepStrictEqual(
+          monster.summons.map(({ monsterId }) => monsterId),
+          summonIds
+        )
+      )
+        throw new Error(`Monster ${id} summons differ from SummonIDList`);
       const expectedSkillIds = [
-        ...new Set(
+        ...new Set<string>(
           (rawMonster.SkillList ?? []).map(String).filter((id: string) => visibleById.get(id))
         )
       ];
       if (
-        JSON.stringify(monster.skills.map((skill) => skill.id)) !== JSON.stringify(expectedSkillIds)
-      )
-        throw new Error(`Monster ${monster.monsterId} ${locale} 技能显示范围与 SkillDesc 不一致`);
-      if (
-        monster.skills.some(
-          (skill) =>
-            skill.localizedTextStatus !== 'available' || !gameTextToPlain(skill.description).trim()
+        !isDeepStrictEqual(
+          monster.skills.map(({ id }) => id),
+          expectedSkillIds
+        ) ||
+        !isDeepStrictEqual(
+          monster.skillPhases,
+          buildEnemySkillPhases(expectedSkillIds.map((id) => skillsById.get(id)!))
         )
-      )
-        throw new Error(`Monster ${monster.monsterId} ${locale} 包含无公开描述的技能`);
-      if (
-        JSON.stringify(monster.skillPhases) !==
-        JSON.stringify(buildEnemySkillPhases(monster.skills))
-      )
-        throw new Error(`Monster ${monster.monsterId} ${locale} 阶段与公开技能不一致`);
+      ) {
+        throw new Error(
+          `Monster ${id} ${locale} skills or phases differ from MonsterConfig and TextMap`
+        );
+      }
     }
+  }
+  if (
+    !isDeepStrictEqual(audit.enemyAudit.defaultSelection, selectionAudit) ||
+    audit.enemyAudit.weaknessResistanceConflicts.length !== conflictCount
+  ) {
+    throw new Error('Enemy default selection or weakness/resistance audit differs from raw data');
+  }
+  for (const dataset of Object.values(
+    projection.endgame.datasets
+  ) as EndgameDatasetByMode[EndgameMode][]) {
+    for (const group of dataset.groups)
+      for (const encounter of group.encounters)
+        for (const battle of encounter.battles)
+          for (const stage of battle.stages)
+            for (const occurrence of occurrencesOf(stage))
+              if (occurrence.name !== namesByMonster.get(String(occurrence.monsterId)))
+                throw new Error(
+                  `Endgame ${locale} occurrence ${occurrence.monsterId} has the wrong name`
+                );
   }
 }
 

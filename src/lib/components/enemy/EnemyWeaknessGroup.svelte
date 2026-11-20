@@ -9,6 +9,7 @@
 
   export let weaknesses: ElementLabel[];
   export let size: 'default' | 'overview' = 'default';
+  export let id: string | undefined = undefined;
 
   $: accessibilityLabel = m.weaknesses_aria({
     weaknesses: formatLocalizedList(
@@ -20,6 +21,7 @@
 
 {#if weaknesses.length}
   <span
+    {id}
     class="enemy-weakness-group"
     class:enemy-weakness-group--overview={size === 'overview'}
     role="group"

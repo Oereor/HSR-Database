@@ -40,7 +40,10 @@ export function normalizeEnemyRankFilter(value: string): string {
 }
 
 export function isEnemyCatalogEntry(entry: CatalogEntry): entry is EnemyCatalogEntry {
-  return Array.isArray((entry as Partial<EnemyCatalogEntry>).weaknesses);
+  return (
+    Array.isArray((entry as Partial<EnemyCatalogEntry>).representative?.weaknesses) &&
+    Array.isArray((entry as Partial<EnemyCatalogEntry>).variants)
+  );
 }
 
 export type EnemyOverviewFilterState = {
@@ -76,7 +79,7 @@ export function getWeaknessMatchCount(
 ): number {
   if (selectedWeaknesses.size === 0) return 0;
   return new Set(
-    entry.weaknesses
+    entry.representative.weaknesses
       .map((weakness) => weakness.element)
       .filter((element) => selectedWeaknesses.has(element))
   ).size;

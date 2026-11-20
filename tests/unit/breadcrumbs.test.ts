@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { resolveBreadcrumbs, type BreadcrumbData } from '../../src/lib/breadcrumbs';
+import type { DecimalString } from '../../src/lib/domain/endgame';
+import type { Enemy } from '../../src/lib/domain/types';
 import { localizedHref } from '../../src/lib/i18n/routing';
 import type { Locale } from '../../src/lib/paraglide/runtime.js';
 
@@ -23,17 +25,19 @@ describe.each(['zh-CN', 'en'] as const)('route breadcrumbs (%s)', (locale) => {
   );
 
   it.each(['characters', 'light-cones', 'relics', 'enemies'])(
-    'builds catalog and detail parents (%s)',
+    'builds the catalog parent (%s)',
     (category) => {
-      const catalog = resolve('/[category=category]', { category }, {}, locale);
-      expect(catalog).toHaveLength(2);
-      const data = {
-        detail: { id: 'synthetic', name: 'Synthetic name', template: { name: 'Synthetic enemy' } }
-      };
+      expect(resolve('/[category=category]', { category }, {}, locale)).toHaveLength(2);
+    }
+  );
+
+  it.each(['characters', 'light-cones', 'relics'])(
+    'uses the top-level detail identity (%s)',
+    (category) => {
       const items = resolve(
         '/[category=category]/[id]',
         { category, id: 'synthetic' },
-        data,
+        { detail: { id: 'synthetic', name: 'Synthetic name' } },
         locale
       );
       expect(items.map(({ href }) => href)).toEqual([
@@ -41,11 +45,33 @@ describe.each(['zh-CN', 'en'] as const)('route breadcrumbs (%s)', (locale) => {
         localizedHref(`/${category}`, locale),
         undefined
       ]);
-      expect(items.at(-1)?.label).toBe(
-        category === 'enemies' ? 'Synthetic enemy' : 'Synthetic name'
-      );
+      expect(items.at(-1)?.label).toBe('Synthetic name');
     }
   );
+
+  it('uses the enemy Template identity and rejects a mismatched route ID', () => {
+    const unit = '1' as DecimalString;
+    const detail: Pick<Enemy, 'template' | 'defaultMonsterId'> = {
+      template: {
+        monsterTemplateId: '123',
+        name: 'Synthetic Template',
+        rank: 'Elite',
+        baseStats: { hp: unit, attack: unit, defence: unit, criticalDamage: unit }
+      },
+      defaultMonsterId: '12301'
+    };
+    const route = '/[category=category]/[id]';
+    const items = resolve(route, { category: 'enemies', id: '123' }, { detail }, locale);
+    expect(items.map(({ href }) => href)).toEqual([
+      localizedHref('/', locale),
+      localizedHref('/enemies', locale),
+      undefined
+    ]);
+    expect(items.at(-1)).toEqual({ label: detail.template.name });
+    expect(resolve(route, { category: 'enemies', id: '12301' }, { detail }, locale)).toHaveLength(
+      2
+    );
+  });
 
   it.each(['moc', 'pf', 'as', 'aa'])('uses the existing mode and period payload (%s)', (mode) => {
     const modeItems = resolve(

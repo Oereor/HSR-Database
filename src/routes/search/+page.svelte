@@ -207,12 +207,8 @@
           >{m.search_results_enemies()}</SectionHeading
         >
         <OverviewGrid>
-          {#each results.enemies.slice(0, limits.enemies) as result (result.id)}
-            <EnemyOverviewCard
-              entry={result}
-              href={localizedHref(`/enemies/${result.id}`)}
-              imageUrl={data.enemyPortraits[result.id]}
-            />
+          {#each results.enemies.slice(0, limits.enemies) as { entry, variant } (entry.id)}
+            <EnemyOverviewCard {entry} {variant} imageUrl={data.enemyPortraits[entry.id]} />
           {/each}
         </OverviewGrid>
         <SearchResultWindow

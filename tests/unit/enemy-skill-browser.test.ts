@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { parseDecimal } from '../../scripts/data/decimal';
-import type { EnemySkillPhaseView, EnemySkillView } from '../../src/lib/domain/enemy-view';
+import type { EnemySkillView } from '../../src/lib/domain/enemy-view';
+import type { EnemySkillPhase } from '../../src/lib/domain/types';
 import {
   enemySkillsInPhase,
   resolveEnemySkillSelection
@@ -12,9 +13,9 @@ import {
 } from '../../src/lib/domain/enemy-skill-format';
 
 const skill = (id: string): EnemySkillView => ({ id }) as EnemySkillView;
-const phase = (index: number, ids: string[]): EnemySkillPhaseView => ({
+const phase = (index: number, ids: string[]): EnemySkillPhase => ({
   index,
-  skills: ids.map((id) => ({ id })) as EnemySkillPhaseView['skills']
+  skillIds: ids
 });
 
 describe('Enemy Skill Browser state and formatting', () => {

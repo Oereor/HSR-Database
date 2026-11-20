@@ -68,6 +68,28 @@ test('shell bounds stay stable when navigation removes the scrollbar', async ({
 });
 
 for (const prefix of ['', '/en']) {
+  test(`enemy detail breadcrumb follows the Template (${prefix || 'zh-CN'})`, async ({ page }) => {
+    await page.goto(`${prefix}/enemies/1002015/?monster=100201506`);
+    await expect(page.locator('[data-selected-monster]')).toHaveAttribute(
+      'data-selected-monster',
+      '100201506'
+    );
+    const templateName = await page.locator('[data-enemy-hero] h1').innerText();
+    expect(await page.locator('[data-selected-monster] [data-monster-name]').innerText()).not.toBe(
+      templateName
+    );
+    const breadcrumb = page.locator('[data-slot="breadcrumb"]');
+    const current = breadcrumb.locator('[aria-current="page"]');
+    await expect(current).toHaveText(templateName);
+    await expect(current).not.toHaveAttribute('href');
+    const parents = breadcrumb.locator('a');
+    await expect(parents).toHaveCount(2);
+    await expect(parents.first()).toHaveAttribute('href', `${prefix}/`);
+    await expect(parents.last()).toHaveAttribute('href', `${prefix}/enemies/`);
+    await parents.last().click();
+    await expect(page).toHaveURL(new RegExp(`${prefix}/enemies/$`));
+  });
+
   test(`four-level breadcrumbs keep the current page visible on narrow screens (${prefix || 'zh-CN'})`, async ({
     page
   }) => {

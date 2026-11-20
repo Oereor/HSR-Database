@@ -1,3 +1,4 @@
+import { parseDecimal } from '../../scripts/data/decimal';
 import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { describe, expect, it, vi } from 'vitest';
 import type { Character, DataManifest, Enemy } from '../../src/lib/domain/types';
@@ -146,55 +147,48 @@ const character = (id: string): Character =>
     }
   }) as Character;
 
-const enemyLevel = (level: number) => ({
-  level,
-  hp: { status: 'unavailable' as const, reason: 'missing-base' as const },
-  attack: { status: 'unavailable' as const, reason: 'missing-base' as const },
-  defence: { status: 'unavailable' as const, reason: 'missing-base' as const },
-  speed: { status: 'unavailable' as const, reason: 'missing-base' as const },
-  toughness: { status: 'unavailable' as const, reason: 'missing-base' as const },
-  effectHit: { status: 'unavailable' as const, reason: 'missing-base' as const },
-  effectResistance: { status: 'unavailable' as const, reason: 'missing-base' as const }
-});
-
-const enemy = (templateId = '100', monsterId = '101'): Enemy =>
-  ({
-    id: templateId,
+const enemy = (templateId = '100', monsterId = '101'): Enemy => ({
+  template: {
+    monsterTemplateId: templateId,
     name: 'Enemy',
-    kind: 'enemy',
     rank: 'Minion',
-    template: {
-      monsterTemplateId: templateId,
+    baseStats: {
+      hp: parseDecimal('10'),
+      attack: parseDecimal('1'),
+      defence: parseDecimal('1'),
+      criticalDamage: parseDecimal('0.5')
+    }
+  },
+  monsters: [
+    {
+      monsterId,
       name: 'Enemy',
-      rank: 'Minion',
-      baseStats: { hp: '10', attack: '1', defence: '1', criticalDamage: '0.5' }
-    },
-    monsters: [
-      {
-        monsterId,
-        monsterTemplateId: templateId,
-        hardLevelGroup: '1',
-        modifiers: Object.fromEntries(
-          ['hp', 'attack', 'defence', 'speed', 'stance'].map((field) => [field, { ratio: '1' }])
-        ),
-        stats: {
-          minLevel: 1,
-          maxLevel: 2,
-          defaultLevel: 2,
-          levels: [enemyLevel(1), enemyLevel(2)]
-        },
-        weaknesses: [],
-        resistances: [],
-        specialResistances: [],
-        summons: [],
-        skills: [],
-        skillPhases: []
-      }
-    ],
-    defaultMonsterId: monsterId,
-    defaultMonster: { monsterId },
-    weaknesses: []
-  }) as unknown as Enemy;
+      statsRef: 0,
+      weaknesses: [],
+      resistances: [],
+      specialResistances: [],
+      summons: [],
+      skills: [],
+      skillPhases: [{ index: 1, skillIds: [] }]
+    }
+  ],
+  defaultMonsterId: monsterId,
+  skillDefinitions: [],
+  statProgressions: [
+    {
+      minLevel: 1,
+      maxLevel: 2,
+      defaultLevel: 2,
+      hp: [parseDecimal('10'), parseDecimal('11')],
+      attack: [null, null],
+      defence: [null, null],
+      speed: [null, null],
+      toughness: [null, null],
+      effectHit: [null, null],
+      effectResistance: [null, null]
+    }
+  ]
+});
 
 function addCharacterFixture(
   manifest: DataManifest,
@@ -224,7 +218,13 @@ function addEnemyFixture(
   monsterId: string
 ): void {
   manifest.routes.enemies.push(templateId);
-  projection.catalogs.enemies.push({ id: templateId, name: `Enemy ${templateId}` });
+  projection.catalogs.enemies.push({
+    id: templateId,
+    name: 'Enemy',
+    type: 'Minion',
+    representative: { monsterId, weaknesses: [] },
+    variants: [{ monsterId, name: 'Enemy' }]
+  });
   projection.details.enemies.push(enemy(templateId, monsterId));
   projection.search.documents.push({
     key: `enemy:${templateId}`,
@@ -306,7 +306,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
           monsterId: 101,
           monsterTemplateId: 100,
           name: 'Enemy',
-          enemyHref: '/enemies/100',
+          enemyHref: '/enemies/100/?monster=101',
           weaknesses: [],
           hp: { roundedPerBar: '240' },
           speed: { rounded: '-' },
@@ -334,7 +334,15 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
         characters: [],
         'light-cones': [],
         relics: [],
-        enemies: [{ id: '100', name: 'Enemy' }]
+        enemies: [
+          {
+            id: '100',
+            name: 'Enemy',
+            type: 'Minion',
+            representative: { monsterId: '101', weaknesses: [] },
+            variants: [{ monsterId: '101', name: 'Enemy' }]
+          }
+        ]
       },
       details: { characters: [], 'light-cones': [], relics: [], enemies: [enemy()] },
       relicProperties: [],
@@ -444,7 +452,7 @@ describe('focused robustness invariants', () => {
             id: '100',
             monsters: [
               {
-                modifiers: { hp: { ratio: '1' } },
+                statsRef: 0,
                 skills: [{ id: '1' }],
                 skillPhases: [{ index: 1, skillIds: ['1'] }]
               }
@@ -459,7 +467,7 @@ describe('focused robustness invariants', () => {
     expect(() =>
       assertCrossLocaleStructuralParity(withEnemySkills, missingLocalizedSkill)
     ).not.toThrow();
-    missingLocalizedSkill.details.enemies[0].monsters[0].modifiers.hp.ratio = '2';
+    missingLocalizedSkill.details.enemies[0].monsters[0].statsRef = 2;
     expect(() => assertCrossLocaleStructuralParity(withEnemySkills, missingLocalizedSkill)).toThrow(
       'Cross-locale structural mismatch in details.enemies'
     );
@@ -550,7 +558,6 @@ describe('focused robustness invariants', () => {
         { code: 'unresolved-skill', identity: '1001:999', detail: 'SkillID 999 is missing' }
       ],
       enemies: {
-        canonicalJoin: { resolved: 1, missing: [] },
         unresolvedSummons: [],
         unresolvedSkills: [{ enemyId: '100', skillId: '999' }],
         unresolvedExtraEffects: []
@@ -597,19 +604,36 @@ describe('focused robustness invariants', () => {
       duplicate.projection.details.enemies[0].monsters[0]
     );
     expect(validateProductProjection(duplicate.manifest, duplicate.projection).errors).toEqual(
-      expect.arrayContaining([expect.objectContaining({ code: 'duplicate-monster' })])
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: 'artifact',
+          message: expect.stringContaining('invalid Monster')
+        })
+      ])
     );
 
     const wrongOwner = fixture();
-    wrongOwner.projection.details.enemies[0].monsters[0].monsterTemplateId = '999';
+    Object.assign(wrongOwner.projection.details.enemies[0].monsters[0], {
+      monsterTemplateId: '999'
+    });
     expect(validateProductProjection(wrongOwner.manifest, wrongOwner.projection).errors).toEqual(
-      expect.arrayContaining([expect.objectContaining({ code: 'monster-owner' })])
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: 'artifact',
+          message: expect.stringContaining('invalid Monster')
+        })
+      ])
     );
 
     const missing = fixture();
     missing.projection.details.enemies[0].defaultMonsterId = '999';
     expect(validateProductProjection(missing.manifest, missing.projection).errors).toEqual(
-      expect.arrayContaining([expect.objectContaining({ code: 'default-fk' })])
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: 'artifact',
+          message: expect.stringContaining('invalid default')
+        })
+      ])
     );
   });
 
@@ -686,25 +710,28 @@ describe('focused robustness invariants', () => {
     );
 
     const levels = fixture();
-    levels.projection.details.enemies[0].monsters[0].stats.levels = [
-      { level: 2 },
-      { level: 1 },
-      { level: 1 }
-    ] as never;
+    levels.projection.details.enemies[0].statProgressions[0].availableLevels = [1, 1, 2];
     expect(validateProductProjection(levels.manifest, levels.projection).errors).toEqual(
-      expect.arrayContaining([expect.objectContaining({ code: 'stat-progression' })])
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: 'artifact',
+          message: expect.stringContaining('invalid stat progression')
+        })
+      ])
     );
 
     const requiredField = fixture();
-    delete (
-      requiredField.projection.details.enemies[0].monsters[0].modifiers as unknown as Record<
-        string,
-        unknown
-      >
-    ).hp;
+    requiredField.projection.details.enemies[0].monsters[0].statsRef = 999;
     expect(
       validateProductProjection(requiredField.manifest, requiredField.projection).errors
-    ).toEqual(expect.arrayContaining([expect.objectContaining({ code: 'required-field' })]));
+    ).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: 'artifact',
+          message: expect.stringContaining('invalid Monster or stat reference')
+        })
+      ])
+    );
 
     const count = fixture();
     count.projection.occurrenceShards['100'].occurrences[

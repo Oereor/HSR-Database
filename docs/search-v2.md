@@ -22,6 +22,8 @@
 Endgame 搜索目标以稳定 `MonsterTemplateID` 标识，同一目标关联具体 mode、赛期、关卡、波次与 Monster occurrence locators。
 目标显示名称由本语言 Enemy 投影提供，身份不依赖文本 hash 或名称桶；缺少必要名称会报错，不悄悄删除出场记录。
 
+敌方目录与全局搜索按 Template 返回一张卡片。模板名称作为主名称，Catalog 保存默认 Monster 的弱点与各 Monster 的名称和 ID，目录检索名称与完整 ID。全局 FlexSearch 将去重后的具体名称收录为官方别名，通过目录关联精确 MonsterID。两处搜索共用定位规则。精确 MonsterID 优先，命中模板名称时打开默认选择。仅命中个体名称时按完整、前缀、包含的顺序比较，唯一最佳结果通过 `?monster=<MonsterID>` 定位，名称并列时打开默认选择。终局搜索仍按 Template 匹配出场分片，每张出场卡保留具体 Monster 名称与深链。
+
 ## 人工别名维护
 
 人工文件的 `characters` 以官方快照中的 AvatarID 为 key，每项形状为 `{ "playerAliases": string[] }`。
@@ -62,7 +64,7 @@ Development 与完整 CI profile 在输入准备后执行名称 check；Producti
 
 ## 产物与查询流程
 
-`src/lib/generated/views/{locale}/search-inputs.json` 保存本语言名称、catalog 的 `id/name` 投影及稳定 Endgame 目标。
+`src/lib/generated/views/{locale}/search-inputs.json` 保存本语言名称、catalog 的 `id/name` 投影、Enemy 的具体 Monster 名称与 ID，以及稳定 Endgame 目标。
 公开 bundle 位于 `static/generated/{locale}/search.json`；出场 shard 通过 `/generated/{locale}/endgame-occurrences/{targetId}` 预渲染 endpoint 发布，不由静态源文件遮盖。
 生成数据 manifest 版本由源码与架构契约决定，历史报告中的版本不能用于当前排障。
 有效缓存下的 alias-only 变更复用输入并增量刷新中文搜索产物；非法 metadata 不进入离线 fallback。
@@ -76,7 +78,7 @@ Development 与完整 CI profile 在输入准备后执行名称 check；Producti
 5. 命中 Endgame 目标后按 locale 与 targetId 加载 shard，Promise 缓存合并并发，失败移除缓存供重试；按 locator 去重并保持赛期及出场顺序。
 6. 页面丢弃迟到请求结果，单个目标加载失败保留其他可用结果并显示不可用状态；每个普通类别及 Endgame 模式首批 100 张，每次增加 100 张，service 保留完整结果。
 
-在中英文 `/endgame/` 总览提交查询时，`?q=` 记录已提交的值。赛期搜索直接使用四个模式的现有元数据，支持名称子串与完整 `groupId`；赛期状态由客户端时钟更新。敌方出场搜索按需读取当前语言的现有 bundle，按敌方名称或完整 `MonsterTemplateID` 召回，使用同一 shard 加载机制。每张卡片保留自身出场数据，按模式、赛期、关卡、节点和阶段或波次归组。关卡链接通过 `?encounter=` 选中关卡，敌方卡片仍可打开对应百科页面。搜索 bundle 与 shard 保持原有数据版本。
+在中英文 `/endgame/` 总览提交查询时，`?q=` 记录已提交的值。赛期搜索直接使用四个模式的现有元数据，支持名称子串与完整 `groupId`；赛期状态由客户端时钟更新。敌方出场搜索按需读取当前语言的现有 bundle，按敌方名称或完整 `MonsterTemplateID` 召回，使用同一 shard 加载机制。每张卡片保留自身出场数据，按模式、赛期、关卡、节点和阶段或波次归组。关卡链接通过 `?encounter=` 选中关卡，敌方卡片打开百科中的对应 Monster。搜索 bundle 与 shard 保持原有数据版本。
 
 Endgame 总览用赛期和关卡链接组织出场卡片。定位标签依据完整关卡的槽位和波次数决定，与查询命中数量无关。MoC、PF 和 AA 使用详情页中的连续波次编号，AS 按阶段和阶段内波次定位。
 

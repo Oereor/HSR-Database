@@ -2,21 +2,17 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { Enemy } from '../../src/lib/domain/types';
-import {
-  buildEnemyDetailPageData,
-  getEnemySkillsForMonster
-} from '../../src/lib/domain/enemy-view';
+import { getEnemySkillsForMonster } from '../../src/lib/domain/enemy-view';
 import { getEnemyDetail } from '../../src/lib/server/enemies';
 import { generatedRoot } from '../../scripts/data/paths';
 
 async function page(locale: 'zh-CN' | 'en', id: string) {
-  const rich = JSON.parse(
+  return JSON.parse(
     await readFile(
       path.join(generatedRoot, 'views', locale, 'details', 'enemies', `${id}.json`),
       'utf8'
     )
   ) as Enemy;
-  return buildEnemyDetailPageData(rich);
 }
 
 async function skill(locale: 'zh-CN' | 'en', enemyId: string, monsterId: string, skillId: string) {
@@ -109,7 +105,10 @@ describe('enemy skill page projection', () => {
     expect(
       english.monsters.find(({ monsterId }) => monsterId === '8034010')?.summons
     ).toContainEqual(
-      expect.objectContaining({ monsterId: '8032030', href: '/en/enemies/8032030/' })
+      expect.objectContaining({
+        monsterId: '8032030',
+        href: '/en/enemies/8032030/?monster=8032030'
+      })
     );
   });
 
