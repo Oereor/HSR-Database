@@ -48,6 +48,12 @@ AvatarExRankConfig projects to an independent exEidolons collection with namespa
 
 The verified Aha E2 series_ref_skill_desc macro becomes a structured DescriptionToken interaction carrying the root skill and fixed E2 state. DescriptionText renders a button and opens the shared effects dialog; it preserves surrounding rich text and does not change the skill card's selected condition. Unsupported macros receive explicit localization diagnostics. Aha's Point23 is visually and semantically a skill node, with a separate free/default training classification, fixed level 1 and no player trace-state inference. Only AvatarID 1511 selects the dedicated elation-aha layout.
 
+## Character enhancement comparison
+
+Manifest schema 72 binds the comparison route inventory and one versioned artifact per enhanced character and locale under `views/{locale}/enhancement-comparisons/`. The comparison route serializes only its own shard. The ordinary detail route keeps its existing Profile payload.
+
+Build-time association uses the enhanced declarations with SkillTree anchors and ordered skill membership, trace identity and prerequisites, and Eidolon rank membership. Detailed and simple official descriptions use their respective parameter lists from the matched form at a shared detail-default skill level. The matching TextMap supplies localized descriptions, comments and the season hint. Projection emits DescriptionTokens and records unavailable text, unresolved associations, Profile-only differences and wording differences between official comparisons and Profiles in the data audit. The default filter includes official and structural changes. The expanded filter includes matched Profile-only entries.
+
 ## Character Build Guide
 
 Manifest schema 70 includes the locale-neutral schema 1 `runtime/character-team-recommendations.json` artifact. `TeamBuildConfig` owns team IDs, positions, primary members and backup references. `TeamBuildGroupConfig` supplies ordered candidate IDs through a single shared group index. Sync verifies the published avatar and group references before replacing artifacts. Full validation rebuilds the team data from the locked tables and compares it with the artifact.

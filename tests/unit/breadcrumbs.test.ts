@@ -49,6 +49,23 @@ describe.each(['zh-CN', 'en'] as const)('route breadcrumbs (%s)', (locale) => {
     }
   );
 
+  it('links a comparison to the matching character and previous form', () => {
+    const items = resolveBreadcrumbs({
+      routeId: '/characters/[id]/enhancement-comparison',
+      params: { id: '123' },
+      locale,
+      data: { detail: { id: '123', name: 'Synthetic character' } },
+      comparisonBaseForm: true
+    });
+    expect(items.map(({ href }) => href)).toEqual([
+      localizedHref('/', locale),
+      localizedHref('/characters', locale),
+      localizedHref('/characters/123/?enhanced=0', locale),
+      undefined
+    ]);
+    expect(items.at(-2)?.label).toBe('Synthetic character');
+  });
+
   it('uses the enemy Template identity and rejects a mismatched route ID', () => {
     const unit = '1' as DecimalString;
     const detail: Pick<Enemy, 'template' | 'defaultMonsterId'> = {

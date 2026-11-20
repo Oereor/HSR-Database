@@ -39,6 +39,11 @@ for (const id of ['1212', '1205', '1005']) {
     if (isMobile) {
       expect(Math.abs(after!.x - before!.x)).toBeLessThan(2);
       expect(after!.y).toBeGreaterThan(before!.y);
+      for (const tab of await page.getByRole('tab').all()) {
+        const bounds = await tab.boundingBox();
+        expect(bounds?.width).toBeGreaterThanOrEqual(44);
+        expect(bounds?.height).toBeGreaterThanOrEqual(44);
+      }
     } else {
       expect(Math.abs(after!.y - before!.y)).toBeLessThan(2);
       expect(after!.x).toBeGreaterThan(before!.x);

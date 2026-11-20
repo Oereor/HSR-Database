@@ -157,7 +157,10 @@ describe('character enhancement comparison data', () => {
         before: comparisonProfileIds(view.profiles.base),
         after: comparisonProfileIds(view.profiles.enhanced!)
       });
-      expect(diagnostics).toEqual([]);
+      expect(diagnostics.map(({ code, field }) => [code, field])).toEqual([
+        ['official-profile-text', 'skills:12.DescBefore'],
+        ['official-profile-text', 'skills:12.DescAfter']
+      ]);
       expect(comparison.seasonId).toBe('5');
       const item = comparison.items[0];
       expect(item).toMatchObject({
@@ -187,7 +190,9 @@ describe('character enhancement comparison data', () => {
       expect(fallback.diagnostics).toContainEqual(
         expect.objectContaining({ code: 'text', field: 'skills:12.DescAfter' })
       );
-      const { '18446744073709551615': _detailed, '32': _simple, ...missing } = text;
+      const missing: Record<string, string> = { ...text };
+      delete missing['18446744073709551615'];
+      delete missing['32'];
       const unavailable = await projection(missing);
       expect(unavailable.comparison.items[0]).toMatchObject({
         status: 'modified',

@@ -8,6 +8,9 @@
   import { toast } from 'svelte-sonner';
   import BaseStatsPanel from '$lib/components/shared/BaseStatsPanel.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
+  import GitCompareArrows from '@lucide/svelte/icons/git-compare-arrows';
+  import { enhancementComparisonPath } from '$lib/domain/enhancement-comparison';
+  import { Button } from '$lib/components/ui/button';
   import { Switch } from '$lib/components/ui/switch';
   import SkillCardPanel from '$lib/components/character/SkillCardPanel.svelte';
   import SpecialEffectDialog from '$lib/components/character/SpecialEffectDialog.svelte';
@@ -38,7 +41,7 @@
   import type { CatalogEntry, RelicProperty } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   import { formatDocumentTitle } from '$lib/site';
-  import { trailingSlashHref } from '$lib/i18n/routing';
+  import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import { traceRequirementText } from '$lib/components/character/trace-requirements';
   import { fetchPlayerProfile } from '$lib/player/client';
@@ -728,22 +731,35 @@
                   presentation="character-element-identity"
                 />{/if}
             </div>
-            {#if hasEnhancedProfile}<div class="enhancement-control">
-                <span>{m.detail_enhancement()}</span>
-                <Switch
-                  class="enhancement-switch"
-                  checked={enhancedEnabled}
-                  onCheckedChange={() => {
-                    void toggleEnhanced();
-                  }}
-                  aria-label={m.detail_enhancement()}
-                />
-                <strong
-                  >{enhancedEnabled
-                    ? m.detail_enhanced_after()
-                    : m.detail_enhanced_before()}</strong
+            {#if hasEnhancedProfile}
+              <div class="enhancement-actions">
+                <div class="enhancement-control">
+                  <span>{m.detail_enhancement()}</span>
+                  <Switch
+                    class="enhancement-switch"
+                    checked={enhancedEnabled}
+                    onCheckedChange={() => {
+                      void toggleEnhanced();
+                    }}
+                    aria-label={m.detail_enhancement()}
+                  />
+                  <strong>
+                    {enhancedEnabled ? m.detail_enhanced_after() : m.detail_enhanced_before()}
+                  </strong>
+                </div>
+                <Button
+                  href={localizedHref(
+                    `${enhancementComparisonPath(detail.id)}/${enhancedEnabled ? '' : '?enhanced=0'}`
+                  )}
+                  variant="outline"
+                  class="min-h-10"
+                  data-enhancement-comparison-link
                 >
-              </div>{/if}
+                  <GitCompareArrows aria-hidden="true" />
+                  {m.enhancement_comparison_title()}
+                </Button>
+              </div>
+            {/if}
             <div class="hero-description">
               {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
                   class="muted"

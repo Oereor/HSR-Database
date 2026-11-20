@@ -20,7 +20,7 @@ const declarationIdFields = {
 
 export interface ComparisonDiagnostic {
   avatarId: string;
-  code: 'association' | 'summary' | 'text' | 'profile-difference';
+  code: 'association' | 'summary' | 'text' | 'profile-difference' | 'official-profile-text';
   field: string;
   reason: string;
 }

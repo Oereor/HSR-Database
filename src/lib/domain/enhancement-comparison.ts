@@ -2,6 +2,7 @@ import type { CharacterDetailIconKey } from './character-detail-icons.js';
 import type { DescriptionToken, SkillCategory, TextHash, TraceType } from './types.js';
 
 export const ENHANCEMENT_COMPARISON_SCHEMA = 1;
+export const ENHANCEMENT_COMPARISON_ROUTE_ID = '/characters/[id]/enhancement-comparison';
 export const COMPARISON_CATEGORIES = ['skills', 'traces', 'eidolons'] as const;
 export type ComparisonCategory = (typeof COMPARISON_CATEGORIES)[number];
 export type ComparisonFilter = 'all' | ComparisonCategory;
@@ -66,6 +67,9 @@ export const enhancementComparisonArtifact = (locale: string, id: string) =>
   `views/${locale}/enhancement-comparisons/${id}.json`;
 
 export const enhancementComparisonPath = (id: string) => `/characters/${id}/enhancement-comparison`;
+
+export const enhancementCharacterPath = (id: string, baseForm: boolean) =>
+  `/characters/${id}/${baseForm ? '?enhanced=0' : ''}`;
 
 export function visibleComparisonText(tokens: readonly DescriptionToken[]): string {
   return tokens

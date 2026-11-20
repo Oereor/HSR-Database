@@ -295,6 +295,23 @@ export function projectEnhancementComparison(
     const prefix = category === 'eidolons' ? 'RankDesc' : 'Desc';
     let beforeText = fieldText(`${prefix}Before`, values(left, false));
     let afterText = fieldText(`${prefix}After`, values(right, false));
+    const normalized = (tokens: DescriptionToken[]) =>
+      visibleComparisonText(tokens).trim().replace(/\s+/g, ' ');
+    for (const [field, official, profile] of [
+      [`${prefix}Before`, beforeText, baseSide.description],
+      [`${prefix}After`, afterText, enhancedSide.description]
+    ] as const) {
+      if (
+        official.kind === 'available' &&
+        profile.kind === 'available' &&
+        normalized(official.tokens) !== normalized(profile.tokens)
+      )
+        report(
+          'official-profile-text',
+          `${key}.${field}`,
+          'Official comparison wording differs from the matching Profile description'
+        );
+    }
     const simpleBefore =
       category === 'skills' ? fieldText('SimpleDescBefore', values(left, true)) : undefined;
     const simpleAfter =

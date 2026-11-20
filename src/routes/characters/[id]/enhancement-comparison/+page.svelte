@@ -10,7 +10,11 @@
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import EnhancementComparisonCard from '$lib/components/character/EnhancementComparisonCard.svelte';
-  import { COMPARISON_CATEGORIES, type ComparisonFilter } from '$lib/domain/enhancement-comparison';
+  import {
+    COMPARISON_CATEGORIES,
+    enhancementCharacterPath,
+    type ComparisonFilter
+  } from '$lib/domain/enhancement-comparison';
   import { getCharacterIconUrl } from '$lib/data/visual-assets';
   import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
@@ -45,7 +49,7 @@
     )
   );
   let returnHref = $derived(
-    localizedHref(`/characters/${comparison.avatarId}/${baseForm ? '?enhanced=0' : ''}`, locale)
+    localizedHref(enhancementCharacterPath(comparison.avatarId, baseForm), locale)
   );
 
   async function select(nextFilter: ComparisonFilter, nextChangesOnly: boolean) {
@@ -122,7 +126,11 @@
         class="flex min-h-10 flex-wrap gap-1"
       >
         {#each filters as category}
-          <Tabs.Trigger value={category} data-comparison-filter={category} class="min-h-10">
+          <Tabs.Trigger
+            value={category}
+            data-comparison-filter={category}
+            class="min-h-11 min-w-11 px-2.5"
+          >
             {filterLabels[category]({}, { locale })}
           </Tabs.Trigger>
         {/each}
