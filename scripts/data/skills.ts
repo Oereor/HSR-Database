@@ -139,9 +139,7 @@ export function buildSkillCards(
       const availableLevels = intersectLevels(
         members.map((variant) => variant.levels.map((l) => l.level))
       );
-      const desired = ['basic', 'memosprite-skill', 'memosprite-talent'].includes(category)
-        ? 6
-        : 10;
+      const desired = defaultSkillLevelTarget(category);
       return {
         id,
         availableLevels,
@@ -190,7 +188,11 @@ function intersectLevels(collections: number[][]): number[] {
     .sort((a, b) => a - b);
 }
 
-function closestAvailableLevel(levels: number[], desired: number): number {
+export function defaultSkillLevelTarget(category: SkillCategory): number {
+  return ['basic', 'memosprite-skill', 'memosprite-talent'].includes(category) ? 6 : 10;
+}
+
+export function closestAvailableLevel(levels: number[], desired: number): number {
   if (!levels.length) return 1;
   return levels.reduce((best, level) =>
     Math.abs(level - desired) < Math.abs(best - desired) ? level : best
