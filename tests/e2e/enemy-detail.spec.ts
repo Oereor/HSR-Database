@@ -2,6 +2,7 @@ import { setSliderValue } from '../helpers/slider';
 import { expect, test, type Page } from '@playwright/test';
 
 async function selectMonster(page: Page, id: string) {
+  await expect(page.locator('[data-app-ready="true"]')).toBeAttached();
   await page.locator('[data-monster-trigger]').click();
   await page.getByRole('dialog').getByRole('combobox').fill(id);
   await page.locator(`[data-monster-option="${id}"]`).click();
@@ -116,6 +117,7 @@ test('Variant selection keeps text, combat data and history in sync', async ({
   isMobile
 }) => {
   await page.goto('/enemies/1002015/?keep=1#monsters');
+  await expect(page.locator('[data-app-ready="true"]')).toBeAttached();
   const hero = page.locator('[data-enemy-hero]');
   const selected = page.locator('[data-selected-monster]');
   await expect(selected).toHaveAttribute('data-selected-monster', '1002015');
@@ -252,16 +254,85 @@ test('a direct Variant link hides the static default while hydration is pending'
   }
 });
 
-test('a single Monster shows its identity and stats directly', async ({ page }) => {
-  await page.goto('/enemies/1004011/');
-  const identity = page.locator('[data-selected-monster="1004011"]');
-  await expect(identity.locator('[data-monster-name]')).toBeVisible();
-  await expect(identity).toContainText('#1004011');
-  await expect(identity.locator('[role="group"]')).toBeVisible();
-  await expect(page.locator('[data-monster-trigger]')).toHaveCount(0);
-  await expect(page.locator('#monsters').getByRole('combobox')).toHaveCount(0);
-  await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
-  await expect(page.locator('#enemy-level-1004011')).toHaveAttribute('data-value', '95');
+test('a single Monster uses the variant selector without changing the URL', async ({
+  page,
+  isMobile
+}) => {
+  await page.setViewportSize(isMobile ? { width: 390, height: 844 } : { width: 1440, height: 900 });
+  for (const prefix of ['', '/en']) {
+    for (const { id, hasIntroduction, query } of [
+      { id: '1004011', hasIntroduction: true, query: 'keep=1&monster=1004011' },
+      { id: '5013090', hasIntroduction: false, query: 'keep=1' }
+    ]) {
+      await page.goto(`${prefix}/enemies/${id}/?${query}#monsters`);
+      await expect(page.locator('[data-app-ready="true"]')).toBeAttached();
+      await page.evaluate(() => document.fonts.ready.then(() => undefined));
+      const originalUrl = page.url();
+      const historyLength = await page.evaluate(() => history.length);
+      const identity = page.locator(`[data-selected-monster="${id}"]`);
+      const trigger = identity.locator('[data-monster-trigger]');
+      const name = trigger.locator('[data-monster-name]');
+      const chevron = trigger.locator('svg.lucide-chevron-down');
+      const monsterId = trigger.getByText(`#${id}`, { exact: true });
+      const weaknesses = trigger.getByRole('group');
+      const introduction = identity.locator('[data-monster-introduction]');
+      await expect(trigger).toHaveCSS('border-top-width', '1px');
+      await expect(name).toBeVisible();
+      await expect(chevron).toBeVisible();
+      await expect(monsterId).toBeVisible();
+      if (hasIntroduction) {
+        const triggerBox = (await trigger.boundingBox())!;
+        const introBox = (await introduction.boundingBox())!;
+        const idBox = (await monsterId.boundingBox())!;
+        const iconBox = (await weaknesses.boundingBox())!;
+        expect(iconBox.x - idBox.x - idBox.width).toBeGreaterThan(0);
+        expect(iconBox.x - idBox.x - idBox.width).toBeLessThan(24);
+        expect(iconBox.y).toBeLessThan(idBox.y + idBox.height);
+        if (isMobile) {
+          expect(Math.abs(introBox.x - triggerBox.x)).toBeLessThan(2);
+          expect(introBox.y).toBeGreaterThan(triggerBox.y + triggerBox.height);
+        } else {
+          expect(Math.abs(introBox.y - triggerBox.y)).toBeLessThan(2);
+          expect(introBox.x).toBeGreaterThan(triggerBox.x + triggerBox.width);
+        }
+        await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
+        await expect(page.locator(`#enemy-level-${id}`)).toHaveAttribute('data-value', '95');
+      } else {
+        await expect(introduction).toHaveCount(0);
+        await expect(weaknesses).toHaveCount(0);
+      }
+      expect(
+        await identity.evaluate((element) => element.scrollWidth - element.clientWidth)
+      ).toBeLessThanOrEqual(1);
+
+      if (isMobile) await trigger.tap();
+      else await trigger.click();
+      const popup = page.getByRole('dialog');
+      const option = popup.getByRole('listbox').getByRole('option');
+      await expect(popup).toBeVisible();
+      await expect(popup.getByRole('combobox')).toHaveCount(0);
+      await expect(popup.getByRole('status')).toHaveCount(0);
+      await expect(option).toHaveCount(1);
+      await expect(option).toHaveAttribute('data-monster-option', id);
+      await expect(option).toHaveAttribute('aria-current', 'true');
+      await expect(option.locator('svg.lucide-check')).toBeVisible();
+      await expect(option).toBeFocused();
+      if (isMobile) await option.tap();
+      else await option.click();
+      await expect(popup).toBeHidden();
+      await expect(trigger).toBeFocused();
+      await expect(page).toHaveURL(originalUrl);
+      expect(await page.evaluate(() => history.length)).toBe(historyLength);
+
+      await trigger.press('Enter');
+      await expect(option).toBeFocused();
+      await page.keyboard.press('Enter');
+      await expect(popup).toBeHidden();
+      await expect(trigger).toBeFocused();
+      await expect(page).toHaveURL(originalUrl);
+      expect(await page.evaluate(() => history.length)).toBe(historyLength);
+    }
+  }
 });
 
 test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两栏', async ({ page }) => {
@@ -649,19 +720,6 @@ test('Variant identity and introduction follow the available content width', asy
   await expectAdjacentWeaknesses(option);
   await page.keyboard.press('Escape');
   await expect(trigger).toBeFocused();
-
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/en/enemies/1004011/');
-  const staticName = (await selected.locator('[data-monster-name]').boundingBox())!;
-  const staticIntro = (await introduction.boundingBox())!;
-  expect(Math.abs(staticName.y - staticIntro.y)).toBeLessThan(2);
-  expect(staticIntro.x).toBeGreaterThan(staticName.x);
-  await expect(trigger).toHaveCount(0);
-
-  await page.goto('/en/enemies/5013090/');
-  await expect(selected).toContainText('#5013090');
-  await expect(introduction).toHaveCount(0);
-  await expect(selected.getByRole('group')).toHaveCount(0);
 });
 
 test('a long variant list scrolls and supports filtering on narrow screens', async ({
@@ -670,6 +728,7 @@ test('a long variant list scrolls and supports filtering on narrow screens', asy
 }) => {
   await page.setViewportSize({ width: 320, height: 740 });
   await page.goto('/en/enemies/8002050/');
+  await expect(page.locator('[data-app-ready="true"]')).toBeAttached();
   const trigger = page.locator('[data-monster-trigger]');
   await trigger.focus();
   await trigger.press('Enter');

@@ -4,7 +4,6 @@
   import { goto } from '$app/navigation';
   import { onMount, tick } from 'svelte';
   import EnemyVariantSelector from './EnemyVariantSelector.svelte';
-  import EnemyVariantIdentity from './EnemyVariantIdentity.svelte';
   import EnemySkillBrowser from './EnemySkillBrowser.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
   import EnemyTemplateBaseStatsPanel from './EnemyTemplateBaseStatsPanel.svelte';
@@ -141,17 +140,11 @@
     ]}
     data-selected-monster={selectedMonster.monsterId}
   >
-    {#if detail.monsters.length > 1}
-      <EnemyVariantSelector
-        variants={detail.monsters}
-        selected={selectedMonster}
-        onSelect={selectMonster}
-      />
-    {:else}
-      <div class="w-full sm:max-w-xl">
-        <EnemyVariantIdentity variant={selectedMonster} />
-      </div>
-    {/if}
+    <EnemyVariantSelector
+      variants={detail.monsters}
+      selected={selectedMonster}
+      onSelect={selectMonster}
+    />
     {#if selectedMonster.introduction}
       <p
         class="text-muted-foreground max-w-prose min-w-0 whitespace-pre-line @min-[56rem]:max-w-none"

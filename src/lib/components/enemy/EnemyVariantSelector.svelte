@@ -29,6 +29,7 @@
   const locale = getLocale();
   const variantLabel = m.enemy_specific_units({}, { locale });
   const searchLabel = m.enemy_variant_search({}, { locale });
+  const hasMultipleVariants = $derived(variants.length > 1);
   let open = $state(false);
   let query = $state('');
   let trigger = $state<HTMLButtonElement | null>(null);
@@ -74,18 +75,26 @@
       if (!clickedOutside) trigger?.focus({ preventScroll: true });
     }}
   >
-    <Command.Root {filter} label={searchLabel} disableInitialScroll class="flex min-h-0 flex-col">
-      <div class="border-border shrink-0 border-b p-2">
-        <Command.Input bind:value={query} placeholder={searchLabel}>
-          {#snippet child({ props })}
-            <Input {...props} bind:value={query} aria-controls={listId} />
-          {/snippet}
-        </Command.Input>
-      </div>
+    <Command.Root
+      {filter}
+      label={hasMultipleVariants ? searchLabel : variantLabel}
+      value={hasMultipleVariants ? undefined : selected.monsterId}
+      disableInitialScroll
+      class="flex min-h-0 flex-col"
+    >
+      {#if hasMultipleVariants}
+        <div class="border-border shrink-0 border-b p-2">
+          <Command.Input bind:value={query} placeholder={searchLabel}>
+            {#snippet child({ props })}
+              <Input {...props} bind:value={query} aria-controls={listId} />
+            {/snippet}
+          </Command.Input>
+        </div>
 
-      <Command.Empty class="text-muted-foreground px-2 py-3 text-sm" role="status">
-        {m.enemy_variant_search_empty({}, { locale })}
-      </Command.Empty>
+        <Command.Empty class="text-muted-foreground px-2 py-3 text-sm" role="status">
+          {m.enemy_variant_search_empty({}, { locale })}
+        </Command.Empty>
+      {/if}
       <Command.List
         id={listId}
         aria-label={variantLabel}
@@ -98,6 +107,7 @@
             <Command.Item
               value={variant.monsterId}
               keywords={[normalizeSearchLabel(variant.name)]}
+              tabindex={hasMultipleVariants ? undefined : 0}
               data-monster-option={variant.monsterId}
               aria-current={current ? 'true' : undefined}
               aria-label={label(variant)}
@@ -105,7 +115,7 @@
               class="aria-current:bg-muted/50 data-selected:bg-accent data-selected:text-accent-foreground hover:bg-accent flex min-h-14 cursor-pointer items-center rounded-sm px-2.5 py-2 text-sm"
               onSelect={() => {
                 setOpen(false);
-                onSelect(variant.monsterId);
+                if (hasMultipleVariants) onSelect(variant.monsterId);
               }}
             >
               <EnemyVariantIdentity {variant} {weaknessId}>
