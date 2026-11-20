@@ -343,11 +343,6 @@ main {
   align-items: stretch;
   gap: var(--space-4);
 }
-.skill-variant-list {
-  display: grid;
-  gap: 0.75rem;
-  margin-top: 0.85rem;
-}
 .skill-variant {
   min-width: 0;
 }
