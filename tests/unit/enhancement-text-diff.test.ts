@@ -97,6 +97,26 @@ describe('enhancement text diff', () => {
     expect(result.after.map(({ operation }) => operation)).toEqual(['equal', 'insert', 'equal']);
   });
 
+  it('joins adjacent Chinese replacements across an isolated character and keeps numeric changes precise', () => {
+    const old = '先移除的效果，然后造成100%伤害。';
+    const next = '先施加的标记，然后造成140%伤害。';
+    const result = diffEnhancementText([text(old)], [text(next)]);
+    const edits = (segments: DiffSegment[]) =>
+      segments.filter(({ operation }) => operation !== 'equal').map((segment) => plain([segment]));
+    expect(edits(result.before)).toEqual(['移除的效果', '100%']);
+    expect(edits(result.after)).toEqual(['施加的标记', '140%']);
+    expect(plain(result.before)).toBe(old);
+    expect(plain(result.after)).toBe(next);
+
+    const protectedCharacter = { ...text('的'), unbreak: true };
+    const protectedResult = diffEnhancementText(
+      [text('先移除'), protectedCharacter, text('效果。')],
+      [text('先施加'), protectedCharacter, text('标记。')]
+    );
+    expect(edits(protectedResult.before)).toEqual(['移除', '效果']);
+    expect(edits(protectedResult.after)).toEqual(['施加', '标记']);
+  });
+
   it.each(['zh-CN', 'en'])('highlights actual Jingliu parameters as units in %s', (locale) => {
     const path = new URL(
       `../../src/lib/generated/views/${locale}/enhancement-comparisons/1212.json`,
@@ -107,6 +127,13 @@ describe('enhancement text diff', () => {
     const before = basic?.before?.description;
     const after = basic?.after?.description;
     expect(basic).toMatchObject({ level: 6, after: { id: '1121201' } });
+    if (basic?.category !== 'skills') throw new Error('Missing Jingliu skill preview');
+    expect(basic.additionalLevels.map(({ level }) => level)).toEqual([1, 2, 3, 4, 5, 7, 8, 9, 10]);
+    for (const level of basic.additionalLevels) {
+      const diff = diffEnhancementText(level.before.tokens, level.after.tokens);
+      expect(plain(diff.before)).toBe(level.before.tokens.map(({ value }) => value).join(''));
+      expect(plain(diff.after)).toBe(level.after.tokens.map(({ value }) => value).join(''));
+    }
     if (before?.kind !== 'available' || after?.kind !== 'available')
       throw new Error('Missing Jingliu comparison');
     const result = diffEnhancementText(before.tokens, after.tokens);

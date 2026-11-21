@@ -186,16 +186,38 @@ function usefulMatches(before: Atom[], after: Atom[]): Match[] {
     after.map(({ key }) => key)
   );
   return matches.filter(([left, right], index) => {
-    if (before[left].kind !== 'plain' || !minorSeparator.test(before[left].key)) return true;
     const previous = matches[index - 1];
     const next = matches[index + 1];
-    const touchesPrevious = previous
-      ? previous[0] === left - 1 && previous[1] === right - 1
-      : left === 0 && right === 0;
-    const touchesNext = next
-      ? next[0] === left + 1 && next[1] === right + 1
-      : left === before.length - 1 && right === after.length - 1;
-    return touchesPrevious || touchesNext;
+    const leftStart = (previous?.[0] ?? -1) + 1;
+    const rightStart = (previous?.[1] ?? -1) + 1;
+    const leftEnd = next?.[0] ?? before.length;
+    const rightEnd = next?.[1] ?? after.length;
+    const atom = before[left];
+    if (atom.kind === 'plain' && minorSeparator.test(atom.key)) {
+      const touchesPrevious = left === leftStart && right === rightStart;
+      const touchesNext = left === leftEnd - 1 && right === rightEnd - 1;
+      return touchesPrevious || touchesNext;
+    }
+
+    // A common character between two replacements often belongs to neither
+    // intact phrase. Keep it when either side has an insertion or a sentence break.
+    if (
+      atom.kind !== 'han' ||
+      [...atom.key].length !== 1 ||
+      after[right].kind !== 'han' ||
+      left <= leftStart ||
+      right <= rightStart ||
+      left >= leftEnd - 1 ||
+      right >= rightEnd - 1
+    )
+      return true;
+
+    const crossesSentence = (range: Atom[]) =>
+      range.some((entry) => entry.kind === 'plain' && sentenceEnd.test(entry.key));
+    return (
+      crossesSentence(before.slice(leftStart, leftEnd)) ||
+      crossesSentence(after.slice(rightStart, rightEnd))
+    );
   });
 }
 
