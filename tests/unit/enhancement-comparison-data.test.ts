@@ -186,9 +186,16 @@ describe('character enhancement comparison data', () => {
         ...text,
         '18446744073709551615': '<unsupported>Text</unsupported>'
       });
-      expect(fallback.comparison.items[0]).toMatchObject({ presentation: 'simple' });
+      expect(fallback.comparison.items[0]).toMatchObject({
+        before: {
+          description: { tokens: expect.arrayContaining([expect.objectContaining({ value: '7' })]) }
+        },
+        after: {
+          description: { tokens: expect.arrayContaining([expect.objectContaining({ value: '8' })]) }
+        }
+      });
       expect(fallback.diagnostics).toContainEqual(
-        expect.objectContaining({ code: 'text', field: 'skills:12.DescAfter' })
+        expect.objectContaining({ code: 'text', field: 'skills:12.Lv6.DescAfter' })
       );
       const missing: Record<string, string> = { ...text };
       delete missing['18446744073709551615'];
@@ -196,10 +203,155 @@ describe('character enhancement comparison data', () => {
       const unavailable = await projection(missing);
       expect(unavailable.comparison.items[0]).toMatchObject({
         status: 'modified',
-        presentation: 'detailed',
         after: { description: { kind: 'unavailable' } }
       });
       expect(unavailable.diagnostics.filter(({ code }) => code === 'text')).toHaveLength(2);
     }
   );
+});
+
+function setupVariant(
+  profile: Character['profiles']['base'],
+  id: string,
+  levels: Record<number, string>,
+  availableLevels: number[],
+  fixedLevel?: number
+) {
+  const card = profile.skillCards[0];
+  const variant = card.variants.find((variant) => variant.id === id)!;
+  variant.levels = Object.entries(levels).map(([level, value]) => ({
+    level: Number(level),
+    description: value,
+    descriptionTokens: [{ type: 'text', value }]
+  }));
+  variant.progressionId = id;
+  card.progressions = card.progressions.filter((progression) => progression.id !== id);
+  card.progressions.push({ id, availableLevels, defaultLevel: 6, variantIds: [id], fixedLevel });
+}
+
+const levelTextMap = {
+  '18446744073709551614': 'Hit <unbreak>#1[i]%</unbreak>.',
+  '18446744073709551615': 'Hit <unbreak>#1[i]%</unbreak>.',
+  '31': 'Simple #1[i].',
+  '32': 'Simple #1[i].',
+  '33': 'Official note',
+  '34': 'Official summary'
+};
+
+async function projectFixture({ character, tables, view }: ReturnType<typeof fixture>) {
+  const { comparisons } = buildEnhancementComparisons(tables, [character]);
+  const resolver = await createTextResolver({ locale: 'en', textMapCode: 'EN' }, levelTextMap);
+  return projectEnhancementComparison(
+    comparisons[0],
+    character,
+    view,
+    resolver,
+    comparisonSkillRows(tables)
+  );
+}
+
+describe('shared comparison skill levels', () => {
+  it('projects a non-contiguous intersection with the right parameters and fallback at each level', async () => {
+    const input = fixture();
+    const { view, tables } = input;
+    setupVariant(
+      view.profiles.base,
+      '12',
+      { 1: 'left', 3: 'left', 6: 'left', 8: 'left', 9: 'left' },
+      [1, 3, 6, 8, 9]
+    );
+    setupVariant(
+      view.profiles.enhanced!,
+      '91',
+      { 2: 'right', 3: 'right', 6: 'right', 8: 'right', 9: 'right', 15: 'right' },
+      [2, 3, 6, 8, 15]
+    );
+    tables.AvatarSkillConfig.push(
+      { SkillID: 12, Level: 3, ParamList: [{ Value: '0.6' }], SimpleParamList: [{ Value: '3' }] },
+      { SkillID: 91, Level: 3, ParamList: [], SimpleParamList: [{ Value: '4' }] },
+      { SkillID: 12, Level: 8, ParamList: [{ Value: '1.2' }], SimpleParamList: [] },
+      { SkillID: 91, Level: 8, ParamList: [{ Value: '1.7' }], SimpleParamList: [] }
+    );
+    const { comparison, diagnostics } = await projectFixture(input);
+    const item = comparison.items.find(
+      (item) => item.category === 'skills' && item.before?.id === '12'
+    )!;
+    const value = (value: string) =>
+      expect.objectContaining({
+        tokens: expect.arrayContaining([expect.objectContaining({ value })])
+      });
+    expect(item).toMatchObject({
+      level: 6,
+      before: { description: value('100%') },
+      after: { description: value('140%') },
+      additionalLevels: [
+        { level: 3, before: value('3'), after: value('4') },
+        { level: 8, before: value('120%'), after: value('170%') }
+      ]
+    });
+    expect(diagnostics).toContainEqual(
+      expect.objectContaining({ code: 'text', field: 'skills:12.Lv3.DescAfter' })
+    );
+    assertEnhancementComparison(comparison, 'en', '1');
+
+    setupVariant(
+      view.profiles.enhanced!,
+      '91',
+      { 2: 'right', 3: 'right', 6: 'right' },
+      [2, 3, 6],
+      3
+    );
+    const fixed = (await projectFixture(input)).comparison.items.find(
+      (entry) => entry.key === item.key
+    );
+    expect(fixed).toMatchObject({
+      level: 3,
+      additionalLevels: [],
+      before: { description: value('3') }
+    });
+  });
+
+  it('never pairs different levels or invents a slider for an unrenderable pair', async () => {
+    const input = fixture();
+    setupVariant(input.view.profiles.base, '12', { 6: 'left' }, [6]);
+    setupVariant(input.view.profiles.enhanced!, '91', { 10: 'right' }, [10]);
+    const { comparison, diagnostics } = await projectFixture(input);
+    expect(comparison.items[0]).toMatchObject({
+      level: null,
+      additionalLevels: [],
+      before: { description: { kind: 'unavailable' } },
+      after: { description: { kind: 'unavailable' } }
+    });
+    expect(diagnostics).toContainEqual(
+      expect.objectContaining({
+        code: 'text',
+        field: 'skills:12',
+        reason: 'No shared skill level for comparison'
+      })
+    );
+  });
+
+  it('keeps Profile changes visible when only the non-default level differs', async () => {
+    const input = fixture();
+    setupVariant(input.view.profiles.base, '11', { 2: 'Hit 20%.', 6: 'Hit 60%.' }, [2, 6]);
+    setupVariant(input.view.profiles.enhanced!, '83', { 2: 'Hit 30%.', 6: 'Hit 60%.' }, [2, 6]);
+    const { comparison } = await projectFixture(input);
+    const item = comparison.items.find((item) => item.key === 'skills:11');
+    expect(item).toMatchObject({
+      status: 'modified',
+      source: { kind: 'profile' },
+      level: 6,
+      additionalLevels: [
+        {
+          level: 2,
+          before: { tokens: [{ value: 'Hit 20%.' }] },
+          after: { tokens: [{ value: 'Hit 30%.' }] }
+        }
+      ]
+    });
+    const unchanged = fixture();
+    expect(
+      (await projectFixture(unchanged)).comparison.items.some(({ key }) => key === 'skills:11')
+    ).toBe(false);
+  });
 });

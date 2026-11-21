@@ -42,17 +42,55 @@ const isTokens = (value: unknown): value is DescriptionToken[] =>
         (typeof token.color === 'string' && /^#[0-9a-f]{6}(?:[0-9a-f]{2})?$/i.test(token.color)))
   );
 
+function isAvailableText(value: unknown): boolean {
+  return (
+    isRecord(value) &&
+    value.kind === 'available' &&
+    isTokens(value.tokens) &&
+    value.tokens.length > 0
+  );
+}
+
 function isSide(value: unknown): boolean {
   return (
     isRecord(value) &&
     typeof value.id === 'string' &&
     isTokens(value.name) &&
     isRecord(value.description) &&
-    (value.description.kind === 'unavailable' ||
-      (value.description.kind === 'available' &&
-        isTokens(value.description.tokens) &&
-        value.description.tokens.length > 0))
+    (value.description.kind === 'unavailable' || isAvailableText(value.description))
   );
+}
+
+function isLevel(value: unknown): value is number {
+  return typeof value === 'number' && Number.isSafeInteger(value) && value > 0;
+}
+
+function isSkillPreview(item: Record<string, unknown>): boolean {
+  if (item.level !== null && !isLevel(item.level)) return false;
+  if (!Array.isArray(item.additionalLevels)) return false;
+  if (
+    item.additionalLevels.length &&
+    (!isLevel(item.level) ||
+      !isRecord(item.before) ||
+      !isRecord(item.after) ||
+      !isAvailableText(item.before.description) ||
+      !isAvailableText(item.after.description))
+  )
+    return false;
+  let previous = 0;
+  for (const entry of item.additionalLevels) {
+    if (
+      !isRecord(entry) ||
+      !isLevel(entry.level) ||
+      entry.level <= previous ||
+      entry.level === item.level ||
+      !isAvailableText(entry.before) ||
+      !isAvailableText(entry.after)
+    )
+      return false;
+    previous = entry.level;
+  }
+  return true;
 }
 
 export function assertEnhancementComparison(
@@ -88,6 +126,8 @@ export function assertEnhancementComparison(
       !isRecord(item.source)
     )
       return fail('invalid or duplicate comparison item');
+    if (item.category === 'skills' && !isSkillPreview(item))
+      return fail(`invalid skill levels for ${item.key}`);
     keys.add(item.key);
     const key = item.key;
     const { source, status, before, after } = item;
@@ -97,7 +137,7 @@ export function assertEnhancementComparison(
       if (source.kind !== 'structure' || !validSides) return fail(`invalid structure item ${key}`);
       continue;
     }
-    if ((status !== 'modified' && status !== 'unchanged') || !isSide(before) || !isSide(after))
+    if (status !== 'modified' || !isSide(before) || !isSide(after))
       return fail(`invalid paired item ${key}`);
     if (source.kind === 'profile') continue;
     if (
@@ -108,11 +148,8 @@ export function assertEnhancementComparison(
       (item.category === 'skills' && !decimalId(source.pointId)) ||
       !isRecord(source.hashes) ||
       !Object.values(source.hashes).every(decimalId) ||
-      (item.presentation !== 'detailed' && item.presentation !== 'simple') ||
       !Array.isArray(item.comments) ||
-      !item.comments.every(isTokens) ||
-      (item.simple !== undefined &&
-        (!isRecord(item.simple) || !isTokens(item.simple.before) || !isTokens(item.simple.after)))
+      !item.comments.every(isTokens)
     )
       return fail(`invalid official item ${key}`);
   }

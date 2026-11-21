@@ -5,6 +5,7 @@ import {
   type ComparisonItem,
   type ComparisonItemKind,
   type ComparisonSide,
+  type ComparisonSkillLevel,
   type ComparisonText,
   type EnhancementComparison,
   type OfficialComparisonSource
@@ -16,7 +17,8 @@ import type {
   CharacterProfile,
   DescriptionToken,
   LevelledDescription,
-  SkillCard
+  SkillCard,
+  SkillProgression
 } from '../../../src/lib/domain/types.js';
 import type {
   ComparisonAssociation,
@@ -27,7 +29,11 @@ import { params, rows, textSource, type Raw } from '../domain/shared.js';
 import type { TextResolver } from '../localization.js';
 import { closestAvailableLevel, defaultSkillLevelTarget } from '../skills.js';
 
-type Entry = ComparisonItemKind & {
+type EntryKind =
+  | Pick<Extract<ComparisonItemKind, { category: 'skills' }>, 'category' | 'skillCategory'>
+  | Exclude<ComparisonItemKind, { category: 'skills' }>;
+
+type Entry = EntryKind & {
   id: string;
   label: string;
   name: string;
@@ -37,6 +43,7 @@ type Entry = ComparisonItemKind & {
   skill?: {
     card: SkillCard;
     levels: LevelledDescription[];
+    progression?: SkillProgression;
     defaultLevel: number | undefined;
   };
 };
@@ -62,7 +69,6 @@ function entries(
         category: 'skills',
         skillCategory: card.category,
         label: card.displayLabel,
-        level: null,
         name: variant.name,
         iconKey: variant.iconKey ?? card.iconKey,
         tokens: [],
@@ -70,6 +76,7 @@ function entries(
         skill: {
           card,
           levels: variant.levels,
+          progression,
           defaultLevel:
             progression?.fixedLevel ?? progression?.defaultLevel ?? variant.levels[0]?.level
         }
@@ -100,31 +107,80 @@ function entries(
   return { skills: byId(skills), traces: byId(traces), eidolons: byId(eidolons) };
 }
 
-function chooseLevel(before?: Entry, after?: Entry): number | null {
-  if (!before?.skill || !after?.skill) return (before ?? after)?.skill?.defaultLevel ?? null;
-  const left = before.skill;
-  const right = after.skill;
-  if (
-    left.defaultLevel !== undefined &&
-    left.defaultLevel === right.defaultLevel &&
-    left.levels.some(({ level }) => level === left.defaultLevel) &&
-    right.levels.some(({ level }) => level === right.defaultLevel)
-  )
-    return left.defaultLevel;
-  const inBoth = left.levels
-    .map(({ level }) => level)
-    .filter((level) => right.levels.some((entry) => entry.level === level))
-    .sort((a, b) => a - b);
-  return inBoth.length
-    ? closestAvailableLevel(inBoth, defaultSkillLevelTarget(right.card.category))
-    : null;
+function skillLevels(skill: NonNullable<Entry['skill']>): number[] {
+  const { progression, levels } = skill;
+  return [...new Set(levels.map(({ level }) => level))]
+    .filter((level) => {
+      if (progression?.fixedLevel !== undefined) return level === progression.fixedLevel;
+      if (skill.card.externalCondition) return level === skill.defaultLevel;
+      return !progression || progression.availableLevels.includes(level);
+    })
+    .sort((left, right) => left - right);
 }
 
-function itemKind(entry: Entry, level: number | null): ComparisonItemKind {
+function sharedSkillLevels(
+  left: NonNullable<Entry['skill']>,
+  right: NonNullable<Entry['skill']>
+): number[] {
+  const rightLevels = new Set(skillLevels(right));
+  return skillLevels(left).filter((level) => {
+    if (!rightLevels.has(level)) return false;
+    const before = left.card.externalCondition;
+    const after = right.card.externalCondition;
+    if (!before && !after) return true;
+    const beforeState = before?.states.find((state) => state.level === level);
+    const afterState = after?.states.find((state) => state.level === level);
+    return (
+      !!beforeState &&
+      !!afterState &&
+      JSON.stringify(beforeState.condition) === JSON.stringify(afterState.condition) &&
+      JSON.stringify(beforeState.relatedAvatarIds) === JSON.stringify(afterState.relatedAvatarIds)
+    );
+  });
+}
+
+function chooseLevel(levels: number[], before?: Entry, after?: Entry): number | null {
+  if (!levels.length) return null;
+  const left = before?.skill;
+  const right = after?.skill;
+  const preferred =
+    left && right
+      ? left.defaultLevel === right.defaultLevel
+        ? left.defaultLevel
+        : undefined
+      : (left ?? right)?.defaultLevel;
+  return preferred !== undefined && levels.includes(preferred)
+    ? preferred
+    : closestAvailableLevel(levels, defaultSkillLevelTarget((right ?? left)!.card.category));
+}
+
+function itemKind(
+  entry: Entry,
+  level: number | null,
+  additionalLevels: ComparisonSkillLevel[] = []
+): ComparisonItemKind {
   if (entry.category === 'skills')
-    return { category: 'skills', skillCategory: entry.skillCategory, level };
+    return { category: 'skills', skillCategory: entry.skillCategory, level, additionalLevels };
   if (entry.category === 'eidolons') return { category: 'eidolons', rank: entry.rank };
   return { category: 'traces', traceType: entry.traceType };
+}
+
+interface DescriptionPair {
+  level: number | null;
+  before: ComparisonText;
+  after: ComparisonText;
+}
+
+function isComparableLevel(pair: DescriptionPair): pair is ComparisonSkillLevel {
+  return pair.level !== null && pair.before.kind === 'available' && pair.after.kind === 'available';
+}
+
+function hasVisibleDifference(before: ComparisonText, after: ComparisonText): boolean {
+  return (
+    before.kind === 'available' &&
+    after.kind === 'available' &&
+    visibleComparisonText(before.tokens) !== visibleComparisonText(after.tokens)
+  );
 }
 
 function available(tokens: DescriptionToken[]): ComparisonText {
@@ -136,17 +192,17 @@ function available(tokens: DescriptionToken[]): ComparisonText {
 const rawSyntax =
   /#(?:\d+\[|\{)|\{(?:[A-Z][A-Z_]*#|NICKNAME\}|TextID#)|<\/?(?:color|unbreak|ruby-note|icon)\b/u;
 
-function profileSide(entry: Entry, level: number | null): ComparisonSide {
+function profileDescription(entry: Entry, level: number | null): ComparisonText {
   const tokens = entry.skill
     ? (entry.skill.levels.find((candidate) => candidate.level === level)?.descriptionTokens ?? [])
     : entry.tokens;
-  return {
-    id: entry.id,
-    name: tokensForName(entry.name),
-    description: tokens.some((token) => rawSyntax.test(token.value))
-      ? { kind: 'unavailable' }
-      : available(tokens)
-  };
+  return tokens.some((token) => rawSyntax.test(token.value))
+    ? { kind: 'unavailable' }
+    : available(tokens);
+}
+
+function profileSide(entry: Entry, description: ComparisonText): ComparisonSide {
+  return { id: entry.id, name: tokensForName(entry.name), description };
 }
 
 export function projectEnhancementComparison(
@@ -220,86 +276,133 @@ export function projectEnhancementComparison(
       report('association', key, 'Neutral association is missing a localized Profile entity');
       return [];
     }
-    const level = chooseLevel(left, right);
-    if (category === 'skills' && level === null)
-      report('text', key, 'No shared skill level for comparison');
     const metadata = {
-      ...itemKind(display, level),
       key,
       label: display.label,
       ...(display.iconKey ? { iconKey: display.iconKey } : {})
     };
-    const baseSide = left ? profileSide(left, level) : null;
-    const enhancedSide = right ? profileSide(right, level) : null;
-    if (baseSide && !enhancedSide)
-      return [
-        {
-          ...metadata,
-          status: 'removed',
-          source: { kind: 'structure' },
-          before: baseSide,
-          after: null
+    if (!left || !right) {
+      const level = display.skill ? chooseLevel(skillLevels(display.skill), left, right) : null;
+      const side = profileSide(display, profileDescription(display, level));
+      const identity = {
+        ...metadata,
+        ...itemKind(display, level),
+        source: { kind: 'structure' } as const
+      };
+      return left
+        ? [{ ...identity, status: 'removed', before: side, after: null }]
+        : [{ ...identity, status: 'added', before: null, after: side }];
+    }
+
+    const levels = left.skill && right.skill ? sharedSkillLevels(left.skill, right.skill) : [];
+    if (category === 'skills' && !levels.length)
+      report('text', key, 'No shared skill level for comparison');
+
+    const source: OfficialComparisonSource | undefined = declaration
+      ? {
+          kind: 'official',
+          declarationId: right.id,
+          ...(category === 'skills' ? { pointId: String(declaration.SkillTreeID) } : {}),
+          hashes: {}
         }
-      ];
-    if (enhancedSide && !baseSide)
+      : undefined;
+    const prefix = category === 'eidolons' ? 'RankDesc' : 'Desc';
+    const fieldText = (
+      field: string,
+      level: number | null,
+      parameters?: ReturnType<typeof params>
+    ) => {
+      const raw = declaration?.[field];
+      const ref = textSource(raw)?.ref;
+      if (source && ref?.kind === 'hash') source.hashes[field] = ref.hash;
+      return project(raw, `${key}${level === null ? '' : `.Lv${level}`}.${field}`, parameters);
+    };
+    const values = (entry: Entry, level: number | null, simple = false) => {
+      if (!entry.skill) return entry.params;
+      return params(
+        skillRows.get(`${entry.id}:${level}`)?.[simple ? 'SimpleParamList' : 'ParamList']
+      );
+    };
+    const detailed = (level: number | null): DescriptionPair => ({
+      level,
+      before: fieldText(`${prefix}Before`, level, values(left, level)),
+      after: fieldText(`${prefix}After`, level, values(right, level))
+    });
+    const officialPair = (level: number | null): DescriptionPair => {
+      const pair = detailed(level);
+      if (
+        category !== 'skills' ||
+        (pair.before.kind === 'available' && pair.after.kind === 'available')
+      )
+        return pair;
+      const before = fieldText('SimpleDescBefore', level, values(left, level, true));
+      const after = fieldText('SimpleDescAfter', level, values(right, level, true));
+      return before.kind === 'available' && after.kind === 'available'
+        ? { level, before, after }
+        : pair;
+    };
+    const pairs = (levels.length ? levels : [null]).map((level): DescriptionPair =>
+      source
+        ? officialPair(level)
+        : {
+            level,
+            before: profileDescription(left, level),
+            after: profileDescription(right, level)
+          }
+    );
+    const comparable = pairs.filter(isComparableLevel);
+    const readable = pairs.flatMap(({ level, before, after }) =>
+      level !== null && (before.kind === 'available' || after.kind === 'available') ? [level] : []
+    );
+    const level = chooseLevel(
+      comparable.length
+        ? comparable.map((pair) => pair.level)
+        : readable.length
+          ? readable
+          : levels,
+      left,
+      right
+    );
+    const selected = pairs.find((pair) => pair.level === level)!;
+    const baseSide = profileSide(left, selected.before);
+    const enhancedSide = profileSide(right, selected.after);
+    const identity = {
+      ...metadata,
+      ...itemKind(
+        display,
+        level,
+        comparable.filter((pair) => pair.level !== level)
+      )
+    };
+
+    if (!source) {
+      if (pairs.some((pair) => pair.before.kind !== pair.after.kind))
+        report('text', key, 'Profile text is available in only one form at a common level');
+      const nameChanged =
+        visibleComparisonText(baseSide.name) !== visibleComparisonText(enhancedSide.name);
+      if (!nameChanged && !pairs.some((pair) => hasVisibleDifference(pair.before, pair.after)))
+        return [];
+      report(
+        'profile-difference',
+        key,
+        `Visible Profile difference (${left.id} → ${right.id}) without a declaration`
+      );
       return [
         {
-          ...metadata,
-          status: 'added',
-          source: { kind: 'structure' },
-          before: null,
+          ...identity,
+          status: 'modified',
+          source: { kind: 'profile' },
+          before: baseSide,
           after: enhancedSide
         }
       ];
-    if (!left || !right || !baseSide || !enhancedSide) return [];
-
-    if (!declaration) {
-      const nameChanged =
-        visibleComparisonText(baseSide.name) !== visibleComparisonText(enhancedSide.name);
-      const textChanged =
-        baseSide.description.kind === 'available' &&
-        enhancedSide.description.kind === 'available' &&
-        visibleComparisonText(baseSide.description.tokens) !==
-          visibleComparisonText(enhancedSide.description.tokens);
-      const status = nameChanged || textChanged ? 'modified' : 'unchanged';
-      if (status === 'modified')
-        report(
-          'profile-difference',
-          key,
-          `Visible Profile difference (${left.id} → ${right.id}) without a declaration`
-        );
-      if (baseSide.description.kind !== enhancedSide.description.kind)
-        report('text', key, 'Profile text is available in only one form');
-      return [
-        { ...metadata, status, source: { kind: 'profile' }, before: baseSide, after: enhancedSide }
-      ];
     }
 
-    const source: OfficialComparisonSource = {
-      kind: 'official',
-      declarationId: right.id,
-      ...(category === 'skills' ? { pointId: String(declaration.SkillTreeID) } : {}),
-      hashes: {}
-    };
-    const fieldText = (field: string, parameters?: ReturnType<typeof params>) => {
-      const raw = declaration[field];
-      const text = textSource(raw);
-      if (text?.ref.kind === 'hash') source.hashes[field] = text.ref.hash;
-      return project(raw, `${key}.${field}`, parameters);
-    };
-    const values = (entry: Entry, simple: boolean) => {
-      if (!entry.skill) return entry.params;
-      const row = skillRows.get(`${entry.id}:${level}`);
-      return params(row?.[simple ? 'SimpleParamList' : 'ParamList']);
-    };
-    const prefix = category === 'eidolons' ? 'RankDesc' : 'Desc';
-    let beforeText = fieldText(`${prefix}Before`, values(left, false));
-    let afterText = fieldText(`${prefix}After`, values(right, false));
     const normalized = (tokens: DescriptionToken[]) =>
       visibleComparisonText(tokens).trim().replace(/\s+/g, ' ');
     for (const [field, official, profile] of [
-      [`${prefix}Before`, beforeText, baseSide.description],
-      [`${prefix}After`, afterText, enhancedSide.description]
+      [`${prefix}Before`, selected.before, profileDescription(left, level)],
+      [`${prefix}After`, selected.after, profileDescription(right, level)]
     ] as const) {
       if (
         official.kind === 'available' &&
@@ -312,40 +415,17 @@ export function projectEnhancementComparison(
           'Official comparison wording differs from the matching Profile description'
         );
     }
-    const simpleBefore =
-      category === 'skills' ? fieldText('SimpleDescBefore', values(left, true)) : undefined;
-    const simpleAfter =
-      category === 'skills' ? fieldText('SimpleDescAfter', values(right, true)) : undefined;
-    const simple =
-      simpleBefore?.kind === 'available' && simpleAfter?.kind === 'available'
-        ? { before: simpleBefore.tokens, after: simpleAfter.tokens }
-        : undefined;
-    const useSimple =
-      !!simple && (beforeText.kind === 'unavailable' || afterText.kind === 'unavailable');
-    if (useSimple && simple) {
-      beforeText = { kind: 'available', tokens: simple.before };
-      afterText = { kind: 'available', tokens: simple.after };
-    }
-    const commentFields = Object.keys(declaration)
+    const commentFields = Object.keys(declaration ?? {})
       .filter((field) => /^Comment\d+$/.test(field))
       .sort();
-    if (Number(declaration.CommentIndex ?? 0) !== commentFields.length)
+    if (Number(declaration?.CommentIndex ?? 0) !== commentFields.length)
       report('text', key, 'CommentIndex differs from available comment fields');
     const comments = commentFields.flatMap((field) => {
-      const result = fieldText(field);
+      const result = fieldText(field, null);
       return result.kind === 'available' ? [result.tokens] : [];
     });
     return [
-      {
-        ...metadata,
-        status: 'modified',
-        source,
-        before: { ...baseSide, description: beforeText },
-        after: { ...enhancedSide, description: afterText },
-        presentation: useSimple ? 'simple' : 'detailed',
-        ...(!useSimple && simple ? { simple } : {}),
-        comments
-      }
+      { ...identity, status: 'modified', source, before: baseSide, after: enhancedSide, comments }
     ];
   }
 

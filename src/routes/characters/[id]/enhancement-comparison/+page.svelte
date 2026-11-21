@@ -2,6 +2,7 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/state';
   import { onMount } from 'svelte';
+  import { SvelteMap } from 'svelte/reactivity';
   import ArrowLeft from '@lucide/svelte/icons/arrow-left';
   import * as Tabs from '$lib/components/ui/tabs';
   import { Button } from '$lib/components/ui/button';
@@ -38,10 +39,9 @@
     filters.find((entry) => ready && entry === page.url.searchParams.get('category')) ?? 'all'
   );
   let baseForm = $derived(ready && page.url.searchParams.get('enhanced') === '0');
+  const selectedLevels = new SvelteMap<string, number>();
   let items = $derived(
-    comparison.items.filter(
-      (item) => (filter === 'all' || item.category === filter) && item.status !== 'unchanged'
-    )
+    comparison.items.filter((item) => filter === 'all' || item.category === filter)
   );
   let returnHref = $derived(
     localizedHref(enhancementCharacterPath(comparison.avatarId, baseForm), locale)
@@ -124,7 +124,15 @@
     <Tabs.Content value={filter}>
       {#if items.length}
         <div class="grid min-w-0 gap-4">
-          {#each items as item (item.key)}<EnhancementComparisonCard {item} {locale} />{/each}
+          {#each items as item (item.key)}
+            {@const levelKey = `${comparison.avatarId}:${item.key}`}
+            <EnhancementComparisonCard
+              {item}
+              {locale}
+              selectedLevel={selectedLevels.get(levelKey)}
+              onLevelChange={(level) => selectedLevels.set(levelKey, level)}
+            />
+          {/each}
         </div>
       {:else}
         <p

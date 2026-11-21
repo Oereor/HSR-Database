@@ -2,6 +2,7 @@
   import * as Card from '$lib/components/ui/card';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
+  import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import {
     visibleComparisonText,
@@ -13,7 +14,40 @@
   import type { Locale } from '$lib/paraglide/runtime.js';
   import EnhancementDiffText from './EnhancementDiffText.svelte';
 
-  let { item, locale }: { item: ComparisonItem; locale: Locale } = $props();
+  let {
+    item,
+    locale,
+    selectedLevel,
+    onLevelChange
+  }: {
+    item: ComparisonItem;
+    locale: Locale;
+    selectedLevel?: number;
+    onLevelChange: (level: number) => void;
+  } = $props();
+  let levels = $derived(
+    item.category === 'skills' && item.level !== null
+      ? [item.level, ...item.additionalLevels.map(({ level }) => level)].sort((a, b) => a - b)
+      : []
+  );
+  let level = $derived(
+    selectedLevel !== undefined && levels.includes(selectedLevel)
+      ? selectedLevel
+      : item.category === 'skills'
+        ? item.level
+        : null
+  );
+  let alternative = $derived(
+    item.category === 'skills'
+      ? item.additionalLevels.find((entry) => entry.level === level)
+      : undefined
+  );
+  let beforeSide = $derived(
+    item.before && alternative ? { ...item.before, description: alternative.before } : item.before
+  );
+  let afterSide = $derived(
+    item.after && alternative ? { ...item.after, description: alternative.after } : item.after
+  );
   let displaySide = $derived(item.after ?? item.before);
   let changedName = $derived(
     item.before &&
@@ -28,8 +62,8 @@
       : m.enhancement_comparison_stat_trace({}, { locale });
   });
   let diff = $derived.by(() => {
-    const before = item.before?.description;
-    const after = item.after?.description;
+    const before = beforeSide?.description;
+    const after = afterSide?.description;
     if (before?.kind === 'available' && after?.kind === 'available')
       return diffEnhancementText(before.tokens, after.tokens);
     return {
@@ -91,8 +125,8 @@
       {/if}
       <div class="min-w-0">
         <p class="text-muted-foreground text-xs">
-          {kindLabel}{#if item.category === 'skills' && item.level !== null}
-            · {m.enhancement_comparison_level({ level: item.level }, { locale })}
+          {kindLabel}{#if level !== null && levels.length === 1}
+            · {m.enhancement_comparison_level({ level }, { locale })}
           {/if}
         </p>
         <h2
@@ -105,10 +139,32 @@
         </h2>
       </div>
     </div>
+    {#if level !== null && levels.length > 1}
+      <div class="comparison-level w-full shrink-0 sm:w-64 sm:max-w-[50%]">
+        <LevelSlider
+          compact
+          id={`comparison-level-${item.key}`}
+          label={m.skill_level(
+            { category: visibleComparisonText(displaySide.name) || kindLabel },
+            { locale }
+          )}
+          value={levels.indexOf(level)}
+          min={0}
+          max={levels.length - 1}
+          displayValue={level}
+          ariaValueMin={levels[0]}
+          ariaValueMax={levels.at(-1)}
+          onValueChange={(index) => {
+            const next = levels[index];
+            if (next !== undefined) onLevelChange(next);
+          }}
+        />
+      </div>
+    {/if}
   </header>
   <div class="comparison-sides border-border grid min-w-0 border-t md:grid-cols-2">
-    {@render side('before', item.before, diff.before)}
-    {@render side('after', item.after, diff.after)}
+    {@render side('before', beforeSide, diff.before)}
+    {@render side('after', afterSide, diff.after)}
   </div>
   {#if 'comments' in item && item.comments.length}
     <div class="border-border border-t px-4 py-3 sm:px-5" data-comparison-notes>
@@ -123,6 +179,9 @@
 </Card.Root>
 
 <style>
+  .comparison-level :global([data-slot='slider']) {
+    min-height: 2.75rem;
+  }
   .comparison-side + .comparison-side {
     border-block-start: 1px solid var(--border);
   }

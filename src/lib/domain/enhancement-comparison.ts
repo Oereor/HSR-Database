@@ -1,14 +1,20 @@
 import type { CharacterDetailIconKey } from './character-detail-icons.js';
 import type { DescriptionToken, SkillCategory, TextHash, TraceType } from './types.js';
 
-export const ENHANCEMENT_COMPARISON_SCHEMA = 1;
+export const ENHANCEMENT_COMPARISON_SCHEMA = 2;
 export const ENHANCEMENT_COMPARISON_ROUTE_ID = '/characters/[id]/enhancement-comparison';
 export const COMPARISON_CATEGORIES = ['skills', 'traces', 'eidolons'] as const;
 export type ComparisonCategory = (typeof COMPARISON_CATEGORIES)[number];
 export type ComparisonFilter = 'all' | ComparisonCategory;
 
-export type ComparisonText =
-  { kind: 'available'; tokens: DescriptionToken[] } | { kind: 'unavailable' };
+export type AvailableComparisonText = { kind: 'available'; tokens: DescriptionToken[] };
+export type ComparisonText = AvailableComparisonText | { kind: 'unavailable' };
+
+export interface ComparisonSkillLevel {
+  level: number;
+  before: AvailableComparisonText;
+  after: AvailableComparisonText;
+}
 
 export interface ComparisonSide {
   id: string;
@@ -17,7 +23,12 @@ export interface ComparisonSide {
 }
 
 export type ComparisonItemKind =
-  | { category: 'skills'; skillCategory: SkillCategory; level: number | null }
+  | {
+      category: 'skills';
+      skillCategory: SkillCategory;
+      level: number | null;
+      additionalLevels: ComparisonSkillLevel[];
+    }
   | { category: 'traces'; traceType: TraceType }
   | { category: 'eidolons'; rank: number };
 
@@ -38,12 +49,10 @@ export type ComparisonItem = ComparisonItemKind & {
         source: OfficialComparisonSource;
         before: ComparisonSide;
         after: ComparisonSide;
-        presentation: 'detailed' | 'simple';
-        simple?: { before: DescriptionToken[]; after: DescriptionToken[] };
         comments: DescriptionToken[][];
       }
     | {
-        status: 'modified' | 'unchanged';
+        status: 'modified';
         source: { kind: 'profile' };
         before: ComparisonSide;
         after: ComparisonSide;

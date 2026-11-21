@@ -50,9 +50,9 @@ The verified Aha E2 series_ref_skill_desc macro becomes a structured Description
 
 ## Character enhancement comparison
 
-Manifest schema 72 binds the comparison route inventory and one versioned artifact per enhanced character and locale under `views/{locale}/enhancement-comparisons/`. The comparison route serializes only its own shard. The ordinary detail route keeps its existing Profile payload.
+Manifest schema 73 binds the comparison route inventory and one versioned artifact per enhanced character and locale under `views/{locale}/enhancement-comparisons/`. The comparison route serializes only its own shard. The ordinary detail route keeps its existing Profile payload.
 
-Build-time association uses the enhanced declarations with SkillTree anchors and ordered skill membership, trace identity and prerequisites, and Eidolon rank membership. Detailed and simple official descriptions use their respective parameter lists from the matched form at a shared detail-default skill level. The matching TextMap supplies localized descriptions, comments and the season hint. Projection emits DescriptionTokens and records unavailable text, unresolved associations, Profile-only differences and wording differences between official comparisons and Profiles in the data audit. The default filter includes official and structural changes. The expanded filter includes matched Profile-only entries.
+Build-time association uses the enhanced declarations with SkillTree anchors and ordered skill membership, trace identity and prerequisites, and Eidolon rank membership. Skill descriptions use the matched forms’ parameter lists at each usable common progression level. The shard stores the default pair and its other comparable levels. A pair of official simple descriptions can substitute for unavailable detailed text at the same level. The matching TextMap supplies localized descriptions, comments and the season hint. Projection emits DescriptionTokens and records unavailable text, unresolved associations, Profile-only differences and wording differences between official comparisons and Profiles in the data audit. The shard includes official and structural changes and matched Profile differences discovered at any comparable level.
 
 ## Character Build Guide
 

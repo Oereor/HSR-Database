@@ -26,14 +26,16 @@ for (const id of ['1306', '1212', '1205']) {
       'href',
       new RegExp(`/en${path}$`)
     );
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('·');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+      (await page.title()).split(' | ')[0]
+    );
     await expect(page.locator('[data-enhancement-comparison] [role=switch]')).toHaveCount(0);
     await expect(page.locator('[data-comparison-item][data-status=unchanged]')).toHaveCount(0);
     await expect(page.locator('[data-comparison-item] [data-slot=badge]')).toHaveCount(0);
     await expect(page.locator('[data-comparison-item] details')).toHaveCount(0);
     await expect(page.locator('[data-comparison-item] [data-diff=insert]').first()).toBeVisible();
     await expect(page.locator('[data-comparison-item] [data-diff=delete]').first()).toBeVisible();
-    await expect(page.locator('[data-comparison-notes]').first()).toBeVisible();
+    if (id === '1212') await expect(page.locator('[data-comparison-notes]').first()).toBeVisible();
 
     const item = page.locator('[data-comparison-item]').first();
     const before = await item.locator('[data-comparison-side=before]').boundingBox();
@@ -74,12 +76,19 @@ for (const id of ['1306', '1212', '1205']) {
   });
 }
 
-test('filters are shareable and recover across reload and history', async ({ page }) => {
+test('filters are shareable and recover across reload and history', async ({ page, isMobile }) => {
+  if (isMobile) await page.setViewportSize({ width: 320, height: 700 });
   const path = comparisonPath('1005', '/en');
   await page.goto(`${path}?changes=0`);
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const category = (key: string) => page.locator(`[data-comparison-filter=${key}]`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('·');
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)
+  ).toBeLessThanOrEqual(1);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    (await page.title()).split(' | ')[0]
+  );
   await expect(category('all')).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('[data-comparison-item][data-source=profile]').first()).toBeVisible();
   await category('all').press('ArrowRight');
@@ -97,6 +106,64 @@ test('filters are shareable and recover across reload and history', async ({ pag
 
   await page.goto(`${path}?category=unknown`);
   await expect(category('all')).toHaveAttribute('aria-selected', 'true');
+});
+
+test('comparison sliders update both forms independently and retain levels across tabs', async ({
+  page,
+  isMobile
+}) => {
+  await page.goto(comparisonPath('1212'));
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+  const card = (id: string) => page.locator(`[data-comparison-item="skills:${id}"]`);
+  const basic = card('121201');
+  const skill = card('121202');
+  const slider = basic.getByRole('slider');
+  const otherSlider = skill.getByRole('slider');
+  const before = basic.locator('[data-comparison-side=before]');
+  const after = basic.locator('[data-comparison-side=after]');
+
+  await expect(slider).toHaveAttribute('aria-valuenow', '6');
+  await expect(otherSlider).toHaveAttribute('aria-valuenow', '10');
+  await expect(card('121207').getByRole('slider')).toHaveCount(0);
+  await expect(before.locator('del')).toContainText('100%');
+  await expect(after.locator('ins')).toContainText('50%');
+
+  await slider.press('Home');
+  await expect(slider).toHaveAttribute('aria-valuenow', '1');
+  await expect(before.locator('del')).toContainText('50%');
+  await expect(after.locator('ins')).toContainText('25%');
+  await expect(otherSlider).toHaveAttribute('aria-valuenow', '10');
+
+  const track = basic.locator('[data-slot=slider-track]');
+  await track.scrollIntoViewIfNeeded();
+  const bounds = (await track.boundingBox())!;
+  const x = bounds.x + bounds.width - 1;
+  const y = bounds.y + bounds.height / 2;
+  if (isMobile) {
+    await page.touchscreen.tap(x, y);
+  } else {
+    const thumb = (await slider.boundingBox())!;
+    await page.mouse.move(thumb.x + thumb.width / 2, thumb.y + thumb.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(x, y, { steps: 8 });
+    await page.mouse.up();
+  }
+  await expect(slider).toHaveAttribute('aria-valuenow', '10');
+  await expect(before.locator('del')).toContainText('140%');
+  await expect(after.locator('ins')).toContainText('70%');
+
+  for (const category of ['traces', 'eidolons']) {
+    await page.locator(`[data-comparison-filter=${category}]`).click();
+    await expect(page).toHaveURL(new RegExp(`category=${category}$`));
+    await expect(
+      page.locator(`[data-comparison-item][data-category=${category}]`).first()
+    ).toBeVisible();
+    await expect(page.getByRole('slider')).toHaveCount(0);
+  }
+  await page.locator('[data-comparison-filter=skills]').click();
+  await expect(slider).toHaveAttribute('aria-valuenow', '10');
+  await expect(otherSlider).toHaveAttribute('aria-valuenow', '10');
+  await expect(after.locator('ins')).toContainText('70%');
 });
 
 test('ordinary character comparison does not resolve', async ({ request }) => {
