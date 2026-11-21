@@ -47,6 +47,44 @@ for (const prefix of ['', '/en']) {
   });
 }
 
+for (const [prefix, width] of [
+  ['', 450],
+  ['/en', 520],
+  ['/en', 320]
+] as const) {
+  test(`enhancement controls fit the detail hero at ${width}px (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    await page.setViewportSize({ width, height: 840 });
+    await page.goto(`${prefix}/characters/1102/`);
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+    await page.evaluate(() => document.fonts.ready.then(() => undefined));
+    const actions = page.locator('.enhancement-actions');
+    const switcher = actions.getByRole('switch');
+
+    for (const enhanced of [true, false]) {
+      await expect(switcher).toHaveAttribute('aria-checked', String(enhanced));
+      const layout = await actions.evaluate((element) => {
+        const row = element.getBoundingClientRect();
+        const [control, comparison] = Array.from(element.children, (child) =>
+          child.getBoundingClientRect()
+        );
+        const gap = parseFloat(getComputedStyle(element).columnGap);
+        return {
+          overflow: Math.max(control.right, comparison.right) - row.right,
+          onSameRow: control.top < comparison.bottom && comparison.top < control.bottom,
+          fitsOnRow: control.width + comparison.width + gap <= row.width + 1
+        };
+      });
+      expect(layout.overflow).toBeLessThanOrEqual(1);
+      expect(layout.onSameRow).toBe(layout.fitsOnRow);
+      if (!prefix) expect(layout.onSameRow).toBe(true);
+
+      if (enhanced) await switcher.click();
+    }
+  });
+}
+
 test('language selection preserves comparison category and return form', async ({ page }) => {
   const suffix = '/characters/1005/enhancement-comparison/?category=traces&enhanced=0';
   await page.goto(suffix);

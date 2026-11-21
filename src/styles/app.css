@@ -743,10 +743,6 @@ main {
   .enemy-summon-list {
     grid-template-columns: 1fr;
   }
-  .enhancement-control {
-    width: 100%;
-    justify-content: space-between;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
