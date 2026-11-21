@@ -3,10 +3,8 @@
   import { page } from '$app/state';
   import { onMount } from 'svelte';
   import ArrowLeft from '@lucide/svelte/icons/arrow-left';
-  import GitCompareArrows from '@lucide/svelte/icons/git-compare-arrows';
   import * as Tabs from '$lib/components/ui/tabs';
   import { Button } from '$lib/components/ui/button';
-  import { Switch } from '$lib/components/ui/switch';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import EnhancementComparisonCard from '$lib/components/character/EnhancementComparisonCard.svelte';
@@ -39,24 +37,20 @@
   let filter = $derived(
     filters.find((entry) => ready && entry === page.url.searchParams.get('category')) ?? 'all'
   );
-  let changesOnly = $derived(!ready || page.url.searchParams.get('changes') !== '0');
   let baseForm = $derived(ready && page.url.searchParams.get('enhanced') === '0');
   let items = $derived(
     comparison.items.filter(
-      (item) =>
-        (filter === 'all' || item.category === filter) &&
-        (!changesOnly || item.source.kind !== 'profile')
+      (item) => (filter === 'all' || item.category === filter) && item.status !== 'unchanged'
     )
   );
   let returnHref = $derived(
     localizedHref(enhancementCharacterPath(comparison.avatarId, baseForm), locale)
   );
 
-  async function select(nextFilter: ComparisonFilter, nextChangesOnly: boolean) {
+  async function select(nextFilter: ComparisonFilter) {
     const url = new URL(page.url);
     url.search = '';
     if (nextFilter !== 'all') url.searchParams.set('category', nextFilter);
-    if (!nextChangesOnly) url.searchParams.set('changes', '0');
     if (baseForm) url.searchParams.set('enhanced', '0');
     if (url.href !== page.url.href) await goto(url, { noScroll: true, keepFocus: true });
   }
@@ -74,34 +68,31 @@
   class="mx-auto w-full max-w-6xl py-4 sm:py-6"
   data-enhancement-comparison={comparison.avatarId}
 >
-  <header class="border-border bg-card mb-5 rounded-lg border p-4 sm:p-6">
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <div class="flex min-w-0 items-center gap-3 sm:gap-4">
+  <header class="border-border bg-card mb-4 rounded-lg border p-3 sm:p-4">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <div class="flex min-w-0 items-center gap-3">
         <AssetImage
-          class="border-border bg-secondary size-12 shrink-0 rounded-lg border sm:size-16"
+          class="border-border bg-secondary size-10 shrink-0 rounded-lg border sm:size-12"
           src={getCharacterIconUrl(comparison.avatarId)}
           decorative
-          width={64}
-          height={64}
+          width={48}
+          height={48}
         />
-        <div class="min-w-0">
-          <p class="text-muted-foreground text-sm font-medium">
-            <DescriptionText tokens={comparison.name} />
-          </p>
-          <h1
-            class="mt-1 flex items-center gap-2 text-2xl font-semibold tracking-tight sm:text-3xl"
-          >
-            <GitCompareArrows class="text-primary size-5 shrink-0 sm:size-6" aria-hidden="true" />
-            {m.enhancement_comparison_title({}, { locale })}
-          </h1>
-        </div>
+        <h1
+          class="min-w-0 text-xl font-semibold tracking-tight [overflow-wrap:anywhere] sm:text-2xl"
+        >
+          <DescriptionText tokens={comparison.name} /> · {m.enhancement_comparison_title(
+            {},
+            { locale }
+          )}
+        </h1>
       </div>
       <Button href={returnHref} variant="outline" data-comparison-return>
         <ArrowLeft aria-hidden="true" />{m.enhancement_comparison_return({}, { locale })}
       </Button>
     </div>
     {#if comparison.summary.length}
-      <section class="border-border mt-4 border-t pt-4" aria-labelledby="enhancement-summary">
+      <section class="border-border mt-3 border-t pt-3" aria-labelledby="enhancement-summary">
         <h2 id="enhancement-summary" class="text-muted-foreground text-sm font-semibold">
           {m.enhancement_comparison_summary({}, { locale })}
         </h2>
@@ -117,37 +108,19 @@
     value={filter}
     onValueChange={(value) => {
       const selected = filters.find((entry) => entry === value);
-      if (selected) void select(selected, changesOnly);
+      if (selected) void select(selected);
     }}
   >
-    <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
-      <Tabs.List
-        aria-label={m.enhancement_comparison_categories({}, { locale })}
-        class="flex min-h-10 flex-wrap gap-1"
-      >
-        {#each filters as category}
-          <Tabs.Trigger
-            value={category}
-            data-comparison-filter={category}
-            class="min-h-11 min-w-11 px-2.5"
-          >
-            {filterLabels[category]({}, { locale })}
-          </Tabs.Trigger>
-        {/each}
-      </Tabs.List>
-      <label
-        class="text-muted-foreground flex min-h-10 cursor-pointer items-center gap-3 pl-2 text-sm"
-      >
-        <Switch
-          checked={changesOnly}
-          onCheckedChange={(checked) => {
-            void select(filter, checked);
-          }}
-          data-comparison-changes
-        />
-        {m.enhancement_comparison_changes({}, { locale })}
-      </label>
-    </div>
+    <Tabs.List
+      aria-label={m.enhancement_comparison_categories({}, { locale })}
+      class="border-border mb-4 grid grid-cols-4 border-b sm:flex"
+    >
+      {#each filters as category}
+        <Tabs.Trigger value={category} data-comparison-filter={category} variant="underline">
+          {filterLabels[category]({}, { locale })}
+        </Tabs.Trigger>
+      {/each}
+    </Tabs.List>
     <Tabs.Content value={filter}>
       {#if items.length}
         <div class="grid min-w-0 gap-4">
@@ -158,9 +131,7 @@
           class="border-border bg-card text-muted-foreground rounded-lg border p-6 text-center"
           data-comparison-empty
         >
-          {changesOnly
-            ? m.enhancement_comparison_empty_changes({}, { locale })
-            : m.enhancement_comparison_empty_all({}, { locale })}
+          {m.enhancement_comparison_empty_changes({}, { locale })}
         </p>
       {/if}
     </Tabs.Content>

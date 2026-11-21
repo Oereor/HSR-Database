@@ -47,17 +47,14 @@ for (const prefix of ['', '/en']) {
   });
 }
 
-test('language selection preserves comparison category, scope and return form', async ({
-  page
-}) => {
-  const suffix = '/characters/1005/enhancement-comparison/?category=traces&changes=0&enhanced=0';
+test('language selection preserves comparison category and return form', async ({ page }) => {
+  const suffix = '/characters/1005/enhancement-comparison/?category=traces&enhanced=0';
   await page.goto(suffix);
   await switchLanguage(page, 'en', `/en${suffix}`);
   await expect(page.locator('[data-comparison-filter=traces]')).toHaveAttribute(
     'aria-selected',
     'true'
   );
-  await expect(page.locator('[data-comparison-changes]')).toHaveAttribute('aria-checked', 'false');
   await expect(page.locator('[data-comparison-return]')).toHaveAttribute(
     'href',
     '/en/characters/1005/?enhanced=0'

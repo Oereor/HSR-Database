@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 const comparisonPath = (id: string, locale = '') =>
   `${locale}/characters/${id}/enhancement-comparison/`;
 
-for (const id of ['1212', '1205', '1005']) {
+for (const id of ['1306', '1212', '1205']) {
   test(`comparison for ${id} renders two readable forms without overflow`, async ({
     page,
     isMobile
@@ -26,7 +26,9 @@ for (const id of ['1212', '1205', '1005']) {
       'href',
       new RegExp(`/en${path}$`)
     );
-    await expect(page.locator('[data-comparison-item][data-source=profile]')).toHaveCount(0);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('·');
+    await expect(page.locator('[data-enhancement-comparison] [role=switch]')).toHaveCount(0);
+    await expect(page.locator('[data-comparison-item][data-status=unchanged]')).toHaveCount(0);
     await expect(page.locator('[data-comparison-item] [data-diff=insert]').first()).toBeVisible();
     await expect(page.locator('[data-comparison-item] [data-diff=delete]').first()).toBeVisible();
     await expect(page.locator('[data-comparison-notes]').first()).toBeVisible();
@@ -72,35 +74,27 @@ for (const id of ['1212', '1205', '1005']) {
 
 test('filters are shareable and recover across reload and history', async ({ page }) => {
   const path = comparisonPath('1005', '/en');
-  await page.goto(path);
+  await page.goto(`${path}?changes=0`);
   const category = (key: string) => page.locator(`[data-comparison-filter=${key}]`);
-  const changes = page.locator('[data-comparison-changes]');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('·');
   await expect(category('all')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-comparison-item][data-source=profile]').first()).toBeVisible();
+  await category('all').press('ArrowRight');
+  await expect(page).toHaveURL(/category=skills$/);
+  await expect(category('skills')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-comparison-item]:not([data-category=skills])')).toHaveCount(0);
   await category('eidolons').click();
   await expect(page).toHaveURL(/category=eidolons$/);
-  await expect(category('eidolons')).toHaveAttribute('aria-selected', 'true');
-  await expect(
-    page.locator('[data-comparison-item][data-category]:not([data-category=eidolons])')
-  ).toHaveCount(0);
-  await changes.click();
-  await expect(page).toHaveURL(/category=eidolons&changes=0$/);
-  await expect(page.locator('[data-comparison-item][data-source=profile]').first()).toBeVisible();
   await page.reload();
-  await expect(changes).toHaveAttribute('aria-checked', 'false');
   await expect(category('eidolons')).toHaveAttribute('aria-selected', 'true');
   await page.goBack();
-  await expect(changes).toHaveAttribute('aria-checked', 'true');
-  await page.goBack();
-  await expect(category('all')).toHaveAttribute('aria-selected', 'true');
+  await expect(category('skills')).toHaveAttribute('aria-selected', 'true');
   await page.goForward();
   await expect(category('eidolons')).toHaveAttribute('aria-selected', 'true');
 
-  await page.goto(`${path}?category=unknown&changes=unknown`);
+  await page.goto(`${path}?category=unknown`);
   await expect(category('all')).toHaveAttribute('aria-selected', 'true');
-  await expect(changes).toHaveAttribute('aria-checked', 'true');
-  await page.goto(`${comparisonPath('1205')}?category=skills&changes=0`);
-  await expect(category('skills')).toHaveAttribute('aria-selected', 'true');
-  await expect(changes).toHaveAttribute('aria-checked', 'false');
 });
 
 test('ordinary character comparison does not resolve', async ({ request }) => {
