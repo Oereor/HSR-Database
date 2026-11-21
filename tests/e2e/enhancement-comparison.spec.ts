@@ -29,6 +29,8 @@ for (const id of ['1306', '1212', '1205']) {
     await expect(page.getByRole('heading', { level: 1 })).toContainText('·');
     await expect(page.locator('[data-enhancement-comparison] [role=switch]')).toHaveCount(0);
     await expect(page.locator('[data-comparison-item][data-status=unchanged]')).toHaveCount(0);
+    await expect(page.locator('[data-comparison-item] [data-slot=badge]')).toHaveCount(0);
+    await expect(page.locator('[data-comparison-item] details')).toHaveCount(0);
     await expect(page.locator('[data-comparison-item] [data-diff=insert]').first()).toBeVisible();
     await expect(page.locator('[data-comparison-item] [data-diff=delete]').first()).toBeVisible();
     await expect(page.locator('[data-comparison-notes]').first()).toBeVisible();

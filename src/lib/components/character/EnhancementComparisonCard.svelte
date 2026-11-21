@@ -1,6 +1,5 @@
 <script lang="ts">
   import * as Card from '$lib/components/ui/card';
-  import { Badge } from '$lib/components/ui/badge';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
@@ -15,18 +14,6 @@
   import EnhancementDiffText from './EnhancementDiffText.svelte';
 
   let { item, locale }: { item: ComparisonItem; locale: Locale } = $props();
-  const statusMessages = {
-    modified: m.enhancement_comparison_modified,
-    added: m.enhancement_comparison_added,
-    removed: m.enhancement_comparison_removed,
-    unchanged: m.enhancement_comparison_unchanged
-  };
-  const statusClasses = {
-    modified: 'border-amber-400/40 text-amber-300',
-    added: 'border-emerald-400/40 text-emerald-300',
-    removed: 'border-destructive/50 text-destructive',
-    unchanged: 'text-muted-foreground'
-  };
   let displaySide = $derived(item.after ?? item.before);
   let changedName = $derived(
     item.before &&
@@ -118,22 +105,7 @@
         </h2>
       </div>
     </div>
-    <div class="flex flex-wrap items-center gap-1.5">
-      {#if item.status === 'modified' && item.source.kind === 'profile'}
-        <Badge variant="outline" class="text-muted-foreground"
-          >{m.enhancement_comparison_profile({}, { locale })}</Badge
-        >
-      {/if}
-      <Badge variant="outline" class={statusClasses[item.status]}
-        >{statusMessages[item.status]({}, { locale })}</Badge
-      >
-    </div>
   </header>
-  {#if 'presentation' in item && item.presentation === 'simple'}
-    <p class="text-muted-foreground border-border border-t px-4 pt-2 text-xs sm:px-5">
-      {m.enhancement_comparison_simple({}, { locale })}
-    </p>
-  {/if}
   <div class="comparison-sides border-border grid min-w-0 border-t md:grid-cols-2">
     {@render side('before', item.before, diff.before)}
     {@render side('after', item.after, diff.after)}
@@ -147,23 +119,6 @@
         {#each item.comments as comment}<li><DescriptionText tokens={comment} /></li>{/each}
       </ul>
     </div>
-  {/if}
-  {#if 'simple' in item && item.simple}
-    <details class="border-border border-t px-4 py-2 sm:px-5">
-      <summary class="text-muted-foreground min-h-8 cursor-pointer py-1 text-sm">
-        {m.enhancement_comparison_simple({}, { locale })}
-      </summary>
-      <dl class="comparison-prose grid gap-3 pb-2 text-sm md:grid-cols-2">
-        <div class="min-w-0">
-          <dt class="text-muted-foreground">{m.detail_enhanced_before({}, { locale })}</dt>
-          <dd><DescriptionText tokens={item.simple.before} /></dd>
-        </div>
-        <div class="min-w-0">
-          <dt class="text-muted-foreground">{m.detail_enhanced_after({}, { locale })}</dt>
-          <dd><DescriptionText tokens={item.simple.after} /></dd>
-        </div>
-      </dl>
-    </details>
   {/if}
 </Card.Root>
 
