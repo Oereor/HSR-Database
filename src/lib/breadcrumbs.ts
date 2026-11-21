@@ -1,3 +1,7 @@
+import {
+  ENHANCEMENT_COMPARISON_ROUTE_ID,
+  enhancementCharacterPath
+} from './domain/enhancement-comparison';
 import { gameTextToPlain } from './domain/game-text';
 import { localizedNavigationItems } from './navigation';
 import { canonicalHref, localizedHref } from './i18n/routing';
@@ -25,13 +29,15 @@ export function resolveBreadcrumbs({
   params,
   locale,
   data,
-  status = 200
+  status = 200,
+  comparisonBaseForm = false
 }: {
   routeId: string | null;
   params: Record<string, string | undefined>;
   locale: Locale;
   data: BreadcrumbData;
   status?: number;
+  comparisonBaseForm?: boolean;
 }): BreadcrumbItem[] {
   const items: BreadcrumbItem[] = [{ label: siteName(locale), href: localizedHref('/', locale) }];
   const add = (label: string, href?: string) =>
@@ -49,6 +55,11 @@ export function resolveBreadcrumbs({
     add(m.search_hero_title({}, { locale }));
   } else if (routeId === '/player') {
     add(m.navigation_player({}, { locale }));
+  } else if (routeId === ENHANCEMENT_COMPARISON_ROUTE_ID) {
+    add(m.navigation_characters({}, { locale }), '/characters');
+    if (data.detail && 'id' in data.detail && data.detail.id === params.id)
+      add(data.detail.name, enhancementCharacterPath(data.detail.id, comparisonBaseForm));
+    add(m.enhancement_comparison_title({}, { locale }));
   } else if (routeId.startsWith('/[category=category]')) {
     const category = localizedNavigationItems(locale).find((item) => item.id === params.category);
     if (category) {

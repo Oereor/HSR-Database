@@ -1,3 +1,4 @@
+import { validateEnhancementComparisonSemantics } from './validation/enhancement-comparison.js';
 import { validateTrainingSemantics } from './validation/training.js';
 import { validateCharacterExtensionSemantics } from './validation/character-extensions.js';
 import { validatePhaseHpSemantics } from './validation/phase-hp.js';
@@ -121,6 +122,12 @@ if (
   throw new Error('Rating V2 profiles differ from pinned raw semantics');
 await validateTrainingSemantics(rawRoot, staticGeneratedRoot, currentTextMaps);
 await validateCharacterExtensionSemantics(rawRoot, generatedRoot, currentTextMaps);
+await validateEnhancementComparisonSemantics(
+  rawRoot,
+  generatedRoot,
+  manifest.enhancementComparisonIds,
+  currentTextMaps
+);
 const playerRuntimeTables = Object.fromEntries(
   await Promise.all(
     PLAYER_RUNTIME_TABLE_NAMES.map(async (name) => [name, await readTable(rawRoot, name)] as const)

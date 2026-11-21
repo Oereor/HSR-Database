@@ -15,6 +15,7 @@
   import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
   import { Toaster } from '$lib/components/ui/sonner';
   import GlobalBreadcrumb from '$lib/components/layout/GlobalBreadcrumb.svelte';
+  import { ENHANCEMENT_COMPARISON_ROUTE_ID } from '$lib/domain/enhancement-comparison';
   import { resolveBreadcrumbs, type BreadcrumbData } from '$lib/breadcrumbs';
   import { onMount } from 'svelte';
   import { dev } from '$app/environment';
@@ -53,7 +54,11 @@
     params: $page.params,
     locale: data.locale,
     data: { ...breadcrumbData, detail: breadcrumbDetail },
-    status: $page.status
+    status: $page.status,
+    comparisonBaseForm:
+      appReady &&
+      $page.route.id === ENHANCEMENT_COMPARISON_ROUTE_ID &&
+      $page.url.searchParams.get('enhanced') === '0'
   });
   $: pageNavHeight =
     $page.status >= 400

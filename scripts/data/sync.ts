@@ -1,3 +1,9 @@
+import { enhancementComparisonArtifact } from '../../src/lib/domain/enhancement-comparison.js';
+import { buildEnhancementComparisons } from './domain/enhancement-comparison.js';
+import {
+  comparisonSkillRows,
+  projectEnhancementComparison
+} from './projection/enhancement-comparison.js';
 import { createHash } from 'node:crypto';
 import { access, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -628,6 +634,8 @@ export async function syncData(): Promise<DataManifest> {
     'AvatarEnhancedSkill',
     'AvatarEnhancedSkillTree',
     'AvatarEnhancedRank',
+    'AvatarEnhancedHintConfig',
+    'AvatarEnhancedSeason',
     'AvatarUltraSkillConfig',
     'GridFightFrontSpecialSP',
     'MultiplePathAvatarConfig',
@@ -657,6 +665,9 @@ export async function syncData(): Promise<DataManifest> {
   ]);
   const characterBuild = buildCharacterDomain({ tables: characterDomainSource });
   const characterDomains = characterBuild.characters;
+  const enhancementBuild = buildEnhancementComparisons(characterDomainSource, characterDomains);
+  const enhancementComparisonIds = enhancementBuild.comparisons.map(({ avatarId }) => avatarId);
+  const enhancementSkillRows = comparisonSkillRows(characterDomainSource);
   const teamRecommendations = buildCharacterTeamRecommendations(
     tables.TeamBuildConfig,
     tables.TeamBuildGroupConfig,
@@ -785,6 +796,16 @@ export async function syncData(): Promise<DataManifest> {
           skillCategoryLabels: projectionPolicy.skillCategoryLabels,
           skillEffectLabels: projectionPolicy.skillEffectLabels
         })
+      )
+    );
+    const characterViewsById = new Map(characters.map((character) => [character.id, character]));
+    const enhancementComparisons = enhancementBuild.comparisons.map((comparison) =>
+      projectEnhancementComparison(
+        comparison,
+        charactersById.get(comparison.avatarId)!,
+        characterViewsById.get(comparison.avatarId)!,
+        runtime.text,
+        enhancementSkillRows
       )
     );
     const characterNames = await deriveCharacterNames(root, commit, runtime.text);
@@ -933,6 +954,7 @@ export async function syncData(): Promise<DataManifest> {
         enemies: enemyCatalog
       },
       details: { characters, 'light-cones': lightCones, relics, enemies },
+      enhancementComparisons,
       playerLightConeDetails: projectPlayerLightConeDetails(lightCones, {
         locale: config.locale,
         resolver: runtime.text
@@ -985,6 +1007,13 @@ export async function syncData(): Promise<DataManifest> {
   };
   const writeViewArtifacts = async (projection: (typeof projections)[number]): Promise<void> => {
     const projectedLocale = projection.config.locale;
+    for (const { comparison } of projection.enhancementComparisons)
+      await writeArtifact(
+        nextGeneratedRoot,
+        enhancementComparisonArtifact(projectedLocale, comparison.avatarId),
+        comparison,
+        { locale: projectedLocale }
+      );
     for (const category of Object.keys(projection.catalogs)) {
       const catalog = projection.catalogs[category as keyof typeof projection.catalogs];
       await writeArtifact(
@@ -1179,7 +1208,11 @@ export async function syncData(): Promise<DataManifest> {
     relics: baseProjection.details.relics.map((item) => item.id),
     enemies: baseProjection.details.enemies.map(({ template }) => template.monsterTemplateId)
   };
-  const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
+  const { routePaths } = buildGeneratedRouteInventory(
+    routes,
+    baseProjection.endgame.datasets,
+    enhancementComparisonIds
+  );
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
     schemaVersion: DATA_MANIFEST_SCHEMA_VERSION,
     ratingV2PolicyInput: (await readRatingV2PolicyInput()).metadata,
@@ -1191,6 +1224,7 @@ export async function syncData(): Promise<DataManifest> {
     publicLocale: locale.locale,
     publicLocales: getPublicLocales().map(({ locale }) => locale),
     routePaths,
+    enhancementComparisonIds,
     locales: localeManifest,
     artifacts,
     counts: countsOf(baseProjection),
@@ -1250,6 +1284,7 @@ export async function syncData(): Promise<DataManifest> {
       unsupportedHiddenDiscriminants: characterBuild.unsupportedHiddenSkillDiscriminants
     },
     avatarSpecialSkillTreeAudit,
+    enhancementComparisonAssociations: enhancementBuild.diagnostics,
     specialEffectAudit: specialEffectLinks.audit,
     enemyAudit: baseProjection.enemyAudit,
     endgameAudit: baseProjection.endgame.audit,
@@ -1260,6 +1295,9 @@ export async function syncData(): Promise<DataManifest> {
         {
           textDiagnostics: projection.runtime.text.getDiagnostics(),
           descriptionDiagnostics: projection.runtime.descriptionDiagnostics,
+          enhancementComparison: projection.enhancementComparisons.flatMap(
+            ({ diagnostics }) => diagnostics
+          ),
           missingTextAudit: projection.runtime.missingText.getSummary(),
           enemyAudit: projection.enemyAudit,
           endgameAudit: projection.endgame.audit,

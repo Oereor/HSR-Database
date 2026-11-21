@@ -167,6 +167,19 @@ function parseInlineIcon(markup: string): InlineGameTextIcon | undefined {
   };
 }
 
+export function unsupportedGameTextTags(value: string): string[] {
+  return [...value.matchAll(markupPattern)]
+    .map(([tag]) => tag)
+    .filter(
+      (tag) =>
+        !colorPattern.test(tag) &&
+        !/^<\/?(?:i|u|unbreak|scaling-value|fixed-param)\s*>$/i.test(tag) &&
+        !/^<\/color\s*>$/i.test(tag) &&
+        !/^<ruby-note=[^>]+>$|^<\/ruby-note>$/.test(tag) &&
+        !parseInlineIcon(tag)
+    );
+}
+
 export function parseGameText(value = ''): GameTextToken[] {
   return parseStyledGameText(value);
 }

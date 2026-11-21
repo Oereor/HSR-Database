@@ -1,3 +1,4 @@
+import { enhancementComparisonPath } from '../../src/lib/domain/enhancement-comparison.js';
 import type { DataManifest } from '../../src/lib/domain/types.js';
 import type { EndgameDatasetByMode } from '../../src/lib/domain/endgame.js';
 import { ENDGAME_MODES } from '../../src/lib/domain/endgame-view.js';
@@ -12,7 +13,8 @@ export interface GeneratedRouteInventory {
 /** Canonical locale-neutral route inventory used by generation and validation. */
 export function buildGeneratedRouteInventory(
   routes: GeneratedRoutes,
-  datasets: EndgameDatasetByMode
+  datasets: EndgameDatasetByMode,
+  enhancementComparisonIds: readonly string[] = []
 ): GeneratedRouteInventory {
   return {
     routes,
@@ -24,6 +26,7 @@ export function buildGeneratedRouteInventory(
         `/${category}`,
         ...ids.map((id) => `/${category}/${id}`)
       ]),
+      ...enhancementComparisonIds.map(enhancementComparisonPath),
       '/endgame',
       ...ENDGAME_MODES.flatMap((mode) => [
         `/endgame/${mode}`,

@@ -10,6 +10,8 @@ export const DATA_GENERATION_TABLE_NAMES = [
   'AvatarEnhancedSkill',
   'AvatarEnhancedSkillTree',
   'AvatarEnhancedRank',
+  'AvatarEnhancedHintConfig',
+  'AvatarEnhancedSeason',
   'AvatarUltraSkillConfig',
   'GridFightFrontSpecialSP',
   'MultiplePathAvatarConfig',

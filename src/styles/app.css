@@ -185,11 +185,17 @@ main {
   color: var(--text);
   font-size: 1.05rem;
 }
+.enhancement-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.15rem 0 1.25rem;
+}
 .enhancement-control {
   display: inline-flex;
   align-items: center;
   gap: 0.85rem;
-  margin: 0.15rem 0 1.25rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
   background: var(--card);
@@ -736,10 +742,6 @@ main {
   }
   .enemy-summon-list {
     grid-template-columns: 1fr;
-  }
-  .enhancement-control {
-    width: 100%;
-    justify-content: space-between;
   }
 }
 

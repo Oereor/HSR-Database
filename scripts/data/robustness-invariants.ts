@@ -861,7 +861,11 @@ export function validateProductProjection(
         )
       );
   }
-  const expectedInventory = buildGeneratedRouteInventory(manifest.routes, projection.endgame);
+  const expectedInventory = buildGeneratedRouteInventory(
+    manifest.routes,
+    projection.endgame,
+    manifest.enhancementComparisonIds
+  );
   if (!sameSet(manifest.routePaths, expectedInventory.routePaths))
     issues.push(
       issue(

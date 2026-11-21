@@ -1,3 +1,7 @@
+import {
+  enhancementComparisonArtifact,
+  enhancementComparisonPath
+} from '../../src/lib/domain/enhancement-comparison.js';
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -54,9 +58,26 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
     !isRecord(value.artifacts) ||
     !isRecord(value.counts) ||
     !isRecord(value.routes) ||
+    !Array.isArray(value.routes.characters) ||
+    !Array.isArray(value.enhancementComparisonIds) ||
+    value.enhancementComparisonIds.some((id) => typeof id !== 'string' || !/^\d+$/.test(id)) ||
+    new Set(value.enhancementComparisonIds).size !== value.enhancementComparisonIds.length ||
     !isRecord(value.endgame)
   )
     throw new Error('Generated data manifest is incomplete');
+  const characterIds = new Set(value.routes.characters);
+  if (value.enhancementComparisonIds.some((id) => !characterIds.has(id)))
+    throw new Error('Generated data manifest references an unknown enhanced character');
+  const comparisonRoutes = value.routePaths.filter((route) =>
+    /^\/characters\/\d+\/enhancement-comparison$/.test(route)
+  );
+  if (
+    comparisonRoutes.length !== value.enhancementComparisonIds.length ||
+    value.enhancementComparisonIds.some(
+      (id) => !comparisonRoutes.includes(enhancementComparisonPath(id))
+    )
+  )
+    throw new Error('Generated data manifest enhancement comparison routes are incomplete');
   for (const [locale, textMapCode] of [
     ['zh-CN', 'CHS'],
     ['en', 'EN']
@@ -85,6 +106,7 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
     )
       throw new Error(`Generated data manifest localization health is invalid: ${locale}`);
     for (const requiredPath of [
+      ...value.enhancementComparisonIds.map((id) => enhancementComparisonArtifact(locale, id)),
       'static/generated/training/shared.json',
       `static/generated/${locale}/materials.json`,
       `static/generated/${locale}/material-details.json`,

@@ -469,6 +469,7 @@ async function createFixture(): Promise<Fixture> {
     publicLocale: 'zh-CN',
     publicLocales: ['zh-CN', 'en'],
     routePaths: buildGeneratedRouteInventory(routes, datasets).routePaths,
+    enhancementComparisonIds: [],
     locales: { 'zh-CN': localeEntry('zh-CN'), en: localeEntry('en') },
     dataRevision: '',
     artifacts,

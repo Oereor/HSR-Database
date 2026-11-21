@@ -535,6 +535,7 @@ export interface DataManifest {
   publicLocale: 'zh-CN';
   publicLocales: Array<'zh-CN' | 'en'>;
   routePaths: string[];
+  enhancementComparisonIds: string[];
   locales: Record<
     'zh-CN' | 'en',
     {

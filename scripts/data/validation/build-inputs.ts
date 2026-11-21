@@ -1,3 +1,10 @@
+import type { Character } from '../../../src/lib/domain/types.js';
+import type { EnhancementComparison } from '../../../src/lib/domain/enhancement-comparison.js';
+import {
+  assertComparisonProfileReferences,
+  assertEnhancementComparison,
+  comparisonProfileIds
+} from './enhancement-comparison.js';
 import { enemyDetailHref } from '../../../src/lib/domain/enemy-view.js';
 import { gameTextToPlain } from '../../../src/lib/domain/game-text.js';
 import { enemySearchAliases } from '../search-documents.js';
@@ -239,6 +246,12 @@ export async function validateBuildInputs(
   const materials: MaterialCatalog[] = [];
   const materialDetails: MaterialDetailCatalog[] = [];
   const characterIds = new Set(manifest.routes.characters);
+  const enhancementIds = new Set(manifest.enhancementComparisonIds);
+  const comparisons: EnhancementComparison[] = [];
+  const enhancedProfiles = new Map<
+    string,
+    Record<'before' | 'after', ReturnType<typeof comparisonProfileIds>>
+  >();
   const artifacts = await validateGeneratedArtifacts(
     manifest,
     { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
@@ -246,6 +259,33 @@ export async function validateBuildInputs(
       async onArtifact(logicalPath, value, metadata) {
         if (/^(?:views|static\/generated)\/(?:zh-CN|en)\//.test(logicalPath))
           assertNoSourceMacros(value, logicalPath);
+        const comparisonMatch = logicalPath.match(
+          /^views\/(zh-CN|en)\/enhancement-comparisons\/(\d+)\.json$/
+        );
+        if (comparisonMatch) {
+          const [, locale, id] = comparisonMatch;
+          assertArtifactLocale(logicalPath, metadata);
+          if (!enhancementIds.has(id))
+            throw new Error(`[enhancement] Unexpected comparison ${logicalPath}`);
+          assertEnhancementComparison(value, locale, id);
+          comparisons.push(value);
+          return;
+        }
+        const characterDetailMatch = logicalPath.match(
+          /^views\/(zh-CN|en)\/details\/characters\/(\d+)\.json$/
+        );
+        if (characterDetailMatch) {
+          const [, locale, id] = characterDetailMatch;
+          const profiles = (value as Partial<Character>).profiles;
+          if (!!profiles?.enhanced !== enhancementIds.has(id))
+            throw new Error(`[enhancement] Profile inventory differs for ${locale}:${id}`);
+          if (profiles?.enhanced) {
+            enhancedProfiles.set(`${locale}:${id}`, {
+              before: comparisonProfileIds(profiles.base),
+              after: comparisonProfileIds(profiles.enhanced)
+            });
+          }
+        }
         if (logicalPath === TEAM_RECOMMENDATIONS_ARTIFACT) {
           if (
             metadata.locale !== undefined ||
@@ -590,6 +630,11 @@ export async function validateBuildInputs(
     }
   }
 
+  for (const comparison of comparisons) {
+    const profiles = enhancedProfiles.get(`${comparison.locale}:${comparison.avatarId}`);
+    if (!profiles) throw new Error(`[enhancement] Missing Profiles for ${comparison.avatarId}`);
+    assertComparisonProfileReferences(comparison, profiles);
+  }
   for (const locale of manifest.generatedLocales) {
     if (relicPropertyCounts.get(locale) !== manifest.locales[locale].counts.relicProperties)
       throw new Error(`${locale} relic property count does not match manifest`);
@@ -598,7 +643,8 @@ export async function validateBuildInputs(
       throw new Error(`${locale} Endgame build inputs are incomplete`);
     const inventory = buildGeneratedRouteInventory(
       manifest.routes,
-      datasets as EndgameDatasetByMode
+      datasets as EndgameDatasetByMode,
+      manifest.enhancementComparisonIds
     );
     if (JSON.stringify(inventory.routePaths) !== JSON.stringify(manifest.routePaths))
       throw new Error(`${locale} generated route inventory does not match manifest.routePaths`);
