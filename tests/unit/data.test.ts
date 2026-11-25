@@ -77,7 +77,7 @@ import {
 import { formatDescription, formatGameMarkup, formatGameText } from '../../scripts/data/text';
 import { configuredCharacterDetailIconKey } from '../../scripts/data/character-detail-icons';
 import { annotateSpecialEffectTokens } from '../../scripts/data/special-effect-triggers';
-import { buildCharacterDomain } from '../../scripts/data/domain/character';
+import { buildCharacterDomain, readCharacterEnergy } from '../../scripts/data/domain/character';
 
 const baseProfile = (character: Character): CharacterProfile => character.profiles.base;
 const variantOf = (
@@ -1458,38 +1458,73 @@ describe('真实数据管线', () => {
 
   it('依据真实配置区分普通能量与特殊能量', async () => {
     const root = assertDataRoot();
-    const ultraSkills = await readTable<any>(root, 'AvatarUltraSkillConfig');
-    const specialIds = ultraSkills
-      .filter((row) => row.UltraSkillType === 'SpecialSP')
+    const tables = await loadCharacterDomainTables(root);
+    const { characters } = buildCharacterDomain({ tables });
+    const neutralById = new Map(characters.map((character) => [character.id, character]));
+    const specialIds = tables.AvatarUltraSkillConfig.filter(
+      (row) => row.UltraSkillType === 'SpecialSP'
+    )
       .map((row) => String(row.AvatarID))
       .sort();
-    expect(specialIds).toContain('1511');
-    for (const id of specialIds) {
-      const detail = JSON.parse(
-        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
-      ) as Character;
-      expect(baseProfile(detail).energy).toEqual({
-        kind: 'special',
-        max: 0,
-        iconKey: 'property--SpecialMaxSP'
-      });
+    expect(specialIds).toEqual(['1220', '1308', '1407', '1408', '1415', '1506', '1511']);
+    const expectedCaps = new Map([
+      ['1001', 120],
+      ['1006', 110],
+      ['1220', 12],
+      ['1308', 9],
+      ['1407', null],
+      ['1408', 12],
+      ['1415', 24],
+      ['1506', 60],
+      ['1511', 8]
+    ]);
+    for (const [id, max] of expectedCaps) {
+      const avatar = tables.AvatarConfig.find((row) => String(row.AvatarID) === id);
+      expect(avatar).toBeDefined();
+      if (max === null) expect(avatar).not.toHaveProperty('SPNeed');
+      else expect(avatar).toHaveProperty('SPNeed.Value', String(max));
+      const kind = specialIds.includes(id) ? 'special' : 'standard';
+      const iconCode = kind === 'special' ? 'SpecialMaxSP' : 'MaxSP';
+      const neutral = neutralById.get(id)!;
+      expect(neutral.profiles.base.energy).toMatchObject({ kind, max, iconCode });
+      if (id === '1006')
+        expect(neutral.profiles.enhanced?.energy).toMatchObject({ kind, max, iconCode });
+      for (const locale of ['zh-CN', 'en']) {
+        const detail = JSON.parse(
+          await readFile(
+            path.join(generatedRoot, 'views', locale, 'details', 'characters', `${id}.json`),
+            'utf8'
+          )
+        ) as Character;
+        const energy = { kind, max, iconKey: `property--${iconCode}` };
+        expect(detail.profiles.base.energy).toEqual(energy);
+        if (id === '1006') expect(detail.profiles.enhanced?.energy).toEqual(energy);
+      }
     }
-    const march = JSON.parse(
-      await readFile(path.join(characterRoot, 'details', 'characters', '1001.json'), 'utf8')
-    ) as Character;
-    const silverWolf = JSON.parse(
-      await readFile(path.join(characterRoot, 'details', 'characters', '1006.json'), 'utf8')
-    ) as Character;
-    expect(baseProfile(march).energy).toEqual({
-      kind: 'standard',
-      max: 120,
-      iconKey: 'property--MaxSP'
-    });
-    expect(baseProfile(silverWolf).energy).toEqual({
-      kind: 'standard',
-      max: 110,
-      iconKey: 'property--MaxSP'
-    });
+  });
+
+  it.each([
+    { AvatarID: 1001 },
+    { AvatarID: 1308 },
+    { AvatarID: 1308, SPNeed: { Value: '-1' } },
+    { AvatarID: 1308, SPNeed: { Value: 'invalid' } },
+    { AvatarID: 1407, SPNeed: {} },
+    { AvatarID: 1407, SPNeed: null },
+    { AvatarID: 1407, SPNeed: { Value: '0' } },
+    { AvatarID: 1407, SPNeed: { Value: '9'.repeat(400) } }
+  ])('rejects an unexpected SPNeed configuration for $AvatarID', (avatar) => {
+    expect(() => readCharacterEnergy(avatar, new Set(['1308', '1407']))).toThrow(
+      `AvatarConfig[${avatar.AvatarID}].SPNeed`
+    );
+  });
+
+  it('treats the missing cap as dynamic only when the upstream marks Castorice as special', () => {
+    expect(() => readCharacterEnergy({ AvatarID: 1407 }, new Set())).toThrow(
+      'AvatarConfig[1407].SPNeed'
+    );
+    expect(
+      readCharacterEnergy({ AvatarID: 1407, SPNeed: { Value: '25' } }, new Set(['1407']))
+    ).toEqual({ kind: 'special', max: 25 });
   });
 
   it('为官方加强角色生成互不混合的完整双 Profile', async () => {

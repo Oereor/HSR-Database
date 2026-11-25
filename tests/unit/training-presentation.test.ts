@@ -28,7 +28,12 @@ import TrainingTargetSummary from '../../src/lib/components/training/TrainingTar
 
 vi.mock('$app/stores', async () => {
   const { readable } = await import('svelte/store');
-  return { page: readable({ url: new URL('http://localhost/characters/1001/') }) };
+  return {
+    page: readable({
+      url: new URL('http://localhost/characters/1001/'),
+      data: { locale: 'zh-CN' }
+    })
+  };
 });
 
 const renderWithTooltip = <Props extends Record<string, unknown>>(

@@ -232,7 +232,9 @@ export interface BaseStatProgression {
   };
 }
 
-export type CharacterEnergy = ({ kind: 'standard'; max: number } | { kind: 'special'; max: 0 }) & {
+export type CharacterEnergy = (
+  { kind: 'standard'; max: number } | { kind: 'special'; max: number | null }
+) & {
   iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
 };
 

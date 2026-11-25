@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { staticTrailblazerText } from '../../src/lib/domain/trailblazer';
 import type { CatalogEntry } from '../../src/lib/domain/types';
+import { m } from '../../src/lib/paraglide/messages.js';
 
 test('角色目录与详情接入属性、命途图标和优化立绘', async ({ page }) => {
   const failedImages: string[] = [];
@@ -392,17 +393,25 @@ test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义�
   );
 });
 
-test('特殊能量使用结构化标记且旧版银狼保持普通能量', async ({ page }) => {
-  for (const id of ['1308', '1506']) {
-    await page.goto(`/characters/${id}/`);
-    const energy = page.locator('[data-base-stat="energy"]');
-    await expect(energy.locator('dt')).not.toHaveText('');
-    await expect(energy.locator('dd')).not.toHaveText('');
+test('角色详情按路由语言显示固定和动态特殊能量，并区分两版银狼', async ({ page }) => {
+  const energy = page.locator('[data-base-stat="energy"]');
+  for (const [locale, prefix] of [
+    ['zh-CN', ''],
+    ['en', '/en']
+  ] as const) {
+    for (const [id, label] of [
+      ['1308', m.character_energy_acheron({ max: 9 }, { locale })],
+      ['1407', m.character_energy_castorice({}, { locale })],
+      ['1506', m.character_energy_silver_wolf_999({ max: 60 }, { locale })],
+      ['1006', '110']
+    ] as const) {
+      await page.goto(`${prefix}/characters/${id}/`);
+      await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+      await expect(energy.locator('dt')).toHaveText(m.common_energy_max({}, { locale }));
+      await expect(energy.locator('dd')).toHaveText(label);
+      await expect(energy.locator('img')).toHaveCount(1);
+    }
   }
-  await page.goto('/characters/1006/');
-  const standardEnergy = page.locator('[data-base-stat="energy"]');
-  await expect(standardEnergy.locator('dt')).not.toHaveText('');
-  await expect(standardEnergy.locator('dd')).toHaveText('110');
 });
 
 test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ page }) => {
@@ -411,6 +420,8 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
   const enhancement = page.locator('.enhancement-switch');
   await expect(enhancement).toBeVisible();
   await expect(enhancement).toHaveAttribute('aria-checked', 'true');
+  const energy = page.locator('[data-base-stat="energy"] > dd');
+  await expect(energy).toHaveText('140');
   await expect(page.locator('.enhancement-control strong')).not.toHaveText('');
   await expect(page.locator('[data-skill-id="1121202"]')).toContainText('150%生命上限');
   await expect(page.locator('[data-skill-id="121202"]')).toHaveCount(0);
@@ -422,6 +433,7 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
   await enhancement.click();
   await expect(page).toHaveURL(/\/characters\/1212\/\?enhanced=0$/);
   await expect(enhancement).toHaveAttribute('aria-checked', 'false');
+  await expect(energy).toHaveText('140');
   await expect(page.locator('.enhancement-control strong')).not.toHaveText('');
   await expect(page.locator('[data-skill-id="121202"]')).toContainText('200%攻击力');
   await expect(page.locator('[data-skill-id="1121202"]')).toHaveCount(0);

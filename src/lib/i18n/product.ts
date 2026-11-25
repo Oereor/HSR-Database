@@ -1,6 +1,35 @@
 import type { CategorySlug } from '$lib/domain/constants';
-import type { RelicSetCategory, RelicSlot } from '$lib/domain/types';
+import type { CharacterEnergy, RelicSetCategory, RelicSlot } from '$lib/domain/types';
 import { m } from '$lib/paraglide/messages.js';
+import type { Locale } from '$lib/paraglide/runtime.js';
+
+const specialEnergyMessages: Partial<
+  Record<
+    string,
+    { fixed: typeof m.character_energy_acheron } | { dynamic: typeof m.character_energy_castorice }
+  >
+> = {
+  '1308': { fixed: m.character_energy_acheron },
+  '1220': { fixed: m.character_energy_feixiao },
+  '1407': { dynamic: m.character_energy_castorice },
+  '1408': { fixed: m.character_energy_phainon },
+  '1415': { fixed: m.character_energy_cyrene },
+  '1506': { fixed: m.character_energy_silver_wolf_999 },
+  '1511': { fixed: m.character_energy_aha }
+};
+
+export function characterSpecialEnergyValue(
+  avatarId: string,
+  energy: CharacterEnergy,
+  locale: Locale
+): string | undefined {
+  if (energy.kind !== 'special') return undefined;
+  const message = specialEnergyMessages[avatarId];
+  if (!message) return undefined;
+  if ('fixed' in message)
+    return energy.max === null ? undefined : message.fixed({ max: energy.max }, { locale });
+  return energy.max === null ? message.dynamic({}, { locale }) : undefined;
+}
 
 export function categorySingular(category: CategorySlug): string {
   return {

@@ -66,7 +66,6 @@ export const characterDomainTableNames = [
   'AvatarEnhancedHintConfig',
   'AvatarEnhancedSeason',
   'AvatarUltraSkillConfig',
-  'GridFightFrontSpecialSP',
   'MultiplePathAvatarConfig',
   'FateRinOwner',
   'ItemConfigAvatar',

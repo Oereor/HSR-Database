@@ -13,7 +13,6 @@ export const DATA_GENERATION_TABLE_NAMES = [
   'AvatarEnhancedHintConfig',
   'AvatarEnhancedSeason',
   'AvatarUltraSkillConfig',
-  'GridFightFrontSpecialSP',
   'MultiplePathAvatarConfig',
   'ItemConfigAvatar',
   'AvatarBaseType',

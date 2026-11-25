@@ -1,6 +1,7 @@
 import type {
   CharacterDomain,
   NeutralCharacterProfile,
+  NeutralEnergy,
   NeutralExtraEffect,
   NeutralSkillCombatLevel,
   NeutralSkillVariant,
@@ -9,6 +10,7 @@ import type {
 } from '../../../src/lib/domain/neutral.js';
 import { rarityFromCode } from '../../../src/lib/domain/constants.js';
 import { configuredCharacterDetailIconKey } from '../character-detail-icons.js';
+import { decimalOf } from '../decimal.js';
 import { characterStatFields, normalizeStatProgression } from '../stats.js';
 import { classifyAvatarSkill, classifyProductSkill, isPlayerFacingSkillConfig } from '../skills.js';
 import { normalizeSpecialEffectLinks } from '../special-effects.js';
@@ -34,6 +36,27 @@ const list = (value: unknown): unknown[] => {
 };
 const ids = (value: unknown): string[] => list(value).map(String);
 const unique = <T>(values: T[]): T[] => [...new Set(values)];
+
+export function getSpecialEnergyAvatarIds(ultraSkills: readonly Raw[]): Set<string> {
+  return new Set(
+    ultraSkills
+      .filter((row) => row.UltraSkillType === 'SpecialSP')
+      .map((row) => String(row.AvatarID))
+  );
+}
+
+export function readCharacterEnergy(avatar: Raw, specialIds: ReadonlySet<string>): NeutralEnergy {
+  const id = String(avatar.AvatarID);
+  const special = specialIds.has(id);
+  // Castorice's cap is calculated in combat and is omitted from the static config.
+  if (special && id === '1407' && !Object.hasOwn(avatar, 'SPNeed'))
+    return { kind: 'special', max: null };
+
+  const field = `AvatarConfig[${id}].SPNeed`;
+  const max = Number(decimalOf(avatar.SPNeed, field));
+  if (!Number.isFinite(max) || max <= 0) throw new Error(`${field}.Value 必须为有限正数`);
+  return { kind: special ? 'special' : 'standard', max };
+}
 
 function buildSkillVariant(
   skillId: string,
@@ -99,6 +122,7 @@ function buildSkillVariant(
 
 function buildProfile(
   avatar: Raw,
+  energy: NeutralEnergy,
   tables: Record<string, unknown>,
   traceRows: Raw[],
   enhancedId: number,
@@ -342,11 +366,6 @@ function buildProfile(
         tarotIconPath: link.tarotIconPath
       }))
   ];
-  const specialIds = new Set(
-    rows(tables, 'AvatarUltraSkillConfig')
-      .filter((row) => row.UltraSkillType === 'SpecialSP')
-      .map((row) => String(row.AvatarID))
-  );
   const avatarId = String(avatar.AvatarID);
   for (let index = 0; index < skills.length; index += 1) {
     const skill = skills[index];
@@ -362,25 +381,7 @@ function buildProfile(
       };
   }
   return {
-    energy: specialIds.has(avatarId)
-      ? {
-          kind: 'special',
-          max: 0,
-          iconCode: 'SpecialMaxSP',
-          iconPath:
-            typeof properties.get('SpecialMaxSP')?.IconPath === 'string'
-              ? String(properties.get('SpecialMaxSP')?.IconPath)
-              : undefined
-        }
-      : {
-          kind: 'standard',
-          max: Number(decimalString(avatar.SPNeed)),
-          iconCode: 'MaxSP',
-          iconPath:
-            typeof properties.get('MaxSP')?.IconPath === 'string'
-              ? String(properties.get('MaxSP')?.IconPath)
-              : undefined
-        },
+    energy,
     skills,
     traces,
     eidolons,
@@ -435,6 +436,7 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
   const paths = byId(rows(tables, 'AvatarBaseType'), 'ID');
   const elements = byId(rows(tables, 'DamageType'), 'ID');
   const properties = byId(rows(tables, 'AvatarPropertyConfig'), 'PropertyType');
+  const specialIds = getSpecialEnergyAvatarIds(rows(tables, 'AvatarUltraSkillConfig'));
   const equipment = byId(rows(tables, 'AvatarEquipRecommend'), 'AvatarID');
   const relic = byId(rows(tables, 'AvatarRelicRecommend'), 'AvatarID');
   const avatarSkills = new Map<string, Raw[]>();
@@ -467,6 +469,14 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
   }));
   const characters = avatars.map((avatar) => {
     const id = String(avatar.AvatarID);
+    const cap = readCharacterEnergy(avatar, specialIds);
+    const iconCode = cap.kind === 'special' ? 'SpecialMaxSP' : 'MaxSP';
+    const iconPath = properties.get(iconCode)?.IconPath;
+    const energy = {
+      ...cap,
+      iconCode,
+      iconPath: typeof iconPath === 'string' ? iconPath : undefined
+    };
     const traceRows = tracesByAvatar.get(id) ?? [];
     const enhancedConfig = enhanced.get(id);
     const multiplePath = multiplePaths.get(id);
@@ -479,6 +489,7 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
     const gender = multiplePath?.Gender ?? avatar.Gender;
     const baseProfile = buildProfile(
       avatar,
+      energy,
       tables,
       traceRows,
       0,
@@ -491,6 +502,7 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
     const enhancedProfile = enhancedConfig
       ? buildProfile(
           enhancedConfig,
+          energy,
           tables,
           traceRows,
           Number(enhancedConfig.EnhancedID ?? 0),

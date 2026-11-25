@@ -5,6 +5,7 @@ import { validatePhaseHpSemantics } from './validation/phase-hp.js';
 import { normalizeEnemySkillKind, normalizeEnemySkillTag } from './enemy-skill-policy.js';
 import { createTextResolver } from './localization.js';
 import { parameterized } from './domain/shared.js';
+import { getSpecialEnergyAvatarIds, readCharacterEnergy } from './domain/character.js';
 import { projectEnemyIdentityText, projectEnemySkillDescription } from './projection/enemy.js';
 import { enemyTextSource, type EnemyDomainAudit } from './domain/enemy.js';
 import { compactEnemyStatProgression } from '../../src/lib/domain/enemy-view.js';
@@ -551,6 +552,8 @@ const [
   rawAvatarSkillsLd,
   rawServantSkills,
   rawAvatarConfigs,
+  rawAvatarConfigsLd,
+  rawAvatarUltraSkills,
   rawAvatarTraces,
   rawAvatarSpecialSkillRelations
 ] = await Promise.all([
@@ -558,9 +561,15 @@ const [
   readTable<Record<string, any>>(rawRoot, 'AvatarSkillConfigLD'),
   readTable<Record<string, any>>(rawRoot, 'AvatarServantSkillConfig'),
   readTable<Record<string, any>>(rawRoot, 'AvatarConfig'),
+  readTable(rawRoot, 'AvatarConfigLD'),
+  readTable(rawRoot, 'AvatarUltraSkillConfig'),
   readTable<Record<string, any>>(rawRoot, 'AvatarSkillTreeConfig'),
   readTable<Record<string, any>>(rawRoot, 'AvatarSpecialSkillTree')
 ]);
+const energyAvatarsById = new Map(
+  [...rawAvatarConfigsLd, ...rawAvatarConfigs].map((row) => [String(row.AvatarID), row])
+);
+const specialEnergyAvatarIds = getSpecialEnergyAvatarIds(rawAvatarUltraSkills);
 const avatarSpecialSkillValidationAudit = createAvatarSpecialSkillTreeAudit();
 const traceRowsByAvatarId = new Map<string, Record<string, any>[]>();
 for (const row of rawAvatarTraces) {
@@ -608,14 +617,11 @@ const hiddenServantSkillIds = collectHiddenSkillIds('AvatarServantSkillConfig', 
 const validateCharacterProfile = (
   character: Character,
   mode: 'base' | 'enhanced',
-  profile: CharacterProfile
+  profile: CharacterProfile,
+  expectedEnergy: CharacterProfile['energy']
 ): void => {
-  if (profile.energy.kind === 'special') {
-    if (profile.energy.max !== 0)
-      throw new Error(`特殊能量角色 ${character.id} ${mode} profile 的能量上限不为 0`);
-  } else if (!Number.isFinite(profile.energy.max) || profile.energy.max <= 0) {
-    throw new Error(`普通能量角色 ${character.id} ${mode} profile 的能量上限无效`);
-  }
+  if (profile.energy?.kind !== expectedEnergy.kind || profile.energy.max !== expectedEnergy.max)
+    throw new Error(`角色 ${character.id} ${mode} profile 的能量与上游配置不一致`);
   if (new Set(profile.skillCards.map((card) => card.category)).size !== profile.skillCards.length)
     throw new Error(`角色 ${character.id} ${mode} profile 存在重复语义技能卡`);
   for (const card of profile.skillCards) {
@@ -864,9 +870,12 @@ const profileIds = (profile: CharacterProfile): Set<string> =>
 for (const character of characters) {
   if (character.element && !isElementType(character.element))
     throw new Error(`角色 ${character.id} 使用未知属性：${character.element}`);
-  validateCharacterProfile(character, 'base', character.profiles.base);
+  const avatar = energyAvatarsById.get(character.id);
+  if (!avatar) throw new Error(`角色 ${character.id} 缺少上游能量配置`);
+  const expectedEnergy = readCharacterEnergy(avatar, specialEnergyAvatarIds);
+  validateCharacterProfile(character, 'base', character.profiles.base, expectedEnergy);
   if (character.profiles.enhanced) {
-    validateCharacterProfile(character, 'enhanced', character.profiles.enhanced);
+    validateCharacterProfile(character, 'enhanced', character.profiles.enhanced, expectedEnergy);
     const baseIds = profileIds(character.profiles.base);
     const overlap = [...profileIds(character.profiles.enhanced)].filter((id) => baseIds.has(id));
     if (overlap.length)

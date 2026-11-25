@@ -6,6 +6,7 @@ import type {
 } from '../../../src/lib/domain/neutral.js';
 import type {
   Character as CharacterView,
+  CharacterProfile,
   CharacterSpecialEffectEntry,
   Trace,
   Eidolon,
@@ -251,7 +252,7 @@ function projectProfile(
   domain: CharacterDomain,
   profile: CharacterDomain['profiles']['base'],
   context: CharacterProjectionContext
-) {
+): CharacterProfile {
   context = {
     ...context,
     seriesSkillReferences: new Set(
@@ -545,37 +546,18 @@ function projectProfile(
     extraEffects: projectExtraEffects(domain, context, eidolon.extraEffectIds)
     // The upstream skill-style path is retained in Neutral. No ordinary rank asset lookup.
   }));
+  const { iconCode, iconPath, ...energy } = profile.energy;
+  const iconKey =
+    iconCode && iconPath
+      ? configuredCharacterDetailIconKey(
+          'property',
+          iconCode,
+          iconPath,
+          `AvatarPropertyConfig.${iconCode}`
+        )
+      : undefined;
   return {
-    energy:
-      profile.energy.kind === 'special'
-        ? {
-            kind: 'special' as const,
-            max: 0 as const,
-            ...(profile.energy.iconCode && profile.energy.iconPath
-              ? {
-                  iconKey: configuredCharacterDetailIconKey(
-                    'property',
-                    profile.energy.iconCode,
-                    profile.energy.iconPath,
-                    `AvatarPropertyConfig.${profile.energy.iconCode}`
-                  )
-                }
-              : {})
-          }
-        : {
-            kind: 'standard' as const,
-            max: profile.energy.max,
-            ...(profile.energy.iconCode && profile.energy.iconPath
-              ? {
-                  iconKey: configuredCharacterDetailIconKey(
-                    'property',
-                    profile.energy.iconCode,
-                    profile.energy.iconPath,
-                    `AvatarPropertyConfig.${profile.energy.iconCode}`
-                  )
-                }
-              : {})
-          },
+    energy: { ...energy, ...(iconKey ? { iconKey } : {}) },
     skillCards,
     specialEffects,
     traces,
