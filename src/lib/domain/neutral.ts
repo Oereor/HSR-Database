@@ -36,12 +36,12 @@ export interface NeutralStatProgression {
   iconKeys?: Partial<Record<'hp' | 'attack' | 'defence' | 'speed', CharacterDetailIconKey>>;
 }
 
-export interface NeutralEnergy {
-  kind: 'standard' | 'special';
-  max: number;
+export type NeutralEnergy = (
+  { kind: 'standard'; max: number } | { kind: 'special'; max: number | null }
+) & {
   iconCode?: string;
   iconPath?: string;
-}
+};
 
 export interface NeutralSkillLevel {
   level: number;

@@ -12,6 +12,7 @@ import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
 import type { BaseStatProgression, Eidolon, SkillCard, Trace } from '../../src/lib/domain/types';
 import { getCharacterDetailIconUrl } from '../../src/lib/data/visual-assets';
 import { m } from '../../src/lib/paraglide/messages.js';
+import { characterSpecialEnergyValue } from '../../src/lib/i18n/product';
 
 vi.mock('../../src/lib/paraglide/messages.js', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../../src/lib/paraglide/messages.js')>();
@@ -19,6 +20,7 @@ vi.mock('../../src/lib/paraglide/messages.js', async (importOriginal) => {
     ...actual,
     m: {
       ...actual.m,
+      common_special_energy: () => 'synthetic special energy',
       player_character_promotion: vi.fn(
         ({ promotion }: { promotion: number }) => `synthetic promotion ${promotion}`
       )
@@ -86,6 +88,57 @@ describe('BaseStatsPanel promotion tag', () => {
     expect(body).not.toContain('skill-effect-tag');
     expect(body).not.toContain('type="range"');
     expect(m.player_character_promotion).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['99999', 17],
+    ['99999', null],
+    ['1308', null],
+    ['1407', 17]
+  ] as const)('uses the generic message for unmatched special energy %s (%s)', (id, max) => {
+    const energy = { kind: 'special', max } as const;
+    const { body } = render(BaseStatsPanel, {
+      props: {
+        progression,
+        controlId: 'character-level',
+        energy,
+        specialEnergyValue: characterSpecialEnergyValue(id, energy, 'en')
+      }
+    });
+    expect(body).toMatch(/data-base-stat="energy"/);
+    expect(body).toContain('synthetic special energy');
+  });
+});
+
+describe('Character special energy messages', () => {
+  it.each([
+    ['1308', m.character_energy_acheron],
+    ['1220', m.character_energy_feixiao],
+    ['1408', m.character_energy_phainon],
+    ['1415', m.character_energy_cyrene],
+    ['1506', m.character_energy_silver_wolf_999],
+    ['1511', m.character_energy_aha]
+  ] as const)('uses the message for %s with the supplied cap', (id, message) => {
+    for (const locale of ['zh-CN', 'en'] as const)
+      for (const max of [17, 23])
+        expect(characterSpecialEnergyValue(id, { kind: 'special', max }, locale)).toBe(
+          message({ max }, { locale })
+        );
+  });
+
+  it.each(['zh-CN', 'en'] as const)(
+    'uses a parameterless message for a dynamic cap in %s',
+    (locale) => {
+      expect(characterSpecialEnergyValue('1407', { kind: 'special', max: null }, locale)).toBe(
+        m.character_energy_castorice({}, { locale })
+      );
+    }
+  );
+
+  it('leaves normal energy formatting to the shared panel', () => {
+    expect(
+      characterSpecialEnergyValue('1506', { kind: 'standard', max: 110 }, 'en')
+    ).toBeUndefined();
   });
 });
 

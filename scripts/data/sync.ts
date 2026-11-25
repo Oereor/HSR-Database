@@ -637,7 +637,6 @@ export async function syncData(): Promise<DataManifest> {
     'AvatarEnhancedHintConfig',
     'AvatarEnhancedSeason',
     'AvatarUltraSkillConfig',
-    'GridFightFrontSpecialSP',
     'MultiplePathAvatarConfig',
     'FateRinOwner',
     'ItemConfigAvatar',

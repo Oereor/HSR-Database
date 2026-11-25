@@ -41,6 +41,7 @@
   import type { CatalogEntry, RelicProperty } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   import { formatDocumentTitle } from '$lib/site';
+  import { characterSpecialEnergyValue } from '$lib/i18n/product';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import { traceRequirementText } from '$lib/components/character/trace-requirements';
@@ -790,6 +791,11 @@
           <BaseStatsPanel
             progression={detail.baseStats}
             energy={activeProfile.energy}
+            specialEnergyValue={characterSpecialEnergyValue(
+              detail.id,
+              activeProfile.energy,
+              $page.data.locale
+            )}
             level={characterPreviewLevel}
             onLevelChange={(level) => (characterPreviewLevel = level)}
             showPromotion={true}

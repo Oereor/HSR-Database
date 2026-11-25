@@ -11,6 +11,7 @@
   export let controlId: string;
   export let controlLabel = m.base_stats_character_level();
   export let energy: CharacterEnergy | undefined = undefined;
+  export let specialEnergyValue: string | undefined = undefined;
   export let level = progression.defaultLevel;
   export let showPromotion = false;
   export let onLevelChange: ((level: number) => void) | undefined = undefined;
@@ -76,7 +77,9 @@
       {#if energy}<StatRow
           data-base-stat="energy"
           label={m.common_energy_max()}
-          value={energy.kind === 'special' ? m.common_special_energy() : formatBaseStat(energy.max)}
+          value={energy.kind === 'special'
+            ? (specialEnergyValue ?? m.common_special_energy())
+            : formatBaseStat(energy.max)}
           iconUrl={energyIconUrl}
         />{/if}
     </StatList>
