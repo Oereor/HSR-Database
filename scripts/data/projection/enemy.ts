@@ -1,10 +1,12 @@
 import type {
+  EnemyCampDomain,
   EnemyDomain,
   EnemySkillDetailDomain,
   NeutralTextSource
 } from '../../../src/lib/domain/neutral.js';
 import type {
   Enemy,
+  EnemyCamp,
   EnemyCatalogEntry,
   EnemySkill,
   EnemySkillDetail,
@@ -314,6 +316,22 @@ export function projectEnemyIdentityText(
   return status === 'available' ? text : fallback;
 }
 
+export function projectEnemyCamp(
+  resolver: TextResolver,
+  { id, sortId, nameSource }: EnemyCampDomain
+): EnemyCamp {
+  const { text, status } = projectGameText(
+    resolver,
+    nameSource,
+    source('enemy-camp', id, 'MonsterCamp.Name'),
+    '',
+    { ...visibleText, fallbackUsed: false }
+  );
+  if (status !== 'available')
+    throw new Error(`MonsterCamp ${id} has no usable Name.Hash text in ${resolver.locale}`);
+  return { id, sortId, name: gameTextToPlain(text).trim() };
+}
+
 export function projectEnemies(
   domains: EnemyDomain[],
   context: EnemyProjectionContext
@@ -355,10 +373,17 @@ export function projectEnemies(
 
   const enemies: Enemy[] = [];
   const catalog: EnemyCatalogEntry[] = [];
+  const projectedCamps = new Map<string, EnemyCamp>();
   for (const domain of domains) {
     const { monsterTemplateId, baseStats, rank } = domain.template;
     const name = templateNames.get(monsterTemplateId)!;
-    const template = { monsterTemplateId, baseStats, rank, name };
+    const campId = domain.template.camp.id;
+    let camp = projectedCamps.get(campId);
+    if (!camp) {
+      camp = projectEnemyCamp(context.resolver, domain.template.camp);
+      projectedCamps.set(campId, camp);
+    }
+    const template = { monsterTemplateId, baseStats, rank, name, camp };
     const definitions = new Map<string, EnemySkill>();
     for (const skill of Object.values(domain.skillDefinitions)) {
       const definition = projectSkill(monsterTemplateId, skill, context);
@@ -431,6 +456,7 @@ export function projectEnemies(
       id: monsterTemplateId,
       name,
       type: rank,
+      camp,
       representative: { monsterId: defaultMonsterId, weaknesses: representative.weaknesses },
       variants: monsters.map(({ monsterId, name }) => ({ monsterId, name }))
     });

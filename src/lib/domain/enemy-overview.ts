@@ -40,13 +40,26 @@ export function normalizeEnemyRankFilter(value: string): string {
 }
 
 export function isEnemyCatalogEntry(entry: CatalogEntry): entry is EnemyCatalogEntry {
+  const enemy = entry as Partial<EnemyCatalogEntry>;
   return (
-    Array.isArray((entry as Partial<EnemyCatalogEntry>).representative?.weaknesses) &&
-    Array.isArray((entry as Partial<EnemyCatalogEntry>).variants)
+    !!enemy.camp && Array.isArray(enemy.representative?.weaknesses) && Array.isArray(enemy.variants)
   );
 }
 
+export function getEnemyCampOptions(entries: readonly EnemyCatalogEntry[]) {
+  const camps = new Map(entries.map(({ camp }) => [camp.id, camp]));
+  return [...camps.values()]
+    .sort(
+      (left, right) =>
+        left.sortId - right.sortId ||
+        left.id.length - right.id.length ||
+        left.id.localeCompare(right.id, 'en')
+    )
+    .map(({ id, name }) => ({ value: id, label: name }));
+}
+
 export type EnemyOverviewFilterState = {
+  camps: Set<string>;
   types: Set<string>;
   weaknesses: Set<string>;
 };
@@ -54,6 +67,7 @@ export type EnemyOverviewFilterState = {
 export const readEnemyOverviewFilterState = (
   params: URLSearchParams
 ): EnemyOverviewFilterState => ({
+  camps: new Set(params.getAll('camp').filter(Boolean)),
   types: new Set(params.getAll('type').filter(Boolean).map(normalizeEnemyRankFilter)),
   weaknesses: new Set(params.getAll('weakness').filter(Boolean))
 });
@@ -63,15 +77,16 @@ export function writeEnemyOverviewFilterState(
   state: EnemyOverviewFilterState
 ): URLSearchParams {
   const next = new URLSearchParams(params);
-  for (const key of ['type', 'weakness']) next.delete(key);
+  for (const key of ['type', 'weakness', 'camp']) next.delete(key);
   for (const value of state.types) next.append('type', value);
   for (const value of state.weaknesses) next.append('weakness', value);
+  for (const value of state.camps) next.append('camp', value);
   next.delete('page');
   return next;
 }
 
 export const hasEnemyOverviewFilters = (state: EnemyOverviewFilterState): boolean =>
-  state.types.size > 0 || state.weaknesses.size > 0;
+  state.types.size > 0 || state.weaknesses.size > 0 || state.camps.size > 0;
 
 export function getWeaknessMatchCount(
   entry: EnemyCatalogEntry,
@@ -93,7 +108,8 @@ export function matchesEnemyOverviewFilters(
   const typeMatch = state.types.size === 0 || (category !== undefined && state.types.has(category));
   const weaknessMatch =
     state.weaknesses.size === 0 || getWeaknessMatchCount(entry, state.weaknesses) > 0;
-  return typeMatch && weaknessMatch;
+  const campMatch = state.camps.size === 0 || state.camps.has(entry.camp.id);
+  return typeMatch && weaknessMatch && campMatch;
 }
 
 function compareNormalSort(a: EnemyCatalogEntry, b: EnemyCatalogEntry, sort: string): number {

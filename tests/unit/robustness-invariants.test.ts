@@ -147,11 +147,13 @@ const character = (id: string): Character =>
     }
   }) as Character;
 
+const enemyCamp = { id: '99', sortId: 99, name: 'Fixture camp' };
 const enemy = (templateId = '100', monsterId = '101'): Enemy => ({
   template: {
     monsterTemplateId: templateId,
     name: 'Enemy',
     rank: 'Minion',
+    camp: enemyCamp,
     baseStats: {
       hp: parseDecimal('10'),
       attack: parseDecimal('1'),
@@ -222,6 +224,7 @@ function addEnemyFixture(
     id: templateId,
     name: 'Enemy',
     type: 'Minion',
+    camp: enemyCamp,
     representative: { monsterId, weaknesses: [] },
     variants: [{ monsterId, name: 'Enemy' }]
   });
@@ -340,6 +343,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
             id: '100',
             name: 'Enemy',
             type: 'Minion',
+            camp: enemyCamp,
             representative: { monsterId: '101', weaknesses: [] },
             variants: [{ monsterId: '101', name: 'Enemy' }]
           }
@@ -470,6 +474,32 @@ describe('focused robustness invariants', () => {
     ).not.toThrow();
     missingLocalizedSkill.details.enemies[0].monsters[0].statsRef = 2;
     expect(() => assertCrossLocaleStructuralParity(withEnemySkills, missingLocalizedSkill)).toThrow(
+      'Cross-locale structural mismatch in details.enemies'
+    );
+  });
+
+  it('compares Enemy camp identity and ordering across locales', () => {
+    const { projection } = fixture();
+    const localized = structuredClone(projection);
+    localized.catalogs.enemies[0].camp.name = '测试阵营';
+    localized.details.enemies[0].template.camp.name = '测试阵营';
+    const view = (value: typeof projection) => ({
+      ...value,
+      endgame: { datasets: value.endgame },
+      globalSearchIndex: value.search,
+      homepage: {},
+      occurrenceShards: {}
+    });
+    expect(() =>
+      assertCrossLocaleStructuralParity(view(projection), view(localized))
+    ).not.toThrow();
+    localized.catalogs.enemies[0].camp = { ...localized.catalogs.enemies[0].camp, id: '3' };
+    expect(() => assertCrossLocaleStructuralParity(view(projection), view(localized))).toThrow(
+      'Cross-locale structural mismatch in catalog.enemies'
+    );
+    localized.catalogs.enemies[0].camp.id = projection.catalogs.enemies[0].camp.id;
+    localized.details.enemies[0].template.camp.sortId = 3;
+    expect(() => assertCrossLocaleStructuralParity(view(projection), view(localized))).toThrow(
       'Cross-locale structural mismatch in details.enemies'
     );
   });

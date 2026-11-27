@@ -1,11 +1,17 @@
 <script lang="ts">
   export let label: string;
+  export let campId: string | undefined = undefined;
 </script>
 
-<span class="enemy-rank-tag" data-enemy-rank-label={label}>{label}</span>
+<span
+  class="enemy-identity-tag"
+  class:enemy-rank-tag={campId === undefined}
+  data-enemy-rank-label={campId === undefined ? label : undefined}
+  data-enemy-camp-id={campId}>{label}</span
+>
 
 <style>
-  .enemy-rank-tag {
+  .enemy-identity-tag {
     border: 1px solid var(--border-strong);
     border-radius: 999px;
     background: color-mix(in srgb, var(--background) 72%, transparent);

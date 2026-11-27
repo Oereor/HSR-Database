@@ -318,10 +318,17 @@ export interface EnemyMonsterDomain {
   skills: EnemySkillBindingDomain[];
 }
 
+export interface EnemyCampDomain {
+  id: string;
+  sortId: number;
+  nameSource: NeutralTextSource;
+}
+
 export interface EnemyTemplateDomain {
   monsterTemplateId: string;
   nameSource?: NeutralTextSource;
   rank: string;
+  camp: EnemyCampDomain;
   baseStats: import('./types.js').EnemyTemplateBaseStats;
 }
 

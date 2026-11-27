@@ -47,6 +47,7 @@ export const DATA_GENERATION_TABLE_NAMES = [
   'TeamBuildGroupConfig',
   'ItemComefrom',
   'MonsterTemplateConfig',
+  'MonsterCamp',
   'MonsterConfig',
   'MonsterSkillConfig',
   'MonsterStatusConfig',

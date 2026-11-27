@@ -1,7 +1,7 @@
 import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata';
 import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { createHash } from 'node:crypto';
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/domain/types';
@@ -189,6 +189,7 @@ async function createFixture(): Promise<Fixture> {
   const enemySearchEntry = { id: '4', name: 'Enemy', variants: enemyIdentities };
 
   for (const locale of ['zh-CN', 'en'] as const) {
+    const camp = { id: '99', sortId: 99, name: locale === 'en' ? 'Fixture camp' : '测试阵营' };
     for (const [category, id] of [
       ['characters', '1'],
       ['light-cones', '2'],
@@ -203,7 +204,14 @@ async function createFixture(): Promise<Fixture> {
     }
     await writeArtifact(
       `views/${locale}/catalogs/enemies.json`,
-      [{ ...enemySearchEntry, type: 'Minion', representative: { monsterId: '4', weaknesses: [] } }],
+      [
+        {
+          ...enemySearchEntry,
+          type: 'Minion',
+          camp,
+          representative: { monsterId: '4', weaknesses: [] }
+        }
+      ],
       locale
     );
     await writeArtifact(
@@ -213,6 +221,7 @@ async function createFixture(): Promise<Fixture> {
           monsterTemplateId: '4',
           name: 'Enemy',
           rank: 'Minion',
+          camp,
           baseStats: { hp: '1', attack: '1', defence: '1', criticalDamage: '1' }
         },
         defaultMonsterId: '4',
@@ -635,6 +644,24 @@ describe('production build-input validation', () => {
       }
     });
     await expect(fixture.validate()).rejects.toThrow('Enemy search inventory differs from catalog');
+  });
+
+  it('rejects invalid or inconsistent Enemy camps even with refreshed artifact hashes', async () => {
+    const fixture = await createFixture();
+    const catalogFile = 'views/en/catalogs/enemies.json';
+    const detailFile = 'views/en/details/enemies/4.json';
+    const catalog = JSON.parse(
+      await readFile(path.join(fixture.generatedRoot, catalogFile), 'utf8')
+    );
+    const detail = JSON.parse(await readFile(path.join(fixture.generatedRoot, detailFile), 'utf8'));
+    catalog[0].camp.id = '1';
+    await fixture.rewrite(catalogFile, catalog);
+    await expect(fixture.validate()).rejects.toThrow('Enemy catalog 4 does not match');
+    detail.template.camp.sortId = '99';
+    await fixture.rewrite(detailFile, detail);
+    await expect(fixture.validate()).rejects.toThrow(
+      'Enemy 4 has an invalid template or detail shape'
+    );
   });
 
   it('accepts schema-valid semantic detail drift after integrity metadata is refreshed', async () => {

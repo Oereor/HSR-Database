@@ -6,8 +6,18 @@ import { normalizeEnemySkillKind, normalizeEnemySkillTag } from './enemy-skill-p
 import { createTextResolver } from './localization.js';
 import { parameterized } from './domain/shared.js';
 import { getSpecialEnergyAvatarIds, readCharacterEnergy } from './domain/character.js';
-import { projectEnemyIdentityText, projectEnemySkillDescription } from './projection/enemy.js';
-import { enemyTextSource, type EnemyDomainAudit } from './domain/enemy.js';
+import {
+  projectEnemyCamp,
+  projectEnemyIdentityText,
+  projectEnemySkillDescription
+} from './projection/enemy.js';
+import {
+  enemyTextSource,
+  indexEnemyCamps,
+  resolveEnemyCamp,
+  type EnemyCampAudit,
+  type EnemyDomainAudit
+} from './domain/enemy.js';
 import { compactEnemyStatProgression } from '../../src/lib/domain/enemy-view.js';
 import {
   buildSearchDocuments,
@@ -431,13 +441,16 @@ for (const [category, count] of Object.entries(expected)) {
     await access(path.join(categoryRoot, 'details', category, `${item.id}.json`));
 }
 
-const [rawTemplates, rawConfigs, rawHardLevels, rawElites, rawEnemySkills] = await Promise.all([
-  readTable<Record<string, any>>(rawRoot, 'MonsterTemplateConfig'),
-  readTable<Record<string, any>>(rawRoot, 'MonsterConfig'),
-  readTable<Record<string, any>>(rawRoot, 'HardLevelGroup'),
-  readTable<Record<string, any>>(rawRoot, 'EliteGroup'),
-  readTable<Record<string, any>>(rawRoot, 'MonsterSkillConfig')
-]);
+const [rawTemplates, rawCamps, rawConfigs, rawHardLevels, rawElites, rawEnemySkills] =
+  await Promise.all([
+    readTable<Record<string, any>>(rawRoot, 'MonsterTemplateConfig'),
+    readTable(rawRoot, 'MonsterCamp'),
+    readTable<Record<string, any>>(rawRoot, 'MonsterConfig'),
+    readTable<Record<string, any>>(rawRoot, 'HardLevelGroup'),
+    readTable<Record<string, any>>(rawRoot, 'EliteGroup'),
+    readTable<Record<string, any>>(rawRoot, 'MonsterSkillConfig')
+  ]);
+const rawCampIndex = indexEnemyCamps(rawCamps);
 const rawSkillById = new Map(rawEnemySkills.map((row) => [String(row.SkillID), row]));
 await validatePhaseHpSemantics(rawRoot, endgame, rawTemplates, rawConfigs, rawEnemySkills);
 const skillDescriptionResolvers = await Promise.all(
@@ -986,6 +999,7 @@ for (const { locale, projection } of [
   const published = (projection.details as { enemies: Enemy[] }).enemies;
   const namesByMonster = new Map<string, string>();
   const selectionAudit: EnemyDomainAudit['defaultSelection'] = { sameId: 0, fallback: [] };
+  const campAudit: EnemyCampAudit = { missing: [], defaultValue: [], explicitOther: [] };
   let conflictCount = 0;
   for (const enemy of published) {
     const { monsterTemplateId: templateId } = enemy.template;
@@ -1019,6 +1033,15 @@ for (const { locale, projection } of [
       throw new Error(
         `Enemy ${templateId} ${locale} Template identity differs from MonsterTemplateConfig`
       );
+    const rawCamp = resolveEnemyCamp(
+      rawCampIndex,
+      rawTemplate.MonsterCampID,
+      templateId,
+      campAudit
+    );
+    if (!isDeepStrictEqual(enemy.template.camp, projectEnemyCamp(resolver, rawCamp)))
+      throw new Error(`Enemy ${templateId} ${locale} camp differs from MonsterCamp and TextMap`);
+
     const baseFields = {
       hp: 'HPBase',
       attack: 'AttackBase',
@@ -1154,6 +1177,8 @@ for (const { locale, projection } of [
       }
     }
   }
+  if (!isDeepStrictEqual(audit.enemyAudit.campReferences, campAudit))
+    throw new Error(`Enemy ${locale} camp reference audit differs from raw data`);
   if (
     !isDeepStrictEqual(audit.enemyAudit.defaultSelection, selectionAudit) ||
     audit.enemyAudit.weaknessResistanceConflicts.length !== conflictCount

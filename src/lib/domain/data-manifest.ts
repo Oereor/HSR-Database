@@ -1,1 +1,1 @@
-export const DATA_MANIFEST_SCHEMA_VERSION = 74 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 75 as const;

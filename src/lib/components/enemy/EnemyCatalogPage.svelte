@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Button } from '$lib/components/ui/button';
   import { m } from '$lib/paraglide/messages.js';
+  import { getLocale } from '$lib/paraglide/runtime.js';
   import { trailingSlashHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
   import { page, navigating } from '$app/stores';
@@ -8,6 +9,7 @@
   import {
     ENEMY_RANK_CATEGORIES,
     compareEnemyOverviewEntries,
+    getEnemyCampOptions,
     hasEnemyOverviewFilters,
     isEnemyCatalogEntry,
     matchesEnemyOverviewFilters,
@@ -69,6 +71,7 @@
   );
   $: ({ pageSize, pages, currentPage } = $pagination);
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  $: campOptions = getEnemyCampOptions(enemies);
   $: weaknessOptions = [
     ...new Map(
       enemies.flatMap((entry) =>
@@ -82,7 +85,7 @@
     .map(([value, label]) => ({ value, label }));
 
   function enemyEntry(entry: CatalogEntry): EnemyCatalogEntry {
-    if (!isEnemyCatalogEntry(entry)) throw new Error(`敌方单位目录 ${entry.id} 缺少弱点投影`);
+    if (!isEnemyCatalogEntry(entry)) throw new Error(`敌方单位目录 ${entry.id} 缺少必要投影`);
     return entry;
   }
 
@@ -114,6 +117,7 @@
 
   async function toggleFilter(category: keyof EnemyOverviewFilterState, value: string | undefined) {
     const nextState: EnemyOverviewFilterState = {
+      camps: new Set(filterState.camps),
       types: new Set(filterState.types),
       weaknesses: new Set(filterState.weaknesses)
     };
@@ -126,7 +130,7 @@
 
   async function clearFilters() {
     await navigate(
-      writeEnemyOverviewFilterState(params, { types: new Set(), weaknesses: new Set() })
+      writeEnemyOverviewFilterState(params, readEnemyOverviewFilterState(new URLSearchParams()))
     );
   }
 
@@ -179,6 +183,14 @@
       options={weaknessOptions}
       selected={filterState.weaknesses}
       onToggle={(value) => toggleFilter('weaknesses', value)}
+    />
+    <FilterGroup
+      id="enemy-camp"
+      label={m.filter_enemy_camp({}, { locale: getLocale() })}
+      allLabel={m.filter_enemy_camp_all({}, { locale: getLocale() })}
+      options={campOptions}
+      selected={filterState.camps}
+      onToggle={(value) => toggleFilter('camps', value)}
     />
   </div>
 

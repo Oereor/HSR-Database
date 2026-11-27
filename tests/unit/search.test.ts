@@ -669,6 +669,7 @@ describe('Monster search within a Template', () => {
     id: '100',
     name: 'Ice Edge',
     type: 'Minion',
+    camp: { id: '99', sortId: 99, name: 'Fixture camp' },
     representative: { monsterId: '100', weaknesses: [] },
     variants: [
       { monsterId: '100', name: 'Ice Edge' },

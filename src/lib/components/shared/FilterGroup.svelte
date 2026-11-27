@@ -9,6 +9,7 @@
 
   export let id: string;
   export let label: string;
+  export let allLabel: string | undefined = undefined;
   export let iconKind: 'path' | 'element' | undefined = undefined;
   export let options: Array<{ value: string; label: string }> = [];
   export let selected: Set<string> = new Set();
@@ -35,7 +36,7 @@
       onclick={(event) => {
         if (selected.size === 0) event.preventDefault();
         onToggle(undefined);
-      }}>{m.filter_all()}</Toggle
+      }}>{allLabel ?? m.filter_all()}</Toggle
     >
     {#snippet optionsList()}
       {#each options as option (option.value)}

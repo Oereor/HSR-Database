@@ -11,6 +11,17 @@ const isDecimal = (value: unknown): value is string =>
 const isName = (value: unknown): boolean => typeof value === 'string' && !!value.trim();
 const unique = <T>(values: T[]): boolean => new Set(values).size === values.length;
 
+function isEnemyCamp(value: unknown): boolean {
+  return (
+    isRecord(value) &&
+    isId(value.id) &&
+    typeof value.sortId === 'number' &&
+    Number.isSafeInteger(value.sortId) &&
+    value.sortId >= 0 &&
+    isName(value.name)
+  );
+}
+
 export function assertEnemyArtifact(value: unknown, id: string): asserts value is Enemy {
   if (!isRecord(value) || !isRecord(value.template) || !isRecord(value.template.baseStats))
     throw new Error(`Enemy ${id} has an invalid template or detail shape`);
@@ -20,6 +31,7 @@ export function assertEnemyArtifact(value: unknown, id: string): asserts value i
     template.monsterTemplateId !== id ||
     !isName(template.name) ||
     typeof template.rank !== 'string' ||
+    !isEnemyCamp(template.camp) ||
     !Object.values(baseStats).every(isDecimal) ||
     !['hp', 'attack', 'defence', 'criticalDamage'].every((key) => isDecimal(baseStats[key])) ||
     !Array.isArray(value.monsters) ||
@@ -100,7 +112,7 @@ export function assertEnemyArtifact(value: unknown, id: string): asserts value i
       typeof monster.statsRef !== 'number' ||
       !Number.isSafeInteger(monster.statsRef) ||
       !stats[monster.statsRef] ||
-      ['stats', 'modifiers', 'monsterTemplateId'].some((key) => key in monster) ||
+      ['stats', 'modifiers', 'monsterTemplateId', 'camp'].some((key) => key in monster) ||
       !Array.isArray(monster.weaknesses) ||
       !Array.isArray(monster.resistances) ||
       !Array.isArray(monster.specialResistances) ||
@@ -204,6 +216,9 @@ export function assertEnemyConsumerClosure(details: Enemy[], catalog: EnemyCatal
       !representative ||
       entry.name !== detail.template.name ||
       entry.type !== detail.template.rank ||
+      entry.camp?.id !== detail.template.camp.id ||
+      entry.camp.sortId !== detail.template.camp.sortId ||
+      entry.camp.name !== detail.template.camp.name ||
       'description' in entry ||
       entry.representative?.monsterId !== representative.monsterId ||
       JSON.stringify(entry.representative.weaknesses) !==

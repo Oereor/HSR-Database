@@ -4,6 +4,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   compareEnemyOverviewEntries,
+  getEnemyCampOptions,
   getEnemyRankCategory,
   getEnemyRankLabel,
   getWeaknessMatchCount,
@@ -17,6 +18,7 @@ import type { DataManifest, Enemy, EnemyCatalogEntry } from '../../src/lib/domai
 import { getEnemyCardImageMap } from '../../src/lib/server/enemy-assets';
 
 const generatedRoot = path.join(process.cwd(), 'src', 'lib', 'generated');
+const camp = { id: '99', sortId: 99, name: 'Fixture camp' };
 
 describe('Enemy Overview presentation', () => {
   it('uses the localized view as the authoritative Enemy output', () => {
@@ -56,6 +58,7 @@ describe('Enemy Overview presentation', () => {
       const representative = detail.monsters.find(
         ({ monsterId }) => monsterId === detail.defaultMonsterId
       )!;
+      expect(entry.camp, entry.id).toEqual(detail.template.camp);
       expect(entry.representative, entry.id).toEqual({
         monsterId: representative.monsterId,
         weaknesses: representative.weaknesses
@@ -65,9 +68,12 @@ describe('Enemy Overview presentation', () => {
 
   it('读取多值筛选并将旧 Rank 参数归一化为三类', () => {
     const state = readEnemyOverviewFilterState(
-      new URLSearchParams('type=MinionLv2&type=Elite&weakness=Ice&weakness=Imaginary')
+      new URLSearchParams(
+        'type=MinionLv2&type=Elite&weakness=Ice&weakness=Imaginary&camp=99&camp=1'
+      )
     );
     expect([...state.types]).toEqual(['normal', 'elite']);
+    expect([...state.camps]).toEqual(['99', '1']);
     expect([...state.weaknesses]).toEqual(['Ice', 'Imaginary']);
     expect(hasEnemyOverviewFilters(state)).toBe(true);
   });
@@ -77,6 +83,7 @@ describe('Enemy Overview presentation', () => {
       id: '1',
       name: '测试敌方单位',
       type: 'Elite',
+      camp,
       variants: [],
       representative: {
         monsterId: '1',
@@ -88,25 +95,34 @@ describe('Enemy Overview presentation', () => {
     };
     expect(
       matchesEnemyOverviewFilters(enemy, {
+        camps: new Set(['1', '99']),
         types: new Set(['normal', 'elite']),
         weaknesses: new Set(['Ice', 'Imaginary'])
       })
     ).toBe(true);
     expect(
       matchesEnemyOverviewFilters(enemy, {
+        camps: new Set(['99']),
         types: new Set(['boss']),
         weaknesses: new Set(['Ice'])
       })
     ).toBe(false);
     expect(
       matchesEnemyOverviewFilters(enemy, {
+        camps: new Set(['99']),
         types: new Set(['elite']),
         weaknesses: new Set(['Imaginary'])
       })
     ).toBe(false);
-    expect(matchesEnemyOverviewFilters(enemy, { types: new Set(), weaknesses: new Set() })).toBe(
-      true
-    );
+    expect(
+      matchesEnemyOverviewFilters(
+        enemy,
+        readEnemyOverviewFilterState(new URLSearchParams('type=elite&weakness=Ice&camp=1'))
+      )
+    ).toBe(false);
+    expect(
+      matchesEnemyOverviewFilters(enemy, readEnemyOverviewFilterState(new URLSearchParams()))
+    ).toBe(true);
   });
 
   it('弱点匹配数量作为 primary，普通排序作为 secondary', () => {
@@ -118,6 +134,7 @@ describe('Enemy Overview presentation', () => {
       id,
       name,
       type: 'Elite',
+      camp,
       variants: [],
       representative: { monsterId: id, weaknesses }
     });
@@ -158,6 +175,7 @@ describe('Enemy Overview presentation', () => {
         id: '2',
         name: '乙',
         type: 'Elite',
+        camp,
         variants: [],
         representative: { monsterId: '2', weaknesses: [{ element: 'Ice', name: '冰' }] }
       },
@@ -165,6 +183,7 @@ describe('Enemy Overview presentation', () => {
         id: '1',
         name: '甲',
         type: 'Elite',
+        camp,
         variants: [],
         representative: { monsterId: '1', weaknesses: [{ element: 'Physical', name: '物理' }] }
       }
@@ -183,16 +202,50 @@ describe('Enemy Overview presentation', () => {
     ).toEqual(['甲', '乙']);
   });
 
+  it('deduplicates camps by ID and orders by SortID and then numeric ID', () => {
+    const entries = [
+      camp,
+      { id: '10', sortId: 2, name: 'Same label' },
+      { id: '31', sortId: 1, name: 'New camp' },
+      { id: '2', sortId: 2, name: 'Same label' },
+      camp
+    ].map((camp, index): EnemyCatalogEntry => ({
+      id: String(index + 1),
+      type: 'Minion',
+      name: 'Enemy',
+      camp,
+      variants: [],
+      representative: { monsterId: String(index + 1), weaknesses: [] }
+    }));
+    expect(getEnemyCampOptions(entries)).toEqual([
+      { value: '31', label: 'New camp' },
+      { value: '2', label: 'Same label' },
+      { value: '10', label: 'Same label' },
+      { value: '99', label: camp.name }
+    ]);
+  });
+
   it('序列化筛选保留 query/sort 并清除 page', () => {
-    const next = writeEnemyOverviewFilterState(new URLSearchParams('q=冰锋&sort=id&page=2'), {
-      types: new Set(['elite', 'boss']),
-      weaknesses: new Set(['Ice', 'Imaginary'])
-    });
+    const next = writeEnemyOverviewFilterState(
+      new URLSearchParams('q=冰锋&sort=id&page=2&camp=4'),
+      {
+        camps: new Set(['99', '1']),
+        types: new Set(['elite', 'boss']),
+        weaknesses: new Set(['Ice', 'Imaginary'])
+      }
+    );
     expect(next.getAll('type')).toEqual(['elite', 'boss']);
+    expect(next.getAll('camp')).toEqual(['99', '1']);
     expect(next.getAll('weakness')).toEqual(['Ice', 'Imaginary']);
     expect(next.get('q')).toBe('冰锋');
     expect(next.get('sort')).toBe('id');
     expect(next.has('page')).toBe(false);
+    const reset = writeEnemyOverviewFilterState(
+      next,
+      readEnemyOverviewFilterState(new URLSearchParams())
+    );
+    expect([...reset.keys()]).toEqual(['q', 'sort']);
+    expect(hasEnemyOverviewFilters(readEnemyOverviewFilterState(reset))).toBe(false);
   });
 
   it('真实目录包含 3/2/1/0 个匹配弱点的验证样本', async () => {

@@ -128,6 +128,43 @@ test('敌方单位 Overview 支持类型多选、弱点 OR 与相关性优先排
   await expect(page.locator('.overview-controls + section')).toBeVisible();
 });
 
+test('Enemy Overview includes faction in URL filters and the shared reset', async ({ page }) => {
+  await page.goto('/en/enemies/?q=Cocolia&type=boss&weakness=Fire&sort=id');
+  const group = page.locator('section[aria-labelledby="filter-group-enemy-camp"]');
+  const all = group.locator('[data-filter-value="all"]');
+  const other = group.locator('[data-filter-value="99"]');
+  const jarilo = group.locator('[data-filter-value="1"]');
+  const configured = page.locator('a[href="/en/enemies/1004010/"]');
+  const fallback = page.locator('a[href="/en/enemies/1004016/"]');
+
+  await expect(all).toHaveAttribute('aria-pressed', 'true');
+  await expect(configured).toBeVisible();
+  await expect(fallback).toBeVisible();
+  expect(await group.evaluate((node) => node.scrollWidth - node.clientWidth)).toBeLessThanOrEqual(
+    1
+  );
+
+  await other.click();
+  await expect(page).toHaveURL(/camp=99/);
+  await expect(other).toHaveAttribute('aria-pressed', 'true');
+  await expect(fallback).toBeVisible();
+  await expect(configured).toHaveCount(0);
+
+  await jarilo.click();
+  await expect(page).toHaveURL(/camp=99&camp=1/);
+  await expect(configured).toBeVisible();
+  await expect(fallback).toBeVisible();
+  await page.reload();
+  await expect(jarilo).toHaveAttribute('aria-pressed', 'true');
+  await expect(other).toHaveAttribute('aria-pressed', 'true');
+
+  await page.locator('.overview-toolbar button:not([role="combobox"])').click();
+  await expect(page).toHaveURL(/\?q=Cocolia&sort=id$/);
+  await expect(all).toHaveAttribute('aria-pressed', 'true');
+  await expect(configured).toBeVisible();
+  await expect(fallback).toBeVisible();
+});
+
 test('敌人缺图 Template 使用共享 fallback 且不发起远程请求', async ({ page }) => {
   const requestedUrls: string[] = [];
   page.on('request', (request) => requestedUrls.push(request.url()));

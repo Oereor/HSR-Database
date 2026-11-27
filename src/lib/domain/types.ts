@@ -315,8 +315,15 @@ export interface CatalogEntry extends WithTrailblazerText {
   typeName?: string;
 }
 
+export interface EnemyCamp {
+  id: string;
+  sortId: number;
+  name: string;
+}
+
 export interface EnemyCatalogEntry extends CatalogEntry {
   type: string;
+  camp: EnemyCamp;
   representative: { monsterId: string; weaknesses: ElementLabel[] };
   variants: EnemyVariantIdentity[];
 }
@@ -386,6 +393,7 @@ export interface MonsterTemplate {
   monsterTemplateId: string;
   name: string;
   rank: string;
+  camp: EnemyCamp;
   baseStats: EnemyTemplateBaseStats;
 }
 

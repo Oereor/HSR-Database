@@ -703,6 +703,7 @@ export async function syncData(): Promise<DataManifest> {
   const enemyDomainBuild = buildEnemyDomain({
     tables: tableSubset([
       'MonsterTemplateConfig',
+      'MonsterCamp',
       'MonsterConfig',
       'MonsterSkillConfig',
       'MonsterStatusConfig',

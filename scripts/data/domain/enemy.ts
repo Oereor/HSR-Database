@@ -1,4 +1,5 @@
 import type {
+  EnemyCampDomain,
   EnemyDomain,
   EnemyMonsterDomain,
   EnemySkillDetailDomain,
@@ -24,7 +25,16 @@ export interface EnemySource {
   skillDetails?: ReadonlyMap<string, ReadonlyMap<string, EnemySkillDetailDomain>>;
 }
 
+const OTHER_CAMP_ID = '99';
+
+export interface EnemyCampAudit {
+  missing: string[];
+  defaultValue: string[];
+  explicitOther: string[];
+}
+
 export interface EnemyDomainAudit {
+  campReferences: EnemyCampAudit;
   defaultSelection: { sameId: number; fallback: Array<{ templateId: string; monsterId: string }> };
   unknownSkillKinds: Array<{ enemyId: string; skillId: string; value: string }>;
   unknownSkillTags: Array<{ enemyId: string; skillId: string; value: string }>;
@@ -73,6 +83,39 @@ export function enemyTextSource(value: unknown, id: string, field: string) {
     if ('Hash' in value && parseTextHash(value.Hash)) return textSource(value);
   }
   throw new Error(`Enemy ${id} has malformed ${field} reference`);
+}
+
+export function indexEnemyCamps(input: Raw[]): ReadonlyMap<string, EnemyCampDomain> {
+  const camps = new Map<string, EnemyCampDomain>();
+  for (const [id, row] of indexRows(input, 'ID')) {
+    const sortId = row.SortID;
+    if (typeof sortId !== 'number' || !Number.isSafeInteger(sortId) || sortId < 0)
+      throw new Error(`MonsterCamp ${id} has invalid SortID=${sortId}`);
+    const nameSource = enemyTextSource(row.Name, id, 'MonsterCamp.Name');
+    if (!nameSource) throw new Error(`MonsterCamp ${id} has no Name.Hash`);
+    camps.set(id, { id, sortId, nameSource });
+  }
+  return camps;
+}
+
+export function resolveEnemyCamp(
+  camps: ReadonlyMap<string, EnemyCampDomain>,
+  rawId: unknown,
+  templateId: string,
+  audit: EnemyCampAudit
+): EnemyCampDomain {
+  const usesDefault = rawId === undefined || rawId === 0;
+  const campId = usesDefault ? OTHER_CAMP_ID : String(rawId);
+  const camp = camps.get(campId);
+  if (usesDefault && !camp)
+    throw new Error(`Enemy Template ${templateId} requires fallback MonsterCamp ID=${campId}`);
+  if (!camp || (!usesDefault && typeof rawId !== 'number'))
+    throw new Error(`Enemy Template ${templateId} has invalid MonsterCampID=${String(rawId)}`);
+
+  if (rawId === undefined) audit.missing.push(templateId);
+  else if (rawId === 0) audit.defaultValue.push(templateId);
+  else if (campId === OTHER_CAMP_ID) audit.explicitOther.push(templateId);
+  return camp;
 }
 
 function modifierOf(config: Raw, field: string) {
@@ -183,6 +226,7 @@ function buildSummons(
 
 export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
   const templates = rows(source.tables, 'MonsterTemplateConfig');
+  const camps = indexEnemyCamps(rows(source.tables, 'MonsterCamp'));
   const configs = rows(source.tables, 'MonsterConfig');
   const skills = new Map(
     rows(source.tables, 'MonsterSkillConfig').map((row) => [String(row.SkillID), row])
@@ -211,6 +255,7 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
     if (isElementType(code)) elementNameSources[code] = textSource(row.DamageTypeName);
   }
   const audit: EnemyDomainAudit = {
+    campReferences: { missing: [], defaultValue: [], explicitOther: [] },
     defaultSelection: { sameId: 0, fallback: [] },
     unknownSkillKinds: [],
     unknownSkillTags: [],
@@ -310,6 +355,7 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
       monsterTemplateId: id,
       nameSource: enemyTextSource(template.MonsterName, id, 'MonsterTemplateConfig.MonsterName'),
       rank: String(template.Rank ?? ''),
+      camp: resolveEnemyCamp(camps, template.MonsterCampID, id, audit.campReferences),
       baseStats: {
         hp: decimalOf(template.HPBase, `MonsterTemplate.${id}.HPBase`),
         attack: decimalOf(template.AttackBase, `MonsterTemplate.${id}.AttackBase`),

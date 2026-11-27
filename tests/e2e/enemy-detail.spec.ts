@@ -80,6 +80,22 @@ test('Enemy Detail Hero 本地化 raw rank 而不泄露内部值', async ({ page
   }
 });
 
+test('Enemy Detail displays the localized Template camp across Monster selections', async ({
+  page
+}) => {
+  await page.goto('/enemies/1004010/');
+  const metadata = page.locator('[data-enemy-hero] .hero-identity-metadata');
+  await expect(metadata.locator('.enemy-rank-tag + [data-enemy-camp-id="1"]')).toHaveText(
+    '雅利洛-Ⅵ'
+  );
+
+  await page.goto('/en/enemies/1002015/');
+  const camp = metadata.locator('.enemy-rank-tag + [data-enemy-camp-id="99"]');
+  await expect(camp).toHaveText('Other');
+  await selectMonster(page, '100201506');
+  await expect(camp).toHaveText('Other');
+});
+
 test('Enemy Detail Hero 对缺失 Template 字段保留固定行', async ({ page }) => {
   await page.goto('/enemies/3004010/');
   const missingValue = page.locator('[data-enemy-template-stat="speed"] dd');
@@ -258,6 +274,8 @@ test('a single Monster uses the variant selector without changing the URL', asyn
   page,
   isMobile
 }) => {
+  // Keep the fragment scroll from moving the viewport between layout measurements.
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize(isMobile ? { width: 390, height: 844 } : { width: 1440, height: 900 });
   for (const prefix of ['', '/en']) {
     for (const { id, hasIntroduction, query } of [

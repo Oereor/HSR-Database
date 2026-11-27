@@ -111,6 +111,7 @@
         <h1><GameText text={detail.template.name} /></h1>
         <div class="hero-identity-metadata">
           <EnemyRankTag label={getEnemyRankLabel(detail.template.rank)} />
+          <EnemyRankTag label={detail.template.camp.name} campId={detail.template.camp.id} />
         </div>
       </div>
     </div>

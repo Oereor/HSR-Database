@@ -25,7 +25,7 @@ const equipmentFields = `pieces effects effectRequirements required allowedMainS
 equipmentRecommendation sourceLabelSources slotCode pathCode categoryCode typeCode`;
 const enemyFields = `template monsters defaultMonsterId representative variants statsRef statProgressions availableLevels weaknesses resistances
 specialResistances summons skills skillPhases phaseList tag damageType visible
-hardLevelGroup eliteGroup baseStats criticalDamage`;
+hardLevelGroup eliteGroup baseStats criticalDamage camp sortId`;
 const endgameFields = `groups encounters battles stages schedule waveModel waves enemies orderedEnemies monsterGroups
 spawnSequence maxMonsterCount maxTeammateCount ability params clearPreviousAbility stageAbilities
 previewMonsterIds mechanics memoryTurbulence groupBaseMechanic battleWillMechanics cacophony axiomSets

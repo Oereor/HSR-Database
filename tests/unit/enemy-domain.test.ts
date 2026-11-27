@@ -3,10 +3,12 @@ import { buildEnemyDomain, enemyTextSource } from '../../scripts/data/domain/ene
 import { parseDecimal } from '../../scripts/data/decimal';
 import { createTextResolver } from '../../scripts/data/localization';
 import { projectEnemies } from '../../scripts/data/projection/enemy';
+import { parseRawJson } from '../../scripts/data/raw';
 import type { EnemySkillDetailDomain } from '../../src/lib/domain/neutral';
 
 const wrapped = (Value: string | number) => ({ Value });
 const hash = (Hash: string) => ({ Hash });
+const campText = { '9900': 'Other camp' };
 
 function sourceTables(skill: Record<string, unknown> | Record<string, unknown>[], skillIds = [1]) {
   return {
@@ -37,6 +39,7 @@ function sourceTables(skill: Record<string, unknown> | Record<string, unknown>[]
         StatusResistanceBase: wrapped('0.1')
       }
     ],
+    MonsterCamp: [{ ID: 99, SortID: 99, Name: hash('9900') }],
     MonsterConfig: [
       {
         MonsterID: 100,
@@ -102,6 +105,93 @@ function sourceTables(skill: Record<string, unknown> | Record<string, unknown>[]
 }
 
 describe('EnemyDomain', () => {
+  it('resolves configured camps and fallback independently in each TextMap', async () => {
+    const tables = sourceTables([], []);
+    const template = tables.MonsterTemplateConfig[0];
+    const monster = tables.MonsterConfig[0];
+    const { enemies, audit } = buildEnemyDomain({
+      tables: {
+        ...tables,
+        MonsterCamp: [
+          ...tables.MonsterCamp,
+          ...parseRawJson<typeof tables.MonsterCamp>(
+            '[{"ID":204,"SortID":2,"Name":{"Hash":18402229983191960247}}]'
+          )
+        ],
+        MonsterTemplateConfig: [
+          { ...template, MonsterCampID: 204 },
+          tables.MonsterTemplateConfig[1],
+          { ...template, MonsterTemplateID: 300, MonsterCampID: 0 },
+          { ...template, MonsterTemplateID: 400, MonsterCampID: 99 }
+        ],
+        MonsterConfig: [
+          ...tables.MonsterConfig,
+          { ...monster, MonsterID: 101 },
+          { ...monster, MonsterID: 300, MonsterTemplateID: 300 },
+          { ...monster, MonsterID: 400, MonsterTemplateID: 400 }
+        ]
+      }
+    });
+    expect(audit.campReferences).toEqual({
+      missing: ['200'],
+      defaultValue: ['300'],
+      explicitOther: ['400']
+    });
+    for (const [locale, textMapCode, name, other] of [
+      ['en', 'EN', 'New faction', 'Other camp'],
+      ['zh-CN', 'CHS', '新阵营', '其他阵营']
+    ] as const) {
+      const resolver = await createTextResolver(
+        { locale, textMapCode },
+        { '18402229983191960247': name, '9900': other }
+      );
+      const projection = projectEnemies(enemies, { resolver, extraEffectsById: new Map() });
+      const camp = { id: '204', sortId: 2, name };
+      const fallback = { id: '99', sortId: 99, name: other };
+      expect(projection.catalog.map((entry) => entry.camp)).toEqual([
+        camp,
+        fallback,
+        fallback,
+        fallback
+      ]);
+      expect(projection.enemies.map(({ template }) => template.camp)).toEqual(
+        projection.catalog.map((entry) => entry.camp)
+      );
+      expect(projection.enemies[0].monsters.map(({ monsterId }) => monsterId)).toEqual([
+        '100',
+        '101'
+      ]);
+      for (const variant of projection.enemies[0].monsters) {
+        expect(variant).not.toHaveProperty('camp');
+      }
+    }
+  });
+
+  it.each([1234, null, '99'])('rejects a malformed or unresolved MonsterCampID %s', (id) => {
+    const tables = sourceTables([], []);
+    const [first, second] = tables.MonsterTemplateConfig;
+    expect(() =>
+      buildEnemyDomain({
+        tables: {
+          ...tables,
+          MonsterTemplateConfig: [{ ...first, MonsterCampID: id }, second]
+        }
+      })
+    ).toThrow(`Enemy Template 100 has invalid MonsterCampID=${id}`);
+  });
+
+  it('requires the fallback record and a usable name from the requested TextMap', async () => {
+    const tables = sourceTables([], []);
+    expect(() => buildEnemyDomain({ tables: { ...tables, MonsterCamp: [] } })).toThrow(
+      'Enemy Template 100 requires fallback MonsterCamp ID=99'
+    );
+    const { enemies } = buildEnemyDomain({ tables });
+    const resolver = await createTextResolver({ locale: 'en', textMapCode: 'EN' }, {});
+    expect(() => projectEnemies(enemies, { resolver, extraEffectsById: new Map() })).toThrow(
+      'MonsterCamp 99 has no usable Name.Hash text in en'
+    );
+  });
+
   it('projects a numeric application without requiring status identity', async () => {
     const skill = {
       SkillID: 1,
@@ -121,6 +211,7 @@ describe('EnemyDomain', () => {
       resolver: await createTextResolver(
         { locale: 'en', textMapCode: 'EN' },
         {
+          ...campText,
           '4000': 'Skill',
           '4001': 'Description',
           '4236760374151560033': 'Skill',
@@ -231,6 +322,7 @@ describe('EnemyDomain', () => {
       })
     ).not.toThrow();
     const text: Record<string, string> = {
+      ...campText,
       '4000': 'Skill',
       '4001': 'Visible',
       '4003': 'Also visible',
@@ -300,7 +392,7 @@ describe('EnemyDomain', () => {
     const { enemies } = buildEnemyDomain({ tables });
     const resolver = await createTextResolver(
       { locale: 'en', textMapCode: 'EN' },
-      { '1000': 'Template', '888': ' ' }
+      { ...campText, '1000': 'Template', '888': ' ' }
     );
     const { monsters } = projectEnemies(enemies, { resolver, extraEffectsById: new Map() })
       .enemies[0];

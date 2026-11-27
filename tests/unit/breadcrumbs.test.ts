@@ -73,6 +73,7 @@ describe.each(['zh-CN', 'en'] as const)('route breadcrumbs (%s)', (locale) => {
         monsterTemplateId: '123',
         name: 'Synthetic Template',
         rank: 'Elite',
+        camp: { id: '1', sortId: 3, name: 'Synthetic camp' },
         baseStats: { hp: unit, attack: unit, defence: unit, criticalDamage: unit }
       },
       defaultMonsterId: '12301'
