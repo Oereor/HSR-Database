@@ -4,7 +4,7 @@ import type { NeutralTextSource } from './neutral';
 export type DecimalString = string & { readonly __decimalString: unique symbol };
 
 export type EndgameMode = 'moc' | 'pf' | 'as' | 'aa';
-export const ENDGAME_SCHEMA_VERSION = 28 as const;
+export const ENDGAME_SCHEMA_VERSION = 29 as const;
 
 export function supportsEndgameSummons(
   mode: EndgameMode,
@@ -18,7 +18,7 @@ export type EliteContextSource = 'stage' | 'spawn-group' | 'monster-fallback';
 export interface SummonEliteCandidate {
   id: number;
   table: EliteGroupTable | null;
-  source: 'summoner-occurrence' | 'target-monster-fallback' | 'task-override';
+  source: 'summoner-occurrence' | 'task-override';
 }
 
 /** Low-level parsed MazeBuff data. Gameplay ownership stays in each mode model below. */
@@ -156,6 +156,7 @@ export type SummonStatUnresolvedReason =
   | 'runtime-inheritance'
   | 'unresolved-shared-membership'
   | 'unbound-summon-task'
+  | 'unbound-creation-task'
   | 'missing-elite-group';
 export type EnemyStatUnavailableReason =
   'missing-base' | 'invalid-reference' | SummonStatUnresolvedReason;

@@ -1,13 +1,16 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { buildEndgameDomain, type EndgameDomain } from '../../scripts/data/endgame.js';
 import {
+  createSummonTaskResolver,
   resolveSummonContext,
+  summonConfigKeyHash,
   directSummonIds,
   selectSummonStats,
   type SummonTaskEvidence
 } from '../../scripts/data/endgame-summons.js';
 import { resolveEndgameHpBase } from '../../scripts/data/enemy-stats.js';
 import { canonicalDecimal } from '../../scripts/data/decimal.js';
+import * as raw from '../../scripts/data/raw.js';
 import { assertDataRoot } from '../../scripts/data/paths.js';
 import { assertSummonArtifacts } from '../../scripts/data/validation/endgame-summons.js';
 import type { EliteGroupTable, EndgameMode } from '../../src/lib/domain/endgame.js';
@@ -43,7 +46,7 @@ describe('Endgame summon policy', () => {
 
   it('handles constant, conflicting and dynamically bound elite overrides', () => {
     const resolve = (tasks: SummonTaskEvidence['tasks']) =>
-      resolveSummonContext(1, 2, actorElite, 'stage', 15, { tasks }, regular);
+      resolveSummonContext(1, 2, actorElite, { tasks }, regular);
     expect(resolve([task({ eliteOverride: 20 })])).toMatchObject({
       eliteSelection: 'task-override',
       eliteCandidates: [{ id: 20, table: 'elite', source: 'task-override' }]
@@ -63,20 +66,18 @@ describe('Endgame summon policy', () => {
     expect(resolve([task({ inherited: ['hp'] })]).unresolved.size).toBe(1);
   });
 
-  it('compares fallback groups independently for HP, Speed and Stance', () => {
+  it('inherits the effective elite record and compares only groups supported by real tasks', () => {
+    const inherited = resolveSummonContext(1, 2, actorElite, { tasks: [task()] }, regular);
+    expect(inherited.eliteCandidates).toEqual([
+      { id: 10, table: 'elite', source: 'summoner-occurrence' }
+    ]);
     const policy = resolveSummonContext(
       1,
       2,
       actorElite,
-      'monster-fallback',
-      20,
-      { tasks: [] },
+      { tasks: [task(), task({ eliteOverride: 20 })] },
       regular
     );
-    expect(policy.eliteCandidates).toEqual([
-      { id: 10, table: 'elite', source: 'summoner-occurrence' },
-      { id: 20, table: 'elite', source: 'target-monster-fallback' }
-    ]);
     const unavailable = { status: 'unavailable' as const, reason: 'missing-base' as const };
     const candidate = (ratio: string) => ({
       hp: resolveEndgameHpBase({ Value: '2' }, { Value: '3' }, { Value: '4' }, { Value: ratio }),
@@ -101,11 +102,8 @@ describe('Endgame summon policy', () => {
         1,
         2,
         { id: 10, table: 'infinite-elite' },
-        'spawn-group',
-        1,
         { tasks: [task({ eliteOverride: 20 })] },
-        () => tables,
-        true
+        () => tables
       );
     const ambiguous = resolve(['elite', 'infinite-elite']);
     expect(ambiguous.eliteCandidates).toEqual([
@@ -140,6 +138,173 @@ describe('Endgame summon policy', () => {
       status: 'unavailable',
       reason: 'missing-elite-group'
     });
+  });
+});
+
+const op = (kind: string, fields: Record<string, unknown> = {}) => ({
+  $type: `RPG.GameCore.${kind}`,
+  ...fields
+});
+const alias = (name: string) => op('TargetAlias', { Alias: name });
+const fixed = (value: number) => ({ IsDynamic: false, FixedValue: { Value: String(value) } });
+const readKey = (key: string) => ({
+  IsDynamic: true,
+  PostfixExpr: {
+    OpCodes: 'AQAR',
+    FixedValues: [],
+    DynamicHashes: [Number(summonConfigKeyHash(key))]
+  }
+});
+
+describe('Concrete summon binding', () => {
+  it.each([
+    [901, 902, 903],
+    [40003, 70004, 1200302]
+  ])(
+    'binds generic config references and limits effects per target (%s)',
+    async (owner, first, second) => {
+      const filePrefix = 'Config/ConfigCharacter/Monster/Monster_Fixture_00';
+      const character = {
+        CustomValues: { ChildSlot: 4 },
+        AbilityList: ['Passive', 'MissingCosmetic'],
+        SkillAbilityList: [{ Skill: 'SpawnSecond', AbilityList: ['Second'] }]
+      };
+      const source = {
+        AbilityList: [
+          {
+            Name: 'Passive',
+            OnStart: [
+              op('AddModifier', { ModifierName: { Value: 'Start' }, TargetType: alias('Caster') }),
+              op('TurnInsertAbility', { AbilityName: { Value: 'Passive' } })
+            ]
+          },
+          {
+            Name: 'Second',
+            DynamicValues: {
+              Floats: {
+                [summonConfigKeyHash('SkillChild')]: {
+                  ReadInfo: { Type: 'SkillParam', TriggerKey: 'SpawnSecond', Index: 0 }
+                }
+              }
+            },
+            OnStart: [
+              op('SummonMonster', {
+                SummonMonsterDataList: [{ MonsterID: readKey('SkillChild') }],
+                OnMonsterCreate: [op('SetSpeed'), op('StanceDamage'), op('SetHP')]
+              })
+            ]
+          }
+        ],
+        GlobalModifiers: {
+          Start: {
+            _CallbackList: [{ CallbackConfig: [op('IncludeTaskListTemplate', { Name: 'Local' })] }],
+            TaskListTemplate: [
+              { Name: 'Local', TaskList: [op('IncludeTaskListTemplate', { Name: 'Global' })] }
+            ]
+          }
+        },
+        GlobalTemplates: [
+          {
+            Name: 'Global',
+            TaskList: [
+              op('SummonMonster', {
+                SummonMonsterDataList: [
+                  { MonsterIDFromCustomValue: { Hash: summonConfigKeyHash('ChildSlot') } }
+                ]
+              }),
+              op('IncludeTaskListTemplate', { Name: 'Local' })
+            ]
+          }
+        ]
+      };
+      const load = vi.spyOn(raw, 'readRaw').mockImplementation(async (_root, path) => {
+        if (path.endsWith('Fixture_00_Config.json')) return character as never;
+        if (path.endsWith('Fixture_00_Ability.json')) return source as never;
+        throw new Error('No fixture', { cause: { code: 'ENOENT' } });
+      });
+      try {
+        const inspect = createSummonTaskResolver('node_modules', [
+          { SkillID: 931, SkillTriggerKey: 'SpawnSecond', ParamList: [{ Value: String(first) }] }
+        ]);
+        const evidence = await inspect(
+          {
+            MonsterID: owner,
+            SkillList: [931],
+            SummonIDList: [first, second],
+            CustomValues: [{ BFLIFKBEOPJ: 'ChildSlot', MNDFOPKBHKP: first }],
+            OverrideSkillParams: [{ BOKJJKFCFME: 931, PBLPLDJKPEI: [{ Value: String(second) }] }]
+          },
+          `${filePrefix}_Config.json`
+        );
+        expect(evidence.tasks.map((entry) => [entry.name, entry.targetId])).toEqual([
+          ['Global', first],
+          ['Second', second]
+        ]);
+        expect(evidence.unboundAbilities).toContain('MissingCosmetic');
+        expect(
+          resolveSummonContext(owner, first, actorElite, evidence, regular).unresolved.size
+        ).toBe(0);
+        const blocked = resolveSummonContext(owner, second, actorElite, evidence, regular);
+        expect([...blocked.unresolved]).toEqual([['speed', 'dynamic-summon-task']]);
+        expect(blocked.shared).toBe(false);
+      } finally {
+        load.mockRestore();
+      }
+    }
+  );
+
+  it('recognizes target-only pools through exact selectors and preserves ambiguous membership', async () => {
+    const concreteSelector = (id: number) =>
+      op('TargetSequence', {
+        Sequence: [
+          alias('AllDarkTeam'),
+          op('TargetFilter', {
+            Predicate: op('ByCompareMonsterID', { TargetMonsterID: fixed(id) })
+          })
+        ]
+      });
+    const source = {
+      GlobalTargetAlias: { PoolPrimary: concreteSelector(955), PoolMember: concreteSelector(962) },
+      AbilityList: [
+        {
+          Name: 'Init',
+          OnStart: [
+            op('SummonMonster', {
+              SummonMonsterDataList: [955, 962, 966].map((id) => ({ MonsterID: fixed(id) }))
+            }),
+            op('DefineHPSharedGroup', {
+              MainTarget: alias('PoolPrimary'),
+              SubTargets: alias('PoolMember')
+            }),
+            op('DefineHPSharedGroup', {
+              MainTarget: alias('Caster'),
+              SubTargets: alias('ParamEntityList')
+            })
+          ]
+        }
+      ]
+    };
+    const load = vi.spyOn(raw, 'readRaw').mockImplementation(async (_root, path) => {
+      if (path.endsWith('Fixture_00_Config.json')) return { AbilityList: ['Init'] } as never;
+      if (path.endsWith('Fixture_00_Ability.json')) return source as never;
+      throw new Error('No fixture', { cause: { code: 'ENOENT' } });
+    });
+    try {
+      const evidence = await createSummonTaskResolver('node_modules', [])(
+        {
+          MonsterID: 998,
+          SummonIDList: [955, 962, 966]
+        },
+        'Config/ConfigCharacter/Monster/Monster_Fixture_00_Config.json'
+      );
+      expect(evidence.sharedGroups?.[0]).toMatchObject({ members: [955, 962], ownerMember: false });
+      expect(resolveSummonContext(998, 962, actorElite, evidence, regular).shared).toBe(true);
+      expect(
+        resolveSummonContext(998, 966, actorElite, evidence, regular).unresolved.get('hp')
+      ).toBe('unresolved-shared-membership');
+    } finally {
+      load.mockRestore();
+    }
   });
 });
 
@@ -387,6 +552,46 @@ describe('Pinned Endgame summon data', () => {
         ownerId: 406401204,
         targetId: 406201005,
         code: 'summon-hp-unresolved-shared-membership'
+      })
+    );
+  });
+
+  it('binds the owner-created wolf event and leaves unresolved members in the audit', () => {
+    const wolves = domain.datasets.aa.groups
+      .flatMap((group) => group.encounters)
+      .flatMap((encounter) => encounter.battles)
+      .flatMap((slot) => slot.stages)
+      .flatMap((stage) => presentedStageWaves(stage).flat())
+      .find(({ occurrence }) => occurrence.monsterId === 2034010)?.occurrence.summonTargets;
+    expect(wolves?.map((target) => [target.monsterId, target.hp.status])).toEqual([
+      [203201003, 'configured'],
+      [203202004, 'configured']
+    ]);
+    expect(wolves?.[0].context.evidence).toContainEqual(
+      expect.objectContaining({
+        name: 'BattleEventAbility_Monster_W2_LycanKing_00_SummonMonster'
+      })
+    );
+    const shadow = stageFor('as', 3020, '30204', 420514);
+    const target = presentedStageWaves(shadow)[0].find(
+      ({ occurrence }) => occurrence.monsterId === 203501204
+    )?.occurrence.summonTargets?.[0];
+    expect(target).toMatchObject({
+      monsterId: 2033022,
+      hp: { status: 'unresolved', reason: 'unresolved-shared-membership' }
+    });
+    expect(domain.audit.summons.relationEvidence).toContainEqual(
+      expect.objectContaining({
+        mode: 'as',
+        ownerId: 203501204,
+        targetId: 2033022,
+        sharedGroups: expect.arrayContaining([
+          expect.objectContaining({
+            selector: 'ParamEntityList',
+            members: [],
+            possible: [2033022]
+          })
+        ])
       })
     );
   });

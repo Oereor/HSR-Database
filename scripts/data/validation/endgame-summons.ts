@@ -102,9 +102,6 @@ export function assertSummonArtifacts(
               candidate.table === 'infinite-elite' ||
               (candidate.table === null && target.context.eliteSelection === 'unresolved')) &&
             (candidate.source === 'task-override' ||
-              (candidate.source === 'target-monster-fallback' &&
-                enemy.hp.eliteContextSource === 'monster-fallback' &&
-                candidate.table !== 'infinite-elite') ||
               (candidate.source === 'summoner-occurrence' &&
                 candidate.id === enemy.hp.eliteGroupId &&
                 candidate.table === enemy.hp.eliteGroupTable))
@@ -173,7 +170,8 @@ export async function validateSummonSemantics(
     infiniteEliteRows,
     invasions,
     invasionBuffs,
-    mazeBuffs
+    mazeBuffs,
+    battleEventRows
   ] = await Promise.all(
     [
       'StageConfig',
@@ -184,7 +182,8 @@ export async function validateSummonSemantics(
       'InfiniteEliteGroup',
       'StageInvasionConfig',
       'StageInvasionBuff',
-      'MazeBuff'
+      'MazeBuff',
+      'BattleEventConfig'
     ].map((name) => readTable<Raw>(root, name))
   );
   const stages = by(stageRows, 'StageID');
@@ -215,7 +214,11 @@ export async function validateSummonSemantics(
   };
   const tablesFor = (id: number) =>
     (Object.keys(elites) as EliteGroupTable[]).filter((table) => elites[table].has(id));
-  const taskEvidence = createSummonTaskResolver(root, raw.skills);
+  const taskEvidence = createSummonTaskResolver(
+    root,
+    raw.skills,
+    battleEventRows.map(({ BattleEventID, AbilityList }) => ({ BattleEventID, AbilityList }))
+  );
   const phaseHp = createEnemyPhaseHpResolver(root, raw.skills);
 
   for (const dataset of Object.values(datasets))
@@ -282,8 +285,7 @@ export async function validateSummonSemantics(
         fail('actor EliteGroup table or source');
       const evidence = await taskEvidence(
         owner,
-        templates.get(owner.MonsterTemplateID)?.JsonConfig,
-        dataset.mode !== 'moc'
+        templates.get(owner.MonsterTemplateID)?.JsonConfig
       );
       const expectedIds = directSummonIds(
         rawIds,
@@ -315,11 +317,8 @@ export async function validateSummonSemantics(
           enemy.monsterId,
           target.monsterId,
           { id, table },
-          source,
-          monster.EliteGroup,
           evidence,
-          tablesFor,
-          dataset.mode !== 'moc'
+          tablesFor
         );
         if (
           target.monsterTemplateId !== monster.MonsterTemplateID ||

@@ -20,6 +20,7 @@ import type {
   EndgameStage,
   EnemyMechanics,
   EnemyOccurrence,
+  EnemyStatUnavailableReason,
   SummonedEnemyOccurrence,
   MocEncounter,
   MocGroup,
@@ -359,6 +360,7 @@ export interface EndgameAudit {
     unresolved: number;
     byMode: Record<EndgameMode, SummonCoverage>;
     diagnostics: SummonDiagnostic[];
+    relationEvidence: SummonRelationEvidence[];
     stageBattleEvents: Array<{
       mode: EndgameMode;
       stageId: number;
@@ -761,13 +763,48 @@ interface SummonDiagnostic {
   count: number;
 }
 
+interface SummonRelationEvidence {
+  occurrenceId: string;
+  mode: EndgameMode;
+  ownerId: number;
+  targetId: number;
+  legacyGuard: boolean;
+  sharedGroups: ReturnType<typeof resolveSummonContext>['sharedGroups'];
+}
+
+const summarizeStatGap = (
+  reason: EnemyStatUnavailableReason | 'non-terminating-unit-conversion'
+) => {
+  switch (reason) {
+    case 'unbound-summon-task':
+      return 'static-parser-gap';
+    case 'unresolved-shared-membership':
+      return 'shared-membership-review';
+    case 'runtime-inheritance':
+    case 'dynamic-summon-task':
+      return 'runtime-dependent';
+    case 'unbound-creation-task':
+      return 'static-parser-gap';
+    case 'missing-elite-group':
+    case 'missing-base':
+    case 'invalid-reference':
+      return 'missing-or-invalid-reference';
+    case 'ambiguous-elite-context':
+      return 'ambiguous-static-context';
+    default:
+      return 'other';
+  }
+};
+
 function summarizeSummons(
   dataset: EndgameDatasetByMode[EndgameMode],
-  diagnostics: SummonDiagnostic[]
+  diagnostics: SummonDiagnostic[],
+  relationEvidence: readonly SummonRelationEvidence[]
 ) {
   const summonerVariants = new Set<number>();
   const targetVariants = new Set<number>();
   const variantPairs = new Set<string>();
+  const classified = new Map<string, number>();
   const counts = {
     presets: 0,
     declaredSummoners: 0,
@@ -802,6 +839,11 @@ function summarizeSummons(
               counts[target.hp.status]++;
               if (target.speed.status === 'unavailable') counts.unresolvedSpeed++;
               if (target.toughness.display.status === 'unavailable') counts.unresolvedStance++;
+              const reasons = [target.hp, target.speed, target.toughness.display].flatMap((stat) =>
+                'reason' in stat ? [summarizeStatGap(stat.reason)] : []
+              );
+              for (const reason of new Set(reasons))
+                classified.set(reason, (classified.get(reason) ?? 0) + 1);
               targetVariants.add(target.monsterId);
               variantPairs.add(`${enemy.monsterId}:${target.monsterId}`);
             }
@@ -817,7 +859,22 @@ function summarizeSummons(
     ...counts,
     summonerVariants: summonerVariants.size,
     targetVariants: targetVariants.size,
-    variantPairs: variantPairs.size
+    variantPairs: variantPairs.size,
+    affectedRelations: Object.fromEntries([...classified].sort(([a], [b]) => a.localeCompare(b))),
+    legacyGuardRelations: relationEvidence.filter(
+      (row) => row.mode === dataset.mode && row.legacyGuard
+    ).length,
+    diagnosticOccurrences: diagnostics
+      .filter((row) => row.mode === dataset.mode)
+      .reduce((sum, row) => sum + row.count, 0),
+    taskOnlyVariantPairs: new Set(
+      diagnostics
+        .filter(
+          (row) =>
+            row.mode === dataset.mode && row.code === 'summon-task-target-outside-declaration'
+        )
+        .map((row) => `${row.ownerId}:${row.targetId}`)
+    ).size
   };
 }
 
@@ -826,8 +883,13 @@ type SummonCoverage = ReturnType<typeof summarizeSummons>;
 export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
   const tables = await loadTables(root);
   const resolvePhaseHp = createEnemyPhaseHpResolver(root, tables.monsterSkills);
-  const inspectSummonTasks = createSummonTaskResolver(root, tables.monsterSkills);
+  const inspectSummonTasks = createSummonTaskResolver(
+    root,
+    tables.monsterSkills,
+    tables.battleEvents
+  );
   const summonDiagnostics = new Map<string, SummonDiagnostic>();
+  const summonRelationEvidence: SummonRelationEvidence[] = [];
   const diagnostics = new Diagnostics();
   const context = (mode: EndgameMode, extra: Record<string, string | number | undefined>) => ({
     mode,
@@ -1434,6 +1496,11 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       statContext,
       !scan.complete || scan.manipulatesStance
     );
+    const occurrenceScope = `${mode}:group:${String(contextData.groupId)}:encounter:${String(contextData.configId)}:variant:${String(contextData.variant ?? '')}:slot:${String(contextData.slot)}:stage:${stage.StageID}`;
+    const occurrenceId =
+      contextSource === 'stage'
+        ? `${occurrenceScope}:fixed:${String(contextData.wave)}:position:${String(contextData.position)}:monster:${monsterId}`
+        : `${occurrenceScope}:spawn:${String(contextData.waveId)}:group:${String(contextData.monsterGroupId)}:position:${String(contextData.position)}:monster:${monsterId}`;
     const reportedSummonIssues = new Set<string>();
     const report = (code: string, targetId?: number, evidence?: string) => {
       const key = `${mode}:${stage.StageID}:${code}:${monsterId}:${targetId ?? ''}:${evidence ?? ''}`;
@@ -1463,25 +1530,23 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     });
     const summonTargets: SummonedEnemyOccurrence[] = [];
     if (summonEnabled && summons.length) {
-      const extendedScan = mode !== 'moc';
-      const evidence = await inspectSummonTasks(monster, template.JsonConfig, extendedScan);
+      const evidence = await inspectSummonTasks(monster, template.JsonConfig);
       for (const ability of evidence.unboundAbilities ?? [])
         report('summon-missing-battle-ability', undefined, ability);
-      if (extendedScan)
-        for (const task of evidence.tasks) {
-          if (task.targetId === undefined)
-            report(
-              'summon-task-selector-unbound',
-              undefined,
-              `${task.file}#${task.name}${task.hash ? `:${task.hash}` : ''}`
-            );
-          else if (!summons.includes(task.targetId))
-            report(
-              'summon-task-target-outside-declaration',
-              task.targetId,
-              `${task.file}#${task.name}`
-            );
-        }
+      for (const task of evidence.tasks) {
+        if (task.targetId === undefined)
+          report(
+            'summon-task-selector-unbound',
+            undefined,
+            `${task.file}#${task.name}${task.hash ? `:${task.hash}` : ''}`
+          );
+        else if (!summons.includes(task.targetId))
+          report(
+            'summon-task-target-outside-declaration',
+            task.targetId,
+            `${task.file}#${task.name}`
+          );
+      }
       if (evidence.missingGuard) report('summon-evidence-guard-mismatch');
       const ids = directSummonIds(
         summons,
@@ -1500,12 +1565,18 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
           monsterId,
           id,
           { id: resolvedEliteGroupId, table: elite.table },
-          actualContextSource,
-          target.EliteGroup,
           evidence,
-          tablesForElite,
-          extendedScan
+          tablesForElite
         );
+        if (policy.sharedGroups.length || policy.legacyGuard)
+          summonRelationEvidence.push({
+            occurrenceId,
+            mode,
+            ownerId: monsterId,
+            targetId: id,
+            legacyGuard: policy.legacyGuard,
+            sharedGroups: policy.sharedGroups
+          });
         const targetScan = await scanMechanics(targetTemplate);
         for (const code of policy.contextDiagnostics) report(code, id);
         const candidateStats = policy.eliteCandidates.map(({ id: group, table }) => {
@@ -1597,11 +1668,6 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       effectiveTotalHpStatus:
         unclear || finalHp.status === 'unresolved' ? 'runtime-unclear' : 'static'
     };
-    const occurrenceScope = `${mode}:group:${String(contextData.groupId)}:encounter:${String(contextData.configId)}:variant:${String(contextData.variant ?? '')}:slot:${String(contextData.slot)}:stage:${stage.StageID}`;
-    const occurrenceId =
-      contextSource === 'stage'
-        ? `${occurrenceScope}:fixed:${String(contextData.wave)}:position:${String(contextData.position)}:monster:${monsterId}`
-        : `${occurrenceScope}:spawn:${String(contextData.waveId)}:group:${String(contextData.monsterGroupId)}:position:${String(contextData.position)}:monster:${monsterId}`;
     const voracityLevel = voracityLevelFor(stage.StageID, monsterId);
     return {
       occurrenceId,
@@ -2700,10 +2766,10 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       (a.evidence ?? '').localeCompare(b.evidence ?? '')
   );
   const byMode = {
-    moc: summarizeSummons(datasets.moc, summonDiagnosticRows),
-    aa: summarizeSummons(datasets.aa, summonDiagnosticRows),
-    as: summarizeSummons(datasets.as, summonDiagnosticRows),
-    pf: summarizeSummons(datasets.pf, summonDiagnosticRows)
+    moc: summarizeSummons(datasets.moc, summonDiagnosticRows, summonRelationEvidence),
+    aa: summarizeSummons(datasets.aa, summonDiagnosticRows, summonRelationEvidence),
+    as: summarizeSummons(datasets.as, summonDiagnosticRows, summonRelationEvidence),
+    pf: summarizeSummons(datasets.pf, summonDiagnosticRows, summonRelationEvidence)
   };
   const totals = Object.values(byMode);
   const summons = {
@@ -2712,6 +2778,9 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     shared: totals.reduce((sum, mode) => sum + mode.shared, 0),
     unresolved: totals.reduce((sum, mode) => sum + mode.unresolved, 0),
     diagnostics: summonDiagnosticRows,
+    relationEvidence: summonRelationEvidence.sort(
+      (a, b) => a.occurrenceId.localeCompare(b.occurrenceId) || a.targetId - b.targetId
+    ),
     stageBattleEvents: [...stageBattleEvents.values()].sort(
       (a, b) =>
         a.mode.localeCompare(b.mode) || a.stageId - b.stageId || a.battleEventId - b.battleEventId
