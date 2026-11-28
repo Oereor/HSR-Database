@@ -10,7 +10,8 @@ import { resolveEndgameHpBase } from '../../scripts/data/enemy-stats.js';
 import { canonicalDecimal } from '../../scripts/data/decimal.js';
 import { assertDataRoot } from '../../scripts/data/paths.js';
 import { assertSummonArtifacts } from '../../scripts/data/validation/endgame-summons.js';
-import { buildGroupView } from '../../src/lib/domain/endgame-view.js';
+import type { EliteGroupTable, EndgameMode } from '../../src/lib/domain/endgame.js';
+import { buildGroupView, presentedStageWaves } from '../../src/lib/domain/endgame-view.js';
 
 const task = (changes: Partial<SummonTaskEvidence['tasks'][number]> = {}) => ({
   file: 'fixture.json',
@@ -21,7 +22,10 @@ const task = (changes: Partial<SummonTaskEvidence['tasks'][number]> = {}) => ({
   ...changes
 });
 
-describe('MoC summon policy', () => {
+const regular = () => ['elite'] as const;
+const actorElite = { id: 10, table: 'elite' } as const;
+
+describe('Endgame summon policy', () => {
   it('preserves concrete declarations, deduplicates and diagnoses invalid and unverified self references', () => {
     const warn = vi.fn();
     expect(directSummonIds([3, 2, 3, 4, 1, 0], 1, { tasks: [] }, (id) => id <= 3, warn)).toEqual([
@@ -39,14 +43,17 @@ describe('MoC summon policy', () => {
 
   it('handles constant, conflicting and dynamically bound elite overrides', () => {
     const resolve = (tasks: SummonTaskEvidence['tasks']) =>
-      resolveSummonContext(1, 2, 10, 'stage', 15, { tasks });
+      resolveSummonContext(1, 2, actorElite, 'stage', 15, { tasks }, regular);
     expect(resolve([task({ eliteOverride: 20 })])).toMatchObject({
       eliteSelection: 'task-override',
-      eliteGroupIds: [20]
+      eliteCandidates: [{ id: 20, table: 'elite', source: 'task-override' }]
     });
     expect(resolve([task({ eliteOverride: 20 }), task()])).toMatchObject({
       eliteSelection: 'compare-candidates',
-      eliteGroupIds: [20, 10]
+      eliteCandidates: [
+        { id: 20, table: 'elite', source: 'task-override' },
+        { id: 10, table: 'elite', source: 'summoner-occurrence' }
+      ]
     });
     expect(resolve([task({ targetId: undefined, eliteOverride: 20 })]).unresolved.get('hp')).toBe(
       'dynamic-summon-task'
@@ -57,8 +64,19 @@ describe('MoC summon policy', () => {
   });
 
   it('compares fallback groups independently for HP, Speed and Stance', () => {
-    const policy = resolveSummonContext(1, 2, 10, 'monster-fallback', 20, { tasks: [] });
-    expect(policy.eliteGroupIds).toEqual([10, 20]);
+    const policy = resolveSummonContext(
+      1,
+      2,
+      actorElite,
+      'monster-fallback',
+      20,
+      { tasks: [] },
+      regular
+    );
+    expect(policy.eliteCandidates).toEqual([
+      { id: 10, table: 'elite', source: 'summoner-occurrence' },
+      { id: 20, table: 'elite', source: 'target-monster-fallback' }
+    ]);
     const unavailable = { status: 'unavailable' as const, reason: 'missing-base' as const };
     const candidate = (ratio: string) => ({
       hp: resolveEndgameHpBase({ Value: '2' }, { Value: '3' }, { Value: '4' }, { Value: ratio }),
@@ -77,9 +95,55 @@ describe('MoC summon policy', () => {
       'configured'
     );
   });
+  it('keeps both tables for a conflicting ID and distinguishes a missing row', () => {
+    const resolve = (tables: EliteGroupTable[]) =>
+      resolveSummonContext(
+        1,
+        2,
+        { id: 10, table: 'infinite-elite' },
+        'spawn-group',
+        1,
+        { tasks: [task({ eliteOverride: 20 })] },
+        () => tables,
+        true
+      );
+    const ambiguous = resolve(['elite', 'infinite-elite']);
+    expect(ambiguous.eliteCandidates).toEqual([
+      { id: 20, table: 'elite', source: 'task-override' },
+      { id: 20, table: 'infinite-elite', source: 'task-override' }
+    ]);
+    expect(ambiguous.contextDiagnostics).toEqual(['summon-elite-table-ambiguous']);
+    const candidate = (ratio: string) => {
+      const unavailable = { status: 'unavailable' as const, reason: 'missing-base' as const };
+      return {
+        hp: resolveEndgameHpBase({ Value: '2' }, { Value: '3' }, { Value: '4' }, { Value: ratio }),
+        speed: unavailable,
+        toughness: {
+          internalStance: unavailable,
+          display: unavailable,
+          runtimeStatus: 'static' as const
+        }
+      };
+    };
+    expect(selectSummonStats(ambiguous, [candidate('1'), candidate('1.0')]).hp.status).toBe(
+      'configured'
+    );
+    expect(selectSummonStats(ambiguous, [candidate('1'), candidate('2')]).hp).toEqual({
+      status: 'unresolved',
+      reason: 'ambiguous-elite-context'
+    });
+    expect(resolve(['infinite-elite']).eliteSelection).toBe('task-override');
+    const missing = resolve([]);
+    expect(missing.eliteCandidates).toEqual([{ id: 20, table: null, source: 'task-override' }]);
+    expect(missing.contextDiagnostics).toEqual(['summon-elite-table-missing']);
+    expect(selectSummonStats(missing, [undefined]).speed).toEqual({
+      status: 'unavailable',
+      reason: 'missing-elite-group'
+    });
+  });
 });
 
-describe('MoC summon pinned data', () => {
+describe('Pinned Endgame summon data', () => {
   let domain: EndgameDomain;
   beforeAll(async () => {
     domain = await buildEndgameDomain(assertDataRoot());
@@ -108,7 +172,12 @@ describe('MoC summon pinned data', () => {
     expect(target).toMatchObject({
       monsterId: 4062010,
       voracityLevel: 3,
-      context: { level: 95, hardLevelGroup: 3, eliteGroupIds: [168], confidence: 'inferred' },
+      context: {
+        level: 95,
+        hardLevelGroup: 3,
+        eliteCandidates: [{ id: 168, table: 'elite', source: 'summoner-occurrence' }],
+        confidence: 'inferred'
+      },
       hp: {
         status: 'configured',
         factors: {
@@ -175,6 +244,173 @@ describe('MoC summon pinned data', () => {
         ({ hp }) => hp.status === 'unresolved' && hp.reason === 'unresolved-shared-membership'
       )
     ).toBe(true);
+  });
+
+  function stageFor(mode: EndgameMode, groupId: number, encounter: string, stageId: number) {
+    return domain.datasets[mode].groups
+      .find((group) => group.groupId === groupId)!
+      .encounters.find((entry) => entry.id === encounter)!
+      .battles.flatMap((battle) => battle.stages)
+      .find((stage) => stage.stageId === stageId)!;
+  }
+
+  it.each([
+    [
+      11,
+      '1103:preliminary',
+      30511013,
+      305110131,
+      4053020,
+      4052020,
+      'infinite-elite',
+      370,
+      '975896.064975',
+      '158.40',
+      '40'
+    ],
+    [
+      1,
+      '103:preliminary',
+      30501013,
+      305010132,
+      4033030,
+      403205002,
+      'elite',
+      342,
+      '523736.7075',
+      '204.60',
+      '30'
+    ],
+    [
+      11,
+      '1104:normal',
+      30511021,
+      305110211,
+      801503006,
+      801204002,
+      'infinite-elite',
+      369,
+      '1537099.844845250124',
+      '220.44',
+      '40'
+    ],
+    [
+      11,
+      '1104:hard',
+      30511022,
+      305110221,
+      801503006,
+      801204002,
+      'elite',
+      169,
+      '7933418.3903600304',
+      '250.5',
+      '40'
+    ]
+  ] as const)(
+    'uses the AA spawn group EliteGroup at %s / %s',
+    (group, encounter, stageId, spawn, actor, id, table, eliteId, hp, speed, stance) => {
+      const { waveModel } = stageFor('aa', group, encounter, stageId);
+      if (waveModel.kind !== 'spawn-sequence') throw new Error('Expected spawn sequence');
+      const target = waveModel.waves
+        .flatMap((wave) => wave.monsterGroups)
+        .find((row) => row.monsterGroupId === spawn)!
+        .orderedEnemies.find(({ monsterId }) => monsterId === actor)!
+        .summonTargets!.find(({ monsterId }) => monsterId === id)!;
+      expect(target.context).toMatchObject({
+        eliteContextSource: 'spawn-group',
+        eliteCandidates: [{ id: eliteId, table, source: 'summoner-occurrence' }],
+        confidence: 'inferred'
+      });
+      if (target.hp.status !== 'configured') throw new Error('Expected configured HP');
+      expect(canonicalDecimal(target.hp.factors.baseEncounterMaxHpPerBar)).toBe(hp);
+      expect(target.speed).toMatchObject({ configuredValue: speed });
+      expect(target.toughness.display).toMatchObject({ perBar: stance });
+      expect(target).not.toHaveProperty('summonTargets');
+    }
+  );
+
+  it('reads the AS knight task template and the concrete Pollux shared group', () => {
+    const knight = stageFor('as', 3022, '30224', 420584);
+    const target = presentedStageWaves(knight)[0]
+      .find(({ occurrence }) => occurrence.monsterId === 302401304)!
+      .occurrence.summonTargets!.find(({ monsterId }) => monsterId === 3021032)!;
+    expect(target.context).toMatchObject({
+      level: 90,
+      hardLevelGroup: 1,
+      eliteContextSource: 'stage',
+      eliteCandidates: [{ id: 173, table: 'elite', source: 'summoner-occurrence' }],
+      evidence: expect.arrayContaining([
+        expect.objectContaining({ name: 'Argenti_SummonAllMonsters' })
+      ])
+    });
+    if (target.hp.status !== 'configured') throw new Error('Expected configured HP');
+    expect(canonicalDecimal(target.hp.factors.baseEncounterMaxHpPerBar)).toBe('791918.20908');
+    const pollux = stageFor('as', 3022, '30224', 420574);
+    const owner = presentedStageWaves(pollux)[0].find(
+      ({ occurrence }) => occurrence.monsterId === 401403604
+    )!.occurrence;
+    expect(
+      owner.summonTargets!.map((entry) => [entry.monsterId, entry.hp.status, entry.speed.status])
+    ).toEqual([
+      [401207604, 'shared', 'resolved'],
+      [401207704, 'shared', 'resolved']
+    ]);
+  });
+
+  it('reports mode coverage and stage-owned events without adding them to actor targets', () => {
+    const { byMode, stageBattleEvents } = domain.audit.summons;
+    expect(byMode.aa).toMatchObject({
+      presets: 224,
+      declaredSummoners: 80,
+      candidates: 130,
+      variantPairs: 64
+    });
+    expect(byMode.as).toMatchObject({
+      presets: 210,
+      declaredSummoners: 190,
+      candidates: 565,
+      variantPairs: 224
+    });
+    expect(byMode.pf.candidates).toBe(0);
+    expect(stageBattleEvents).toContainEqual(
+      expect.objectContaining({
+        mode: 'aa',
+        stageId: 30511013,
+        battleEventId: 30502,
+        abilities: expect.arrayContaining(['BattleEventAbility_SummonMonsterInfinite'])
+      })
+    );
+    expect(domain.audit.summons.diagnostics).toContainEqual(
+      expect.objectContaining({
+        mode: 'as',
+        ownerId: 406401204,
+        targetId: 406201005,
+        code: 'summon-hp-unresolved-shared-membership'
+      })
+    );
+  });
+
+  it('splits detail cards when only the summon stats differ and keeps preset aggregation', () => {
+    const group = structuredClone(
+      domain.datasets.moc.groups.find(({ groupId }) => groupId === 1036)!
+    );
+    const stage = group.encounters
+      .find(({ id }) => id === '5512')!
+      .battles.find(({ slot }) => slot === 3)!.stages[0];
+    if (stage.waveModel.kind !== 'fixed') throw new Error('Unexpected wave model');
+    const wave = stage.waveModel.waves[1];
+    const second = structuredClone(wave.enemies[0]);
+    second.summonTargets![0].hp = { status: 'shared' };
+    wave.enemies.push(second);
+    expect(presentedStageWaves(stage)[1].map(({ count }) => count)).toEqual([2]);
+    const view = buildGroupView(group, [], new Map());
+    const detail = view.encounters
+      .find(({ id }) => id === '5512')!
+      .battles.find(({ slot }) => slot === 3)!.stages[0].waves[1];
+    expect(detail.enemies).toHaveLength(2);
+    expect(detail.enemies[0].summonTargets?.[0].enemy.hp.roundedPerBar).toBe('672,129');
+    expect(detail.enemies[1].summonTargets?.[0].enemy.hp.display).toBe('shared');
   });
 
   it('rejects recursive targets at the locale artifact boundary', () => {

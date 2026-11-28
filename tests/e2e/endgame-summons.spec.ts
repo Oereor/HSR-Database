@@ -68,6 +68,70 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await boss.locator('[data-endgame-enemy-link]').click();
     await expect(page).toHaveURL(new RegExp(`${prefix}/enemies/4064010/\\?monster=4064010$`));
   });
+  test(`AA and AS summon cards share the detail Dialog (${locale})`, async ({ page, isMobile }) => {
+    if (isMobile) await page.setViewportSize({ width: 360, height: 545 });
+    await page.goto(`${prefix}/endgame/aa/11/?encounter=1103%3Apreliminary`);
+    const knightTrigger = page.locator(card(4053020)).locator(trigger).first();
+    await knightTrigger.click();
+    const dialog = page.getByRole('dialog');
+    const child = dialog.locator(card(4052020));
+    await expect(child.locator('[data-endgame-hp]')).toHaveText('975,896');
+    await expect(child).toHaveAttribute('data-endgame-enemy-level', '95');
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(knightTrigger).toBeFocused();
+
+    await page.goto(`${prefix}/endgame/as/3022/?encounter=30224`);
+    const knight = page.locator('[data-as-boss-dossier]').locator(card(302401304)).first();
+    const bossTrigger = knight.locator(trigger);
+    await bossTrigger.click();
+    const spear = dialog.locator(card(3021032));
+    await expect(spear).toHaveAttribute('data-endgame-enemy-level', '90');
+    await expect(spear.locator('[data-endgame-hp]')).toHaveText('791,918');
+    await expect(spear.locator('[data-endgame-speed]')).toHaveText('132');
+    await expect(spear.locator('[data-endgame-toughness]')).toHaveText('30');
+    await expect(dialog.locator(trigger)).toHaveCount(0);
+    const layout = await dialog.evaluate((element) => {
+      const description = document.getElementById(element.getAttribute('aria-describedby') ?? '');
+      const grid = element.querySelector('[data-enemy-grid]');
+      const close = element.querySelector('[data-slot="dialog-close"]');
+      const body = grid?.parentElement;
+      if (!description?.textContent?.trim() || !body || !close) return null;
+      const details = description.getBoundingClientRect();
+      const previousTop = close.getBoundingClientRect().top;
+      body.scrollTop = body.scrollHeight;
+      return {
+        descriptionHasNoLayout:
+          details.width <= 1 &&
+          details.height <= 1 &&
+          getComputedStyle(description).position === 'absolute',
+        overflowX:
+          element.scrollWidth > element.clientWidth ||
+          document.documentElement.scrollWidth > innerWidth,
+        closeStaysInPlace: close.getBoundingClientRect().top === previousTop,
+        scrolls: body.scrollTop > 0
+      };
+    });
+    expect(layout).toMatchObject({
+      descriptionHasNoLayout: true,
+      overflowX: false,
+      closeStaysInPlace: true
+    });
+    if (isMobile) expect(layout?.scrolls).toBe(true);
+    await dialog.locator('[data-slot="dialog-close"]').click();
+    await expect(dialog).toBeHidden();
+    await expect(bossTrigger).toBeFocused();
+
+    await bossTrigger.click();
+    await spear.locator('[data-endgame-enemy-link]').click();
+    await expect(page).toHaveURL(
+      new URL(`${prefix}/enemies/3021032/?monster=3021032`, page.url()).href
+    );
+    await expect(dialog).toBeHidden();
+    await page.goto(`${prefix}/endgame/pf/2026/?encounter=20264`);
+    await expect(page.locator('[data-endgame-enemy-card]').first()).toBeVisible();
+    await expect(page.locator(trigger)).toHaveCount(0);
+  });
 }
 
 test('MoC shared and unknown HP preserve the other card attributes', async ({ page }) => {

@@ -194,14 +194,21 @@ export interface PresentedEndgameOccurrence {
   count?: number;
 }
 
-export function presentedStageWaves(stage: EndgameStage): PresentedEndgameOccurrence[][] {
+export function presentedStageWaves(
+  stage: EndgameStage,
+  identify = occurrenceIdentity
+): PresentedEndgameOccurrence[][] {
   if (stage.waveModel.kind === 'fixed')
     return stage.waveModel.waves.map((wave) =>
-      mergeFixedOccurrences(wave.enemies).map(({ occurrence, count }) => ({ occurrence, count }))
+      mergeFixedOccurrences(wave.enemies, identify).map(({ occurrence, count }) => ({
+        occurrence,
+        count
+      }))
     );
   return stage.waveModel.waves.map((wave) =>
     uniqueSpawnOccurrences(
-      wave.monsterGroups.flatMap((monsterGroup) => monsterGroup.orderedEnemies)
+      wave.monsterGroups.flatMap((monsterGroup) => monsterGroup.orderedEnemies),
+      identify
     ).map((occurrence) => ({ occurrence }))
   );
 }
@@ -406,10 +413,13 @@ export function occurrenceIdentity(occurrence: EnemyOccurrence): string {
   ]);
 }
 
-export function uniqueSpawnOccurrences(occurrences: EnemyOccurrence[]): EnemyOccurrence[] {
+export function uniqueSpawnOccurrences(
+  occurrences: EnemyOccurrence[],
+  identify = occurrenceIdentity
+): EnemyOccurrence[] {
   const seen = new Set<string>();
   return occurrences.filter((occurrence) => {
-    const identity = occurrenceIdentity(occurrence);
+    const identity = identify(occurrence);
     if (seen.has(identity)) return false;
     seen.add(identity);
     return true;
@@ -417,11 +427,12 @@ export function uniqueSpawnOccurrences(occurrences: EnemyOccurrence[]): EnemyOcc
 }
 
 export function mergeFixedOccurrences(
-  occurrences: EnemyOccurrence[]
+  occurrences: EnemyOccurrence[],
+  identify = occurrenceIdentity
 ): Array<{ occurrence: EnemyOccurrence; count: number }> {
   const merged = new Map<string, { occurrence: EnemyOccurrence; count: number }>();
   for (const occurrence of occurrences) {
-    const identity = occurrenceIdentity(occurrence);
+    const identity = identify(occurrence);
     const current = merged.get(identity);
     if (current) current.count += 1;
     else merged.set(identity, { occurrence, count: 1 });
@@ -898,11 +909,27 @@ export function buildGroupView(
   };
 }
 
+function detailOccurrenceIdentity(occurrence: EnemyOccurrence): string {
+  const base = occurrenceIdentity(occurrence);
+  if (!occurrence.summonTargets?.length) return base;
+  return JSON.stringify([
+    base,
+    occurrence.summonTargets.map((target) => [
+      target.monsterId,
+      target.monsterTemplateId,
+      target.voracityLevel,
+      target.hp,
+      target.speed,
+      target.toughness
+    ])
+  ]);
+}
+
 function buildWaveViews(
   stage: EndgameStage,
   enemyReferences: ReadonlyMap<string, EndgameEnemyReference>
 ): EndgameWaveView[] {
-  const presented = presentedStageWaves(stage);
+  const presented = presentedStageWaves(stage, detailOccurrenceIdentity);
   const referenceFor = ({
     monsterId,
     monsterTemplateId

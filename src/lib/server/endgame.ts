@@ -11,6 +11,8 @@ import type {
 import {
   buildGroupView,
   buildModeView,
+  buildOccurrenceView,
+  presentedStageWaves,
   buildPeriodMetadata,
   endgameEnemyReferenceKey,
   ENDGAME_MODES,
@@ -260,35 +262,34 @@ export async function getEndgameGroup(
   return pending;
 }
 
-function resolveEndgameGridItem(
-  sourceGroup: EndgameGroup,
-  group: EndgameGroupView,
-  locator: EndgameOccurrenceLocator
-): EndgameEnemyGridItem | undefined {
-  const sourceEncounter = sourceGroup.encounters.find(({ id }) => id === locator.encounterId);
-  const encounter = group.encounters.find(({ id }) => id === locator.encounterId);
-  const sourceBattle = sourceEncounter?.battles.find(({ slot }) => slot === locator.battleSlot);
-  const battle = encounter?.battles.find(({ slot }) => slot === locator.battleSlot);
-  const stageIndex =
-    sourceBattle?.stages.findIndex(({ stageId }) => stageId === locator.stageId) ?? -1;
-  const sourceStage = stageIndex >= 0 ? sourceBattle?.stages[stageIndex] : undefined;
-  const stage = stageIndex >= 0 ? battle?.stages[stageIndex] : undefined;
-  if (!sourceStage || !stage || sourceStage.waveModel.kind !== locator.wave.kind) return undefined;
-  const waveIndex = sourceStage.waveModel.waves.findIndex((wave) =>
+async function resolveEndgameGridItem(
+  group: EndgameGroup,
+  locator: EndgameOccurrenceLocator,
+  locale: SearchLocale
+): Promise<EndgameEnemyGridItem | undefined> {
+  const stage = group.encounters
+    .find(({ id }) => id === locator.encounterId)
+    ?.battles.find(({ slot }) => slot === locator.battleSlot)
+    ?.stages.find(({ stageId }) => stageId === locator.stageId);
+  if (!stage || stage.waveModel.kind !== locator.wave.kind) return undefined;
+  const waveIndex = stage.waveModel.waves.findIndex((wave) =>
     locator.wave.kind === 'fixed'
       ? 'wave' in wave && wave.wave === locator.wave.number
       : 'waveId' in wave && wave.waveId === locator.wave.infiniteWaveId
   );
-  const occurrence =
-    waveIndex >= 0
-      ? stage.waves[waveIndex]?.enemies.find(({ monsterId }) => monsterId === locator.monsterId)
-      : undefined;
-  if (!occurrence) return undefined;
-  const shardOccurrence = { ...occurrence };
-  delete shardOccurrence.summonTargets;
+  const item = presentedStageWaves(stage)[waveIndex]?.find(
+    ({ occurrence }) => occurrence.monsterId === locator.monsterId
+  );
+  if (!item) return undefined;
+  const { occurrence, count } = item;
+  const reference = await getEnemyReference(
+    occurrence.monsterId,
+    occurrence.monsterTemplateId,
+    locale
+  );
   return {
     key: endgameOccurrenceLocatorKey(locator),
-    occurrence: shardOccurrence,
+    occurrence: buildOccurrenceView(occurrence, reference, count),
     level: stage.level
   };
 }
@@ -347,27 +348,20 @@ export async function getEndgameOccurrenceShard(
   const groupKeys = [
     ...new Set(entry.occurrences.map(({ locator }) => `${locator.mode}:${locator.groupId}`))
   ];
-  const groups = new Map<string, EndgameGroupView>();
   const sourceGroups = new Map<string, EndgameGroup>();
   await Promise.all(
     groupKeys.map(async (key) => {
       const [mode, groupId] = key.split(':') as [EndgameMode, string];
-      const [group, dataset] = await Promise.all([
-        getEndgameGroup(mode, Number(groupId), locale),
-        getEndgameDataset(mode, locale)
-      ]);
-      if (!group) throw new Error(`Endgame locator 缺少赛期：${key}`);
+      const dataset = await getEndgameDataset(mode, locale);
       const sourceGroup = dataset.groups.find((candidate) => candidate.groupId === Number(groupId));
       if (!sourceGroup) throw new Error(`Endgame locator 缺少源赛期：${key}`);
-      groups.set(key, group);
       sourceGroups.set(key, sourceGroup);
     })
   );
   const occurrences: Record<string, EndgameEnemyGridItem> = {};
   for (const { locator } of entry.occurrences) {
     const groupKey = `${locator.mode}:${locator.groupId}`;
-    const group = groups.get(groupKey)!;
-    const item = resolveEndgameGridItem(sourceGroups.get(groupKey)!, group, locator);
+    const item = await resolveEndgameGridItem(sourceGroups.get(groupKey)!, locator, locale);
     if (!item) throw new Error(`Endgame locator 无法解析：${endgameOccurrenceLocatorKey(locator)}`);
     occurrences[item.key] = item;
   }

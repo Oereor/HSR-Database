@@ -455,7 +455,7 @@ const [rawTemplates, rawCamps, rawConfigs, rawHardLevels, rawElites, rawEnemySki
 const rawCampIndex = indexEnemyCamps(rawCamps);
 const rawSkillById = new Map(rawEnemySkills.map((row) => [String(row.SkillID), row]));
 await validatePhaseHpSemantics(rawRoot, endgame, rawTemplates, rawConfigs, rawEnemySkills);
-await validateSummonSemantics(rawRoot, endgame.moc, {
+await validateSummonSemantics(rawRoot, endgame, {
   templates: rawTemplates,
   monsters: rawConfigs,
   hardLevels: rawHardLevels,

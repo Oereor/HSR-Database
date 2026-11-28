@@ -4,9 +4,22 @@ import type { NeutralTextSource } from './neutral';
 export type DecimalString = string & { readonly __decimalString: unique symbol };
 
 export type EndgameMode = 'moc' | 'pf' | 'as' | 'aa';
-export const ENDGAME_SCHEMA_VERSION = 27 as const;
+export const ENDGAME_SCHEMA_VERSION = 28 as const;
+
+export function supportsEndgameSummons(
+  mode: EndgameMode,
+  wave: 'fixed' | 'spawn-sequence'
+): boolean {
+  return wave === 'fixed' ? mode === 'moc' || mode === 'as' : mode === 'aa';
+}
 export type EliteGroupTable = 'elite' | 'infinite-elite';
 export type EliteContextSource = 'stage' | 'spawn-group' | 'monster-fallback';
+
+export interface SummonEliteCandidate {
+  id: number;
+  table: EliteGroupTable | null;
+  source: 'summoner-occurrence' | 'target-monster-fallback' | 'task-override';
+}
 
 /** Low-level parsed MazeBuff data. Gameplay ownership stays in each mode model below. */
 export interface ResolvedMazeBuff {
@@ -141,7 +154,9 @@ export type SummonStatUnresolvedReason =
   | 'ambiguous-elite-context'
   | 'dynamic-summon-task'
   | 'runtime-inheritance'
-  | 'unresolved-shared-membership';
+  | 'unresolved-shared-membership'
+  | 'unbound-summon-task'
+  | 'missing-elite-group';
 export type EnemyStatUnavailableReason =
   'missing-base' | 'invalid-reference' | SummonStatUnresolvedReason;
 
@@ -229,7 +244,7 @@ export interface SummonedEnemyOccurrence {
     hardLevelGroup: number;
     source: 'summoner-occurrence';
     eliteContextSource: EliteContextSource;
-    eliteGroupIds: number[];
+    eliteCandidates: SummonEliteCandidate[];
     eliteSelection: 'inherited' | 'task-override' | 'compare-candidates' | 'unresolved';
     confidence: 'inferred';
     evidence?: { file: string; name: string }[];

@@ -1,10 +1,14 @@
+import { readdir } from 'node:fs/promises';
+import path from 'node:path';
 import type {
   EliteContextSource,
+  EliteGroupTable,
   EnemyHpBaseFactors,
   EnemyStatUnavailableReason,
   EnemyToughnessStat,
   ResolvedEnemyStat,
   SummonedEnemyOccurrence,
+  SummonEliteCandidate,
   SummonStatUnresolvedReason
 } from '../../src/lib/domain/endgame.js';
 import { decimalEquals } from './decimal.js';
@@ -27,6 +31,7 @@ export interface SummonTaskEvidence {
   sharedGroup?: Evidence;
   reproduction?: Evidence;
   missingGuard?: boolean;
+  unboundAbilities?: string[];
 }
 
 const broodSkillIds = new Map([
@@ -86,9 +91,57 @@ const sharedRules = new Map([
     }
   ]
 ]);
+for (const [owner, first, second] of [
+  [401403601, 401207601, 401207701],
+  [401403602, 401207602, 401207702],
+  [401403603, 401207603, 401207703],
+  [401403604, 401207604, 401207704]
+])
+  sharedRules.set(owner, {
+    name: 'Monster_W4_Pollux_00_IF_SkillP01',
+    main: 'Caster',
+    members: 'CasterSummonedMinions',
+    targets: [first, second],
+    confirmed: true
+  });
+
+sharedRules.set(501401003, sharedRules.get(5014010)!);
+for (const owner of [300402101, 300402102, 300402103, 300402104])
+  sharedRules.set(owner, {
+    ...sharedRules.get(3004020)!,
+    targets: [3002022, 3002012, 3003015, 3002042]
+  });
+for (const [owner, targets] of [
+  [501401401, [501207101, 501208101, 501203107, 501301003, 501401103]],
+  [501401402, [501207102, 501208102, 501203108, 501301003, 501401104]],
+  [501401403, [501207103, 501208103, 501203109, 501301003, 501401105]],
+  [501401404, [501207104, 501208104, 501203110, 501301003, 501401106]]
+] as const)
+  sharedRules.set(owner, {
+    name: 'Monster_W5_Vtuber_00_IF_SkillP01',
+    main: 'Caster',
+    members: 'CasterSummonedMinions',
+    targets: [...targets],
+    confirmed: false
+  });
+
+for (const [owner, targets] of [
+  [406401201, [406201002, 406201007, 406202002, 406301003]],
+  [406401202, [406201003, 406201008, 406202003, 406301004]],
+  [406401203, [406201004, 406201009, 406202004, 406301005]],
+  [406401204, [406201005, 406201010, 406202005, 406301006]]
+] as const)
+  sharedRules.set(owner, {
+    name: 'MMonster_W4_Serpent_01_IF_SkillEX03_ShareHP',
+    main: 'ModifierOwnerEntity',
+    members: 'AllDarkTeam - ModifierOwnerEntity',
+    targets: [...targets],
+    confirmed: false
+  });
 const broodAbility = 'Monster_SW_Minion01_00_Skill02_Phase02';
 const kuimuAbility = 'Monster_W2_Beast01_01_Skill02_Phase02';
 const stats = ['hp', 'speed', 'toughness'] as const;
+const monsterAbilityDirectory = 'Config/ConfigAbility/Monster';
 
 function* objects(value: unknown): Generator<Raw> {
   if (!value || typeof value !== 'object') return;
@@ -128,11 +181,28 @@ function inheritedStats(properties: unknown): Stat[] {
   );
 }
 
-/** Resolve only named, statically bound ability bodies and their named local modifiers. */
+/** Follow concrete ability bindings and named modifier or task-list references. */
 export function createSummonTaskResolver(root: string, skillRows: readonly Raw[]) {
   const skills = new Map(skillRows.map((skill) => [skill.SkillID, skill]));
   const files = new Map<string, Promise<Raw | undefined>>();
-  const byMonster = new Map<number, Promise<SummonTaskEvidence>>();
+  const byMonster = new Map<string, Promise<SummonTaskEvidence>>();
+  let abilityFiles: Promise<string[]> | undefined;
+
+  function familyAbilityFiles(characterPath: string) {
+    const character = path.posix.basename(characterPath);
+    const family = character.match(/^(.+?)_\d{2}(?:_|\.)/)?.[1];
+    if (!family) return Promise.resolve([]);
+    abilityFiles ??= readdir(path.join(root, monsterAbilityDirectory)).catch((error) => {
+      if (error.code === 'ENOENT') return [];
+      throw error;
+    });
+    return abilityFiles.then((files) =>
+      files
+        .filter((file) => file.startsWith(`${family}_`) && /_Ability(?:_[^.]*)?\.json$/.test(file))
+        .sort()
+        .map((file) => `${monsterAbilityDirectory}/${file}`)
+    );
+  }
   function load(file: string) {
     if (!files.has(file))
       files.set(
@@ -145,11 +215,16 @@ export function createSummonTaskResolver(root: string, skillRows: readonly Raw[]
     return files.get(file)!;
   }
 
-  async function inspect(monster: Raw, characterPath?: string): Promise<SummonTaskEvidence> {
+  async function inspect(
+    monster: Raw,
+    characterPath: string | undefined,
+    extended: boolean
+  ): Promise<SummonTaskEvidence> {
     const tasks: Task[] = [];
-    if (!characterPath?.startsWith('Config/ConfigCharacter/Monster/')) return { tasks };
+    if (!characterPath?.startsWith('Config/ConfigCharacter/Monster/'))
+      return { tasks, unboundAbilities: ['CharacterConfig'] };
     const character = await load(characterPath);
-    if (!character) return { tasks };
+    if (!character) return { tasks, unboundAbilities: [characterPath] };
     const abilityPath = characterPath.replace('/ConfigCharacter/', '/ConfigAbility/');
     const paths = [
       ...new Set([
@@ -158,19 +233,32 @@ export function createSummonTaskResolver(root: string, skillRows: readonly Raw[]
         'Config/ConfigAbility/Monster/Monster_Common_Ability.json'
       ])
     ];
-    const abilities = new Map<string, Evidence & { body: Raw; globals: Raw }>();
-    for (const file of paths) {
+    type Ability = Evidence & { body: Raw; globals: Raw; templates: Map<string, Raw> };
+    const abilities = new Map<string, Ability>();
+    const alternatives = new Map<string, Ability | null>();
+    async function indexAbilities(file: string, primary: boolean) {
       const config = await load(file);
+      const templates = new Map<string, Raw>(
+        (config?.GlobalTemplates ?? []).map((template: Raw) => [template.Name, template])
+      );
       for (const body of config?.AbilityList ?? []) {
-        if (!abilities.has(body.Name))
-          abilities.set(body.Name, {
-            file,
-            name: body.Name,
-            body,
-            globals: config?.GlobalModifiers ?? {}
-          });
+        if (abilities.has(body.Name)) continue;
+        const ability = {
+          file,
+          name: body.Name,
+          body,
+          globals: config?.GlobalModifiers ?? {},
+          templates
+        };
+        if (primary) abilities.set(body.Name, ability);
+        else alternatives.set(body.Name, alternatives.has(body.Name) ? null : ability);
       }
     }
+    for (const file of paths) await indexAbilities(file, true);
+    if (extended)
+      for (const file of await familyAbilityFiles(characterPath))
+        if (!paths.includes(file)) await indexAbilities(file, false);
+
     const params = new Map<string, ReturnType<typeof effectiveSkillParams>>();
     for (const skillId of monster.SkillList ?? []) {
       const skill = skills.get(skillId);
@@ -203,13 +291,30 @@ export function createSummonTaskResolver(root: string, skillRows: readonly Raw[]
     let sharedGroup: Evidence | undefined;
     const sharedRule = sharedRules.get(monster.MonsterID);
     let reproduction: Evidence | undefined;
-    const seen = new Set<Raw>();
-    function scan(file: string, name: string, body: Raw, globals: Raw, parentFloats: Raw) {
-      if (seen.has(body)) return;
-      seen.add(body);
+    const unboundAbilities = new Set<string>();
+    const active = new Set<Raw>();
+    const visited = new Set<Raw>();
+    function scan(
+      file: string,
+      name: string,
+      body: Raw,
+      globals: Raw,
+      parentFloats: Raw,
+      templates: Map<string, Raw>
+    ) {
+      if (active.has(body) || (!extended && visited.has(body))) return;
+      active.add(body);
+      visited.add(body);
       const floats = { ...parentFloats, ...body.DynamicValues?.Floats };
-      const { Modifiers, ...logic } = body;
-      for (const node of objects(logic)) {
+      const { Modifiers, TaskListTemplate, ...logic } = body;
+      const availableTemplates =
+        extended && Array.isArray(TaskListTemplate)
+          ? new Map([
+              ...templates,
+              ...TaskListTemplate.map((entry: Raw): [string, Raw] => [entry.Name, entry])
+            ])
+          : templates;
+      for (const node of objects(extended ? logic : { ...logic, TaskListTemplate })) {
         const kind = node.$type;
         if (
           kind === 'RPG.GameCore.DefineHPSharedGroup' &&
@@ -290,16 +395,40 @@ export function createSummonTaskResolver(root: string, skillRows: readonly Raw[]
         const modifierName = unwrap(node.ModifierName);
         if (kind.startsWith('RPG.GameCore.AddModifier') && typeof modifierName === 'string') {
           const modifier = Modifiers?.[modifierName] ?? globals[modifierName];
-          if (modifier) scan(file, modifierName, modifier, globals, floats);
+          if (modifier) scan(file, modifierName, modifier, globals, floats, availableTemplates);
+        }
+        if (extended && kind === 'RPG.GameCore.IncludeTaskListTemplate') {
+          const templateName = unwrap(node.Name ?? node.TemplateName);
+          const template = availableTemplates.get(templateName);
+          if (template)
+            scan(
+              file,
+              templateName,
+              template,
+              globals,
+              { ...floats, ...node.DynamicValues?.Floats },
+              availableTemplates
+            );
+          else if (typeof templateName === 'string') unboundAbilities.add(templateName);
         }
         const abilityName = unwrap(node.AbilityName);
         if (kind.includes('Ability') && typeof abilityName === 'string') names.add(abilityName);
       }
+      active.delete(body);
     }
     for (const name of names) {
-      const match = abilities.get(name);
+      const match = abilities.get(name) ?? alternatives.get(name);
       if (match)
-        scan(match.file, name, match.body, match.globals, character.DynamicValues?.Floats ?? {});
+        scan(
+          match.file,
+          name,
+          match.body,
+          match.globals,
+          character.DynamicValues?.Floats ?? {},
+          match.templates
+        );
+      else if (extended && typeof name === 'string' && !/Camera/i.test(name))
+        unboundAbilities.add(name);
     }
     if (sharedGroup && sharedRule?.confirmed) {
       const sameAbility = tasks.filter(({ name }) => name === sharedRule.name);
@@ -308,9 +437,10 @@ export function createSummonTaskResolver(root: string, skillRows: readonly Raw[]
         (monster.CustomValues ?? []).map((row: Raw) => [row.BFLIFKBEOPJ, row.MNDFOPKBHKP])
       );
       const polluxBindings =
-        monster.MonsterID !== 4014030 ||
-        (concreteValues.get('SummonID0') === 4012070 &&
-          concreteValues.get('SummonID1') === 4012071 &&
+        monster.MonsterID < 401403601 ||
+        monster.MonsterID > 401403604 ||
+        (concreteValues.get('SummonID0') === sharedRule.targets[0] &&
+          concreteValues.get('SummonID1') === sharedRule.targets[1] &&
           sameAbility.some(({ hash }) => hash === '719053024') &&
           sameAbility.some(({ hash }) => hash === '719053023'));
       if (
@@ -325,13 +455,19 @@ export function createSummonTaskResolver(root: string, skillRows: readonly Raw[]
       (broodSkillIds.has(monster.MonsterID) && !reproduction) ||
       (monster.MonsterID === 2022050 &&
         !tasks.some((task) => task.targetId === 2022051 && task.inherited.includes('hp')));
-    return { tasks, sharedGroup, reproduction, missingGuard };
+    return {
+      tasks,
+      sharedGroup,
+      reproduction,
+      missingGuard,
+      unboundAbilities: [...unboundAbilities]
+    };
   }
 
-  return (monster: Raw, characterPath?: string) => {
-    if (!byMonster.has(monster.MonsterID))
-      byMonster.set(monster.MonsterID, inspect(monster, characterPath));
-    return byMonster.get(monster.MonsterID)!;
+  return (monster: Raw, characterPath?: string, extended = false) => {
+    const key = `${monster.MonsterID}:${extended}`;
+    if (!byMonster.has(key)) byMonster.set(key, inspect(monster, characterPath, extended));
+    return byMonster.get(key)!;
   };
 }
 
@@ -362,10 +498,12 @@ export function directSummonIds(
 export function resolveSummonContext(
   owner: number,
   target: number,
-  effectiveElite: number,
+  effectiveElite: { id: number; table: EliteGroupTable },
   source: EliteContextSource,
   targetElite: number | undefined,
-  evidence: SummonTaskEvidence
+  evidence: SummonTaskEvidence,
+  tablesFor: (id: number) => readonly EliteGroupTable[],
+  requireBoundTask = false
 ) {
   const relevant = evidence.tasks.filter(
     (task) => task.targetId === target || task.targetId === undefined
@@ -373,18 +511,34 @@ export function resolveSummonContext(
   const unresolved = new Map<Stat, SummonStatUnresolvedReason>();
   const sources = new Map<string, Evidence>();
   const remember = ({ file, name }: Evidence) => sources.set(`${file}:${name}`, { file, name });
-  const groups = new Set<number>();
-  let unknownElite = false;
+  const groups = new Map<string, SummonEliteCandidate>();
+  const addGroup = (candidate: SummonEliteCandidate) => {
+    const key = `${candidate.table}:${candidate.id}`;
+    if (!groups.has(key)) groups.set(key, candidate);
+  };
+  const contextDiagnostics = new Set<string>();
+  let unknownElite: SummonStatUnresolvedReason | undefined;
   const useDefault = () => {
-    groups.add(effectiveElite);
+    addGroup({ ...effectiveElite, source: 'summoner-occurrence' });
     if (source === 'monster-fallback') {
-      if (targetElite) groups.add(targetElite);
-      else unknownElite = true;
+      if (targetElite && tablesFor(targetElite).includes('elite'))
+        addGroup({ id: targetElite, table: 'elite', source: 'target-monster-fallback' });
+      else {
+        if (targetElite)
+          addGroup({ id: targetElite, table: null, source: 'target-monster-fallback' });
+        unknownElite = 'missing-elite-group';
+        contextDiagnostics.add('summon-elite-table-missing');
+      }
     }
   };
   if (!relevant.length) useDefault();
   for (const task of relevant) {
-    if (task.inherited.length || task.unknownCreation || task.eliteOverride !== undefined)
+    if (
+      requireBoundTask ||
+      task.inherited.length ||
+      task.unknownCreation ||
+      task.eliteOverride !== undefined
+    )
       remember(task);
     for (const stat of task.inherited) unresolved.set(stat, 'runtime-inheritance');
     if (task.unknownCreation)
@@ -394,13 +548,24 @@ export function resolveSummonContext(
       task.eliteOverride === 'dynamic' ||
       (task.eliteOverride !== undefined && task.targetId === undefined)
     ) {
-      unknownElite = true;
-    } else if (task.eliteOverride !== undefined) groups.add(task.eliteOverride);
-    else useDefault();
+      unknownElite = 'dynamic-summon-task';
+      contextDiagnostics.add('summon-elite-override-unbound');
+    } else if (task.eliteOverride !== undefined) {
+      const tables = tablesFor(task.eliteOverride);
+      if (tables.length > 1) contextDiagnostics.add('summon-elite-table-ambiguous');
+      if (!tables.length) {
+        unknownElite = 'missing-elite-group';
+        contextDiagnostics.add('summon-elite-table-missing');
+      }
+      for (const table of tables.length ? tables : [null])
+        addGroup({ id: task.eliteOverride, table, source: 'task-override' });
+    } else useDefault();
   }
   if (unknownElite)
+    for (const stat of stats) if (!unresolved.has(stat)) unresolved.set(stat, unknownElite);
+  if (requireBoundTask && !relevant.length)
     for (const stat of stats)
-      if (!unresolved.has(stat)) unresolved.set(stat, 'dynamic-summon-task');
+      if (!unresolved.has(stat)) unresolved.set(stat, 'unbound-summon-task');
   const sharedRule = sharedRules.get(owner);
   const sharedTarget = sharedRule?.targets.includes(target);
   const shared = sharedTarget && sharedRule?.confirmed && !!evidence.sharedGroup;
@@ -416,11 +581,12 @@ export function resolveSummonContext(
         ? 'task-override'
         : 'inherited';
   return {
-    eliteGroupIds: [...groups],
+    eliteCandidates: [...groups.values()],
     eliteSelection: selection,
     unresolved,
     shared: !!shared,
-    evidence: [...sources.values()]
+    evidence: [...sources.values()],
+    contextDiagnostics: [...contextDiagnostics]
   };
 }
 

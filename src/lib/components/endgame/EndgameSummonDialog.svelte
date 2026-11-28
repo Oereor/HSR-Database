@@ -37,7 +37,7 @@
       <Dialog.Close label={m.endgame_summon_close()} />
     </Dialog.Header>
     <Dialog.Body>
-      <DialogPrimitive.Description class="text-muted-foreground mb-4 text-sm">
+      <DialogPrimitive.Description class="sr-only">
         {m.endgame_summon_description()}
       </DialogPrimitive.Description>
       {#if open}

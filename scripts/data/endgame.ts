@@ -36,7 +36,7 @@ import type {
   SpawnWave,
   SpawnWaveParam
 } from '../../src/lib/domain/endgame.js';
-import { ENDGAME_SCHEMA_VERSION } from '../../src/lib/domain/endgame.js';
+import { ENDGAME_SCHEMA_VERSION, supportsEndgameSummons } from '../../src/lib/domain/endgame.js';
 import { textSource as neutralTextSource } from './domain/shared.js';
 import {
   compareDecimals,
@@ -315,6 +315,7 @@ interface PeakBossRow {
 
 interface BattleEventRow {
   BattleEventID: Id;
+  AbilityList?: string[];
 }
 
 export interface EndgameDiagnosticSample {
@@ -356,7 +357,15 @@ export interface EndgameAudit {
     configured: number;
     shared: number;
     unresolved: number;
-    diagnostics: Array<{ code: string; ownerId: number; targetId?: number; count: number }>;
+    byMode: Record<EndgameMode, SummonCoverage>;
+    diagnostics: SummonDiagnostic[];
+    stageBattleEvents: Array<{
+      mode: EndgameMode;
+      stageId: number;
+      battleEventId: number;
+      abilities: string[];
+      found: boolean;
+    }>;
   };
   mazeBuffs: MazeBuffResolutionAudit;
   asBossGuides: AsBossGuideAudit;
@@ -742,14 +751,83 @@ async function fileExists(file: string): Promise<boolean> {
   }
 }
 
+interface SummonDiagnostic {
+  code: string;
+  mode: EndgameMode;
+  stageId: number;
+  ownerId: number;
+  targetId?: number;
+  evidence?: string;
+  count: number;
+}
+
+function summarizeSummons(
+  dataset: EndgameDatasetByMode[EndgameMode],
+  diagnostics: SummonDiagnostic[]
+) {
+  const summonerVariants = new Set<number>();
+  const targetVariants = new Set<number>();
+  const variantPairs = new Set<string>();
+  const counts = {
+    presets: 0,
+    declaredSummoners: 0,
+    summoners: 0,
+    candidates: 0,
+    configured: 0,
+    shared: 0,
+    unresolved: 0,
+    unresolvedSpeed: 0,
+    unresolvedStance: 0,
+    invalidReferences: 0
+  };
+  for (const group of dataset.groups)
+    for (const encounter of group.encounters)
+      for (const slot of encounter.battles)
+        for (const stage of slot.stages) {
+          const model = stage.waveModel;
+          const enemies =
+            model.kind === 'fixed'
+              ? model.waves.flatMap((wave) => wave.enemies)
+              : model.waves.flatMap((wave) =>
+                  wave.monsterGroups.flatMap((group) => group.orderedEnemies)
+                );
+          for (const enemy of enemies) {
+            counts.presets++;
+            if (enemy.mechanics.summons.length) counts.declaredSummoners++;
+            if (!enemy.summonTargets?.length) continue;
+            counts.summoners++;
+            summonerVariants.add(enemy.monsterId);
+            for (const target of enemy.summonTargets) {
+              counts.candidates++;
+              counts[target.hp.status]++;
+              if (target.speed.status === 'unavailable') counts.unresolvedSpeed++;
+              if (target.toughness.display.status === 'unavailable') counts.unresolvedStance++;
+              targetVariants.add(target.monsterId);
+              variantPairs.add(`${enemy.monsterId}:${target.monsterId}`);
+            }
+          }
+        }
+  counts.invalidReferences = diagnostics
+    .filter(
+      ({ mode, code }) =>
+        mode === dataset.mode && ['invalid-summon-raw-id', 'invalid-summon-target'].includes(code)
+    )
+    .reduce((total, { count }) => total + count, 0);
+  return {
+    ...counts,
+    summonerVariants: summonerVariants.size,
+    targetVariants: targetVariants.size,
+    variantPairs: variantPairs.size
+  };
+}
+
+type SummonCoverage = ReturnType<typeof summarizeSummons>;
+
 export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
   const tables = await loadTables(root);
   const resolvePhaseHp = createEnemyPhaseHpResolver(root, tables.monsterSkills);
   const inspectSummonTasks = createSummonTaskResolver(root, tables.monsterSkills);
-  const summonDiagnostics = new Map<
-    string,
-    { code: string; ownerId: number; targetId?: number; count: number }
-  >();
+  const summonDiagnostics = new Map<string, SummonDiagnostic>();
   const diagnostics = new Diagnostics();
   const context = (mode: EndgameMode, extra: Record<string, string | number | undefined>) => ({
     mode,
@@ -1162,6 +1240,15 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     return pending;
   };
 
+  const eliteTables: Record<EliteGroupTable, typeof elites> = {
+    elite: elites,
+    'infinite-elite': infiniteElites
+  };
+  const tablesForElite = (id: number) =>
+    (Object.keys(eliteTables) as EliteGroupTable[]).filter((table) =>
+      eliteTables[table].has(String(id))
+    );
+
   const resolveElite = (
     mode: EndgameMode,
     eliteGroupId: number,
@@ -1347,26 +1434,54 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       statContext,
       !scan.complete || scan.manipulatesStance
     );
-    const report = (code: string, targetId?: number) => {
-      const key = `${code}:${monsterId}:${targetId ?? ''}`;
+    const reportedSummonIssues = new Set<string>();
+    const report = (code: string, targetId?: number, evidence?: string) => {
+      const key = `${mode}:${stage.StageID}:${code}:${monsterId}:${targetId ?? ''}:${evidence ?? ''}`;
+      if (reportedSummonIssues.has(key)) return;
+      reportedSummonIssues.add(key);
       const current = summonDiagnostics.get(key);
       if (current) current.count++;
       else
         summonDiagnostics.set(key, {
           code,
+          mode,
+          stageId: stage.StageID,
           ownerId: monsterId,
+          ...(evidence ? { evidence } : {}),
           ...(targetId !== undefined ? { targetId } : {}),
           count: 1
         });
     };
+    const summonEnabled = supportsEndgameSummons(
+      mode,
+      contextSource === 'stage' ? 'fixed' : 'spawn-sequence'
+    );
     const summons = (monster.SummonIDList ?? []).flatMap((id) => {
-      if (mode !== 'moc' || Number.isSafeInteger(id)) return [integer(id, 'SummonIDList')];
+      if (!summonEnabled || Number.isSafeInteger(id)) return [integer(id, 'SummonIDList')];
       report('invalid-summon-raw-id');
       return [];
     });
     const summonTargets: SummonedEnemyOccurrence[] = [];
-    if (mode === 'moc' && summons.length) {
-      const evidence = await inspectSummonTasks(monster, template.JsonConfig);
+    if (summonEnabled && summons.length) {
+      const extendedScan = mode !== 'moc';
+      const evidence = await inspectSummonTasks(monster, template.JsonConfig, extendedScan);
+      for (const ability of evidence.unboundAbilities ?? [])
+        report('summon-missing-battle-ability', undefined, ability);
+      if (extendedScan)
+        for (const task of evidence.tasks) {
+          if (task.targetId === undefined)
+            report(
+              'summon-task-selector-unbound',
+              undefined,
+              `${task.file}#${task.name}${task.hash ? `:${task.hash}` : ''}`
+            );
+          else if (!summons.includes(task.targetId))
+            report(
+              'summon-task-target-outside-declaration',
+              task.targetId,
+              `${task.file}#${task.name}`
+            );
+        }
       if (evidence.missingGuard) report('summon-evidence-guard-mismatch');
       const ids = directSummonIds(
         summons,
@@ -1384,14 +1499,17 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
         const policy = resolveSummonContext(
           monsterId,
           id,
-          resolvedEliteGroupId,
+          { id: resolvedEliteGroupId, table: elite.table },
           actualContextSource,
           target.EliteGroup,
-          evidence
+          evidence,
+          tablesForElite,
+          extendedScan
         );
         const targetScan = await scanMechanics(targetTemplate);
-        const candidateStats = policy.eliteGroupIds.map((group) => {
-          const targetElite = elites.get(String(group));
+        for (const code of policy.contextDiagnostics) report(code, id);
+        const candidateStats = policy.eliteCandidates.map(({ id: group, table }) => {
+          const targetElite = table && eliteTables[table].get(String(group));
           if (!targetElite) return undefined;
           let hp;
           try {
@@ -1445,7 +1563,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
             hardLevelGroup: stage.HardLevelGroup,
             source: 'summoner-occurrence',
             eliteContextSource: actualContextSource,
-            eliteGroupIds: policy.eliteGroupIds,
+            eliteCandidates: policy.eliteCandidates,
             eliteSelection: policy.eliteSelection,
             confidence: 'inferred',
             ...(policy.evidence.length ? { evidence: policy.evidence } : {})
@@ -1505,6 +1623,11 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     };
   };
 
+  const stageBattleEvents = new Map<
+    string,
+    EndgameDomain['audit']['summons']['stageBattleEvents'][number]
+  >();
+
   const resolveStage = (
     mode: EndgameMode,
     eventId: number,
@@ -1525,6 +1648,22 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
         eventId,
         stageId: stageIds[0]
       });
+    if (mode === 'aa' || mode === 'as')
+      for (const entry of stage.StageConfigData ?? []) {
+        if (entry.BFLIFKBEOPJ !== '_CreateBattleEvent') continue;
+        for (const token of String(entry.MNDFOPKBHKP).split(/[;,|]/)) {
+          const battleEventId = Number(token.trim());
+          if (!Number.isSafeInteger(battleEventId) || battleEventId <= 0) continue;
+          const battleEvent = battleEvents.get(String(battleEventId));
+          stageBattleEvents.set(`${mode}:${stage.StageID}:${battleEventId}`, {
+            mode,
+            stageId: stage.StageID,
+            battleEventId,
+            abilities: battleEvent?.AbilityList ?? [],
+            found: !!battleEvent
+          });
+        }
+      }
     return stage;
   };
 
@@ -2551,25 +2690,33 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     }
   }
 
+  const summonDiagnosticRows = [...summonDiagnostics.values()].sort(
+    (a, b) =>
+      a.mode.localeCompare(b.mode) ||
+      a.stageId - b.stageId ||
+      a.ownerId - b.ownerId ||
+      (a.targetId ?? 0) - (b.targetId ?? 0) ||
+      a.code.localeCompare(b.code) ||
+      (a.evidence ?? '').localeCompare(b.evidence ?? '')
+  );
+  const byMode = {
+    moc: summarizeSummons(datasets.moc, summonDiagnosticRows),
+    aa: summarizeSummons(datasets.aa, summonDiagnosticRows),
+    as: summarizeSummons(datasets.as, summonDiagnosticRows),
+    pf: summarizeSummons(datasets.pf, summonDiagnosticRows)
+  };
+  const totals = Object.values(byMode);
   const summons = {
-    configured: 0,
-    shared: 0,
-    unresolved: 0,
-    diagnostics: [...summonDiagnostics.values()].sort(
+    byMode,
+    configured: totals.reduce((sum, mode) => sum + mode.configured, 0),
+    shared: totals.reduce((sum, mode) => sum + mode.shared, 0),
+    unresolved: totals.reduce((sum, mode) => sum + mode.unresolved, 0),
+    diagnostics: summonDiagnosticRows,
+    stageBattleEvents: [...stageBattleEvents.values()].sort(
       (a, b) =>
-        a.ownerId - b.ownerId ||
-        (a.targetId ?? 0) - (b.targetId ?? 0) ||
-        a.code.localeCompare(b.code)
+        a.mode.localeCompare(b.mode) || a.stageId - b.stageId || a.battleEventId - b.battleEventId
     )
   };
-  for (const group of datasets.moc.groups)
-    for (const encounter of group.encounters)
-      for (const battle of encounter.battles)
-        for (const stage of battle.stages)
-          if (stage.waveModel.kind === 'fixed')
-            for (const wave of stage.waveModel.waves)
-              for (const enemy of wave.enemies)
-                for (const target of enemy.summonTargets ?? []) summons[target.hp.status]++;
 
   return {
     datasets,
