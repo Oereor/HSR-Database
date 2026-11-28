@@ -1,9 +1,29 @@
 import type {
   DecimalString,
+  EnemyHpBaseFactors,
   ResolvedEnemyStat,
   ResolvedInternalStance
 } from '../../src/lib/domain/endgame.js';
 import { addDecimals, decimalOf, multiplyDecimals, parseDecimal } from './decimal.js';
+
+export function resolveEndgameHpBase(
+  base: unknown,
+  instance: unknown,
+  level: unknown,
+  elite: unknown
+): EnemyHpBaseFactors {
+  const hpBase = decimalOf(base, 'MonsterTemplate.HPBase');
+  const instanceRatio = decimalOf(instance, 'Monster.HPModifyRatio');
+  const levelRatio = decimalOf(level, 'HardLevel.HPRatio');
+  const eliteRatio = decimalOf(elite, 'EliteGroup.HPRatio');
+  return {
+    hpBase,
+    instanceRatio,
+    levelRatio,
+    eliteRatio,
+    baseEncounterMaxHpPerBar: multiplyDecimals([hpBase, instanceRatio, levelRatio, eliteRatio])
+  };
+}
 
 export interface EnemyConfiguredStatSources {
   base: unknown;
@@ -27,7 +47,7 @@ function wrappedDecimalOr(value: unknown, fallback: '0' | '1', label: string): D
 export function resolveEnemyConfiguredStat(
   label: string,
   sources: EnemyConfiguredStatSources
-): ResolvedEnemyStat {
+): ResolvedEnemyStat<'missing-base'> {
   if (
     !sources.base ||
     typeof sources.base !== 'object' ||

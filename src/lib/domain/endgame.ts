@@ -4,6 +4,7 @@ import type { NeutralTextSource } from './neutral';
 export type DecimalString = string & { readonly __decimalString: unique symbol };
 
 export type EndgameMode = 'moc' | 'pf' | 'as' | 'aa';
+export const ENDGAME_SCHEMA_VERSION = 27 as const;
 export type EliteGroupTable = 'elite' | 'infinite-elite';
 export type EliteContextSource = 'stage' | 'spawn-group' | 'monster-fallback';
 
@@ -68,12 +69,15 @@ export interface EnemyHpPhase {
   maxHp?: DecimalString;
 }
 
-export interface EnemyHpFactors {
+export interface EnemyHpBaseFactors {
   hpBase: DecimalString;
   instanceRatio: DecimalString;
   levelRatio: DecimalString;
   eliteRatio: DecimalString;
   baseEncounterMaxHpPerBar: DecimalString;
+}
+
+export interface EnemyHpFactors extends EnemyHpBaseFactors {
   final: EnemyHpFinalResolution;
   phases?: EnemyHpPhase[];
   eliteGroupId: number;
@@ -133,9 +137,17 @@ export interface PureFictionWaveMechanic {
   killTransfer: PureFictionMechanicEvidence & { percentage?: DecimalString };
 }
 
-export type EnemyStatUnavailableReason = 'missing-base' | 'invalid-reference';
+export type SummonStatUnresolvedReason =
+  | 'ambiguous-elite-context'
+  | 'dynamic-summon-task'
+  | 'runtime-inheritance'
+  | 'unresolved-shared-membership';
+export type EnemyStatUnavailableReason =
+  'missing-base' | 'invalid-reference' | SummonStatUnresolvedReason;
 
-export type ResolvedEnemyStat =
+export type ResolvedEnemyStat<
+  TReason extends EnemyStatUnavailableReason = EnemyStatUnavailableReason
+> =
   | {
       status: 'resolved';
       base: DecimalString;
@@ -147,7 +159,7 @@ export type ResolvedEnemyStat =
     }
   | {
       status: 'unavailable';
-      reason: EnemyStatUnavailableReason;
+      reason: TReason;
     };
 
 export type ResolvedInternalStance =
@@ -203,6 +215,31 @@ export interface EnemyOccurrence {
   speed: ResolvedEnemyStat;
   toughness: EnemyToughnessStat;
   mechanics: EnemyMechanics;
+  summonTargets?: SummonedEnemyOccurrence[];
+}
+
+/** Direct relation owned by a fixed occurrence. No wave placement or recursive children. */
+export interface SummonedEnemyOccurrence {
+  monsterId: number;
+  monsterTemplateId: number;
+  name?: string;
+  voracityLevel?: number;
+  context: {
+    level: number;
+    hardLevelGroup: number;
+    source: 'summoner-occurrence';
+    eliteContextSource: EliteContextSource;
+    eliteGroupIds: number[];
+    eliteSelection: 'inherited' | 'task-override' | 'compare-candidates' | 'unresolved';
+    confidence: 'inferred';
+    evidence?: { file: string; name: string }[];
+  };
+  hp:
+    | { status: 'configured'; factors: EnemyHpBaseFactors; phases?: EnemyHpPhase[] }
+    | { status: 'shared' }
+    | { status: 'unresolved'; reason: EnemyStatUnavailableReason };
+  speed: ResolvedEnemyStat;
+  toughness: EnemyToughnessStat;
 }
 
 export interface FixedWave {
@@ -428,7 +465,7 @@ export type EndgameGroup =
   MocGroup | PureFictionGroup | ApocalypticShadowGroup | AnomalyArbitrationGroup;
 
 interface EndgameModeDatasetBase<TMode extends EndgameMode, TGroup extends EndgameGroup> {
-  schemaVersion: 26;
+  schemaVersion: typeof ENDGAME_SCHEMA_VERSION;
   mode: TMode;
   groups: TGroup[];
 }

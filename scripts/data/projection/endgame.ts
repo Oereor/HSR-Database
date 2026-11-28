@@ -289,7 +289,15 @@ function projectOccurrence(
     hp: occurrence.hp,
     speed: occurrence.speed,
     toughness: occurrence.toughness,
-    mechanics: occurrence.mechanics
+    mechanics: occurrence.mechanics,
+    ...(occurrence.summonTargets?.length
+      ? {
+          summonTargets: occurrence.summonTargets.map((target) => {
+            const name = context.enemyNamesByMonsterId.get(String(target.monsterId));
+            return { ...target, ...(name ? { name } : {}) };
+          })
+        }
+      : {})
   };
 }
 

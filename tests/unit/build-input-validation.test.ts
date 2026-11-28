@@ -1,3 +1,4 @@
+import { ENDGAME_SCHEMA_VERSION } from '../../src/lib/domain/endgame.js';
 import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata';
 import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { createHash } from 'node:crypto';
@@ -90,10 +91,10 @@ async function createFixture(): Promise<Fixture> {
     enemies: ['4']
   };
   const datasets = {
-    moc: { schemaVersion: 26, mode: 'moc', groups: [{ groupId: 10 }] },
-    pf: { schemaVersion: 26, mode: 'pf', groups: [{ groupId: 20 }] },
-    as: { schemaVersion: 26, mode: 'as', groups: [{ groupId: 30 }] },
-    aa: { schemaVersion: 26, mode: 'aa', groups: [{ groupId: 40 }] }
+    moc: { schemaVersion: ENDGAME_SCHEMA_VERSION, mode: 'moc', groups: [{ groupId: 10 }] },
+    pf: { schemaVersion: ENDGAME_SCHEMA_VERSION, mode: 'pf', groups: [{ groupId: 20 }] },
+    as: { schemaVersion: ENDGAME_SCHEMA_VERSION, mode: 'as', groups: [{ groupId: 30 }] },
+    aa: { schemaVersion: ENDGAME_SCHEMA_VERSION, mode: 'aa', groups: [{ groupId: 40 }] }
   } as unknown as EndgameDatasetByMode;
   const artifacts: DataManifest['artifacts'] = {};
 

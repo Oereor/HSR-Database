@@ -5,13 +5,13 @@
   import GameText from '$lib/components/shared/GameText.svelte';
   import SemanticIconLabel from '$lib/components/shared/SemanticIconLabel.svelte';
   import { getElementColor } from '$lib/domain/elements';
-  import { ENDGAME_MISSING_VALUE, type EnemyOccurrenceView } from '$lib/domain/endgame-view';
+  import { ENDGAME_MISSING_VALUE, type EndgameEnemyCardView } from '$lib/domain/endgame-view';
   import HpDisplay from './HpDisplay.svelte';
   import type { EndgameEnemyCardVariant } from './presentation';
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref } from '$lib/i18n/routing';
 
-  export let occurrence: EnemyOccurrenceView;
+  export let occurrence: EndgameEnemyCardView;
   export let variant: EndgameEnemyCardVariant = 'standard';
   export let level: number | undefined = undefined;
 
@@ -154,6 +154,9 @@
           </dd>
         </div>
       </dl>
+      {#if $$slots.actions}
+        <div class="mt-auto pt-3"><slot name="actions" /></div>
+      {/if}
     </Card.Content>
   </Card.Root>
 </article>

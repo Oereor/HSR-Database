@@ -1,3 +1,5 @@
+import { ENDGAME_SCHEMA_VERSION } from '../../../src/lib/domain/endgame.js';
+import { assertSummonArtifacts } from './endgame-summons.js';
 import type { Character } from '../../../src/lib/domain/types.js';
 import type { EnhancementComparison } from '../../../src/lib/domain/enhancement-comparison.js';
 import {
@@ -426,7 +428,7 @@ export async function validateBuildInputs(
           const [, locale, mode] = endgameMatch as [string, Locale, EndgameMode];
           if (
             !isRecord(value) ||
-            value.schemaVersion !== 26 ||
+            value.schemaVersion !== ENDGAME_SCHEMA_VERSION ||
             value.mode !== mode ||
             !Array.isArray(value.groups)
           )
@@ -639,6 +641,20 @@ export async function validateBuildInputs(
     if (relicPropertyCounts.get(locale) !== manifest.locales[locale].counts.relicProperties)
       throw new Error(`${locale} relic property count does not match manifest`);
     const datasets = endgame[locale];
+    const concreteNames = new Map(
+      (enemyDetails.get(locale) ?? []).flatMap((enemy) =>
+        enemy.monsters.map(
+          (monster) =>
+            [`${enemy.template.monsterTemplateId}:${monster.monsterId}`, monster.name] as const
+        )
+      )
+    );
+    for (const dataset of Object.values(datasets)) {
+      if (dataset)
+        assertSummonArtifacts(dataset, ({ monsterTemplateId, monsterId }) =>
+          concreteNames.get(`${monsterTemplateId}:${monsterId}`)
+        );
+    }
     if (ENDGAME_MODES.some((mode) => !datasets[mode]))
       throw new Error(`${locale} Endgame build inputs are incomplete`);
     const inventory = buildGeneratedRouteInventory(
@@ -675,6 +691,7 @@ export async function validateBuildInputs(
       const name = englishEnemies.get(targetId)?.get(String(occurrence.monsterId));
       if (
         !name ||
+        'summonTargets' in occurrence ||
         occurrence.name !== name ||
         String(occurrence.monsterTemplateId) !== targetId ||
         occurrence.enemyHref !== enemyDetailHref(targetId, occurrence.monsterId)

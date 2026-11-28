@@ -1,3 +1,4 @@
+import { ENDGAME_SCHEMA_VERSION } from '../../src/lib/domain/endgame.js';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
@@ -894,7 +895,7 @@ describe('Endgame 真实数据管线', () => {
 
   it('四个模式保留 schema 25 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 26)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === ENDGAME_SCHEMA_VERSION)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );

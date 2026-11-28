@@ -1,3 +1,4 @@
+import { ENDGAME_SCHEMA_VERSION } from '../../src/lib/domain/endgame.js';
 import { parseDecimal } from '../../scripts/data/decimal';
 import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { describe, expect, it, vi } from 'vitest';
@@ -61,7 +62,7 @@ const occurrence = (): EnemyOccurrence =>
 
 function datasets(): EndgameDatasetByMode {
   const moc = {
-    schemaVersion: 26 as const,
+    schemaVersion: ENDGAME_SCHEMA_VERSION,
     mode: 'moc' as const,
     groups: [
       {
@@ -99,9 +100,9 @@ function datasets(): EndgameDatasetByMode {
   };
   return {
     moc,
-    pf: { schemaVersion: 26, mode: 'pf', groups: [] },
-    as: { schemaVersion: 26, mode: 'as', groups: [] },
-    aa: { schemaVersion: 26, mode: 'aa', groups: [] }
+    pf: { schemaVersion: ENDGAME_SCHEMA_VERSION, mode: 'pf', groups: [] },
+    as: { schemaVersion: ENDGAME_SCHEMA_VERSION, mode: 'as', groups: [] },
+    aa: { schemaVersion: ENDGAME_SCHEMA_VERSION, mode: 'aa', groups: [] }
   };
 }
 

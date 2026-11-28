@@ -1,14 +1,18 @@
 <script lang="ts">
-  import type { EnemyOccurrenceView } from '$lib/domain/endgame-view';
+  import type { EndgameEnemyCardView } from '$lib/domain/endgame-view';
   import * as Popover from '$lib/components/ui/popover';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
   import { m } from '$lib/paraglide/messages.js';
 
-  export let hp: EnemyOccurrenceView['hp'];
+  export let hp: EndgameEnemyCardView['hp'];
 </script>
 
 <div class="endgame-hp flex min-w-0 items-center justify-end">
-  {#if hp.display === 'phases' && hp.phases?.length}
+  {#if hp.display === 'shared'}
+    <span class="text-muted-foreground" data-endgame-hp data-endgame-hp-shared
+      >{m.endgame_summon_shared_hp()}</span
+    >
+  {:else if hp.display === 'phases' && hp.phases?.length}
     <Popover.Root>
       <Popover.Trigger
         class="focus-visible:ring-ring hover:text-primary relative z-20 inline-flex min-w-0 cursor-pointer items-center gap-1 rounded-sm text-right outline-none focus-visible:ring-2"

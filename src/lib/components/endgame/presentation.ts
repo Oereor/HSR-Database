@@ -57,3 +57,5 @@ export function buildEndgameWaveRows(
   }
   return rows;
 }
+export const endgameEnemyGridClass =
+  'endgame-enemy-grid grid min-w-0 grid-cols-[repeat(auto-fill,minmax(min(200px,100%),260px))] items-stretch justify-start gap-3';

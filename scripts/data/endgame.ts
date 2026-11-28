@@ -20,6 +20,7 @@ import type {
   EndgameStage,
   EnemyMechanics,
   EnemyOccurrence,
+  SummonedEnemyOccurrence,
   MocEncounter,
   MocGroup,
   MocMemoryTurbulence,
@@ -35,6 +36,7 @@ import type {
   SpawnWave,
   SpawnWaveParam
 } from '../../src/lib/domain/endgame.js';
+import { ENDGAME_SCHEMA_VERSION } from '../../src/lib/domain/endgame.js';
 import { textSource as neutralTextSource } from './domain/shared.js';
 import {
   compareDecimals,
@@ -42,10 +44,19 @@ import {
   decimalOf,
   internalStanceToToughness,
   isWholeDecimal,
-  multiplyDecimals,
   parseDecimal
 } from './decimal.js';
-import { resolveEnemyConfiguredStat, resolveEnemyInternalStance } from './enemy-stats.js';
+import {
+  resolveEndgameHpBase,
+  resolveEnemyConfiguredStat,
+  resolveEnemyInternalStance
+} from './enemy-stats.js';
+import {
+  createSummonTaskResolver,
+  directSummonIds,
+  resolveSummonContext,
+  selectSummonStats
+} from './endgame-summons.js';
 import { readRaw, readTable } from './raw.js';
 import { createEnemyPhaseHpResolver } from './enemy-phase-hp.js';
 import { ENDGAME_TABLE_NAMES } from './source-requirements.js';
@@ -341,6 +352,12 @@ export interface EndgameAudit {
       reason: string;
     }>;
   };
+  summons: {
+    configured: number;
+    shared: number;
+    unresolved: number;
+    diagnostics: Array<{ code: string; ownerId: number; targetId?: number; count: number }>;
+  };
   mazeBuffs: MazeBuffResolutionAudit;
   asBossGuides: AsBossGuideAudit;
   modifierRelations: {
@@ -374,7 +391,6 @@ export interface EndgameDomain {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 26 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 const PF_ROUNDING_METADATA = {
@@ -729,6 +745,11 @@ async function fileExists(file: string): Promise<boolean> {
 export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
   const tables = await loadTables(root);
   const resolvePhaseHp = createEnemyPhaseHpResolver(root, tables.monsterSkills);
+  const inspectSummonTasks = createSummonTaskResolver(root, tables.monsterSkills);
+  const summonDiagnostics = new Map<
+    string,
+    { code: string; ownerId: number; targetId?: number; count: number }
+  >();
   const diagnostics = new Diagnostics();
   const context = (mode: EndgameMode, extra: Record<string, string | number | undefined>) => ({
     mode,
@@ -1167,6 +1188,73 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     return elite ? { row: elite, table: 'elite' } : { row: infinite!, table: 'infinite-elite' };
   };
 
+  const buildOccurrenceStats = (
+    template: MonsterTemplateRow,
+    monster: MonsterRow,
+    hard: HardLevelRow,
+    elite: EliteRow,
+    statContext: EndgameDiagnosticSample['context'],
+    stanceRuntimeUnclear: boolean
+  ): Pick<EnemyOccurrence, 'speed' | 'toughness'> => {
+    const speed = resolveConfiguredStat(
+      'Speed',
+      template.SpeedBase,
+      monster.SpeedModifyRatio,
+      monster.SpeedModifyValue,
+      hard.SpeedRatio,
+      elite.SpeedRatio,
+      statContext
+    );
+    const internalStance = resolveInternalStance(
+      template.StanceBase,
+      monster.StanceModifyRatio,
+      monster.StanceModifyValue,
+      hard.StanceRatio,
+      elite.StanceRatio,
+      statContext
+    );
+    const displayedToughness =
+      internalStance.status === 'resolved'
+        ? internalStanceToToughness(internalStance.resolvedInternal)
+        : undefined;
+    if (internalStance.status === 'resolved' && displayedToughness === undefined)
+      diagnostics.warn(
+        'non-terminating-stance-conversion',
+        'resolved internal stance 无法精确换算为玩家韧性',
+        { ...statContext, resolvedInternal: internalStance.resolvedInternal }
+      );
+    let barCount: number | undefined;
+    if (template.StanceCount !== undefined) {
+      barCount = integer(
+        template.StanceCount,
+        `MonsterTemplate ${template.MonsterTemplateID}.StanceCount`
+      );
+      if (barCount < 1)
+        diagnostics.fail('invalid-stance-count', 'StanceCount 必须为正整数', {
+          ...statContext,
+          stanceCount: barCount
+        });
+    }
+    return {
+      speed,
+      toughness: {
+        internalStance,
+        display:
+          displayedToughness !== undefined
+            ? { status: 'resolved', perBar: displayedToughness }
+            : {
+                status: 'unavailable',
+                reason:
+                  internalStance.status === 'unavailable'
+                    ? internalStance.reason
+                    : 'non-terminating-unit-conversion'
+              },
+        ...(barCount ? { barCount } : {}),
+        runtimeStatus: stanceRuntimeUnclear ? 'runtime-unclear' : 'static'
+      }
+    };
+  };
+
   const buildOccurrence = async (
     mode: EndgameMode,
     stage: StageRow,
@@ -1223,30 +1311,17 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       stageId: stage.StageID,
       monsterId
     });
-    const hpBase = decimalOf(
+    const hpFactors = resolveEndgameHpBase(
       template.HPBase,
-      `MonsterTemplate ${template.MonsterTemplateID}.HPBase`
-    );
-    const instanceRatio = decimalOf(monster.HPModifyRatio, `Monster ${monsterId}.HPModifyRatio`);
-    const levelRatio = decimalOf(
+      monster.HPModifyRatio,
       hard.HPRatio,
-      `HardLevel ${stage.HardLevelGroup}:${stage.Level}.HPRatio`
+      elite.row.HPRatio
     );
-    const eliteRatio = decimalOf(elite.row.HPRatio, `EliteGroup ${resolvedEliteGroupId}.HPRatio`);
-    const baseEncounterMaxHpPerBar = multiplyDecimals([
-      hpBase,
-      instanceRatio,
-      levelRatio,
-      eliteRatio
-    ]);
+    const { baseEncounterMaxHpPerBar } = hpFactors;
     const finalHp =
       mode === 'pf' && pfHpModifier
         ? resolvePureFictionFinalHp({
-            hpBase,
-            instanceRatio,
-            levelRatio,
-            eliteRatio,
-            baseEncounterMaxHpPerBar,
+            ...hpFactors,
             rank: template.Rank,
             modifier: pfHpModifier
           }).final
@@ -1264,46 +1339,121 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       monsterId,
       monsterTemplateId: template.MonsterTemplateID
     };
-    const speed = resolveConfiguredStat(
-      'Speed',
-      template.SpeedBase,
-      monster.SpeedModifyRatio,
-      monster.SpeedModifyValue,
-      hard.SpeedRatio,
-      elite.row.SpeedRatio,
-      statContext
+    const configuredStats = buildOccurrenceStats(
+      template,
+      monster,
+      hard,
+      elite.row,
+      statContext,
+      !scan.complete || scan.manipulatesStance
     );
-    const internalStance = resolveInternalStance(
-      template.StanceBase,
-      monster.StanceModifyRatio,
-      monster.StanceModifyValue,
-      hard.StanceRatio,
-      elite.row.StanceRatio,
-      statContext
-    );
-    const displayedToughness =
-      internalStance.status === 'resolved'
-        ? internalStanceToToughness(internalStance.resolvedInternal)
-        : undefined;
-    if (internalStance.status === 'resolved' && displayedToughness === undefined)
-      diagnostics.warn(
-        'non-terminating-stance-conversion',
-        'resolved internal stance 无法精确换算为玩家韧性',
-        { ...statContext, resolvedInternal: internalStance.resolvedInternal }
-      );
-    let barCount: number | undefined;
-    if (template.StanceCount !== undefined) {
-      barCount = integer(
-        template.StanceCount,
-        `MonsterTemplate ${template.MonsterTemplateID}.StanceCount`
-      );
-      if (barCount < 1)
-        diagnostics.fail('invalid-stance-count', 'StanceCount 必须为正整数', {
-          ...statContext,
-          stanceCount: barCount
+    const report = (code: string, targetId?: number) => {
+      const key = `${code}:${monsterId}:${targetId ?? ''}`;
+      const current = summonDiagnostics.get(key);
+      if (current) current.count++;
+      else
+        summonDiagnostics.set(key, {
+          code,
+          ownerId: monsterId,
+          ...(targetId !== undefined ? { targetId } : {}),
+          count: 1
         });
+    };
+    const summons = (monster.SummonIDList ?? []).flatMap((id) => {
+      if (mode !== 'moc' || Number.isSafeInteger(id)) return [integer(id, 'SummonIDList')];
+      report('invalid-summon-raw-id');
+      return [];
+    });
+    const summonTargets: SummonedEnemyOccurrence[] = [];
+    if (mode === 'moc' && summons.length) {
+      const evidence = await inspectSummonTasks(monster, template.JsonConfig);
+      if (evidence.missingGuard) report('summon-evidence-guard-mismatch');
+      const ids = directSummonIds(
+        summons,
+        monsterId,
+        evidence,
+        (id) => {
+          const candidate = monsters.get(String(id));
+          return !!candidate && templates.has(String(candidate.MonsterTemplateID));
+        },
+        report
+      );
+      for (const id of ids) {
+        const target = monsters.get(String(id))!;
+        const targetTemplate = templates.get(String(target.MonsterTemplateID))!;
+        const policy = resolveSummonContext(
+          monsterId,
+          id,
+          resolvedEliteGroupId,
+          actualContextSource,
+          target.EliteGroup,
+          evidence
+        );
+        const targetScan = await scanMechanics(targetTemplate);
+        const candidateStats = policy.eliteGroupIds.map((group) => {
+          const targetElite = elites.get(String(group));
+          if (!targetElite) return undefined;
+          let hp;
+          try {
+            hp = resolveEndgameHpBase(
+              targetTemplate.HPBase,
+              target.HPModifyRatio,
+              hard.HPRatio,
+              targetElite.HPRatio
+            );
+          } catch {
+            report('invalid-summon-hp-input', id);
+          }
+          return {
+            hp,
+            ...buildOccurrenceStats(
+              targetTemplate,
+              target,
+              hard,
+              targetElite,
+              {
+                ...statContext,
+                monsterId: id,
+                monsterTemplateId: target.MonsterTemplateID
+              },
+              !targetScan.complete || targetScan.manipulatesStance
+            )
+          };
+        });
+        const resolved = selectSummonStats(policy, candidateStats);
+        if (resolved.hp.status === 'configured') {
+          const phases = await resolvePhaseHp(target, targetTemplate, {
+            status: 'resolved',
+            source: 'base-encounter',
+            rounding: 'display-half-up',
+            maxHpPerBar: resolved.hp.factors.baseEncounterMaxHpPerBar
+          });
+          if (phases) resolved.hp.phases = phases;
+        } else if (resolved.hp.status === 'unresolved')
+          report(`summon-hp-${resolved.hp.reason}`, id);
+        if (resolved.speed.status === 'unavailable')
+          report(`summon-speed-${resolved.speed.reason}`, id);
+        if (resolved.toughness.display.status === 'unavailable')
+          report(`summon-toughness-${resolved.toughness.display.reason}`, id);
+        const voracityLevel = voracityLevelFor(stage.StageID, id);
+        summonTargets.push({
+          monsterId: id,
+          monsterTemplateId: target.MonsterTemplateID,
+          ...(voracityLevel !== undefined ? { voracityLevel } : {}),
+          context: {
+            level: stage.Level,
+            hardLevelGroup: stage.HardLevelGroup,
+            source: 'summoner-occurrence',
+            eliteContextSource: actualContextSource,
+            eliteGroupIds: policy.eliteGroupIds,
+            eliteSelection: policy.eliteSelection,
+            confidence: 'inferred',
+            ...(policy.evidence.length ? { evidence: policy.evidence } : {})
+          },
+          ...resolved
+        });
+      }
     }
-    const summons = (monster.SummonIDList ?? []).map((id) => integer(id, 'SummonIDList'));
     const unclear =
       !scan.complete ||
       (scan.phaseCount ?? 1) > 1 ||
@@ -1341,11 +1491,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       monsterId,
       monsterTemplateId: monster.MonsterTemplateID,
       hp: {
-        hpBase,
-        instanceRatio,
-        levelRatio,
-        eliteRatio,
-        baseEncounterMaxHpPerBar,
+        ...hpFactors,
         final: finalHp,
         ...(phases ? { phases } : {}),
         eliteGroupId: resolvedEliteGroupId,
@@ -1353,23 +1499,9 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
         eliteContextSource: actualContextSource,
         eliteContextConfidence: confidence
       },
-      speed,
-      toughness: {
-        internalStance,
-        display:
-          displayedToughness !== undefined
-            ? { status: 'resolved', perBar: displayedToughness }
-            : {
-                status: 'unavailable',
-                reason:
-                  internalStance.status === 'unavailable'
-                    ? internalStance.reason
-                    : 'non-terminating-unit-conversion'
-              },
-        ...(barCount ? { barCount } : {}),
-        runtimeStatus: !scan.complete || scan.manipulatesStance ? 'runtime-unclear' : 'static'
-      },
-      mechanics
+      ...configuredStats,
+      mechanics,
+      ...(summonTargets.length ? { summonTargets } : {})
     };
   };
 
@@ -1741,7 +1873,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
         encounters
       });
     }
-    datasets.moc = { schemaVersion: SCHEMA_VERSION, mode, groups };
+    datasets.moc = { schemaVersion: ENDGAME_SCHEMA_VERSION, mode, groups };
   }
 
   {
@@ -1885,7 +2017,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
         cacophony
       });
     }
-    datasets.pf = { schemaVersion: SCHEMA_VERSION, mode, groups };
+    datasets.pf = { schemaVersion: ENDGAME_SCHEMA_VERSION, mode, groups };
   }
 
   {
@@ -2097,7 +2229,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
         axiomSets
       });
     }
-    datasets.as = { schemaVersion: SCHEMA_VERSION, mode, groups };
+    datasets.as = { schemaVersion: ENDGAME_SCHEMA_VERSION, mode, groups };
   }
 
   const peakConfigs = buildUniqueIndex(
@@ -2303,7 +2435,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       judgmentQuadrant
     });
   }
-  datasets.aa = { schemaVersion: SCHEMA_VERSION, mode: 'aa', groups: aaGroups };
+  datasets.aa = { schemaVersion: ENDGAME_SCHEMA_VERSION, mode: 'aa', groups: aaGroups };
 
   const summary = Object.fromEntries(
     MODES.map((mode) => {
@@ -2419,6 +2551,26 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     }
   }
 
+  const summons = {
+    configured: 0,
+    shared: 0,
+    unresolved: 0,
+    diagnostics: [...summonDiagnostics.values()].sort(
+      (a, b) =>
+        a.ownerId - b.ownerId ||
+        (a.targetId ?? 0) - (b.targetId ?? 0) ||
+        a.code.localeCompare(b.code)
+    )
+  };
+  for (const group of datasets.moc.groups)
+    for (const encounter of group.encounters)
+      for (const battle of encounter.battles)
+        for (const stage of battle.stages)
+          if (stage.waveModel.kind === 'fixed')
+            for (const wave of stage.waveModel.waves)
+              for (const enemy of wave.enemies)
+                for (const target of enemy.summonTargets ?? []) summons[target.hp.status]++;
+
   return {
     datasets,
     audit: {
@@ -2430,6 +2582,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
         abilityConfigsMissing: diagnostics.abilityConfigsMissing
       },
       stanceConversion,
+      summons,
       mazeBuffs: mazeBuffResolver.getAudit(),
       asBossGuides: asBossGuideResolver.getAudit(),
       modifierRelations,

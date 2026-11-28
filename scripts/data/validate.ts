@@ -1,7 +1,9 @@
+import { ENDGAME_SCHEMA_VERSION } from '../../src/lib/domain/endgame.js';
 import { validateEnhancementComparisonSemantics } from './validation/enhancement-comparison.js';
 import { validateTrainingSemantics } from './validation/training.js';
 import { validateCharacterExtensionSemantics } from './validation/character-extensions.js';
 import { validatePhaseHpSemantics } from './validation/phase-hp.js';
+import { validateSummonSemantics } from './validation/endgame-summons.js';
 import { normalizeEnemySkillKind, normalizeEnemySkillTag } from './enemy-skill-policy.js';
 import { createTextResolver } from './localization.js';
 import { parameterized } from './domain/shared.js';
@@ -252,7 +254,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 26 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== ENDGAME_SCHEMA_VERSION || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -453,6 +455,13 @@ const [rawTemplates, rawCamps, rawConfigs, rawHardLevels, rawElites, rawEnemySki
 const rawCampIndex = indexEnemyCamps(rawCamps);
 const rawSkillById = new Map(rawEnemySkills.map((row) => [String(row.SkillID), row]));
 await validatePhaseHpSemantics(rawRoot, endgame, rawTemplates, rawConfigs, rawEnemySkills);
+await validateSummonSemantics(rawRoot, endgame.moc, {
+  templates: rawTemplates,
+  monsters: rawConfigs,
+  hardLevels: rawHardLevels,
+  elites: rawElites,
+  skills: rawEnemySkills
+});
 const skillDescriptionResolvers = await Promise.all(
   (['zh-CN', 'en'] as const).map(async (locale) => ({
     locale,

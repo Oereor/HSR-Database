@@ -1,3 +1,4 @@
+import { ENDGAME_SCHEMA_VERSION } from '$lib/domain/endgame';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { getEnemyCardImageUrl } from '$lib/server/enemy-assets';
@@ -56,7 +57,7 @@ export function getEndgameDataset<TMode extends EndgameMode>(
   if (cached) return cached as Promise<EndgameDatasetByMode[TMode]>;
   const pending = readJson<EndgameModeDataset>(locale, 'endgame', `${mode}.json`).then(
     (dataset) => {
-      if (dataset.schemaVersion !== 26 || dataset.mode !== mode)
+      if (dataset.schemaVersion !== ENDGAME_SCHEMA_VERSION || dataset.mode !== mode)
         throw new Error(`${mode} Endgame 数据 schema 或模式不匹配`);
       return dataset;
     }
@@ -214,6 +215,15 @@ async function buildResolvedGroupView(
             monsterId: occurrence.monsterId,
             templateId: occurrence.monsterTemplateId
           });
+          for (const target of occurrence.summonTargets ?? []) {
+            referencedEnemies.set(
+              endgameEnemyReferenceKey(target.monsterId, target.monsterTemplateId),
+              {
+                monsterId: target.monsterId,
+                templateId: target.monsterTemplateId
+              }
+            );
+          }
         }
       }
   const references = new Map<string, EndgameEnemyReference>();
@@ -274,7 +284,13 @@ function resolveEndgameGridItem(
       ? stage.waves[waveIndex]?.enemies.find(({ monsterId }) => monsterId === locator.monsterId)
       : undefined;
   if (!occurrence) return undefined;
-  return { key: endgameOccurrenceLocatorKey(locator), occurrence, level: stage.level };
+  const shardOccurrence = { ...occurrence };
+  delete shardOccurrence.summonTargets;
+  return {
+    key: endgameOccurrenceLocatorKey(locator),
+    occurrence: shardOccurrence,
+    level: stage.level
+  };
 }
 
 export async function getEndgameOccurrenceTargetIds(): Promise<

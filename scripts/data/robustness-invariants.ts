@@ -1,3 +1,4 @@
+import { ENDGAME_SCHEMA_VERSION } from '../../src/lib/domain/endgame.js';
 import { enemyDetailHref } from '../../src/lib/domain/enemy-view.js';
 import { assertEnemyArtifact, assertEnemyConsumerClosure } from './validation/enemies.js';
 import type {
@@ -424,8 +425,15 @@ function validateEndgame(
   const positive = (value: unknown) => Number.isSafeInteger(value) && Number(value) > 0;
   for (const mode of ENDGAME_MODES) {
     const dataset = projection.endgame[mode];
-    if (!dataset || dataset.schemaVersion !== 26 || dataset.mode !== mode) {
-      issues.push(issue('error', 'endgame', 'dataset-schema', `mode=${mode} must use schema=25`));
+    if (!dataset || dataset.schemaVersion !== ENDGAME_SCHEMA_VERSION || dataset.mode !== mode) {
+      issues.push(
+        issue(
+          'error',
+          'endgame',
+          'dataset-schema',
+          `mode=${mode} must use schema=${ENDGAME_SCHEMA_VERSION}`
+        )
+      );
       continue;
     }
     const groupIds = new Set<number>();

@@ -29,7 +29,8 @@ hardLevelGroup eliteGroup baseStats criticalDamage camp sortId`;
 const endgameFields = `groups encounters battles stages schedule waveModel waves enemies orderedEnemies monsterGroups
 spawnSequence maxMonsterCount maxTeammateCount ability params clearPreviousAbility stageAbilities
 previewMonsterIds mechanics memoryTurbulence groupBaseMechanic battleWillMechanics cacophony axiomSets
-aftertaste bossGuides traits judgmentQuadrant provenance ownerId periods occurrences locator voracityLevel`;
+aftertaste bossGuides traits judgmentQuadrant provenance ownerId periods occurrences locator voracityLevel
+summonTargets context eliteGroupIds eliteSelection confidence evidence factors file`;
 const neutralFieldsByDomain = {
   characters: fields(commonFields, statFields, characterFields, equipmentFields),
   lightCones: fields(commonFields, statFields, equipmentFields),

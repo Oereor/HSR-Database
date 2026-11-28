@@ -8,6 +8,8 @@ import type {
   EndgameStage,
   EnemyMechanics,
   EnemyOccurrence,
+  EnemyHpPhase,
+  SummonedEnemyOccurrence,
   ResolvedMazeBuff
 } from './endgame';
 import type { ExtraEffect } from './types';
@@ -131,7 +133,7 @@ export function resolveEndgameEnemyReference(
   };
 }
 
-export interface EnemyOccurrenceView {
+export interface EndgameEnemyCardView {
   identity: string;
   voracityLevel?: number;
   monsterId: number;
@@ -146,7 +148,7 @@ export interface EnemyOccurrenceView {
     exactPerBar?: DecimalString;
     roundedPerBar: string;
     phaseCount?: number;
-    display?: 'plain' | 'uniform' | 'phases';
+    display?: 'plain' | 'uniform' | 'phases' | 'shared';
     phases?: Array<{ phase: number; exact?: DecimalString; rounded: string }>;
   };
   speed: {
@@ -158,6 +160,10 @@ export interface EnemyOccurrenceView {
     roundedPerBar: string;
     barCount?: number;
   };
+}
+
+export interface EnemyOccurrenceView extends EndgameEnemyCardView {
+  summonTargets?: Array<{ level: number; enemy: EndgameEnemyCardView }>;
 }
 
 export interface EndgameEnemyGridItem {
@@ -423,14 +429,18 @@ export function mergeFixedOccurrences(
   return [...merged.values()];
 }
 
-export function buildOccurrenceView(
-  occurrence: EnemyOccurrence,
-  reference?: EndgameEnemyReference,
-  count?: number,
-  presentation: EndgameViewPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION
-): EnemyOccurrenceView {
-  const mechanics = occurrence.mechanics;
-  const phases = occurrence.hp.phases?.map(({ phase, maxHp }) => ({
+function buildEnemyCardView(
+  occurrence: Pick<
+    EnemyOccurrence,
+    'name' | 'monsterId' | 'monsterTemplateId' | 'voracityLevel' | 'speed' | 'toughness'
+  >,
+  identity: string,
+  hp: { maxHp?: DecimalString; phases?: EnemyHpPhase[]; phaseCount?: number; shared?: boolean },
+  reference: EndgameEnemyReference | undefined,
+  presentation: EndgameViewPresentation,
+  count?: number
+): EndgameEnemyCardView {
+  const phases = hp.phases?.map(({ phase, maxHp }) => ({
     phase,
     ...(maxHp !== undefined ? { exact: maxHp } : {}),
     rounded: maxHp !== undefined ? formatFullHp(maxHp) : presentation.unavailable
@@ -450,7 +460,7 @@ export function buildOccurrenceView(
     ...(multiple ? { phases } : {})
   };
   return {
-    identity: occurrenceIdentity(occurrence),
+    identity,
     ...(occurrence.voracityLevel !== undefined ? { voracityLevel: occurrence.voracityLevel } : {}),
     monsterId: occurrence.monsterId,
     monsterTemplateId: occurrence.monsterTemplateId,
@@ -462,13 +472,14 @@ export function buildOccurrenceView(
     weaknesses: reference?.weaknesses ?? [],
     ...(reference?.portraitUrl ? { portraitUrl: reference.portraitUrl } : {}),
     ...(count && count > 1 ? { count } : {}),
-    hp:
-      occurrence.hp.final.status === 'resolved'
+    hp: hp.shared
+      ? { display: 'shared', roundedPerBar: presentation.unavailable }
+      : hp.maxHp !== undefined
         ? {
             ...phaseView,
-            exactPerBar: occurrence.hp.final.maxHpPerBar,
-            roundedPerBar: formatFullHp(occurrence.hp.final.maxHpPerBar),
-            ...(mechanics.phaseCount ? { phaseCount: mechanics.phaseCount } : {})
+            exactPerBar: hp.maxHp,
+            roundedPerBar: formatFullHp(hp.maxHp),
+            ...(hp.phaseCount ? { phaseCount: hp.phaseCount } : {})
           }
         : { ...phaseView, roundedPerBar: presentation.unavailable },
     speed:
@@ -486,6 +497,47 @@ export function buildOccurrenceView(
             ...(occurrence.toughness.barCount ? { barCount: occurrence.toughness.barCount } : {})
           }
         : { roundedPerBar: presentation.unavailable }
+  };
+}
+
+export function buildOccurrenceView(
+  occurrence: EnemyOccurrence,
+  reference?: EndgameEnemyReference,
+  count?: number,
+  presentation: EndgameViewPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION
+): EnemyOccurrenceView {
+  return buildEnemyCardView(
+    occurrence,
+    occurrenceIdentity(occurrence),
+    {
+      maxHp:
+        occurrence.hp.final.status === 'resolved' ? occurrence.hp.final.maxHpPerBar : undefined,
+      phases: occurrence.hp.phases,
+      phaseCount: occurrence.mechanics.phaseCount
+    },
+    reference,
+    presentation,
+    count
+  );
+}
+
+function buildSummonCard(target: SummonedEnemyOccurrence, reference?: EndgameEnemyReference) {
+  return {
+    level: target.context.level,
+    enemy: buildEnemyCardView(
+      target,
+      `${target.monsterTemplateId}:${target.monsterId}`,
+      {
+        maxHp:
+          target.hp.status === 'configured'
+            ? target.hp.factors.baseEncounterMaxHpPerBar
+            : undefined,
+        phases: target.hp.status === 'configured' ? target.hp.phases : undefined,
+        shared: target.hp.status === 'shared'
+      },
+      reference,
+      ZH_CN_ENDGAME_VIEW_PRESENTATION
+    )
   };
 }
 
@@ -851,16 +903,22 @@ function buildWaveViews(
   enemyReferences: ReadonlyMap<string, EndgameEnemyReference>
 ): EndgameWaveView[] {
   const presented = presentedStageWaves(stage);
+  const referenceFor = ({
+    monsterId,
+    monsterTemplateId
+  }: Pick<EnemyOccurrence, 'monsterId' | 'monsterTemplateId'>) =>
+    enemyReferences.get(endgameEnemyReferenceKey(monsterId, monsterTemplateId));
   const buildEnemies = (occurrences: PresentedEndgameOccurrence[]) =>
-    occurrences.map(({ occurrence, count }) =>
-      buildOccurrenceView(
-        occurrence,
-        enemyReferences.get(
-          endgameEnemyReferenceKey(occurrence.monsterId, occurrence.monsterTemplateId)
-        ),
-        count
-      )
-    );
+    occurrences.map(({ occurrence, count }) => ({
+      ...buildOccurrenceView(occurrence, referenceFor(occurrence), count),
+      ...(occurrence.summonTargets?.length
+        ? {
+            summonTargets: occurrence.summonTargets.map((target) =>
+              buildSummonCard(target, referenceFor(target))
+            )
+          }
+        : {})
+    }));
   if (stage.waveModel.kind === 'fixed')
     return stage.waveModel.waves.map((wave, waveIndex) => ({
       key: `fixed-${wave.wave}`,
